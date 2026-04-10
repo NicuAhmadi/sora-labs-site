@@ -400,6 +400,76 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 }
 .news-preview-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
 
+/* ═══ FEATURED RESEARCH ═══ */
+.featured-research {
+  padding: 64px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.featured-research-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.featured-research-text {
+  max-width: 600px;
+}
+.featured-research-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.featured-research-text h3 {
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.featured-research-text p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.featured-research-link {
+  flex-shrink: 0;
+}
+.featured-research-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 12px 24px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.featured-research-link a:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+@media (max-width: 768px) {
+  .featured-research-inner {
+    flex-direction: column;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .featured-research-link { width: 100%; }
+  .featured-research-link a { width: 100%; justify-content: center; }
+}
+
 /* ═══ ABOUT ═══ */
 .about-strip { padding: 80px 0; border-top: 1px solid var(--border-subtle); }
 .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -632,19 +702,35 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
           </div>
           <div class="news-preview-item">
             <div class="news-preview-label">Lead Story</div>
-            <div class="news-preview-text">Why legacy industries are the real growth opportunity — and what the "Spreadsheet Graveyards" reveal about where markets are heading.</div>
+            <div class="news-preview-text">AI adoption in construction doubled in 12 months — from 17% to 38% of contractors reporting measurable impact. We broke down the 16 companies driving it and where the $126M in fresh funding is going.</div>
           </div>
           <div class="news-preview-item">
             <div class="news-preview-label">Market Signal</div>
-            <div class="news-preview-text">Three mid-market logistics firms quietly overhauled their dispatch systems. Here's what happened to their margins.</div>
+            <div class="news-preview-text">Back-office AI for specialty trades is the most underhyped category in contech. Trayd raised a $10M Series A in three weeks. Payra's customers cut past-due invoices by 75%. The margin gains are quiet but real.</div>
           </div>
           <div class="news-preview-item">
             <div class="news-preview-label">Dispatch Notes</div>
-            <div class="news-preview-text">Field notes from our research operations: what we're tracking, what surprised us, and where the smart money is going.</div>
+            <div class="news-preview-text">This week we published our first full industry deep-dive: AI in Construction — Who's Winning, Who's Funded, and What It Means for Your Firm. It's free, it's detailed, and it's the kind of analysis we do for subscribers every week at a smaller scale.</div>
           </div>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED RESEARCH -->
+<section class="featured-research">
+  <div class="container">
+    <div class="featured-research-inner">
+      <div class="featured-research-text">
+        <div class="featured-research-label">See Our Work</div>
+        <h3>AI in Construction — Full Competitive Intelligence Briefing</h3>
+        <p>We published a full deep-dive covering 16 companies, $126M in recent funding, and strategic recommendations by adoption stage. Free to read.</p>
+      </div>
+      <div class="featured-research-link">
+        <a href="https://sora-labs.net/research/ai-construction/index.html">Read the briefing &rarr;</a>
+      </div>
     </div>
   </div>
 </section>
