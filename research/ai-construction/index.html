@@ -24,6 +24,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 56px; }
 
   body {
     font-family: 'DM Sans', sans-serif;
@@ -393,6 +394,41 @@
   }
   .footer-legal a { color: var(--accent); }
 
+  /* ── SECTION NAV ── */
+  .section-nav {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-nav-inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  .section-nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 14px 16px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .section-nav a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .hero { padding: 48px 20px 36px; }
@@ -402,6 +438,8 @@
     .section { padding: 40px 0; }
     .masthead-inner { padding: 0 20px; }
     .company-card { padding: 18px; }
+    .section-nav { padding: 0 20px; }
+    .section-nav a { padding: 12px 12px; font-size: 10px; }
   }
 
   /* ── PRINT ── */
@@ -409,6 +447,7 @@
     .masthead { background: white; color: black; border-bottom-color: black; }
     .footer-cta { background: white; color: black; border: 2px solid black; }
     .footer-cta a { background: black; }
+    .section-nav { display: none; }
   }
 </style>
 </head>
@@ -417,7 +456,7 @@
 <!-- ═══ MASTHEAD ═══ -->
 <header class="masthead">
   <div class="masthead-inner">
-    <div class="masthead-brand">Nadia Intelligence</div>
+    <div class="masthead-brand">Sora Labs</div>
     <div class="masthead-date">Competitive Briefing · April 2026</div>
   </div>
 </header>
@@ -451,11 +490,23 @@
   </div>
 </div>
 
+<!-- ═══ SECTION NAV ═══ -->
+<nav class="section-nav">
+  <div class="section-nav-inner">
+    <a href="#executive-summary">Executive Summary</a>
+    <a href="#funding-tracker">Funding Tracker</a>
+    <a href="#competitive-landscape">Competitive Landscape</a>
+    <a href="#use-case-matrix">Use Case Matrix</a>
+    <a href="#strategic-recommendations">Recommendations</a>
+    <a href="#one-number">One Number</a>
+  </div>
+</nav>
+
 <!-- ═══ CONTENT ═══ -->
 <div class="content">
 
   <!-- SECTION 1 -->
-  <div class="section">
+  <div class="section" id="executive-summary">
     <div class="section-number">01 — Executive Summary</div>
     <h2>The gap between AI adopters and everyone else is now a competitive moat</h2>
     <p>Construction AI has crossed the threshold from pilot programs to measurable business impact. The ServiceTitan 2026 Commercial Specialty Contractor Industry Report surveyed over 1,000 industry leaders and found that the share of contractors seeing real results from AI more than doubled in a single year. Cost estimating (used by 24% of contractors) and bid management (22%) are the leading use cases, with admin-workload reduction (30–50% decreases in pilot firms) emerging as the fastest path to ROI.</p>
@@ -467,7 +518,7 @@
   </div>
 
   <!-- SECTION 2 -->
-  <div class="section">
+  <div class="section" id="funding-tracker">
     <div class="section-number">02 — Funding Tracker</div>
     <h2>Where the money is going: Q4 2025 – Q1 2026</h2>
     <p>Investor confidence in construction AI is at an all-time high. In Q2 2025, $3.96B in venture capital flowed into built-environment technology — a 75% increase year-over-year — with 68% directed at AI and ML startups, nearly triple the historical allocation. Here's what got funded in the most recent cycle:</p>
@@ -521,7 +572,7 @@
   </div>
 
   <!-- SECTION 3 -->
-  <div class="section">
+  <div class="section" id="competitive-landscape">
     <div class="section-number">03 — Competitive Landscape</div>
     <h2>The 16 companies that matter in construction AI right now</h2>
     <p>The market is splitting into three tiers: incumbent platforms adding AI features, well-funded vertical startups, and emerging YC-backed specialists. Here's who's where:</p>
@@ -668,7 +719,7 @@
   </div>
 
   <!-- SECTION 4 -->
-  <div class="section">
+  <div class="section" id="use-case-matrix">
     <div class="section-number">04 — Use Case Matrix</div>
     <h2>Where AI is delivering real ROI today vs. where it's still experimental</h2>
 
@@ -763,7 +814,7 @@
   </div>
 
   <!-- SECTION 5 -->
-  <div class="section">
+  <div class="section" id="strategic-recommendations">
     <div class="section-number">05 — Strategic Recommendations</div>
     <h2>What this means for your firm</h2>
     <p>Based on the data in this briefing, here's how we'd frame the strategic conversation for construction executives at three different stages of AI adoption:</p>
@@ -793,7 +844,7 @@
   </div>
 
   <!-- SECTION 6 -->
-  <div class="section">
+  <div class="section" id="one-number">
     <div class="section-number">06 — One Number to Remember</div>
     <h2 style="max-width: 640px;">Only 19% of contractors have actually adapted their workflows for AI — even though 87% believe it will meaningfully impact construction.</h2>
     <p>That 68-point gap between belief and action is where the opportunity is. The firms that close it in 2026 will own the next decade of competitive advantage. The data is clear: adoption is compounding, not linear. Moving from 17% to 38% in one year means 2027 will be even more decisive.</p>
@@ -805,12 +856,12 @@
 <!-- ═══ FOOTER ═══ -->
 <div class="report-footer">
   <div class="footer-cta">
-    <h3>This was the free briefing.</h3>
-    <p>Nadia Intelligence subscribers get a briefing like this every week — covering your specific market, your specific competitors, with analysis you can act on immediately.</p>
-    <a href="https://buy.stripe.com/28E00i4Ly1xnc1m10Hak000">Subscribe → $50/month</a>
+    <h3>This is how we think.</h3>
+    <p>Sora Labs produces competitive intelligence like this for clients across construction, logistics, healthcare, manufacturing, and more. If you want this level of analysis focused on your specific market and your specific competitors — that's what we do.</p>
+    <a href="mailto:nadia@sora-labs.net">Talk to us → nadia@sora-labs.net</a>
   </div>
   <div class="footer-legal">
-    <p><strong>Nadia Intelligence</strong> · Competitive Intelligence Briefings<br>
+    <p><strong>Sora Labs</strong> · Market Intelligence &amp; Research<br>
     This briefing was produced using publicly available data, press releases, SEC filings, and industry reports. Company information is current as of April 2026. This is not investment advice.<br><br>
     Sources include: ServiceTitan 2026 Commercial Specialty Contractor Industry Report, Fortune Business Insights, Bridgit AI Construction Statistics 2026, Construction Dive, Crunchbase, TechCrunch, BuiltWorlds, CEMEX Ventures, IndexBox, AGC Annual Survey, RICS 2025 AI in Construction Survey, Deloitte, PwC Future of Industrials Survey, Dodge Construction Network.<br><br>
     Questions? Reach out at <a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a>
