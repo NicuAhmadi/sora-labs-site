@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools — Sora Labs</title>
+  <meta name="description" content="Technical tools and skills for OpenClaw agents. Built from real production experience.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #161616;
+      --bg-card-hover: #1a1a1a;
+      --border: #222222;
+      --border-accent: #333333;
+      --text-primary: #e8e8e8;
+      --text-secondary: #999999;
+      --text-muted: #666666;
+      --accent: #c8a97e;
+      --accent-dim: rgba(200, 169, 126, 0.15);
+      --accent-glow: rgba(200, 169, 126, 0.08);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.12);
+      --red: #f87171;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--bg-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 2rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── PRODUCTS GRID ── */
+    .products {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      transition: border-color 0.3s;
+    }
+
+    .product-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .product-header {
+      padding: 2.5rem 2.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .product-title-group {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .product-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .badge-skill {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(200, 169, 126, 0.25);
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .product-price-block {
+      text-align: right;
+    }
+
+    .product-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .product-price-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .product-body {
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .product-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+
+    /* ── FEATURE GRID ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .feature-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-text {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── VERSIONS ROW ── */
+    .versions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .version-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      position: relative;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .version-card.free {
+      background: var(--bg-secondary);
+    }
+
+    .version-card.paid {
+      background: var(--accent-glow);
+      border-color: rgba(200, 169, 126, 0.3);
+    }
+
+    .version-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .version-card.free .version-label { color: var(--green); }
+    .version-card.paid .version-label { color: var(--accent); }
+
+    .version-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .version-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .version-features {
+      list-style: none;
+      margin-bottom: 1.2rem;
+    }
+
+    .version-features li {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      padding: 0.25rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .version-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 0.75rem;
+    }
+
+    .version-card.paid .version-features li::before {
+      color: var(--accent);
+    }
+
+    .version-cta {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+    }
+
+    .version-card.free .version-cta {
+      background: var(--green-dim);
+      color: var(--green);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+    }
+
+    .version-card.free .version-cta:hover {
+      background: rgba(74, 222, 128, 0.2);
+    }
+
+    .version-card.paid .version-cta {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border: 1px solid var(--accent);
+    }
+
+    .version-card.paid .version-cta:hover {
+      background: #d4b88e;
+    }
+
+    /* ── INSTALL BLOCK ── */
+    .install-block {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .install-block code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      background: rgba(200, 169, 126, 0.08);
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      user-select: all;
+    }
+
+    .install-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ── ORIGIN STORY ── */
+    .origin {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .origin-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .origin-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    .origin-text a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 169, 126, 0.3);
+      transition: border-color 0.2s;
+    }
+
+    .origin-text a:hover {
+      border-color: var(--accent);
+    }
+
+    /* ── COMING SOON SECTION ── */
+    .coming-soon {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .coming-soon-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .coming-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .coming-soon-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      opacity: 0.6;
+    }
+
+    .coming-soon-name {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .coming-soon-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .footer-email a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      margin-top: 6rem;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--text-secondary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .hero { padding: 8rem 1.5rem 3rem; }
+      .product-header { flex-direction: column; }
+      .product-price-block { text-align: left; }
+      .product-header, .product-body, .origin { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .versions { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.78rem; }
+      .install-block { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero, .product-card, .coming-soon {
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    .product-card { animation-delay: 0.15s; }
+    .coming-soon { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://sora-labs.net" class="nav-logo">
+      <span class="nav-logo-mark">S</span>
+      Sora Labs
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://sora-labs.net/#services">Services</a></li>
+      <li><a href="https://sora-labs.net/tools/" class="active">Tools</a></li>
+      <li><a href="https://sora-labs.net/#newsletter">Newsletter</a></li>
+      <li><a href="https://sora-labs.net/#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Tools &amp; Skills</div>
+    <h1>Built in production.<br><em>Packaged for yours.</em></h1>
+    <p>OpenClaw skills and tools built from running autonomous agents 24/7. Every one of these solved a real problem on a real system before it became a product.</p>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+
+    <!-- PROSPECTOR -->
+    <article class="product-card" id="prospector">
+      <div class="product-header">
+        <div class="product-title-group">
+          <a href="https://buy.stripe.com/9B67sKgug2Br2qM7p5ak003" target="_blank" rel="noopener" class="product-badge badge-skill" style="text-decoration:none;">OpenClaw Skill</a>
+          <h2 class="product-name">Prospector</h2>
+          <p class="product-subtitle">Autonomous B2B Outreach Engine</p>
+        </div>
+        <div class="product-price-block">
+          <div class="product-price">$39</div>
+          <div class="product-price-note">one-time</div>
+        </div>
+      </div>
+
+      <div class="product-body">
+        <p class="product-description">
+          A complete outreach workflow for OpenClaw agents — prospect research, email drafting, pipeline tracking, and self-improvement. Your agent finds prospects, sends personalized outreach with PDF briefings, tracks every interaction, and gets better after every run.
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <div class="feature-label">Duplicate Prevention</div>
+            <div class="feature-text">Checks pipeline before every send. Your agent never emails the same person twice.</div>
+          </div>
+          <div class="feature">
+            <div class="feature-label">Email Verification</div>
+            <div class="feature-text">Strict rules so the agent never guesses addresses or trusts directory listings.</div>
+          </div>
+          <div class="feature">
+            <div class="feature-label">Self-Improving</div>
+            <div class="feature-text">Agent reviews its own sends after each run and logs what to change next time.</div>
+          </div>
+          <div class="feature">
+            <div class="feature-label">PDF Briefing Generator</div>
+            <div class="feature-text">Creates branded competitive intelligence samples to attach as a free value hook.</div>
+          </div>
+          <div class="feature">
+            <div class="feature-label">Follow-Up Cadence</div>
+            <div class="feature-text">Day 2, day 5, stop. Automated follow-ups without endless pestering.</div>
+          </div>
+          <div class="feature">
+            <div class="feature-label">Pipeline Tracking</div>
+            <div class="feature-text">Single-file source of truth with status, dates, and notes across sessions.</div>
+          </div>
+        </div>
+
+        <!-- VERSIONS -->
+        <div class="versions">
+          <div class="version-card free">
+            <div class="version-label">Free</div>
+            <h3 class="version-title">Prospector Lite</h3>
+            <div class="version-price">$0 — ClawHub</div>
+            <ul class="version-features">
+              <li>Basic pipeline tracking</li>
+              <li>Duplicate prevention</li>
+              <li>Outreach templates</li>
+            </ul>
+            <a href="https://clawhub.ai/nicuahmadi/prospector-lite" target="_blank" rel="noopener" class="version-cta" style="background: var(--green-dim); color: var(--green); border: 1px solid rgba(74, 222, 128, 0.25);">Get Prospector Lite</a>
+          </div>
+          <div class="version-card paid">
+            <div class="version-label">Full Version</div>
+            <h3 class="version-title">Prospector</h3>
+            <div class="version-price">$39 — one-time purchase</div>
+            <ul class="version-features">
+              <li>Everything in Lite</li>
+              <li>PDF briefing generator</li>
+              <li>Follow-up cadence system</li>
+              <li>Self-improving lessons loop</li>
+              <li>Email verification rules</li>
+              <li>Manual target list support</li>
+            </ul>
+            <a href="https://buy.stripe.com/9B67sKgug2Br2qM7p5ak003" target="_blank" rel="noopener" class="version-cta">Buy Prospector — $39</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="origin">
+        <div class="origin-title">Why this exists</div>
+        <p class="origin-text">
+         Built from running autonomous prospecting on OpenClaw in production — solving token overflow, duplicate sends, and email deliverability failures until the workflow actually converted. Every rule in this skill exists because something broke without it.
+        </p>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- COMING SOON -->
+  <section class="coming-soon">
+    <div class="coming-soon-header">More tools coming</div>
+    <div class="coming-soon-grid">
+      <div class="coming-soon-card">
+        <div class="coming-soon-name">Newsletter Engine</div>
+        <div class="coming-soon-desc">Automated research, drafting, and publishing workflow for agent-driven newsletters.</div>
+      </div>
+      <div class="coming-soon-card">
+        <div class="coming-soon-name">Heartbeat Optimizer</div>
+        <div class="coming-soon-desc">Token-efficient heartbeat configs with activity logging and self-tuning intervals.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-email"><a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a></div>
+    <div class="footer-copy">&copy; 2026 Sora Labs. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="https://x.com/NadiaReports">&#x1D54F;</a>
+      <a href="https://buttondown.com/nclawdev">Newsletter</a>
+      <a href="https://sora-labs.net">Home</a>
+      <a href="mailto:nadia@sora-labs.net">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
