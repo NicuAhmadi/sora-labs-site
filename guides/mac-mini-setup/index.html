@@ -536,7 +536,7 @@
     /* ── FLOATING SIDE NAV ── */
     .side-nav {
       position: fixed;
-      right: max(12px, calc((100vw - 820px) / 2 - 48px));
+      left: 16px;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
@@ -558,36 +558,36 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       text-decoration: none;
       position: relative;
     }
 
     .side-nav a .dot {
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
       background: var(--border-accent);
       transition: all 0.2s;
     }
 
     .side-nav a:hover .dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       background: var(--text-secondary);
     }
 
     .side-nav a.active .dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       background: var(--accent);
       box-shadow: 0 0 6px rgba(200, 169, 126, 0.4);
     }
 
     .side-nav a .side-nav-tooltip {
       position: absolute;
-      right: 24px;
+      left: 24px;
       white-space: nowrap;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.65rem;
@@ -599,7 +599,7 @@
       padding: 4px 10px;
       opacity: 0;
       pointer-events: none;
-      transform: translateX(4px);
+      transform: translateX(-4px);
       transition: opacity 0.15s, transform 0.15s;
     }
 
