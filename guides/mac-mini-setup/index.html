@@ -532,6 +532,75 @@
     .hero, .toc, .section { animation: fadeUp 0.5s ease-out both; }
     .toc { animation-delay: 0.1s; }
     .section { animation-delay: 0.15s; }
+
+    /* ── FLOATING SIDE NAV ── */
+    .side-nav {
+      position: fixed;
+      left: max(1rem, calc((100vw - 820px) / 2 - 64px));
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .side-nav.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .side-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s, background 0.2s;
+      position: relative;
+    }
+
+    .side-nav a:hover {
+      color: var(--text-primary);
+      background: var(--bg-card);
+    }
+
+    .side-nav a.active {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .side-nav a .side-nav-tooltip {
+      position: absolute;
+      left: 36px;
+      white-space: nowrap;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 4px 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s;
+    }
+
+    .side-nav a:hover .side-nav-tooltip {
+      opacity: 1;
+    }
+
+    @media (max-width: 1100px) {
+      .side-nav { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1158,6 +1227,57 @@ openclaw update status</code><span class="code-label">terminal</span></pre>
       <a href="https://buttondown.com/nclawdev">Newsletter</a>
     </div>
   </footer>
+
+<!-- FLOATING SIDE NAV -->
+<nav class="side-nav" id="sideNav">
+  <a href="#why-mac-mini" data-section="why-mac-mini"><span>01</span><span class="side-nav-tooltip">Why a Mac Mini</span></a>
+  <a href="#architecture" data-section="architecture"><span>02</span><span class="side-nav-tooltip">Two-user architecture</span></a>
+  <a href="#hardware-prep" data-section="hardware-prep"><span>03</span><span class="side-nav-tooltip">Hardware prep</span></a>
+  <a href="#create-agent-user" data-section="create-agent-user"><span>04</span><span class="side-nav-tooltip">Agent user account</span></a>
+  <a href="#install-openclaw" data-section="install-openclaw"><span>05</span><span class="side-nav-tooltip">Install OpenClaw</span></a>
+  <a href="#auth-models" data-section="auth-models"><span>06</span><span class="side-nav-tooltip">Authenticate models</span></a>
+  <a href="#model-fallbacks" data-section="model-fallbacks"><span>07</span><span class="side-nav-tooltip">Model fallbacks</span></a>
+  <a href="#workspace" data-section="workspace"><span>08</span><span class="side-nav-tooltip">Build the workspace</span></a>
+  <a href="#channels" data-section="channels"><span>09</span><span class="side-nav-tooltip">Connect channels</span></a>
+  <a href="#first-agent-turn" data-section="first-agent-turn"><span>10</span><span class="side-nav-tooltip">First agent turn</span></a>
+  <a href="#heartbeat" data-section="heartbeat"><span>11</span><span class="side-nav-tooltip">Heartbeat</span></a>
+  <a href="#cron-jobs" data-section="cron-jobs"><span>12</span><span class="side-nav-tooltip">Cron jobs</span></a>
+  <a href="#memory" data-section="memory"><span>13</span><span class="side-nav-tooltip">Memory architecture</span></a>
+  <a href="#gateway" data-section="gateway"><span>14</span><span class="side-nav-tooltip">The gateway</span></a>
+  <a href="#monitoring" data-section="monitoring"><span>15</span><span class="side-nav-tooltip">Monitoring</span></a>
+  <a href="#mistakes" data-section="mistakes"><span>16</span><span class="side-nav-tooltip">Mistakes I made</span></a>
+</nav>
+
+<script>
+(function() {
+  const sideNav = document.getElementById('sideNav');
+  const links = sideNav.querySelectorAll('a');
+  const sections = Array.from(links).map(a => document.getElementById(a.dataset.section));
+  const toc = document.querySelector('.toc');
+
+  function update() {
+    // Show side nav only after scrolling past the TOC
+    const tocBottom = toc.getBoundingClientRect().bottom;
+    sideNav.classList.toggle('visible', tocBottom < 0);
+
+    // Find current section
+    let current = null;
+    for (let i = sections.length - 1; i >= 0; i--) {
+      if (sections[i] && sections[i].getBoundingClientRect().top <= 120) {
+        current = sections[i].id;
+        break;
+      }
+    }
+
+    links.forEach(a => {
+      a.classList.toggle('active', a.dataset.section === current);
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 
 </body>
 </html>
