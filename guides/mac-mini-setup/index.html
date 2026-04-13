@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Running an Autonomous AI Agent on a Mac Mini — The Complete Guide | Sora Labs</title>
-  <meta name="description" content="A production-tested guide to setting up OpenClaw on a dedicated Mac Mini. From hardware prep to your first autonomous cron job — built from running agents 24/7.">
+  <title>Running an Autonomous AI Agent on a Mac Mini – The Complete Guide | Sora Labs</title>
+  <meta name="description" content="A production-tested guide to setting up OpenClaw on a dedicated Mac Mini. From hardware prep to your first autonomous cron job – built from running agents 24/7.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -554,8 +554,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-tag">Technical Guide</div>
-    <h1>Running an Autonomous AI Agent on a Mac&nbsp;Mini — <em>The Complete Guide</em></h1>
-    <p class="hero-subtitle">From unboxing to your first autonomous cron job. Everything I learned setting up OpenClaw on a dedicated Mac Mini to run 24/7 — the decisions that mattered, the mistakes that cost me time, and the architecture that actually works.</p>
+    <h1>Running an Autonomous AI Agent on a Mac&nbsp;Mini – <em>The Complete Guide</em></h1>
+    <p class="hero-subtitle">From unboxing to your first autonomous cron job. Everything I learned setting up OpenClaw on a dedicated Mac Mini to run 24/7 – the decisions that mattered, the mistakes that cost me time, and the architecture that actually works.</p>
     <div class="hero-meta">
       <span>By Sora Labs</span>
       <span>April 2026</span>
@@ -572,18 +572,18 @@
       <ol>
         <li><a href="#why-mac-mini">Why a Mac Mini (and why dedicated hardware at all)</a></li>
         <li><a href="#architecture">The two-user architecture</a></li>
-        <li><a href="#hardware-prep">Hardware prep — disable sleep, enable remote access</a></li>
+        <li><a href="#hardware-prep">Hardware prep – disable sleep, enable remote access</a></li>
         <li><a href="#create-agent-user">Create the agent user account</a></li>
         <li><a href="#install-openclaw">Install OpenClaw</a></li>
         <li><a href="#auth-models">Authenticate your models</a></li>
         <li><a href="#model-fallbacks">Set up model fallbacks (so your agent never stops)</a></li>
-        <li><a href="#workspace">Build the workspace — identity, memory, and standing rules</a></li>
-        <li><a href="#channels">Connect channels — email, messaging, social</a></li>
+        <li><a href="#workspace">Build the workspace – identity, memory, and standing rules</a></li>
+        <li><a href="#channels">Connect channels – email, messaging, social</a></li>
         <li><a href="#first-agent-turn">Run your first agent turn</a></li>
         <li><a href="#heartbeat">Enable the heartbeat</a></li>
         <li><a href="#cron-jobs">Set up cron jobs</a></li>
-        <li><a href="#memory">Memory architecture — making your agent remember</a></li>
-        <li><a href="#gateway">The gateway — running as a background service</a></li>
+        <li><a href="#memory">Memory architecture – making your agent remember</a></li>
+        <li><a href="#gateway">The gateway – running as a background service</a></li>
         <li><a href="#monitoring">Monitoring and health checks</a></li>
         <li><a href="#mistakes">Mistakes I made so you don't have to</a></li>
       </ol>
@@ -593,13 +593,13 @@
     <div class="section" id="why-mac-mini">
       <div class="section-number">01</div>
       <h2>Why a Mac Mini (and why dedicated hardware at all)</h2>
-      <p>You can run OpenClaw on any machine — your laptop, a cloud VM, a Raspberry Pi. But if you want an agent that operates autonomously 24/7, a dedicated machine changes the equation.</p>
+      <p>You can run OpenClaw on any machine – your laptop, a cloud VM, a Raspberry Pi. But if you want an agent that operates autonomously 24/7, a dedicated machine changes the equation.</p>
       <p>A laptop sleeps when you close it. A cloud VM costs monthly rent and adds latency to local tools. A dedicated Mac Mini sits in a corner, draws about 5 watts at idle, never sleeps, and gives your agent a stable, persistent environment.</p>
       <p>The Mac Mini specifically works well because macOS handles long-running processes cleanly, Docker runs natively (if you need it for things like self-hosted search), and SSH access means you never need to plug in a monitor after initial setup.</p>
 
       <div class="callout callout-tip">
         <div class="callout-title">Do you need this?</div>
-        If you're just experimenting with OpenClaw, use your laptop. A dedicated machine only matters when you want your agent running autonomously — cron jobs firing on schedule, heartbeats checking in, messages being processed while you sleep.
+        If you're just experimenting with OpenClaw, use your laptop. A dedicated machine only matters when you want your agent running autonomously – cron jobs firing on schedule, heartbeats checking in, messages being processed while you sleep.
       </div>
     </div>
 
@@ -610,7 +610,7 @@
       <p>This is the most important decision in the entire setup, and the one most people skip. You need two separate macOS user accounts on the Mac Mini:</p>
 
       <div class="diagram">[ Mac Mini ]
-├── <span style="color: var(--accent)">Admin User</span> (you — human control layer)
+├── <span style="color: var(--accent)">Admin User</span> (you – human control layer)
 │   ├── Has sudo / admin privileges
 │   ├── Installs system software (Homebrew, Docker, etc.)
 │   ├── Fixes permissions, handles security
@@ -621,11 +621,11 @@
     ├── Holds API keys
     ├── Executes tools, processes messages
     ├── Operates 24/7
-    ├── ❌ No sudo — cannot modify system files
+    ├── ❌ No sudo – cannot modify system files
     └── Think of it as: the production sandbox</div>
 
       <p>Why bother? Because your agent will be running code, executing tools, and managing files autonomously. If it runs under your admin account, a misconfigured tool or a bad command could affect your entire system. The sandboxed user isolates the blast radius.</p>
-      <p>This is exactly how real production systems are designed — separate the control plane from the runtime. Your admin account is for changing the system. The agent account is for operating within it.</p>
+      <p>This is exactly how real production systems are designed – separate the control plane from the runtime. Your admin account is for changing the system. The agent account is for operating within it.</p>
 
       <div class="callout callout-warn">
         <div class="callout-title">Don't skip this</div>
@@ -636,7 +636,7 @@
     <!-- SECTION 3 -->
     <div class="section" id="hardware-prep">
       <div class="section-number">03</div>
-      <h2>Hardware prep — disable sleep, enable remote access</h2>
+      <h2>Hardware prep – disable sleep, enable remote access</h2>
       <p>Before installing anything, configure the Mac Mini to stay on and be accessible remotely. You'll do this from the Admin user account.</p>
 
       <h3>Disable sleep</h3>
@@ -671,7 +671,7 @@ sudo pmset -a autorestart 1</code><span class="code-label">terminal</span></pre>
         <ul>
           <li>Name: <code>openclaw</code> (or whatever you prefer)</li>
           <li>Account type: <strong>Standard</strong> (not Administrator)</li>
-          <li>Set a strong password — you'll need it for SSH</li>
+          <li>Set a strong password – you'll need it for SSH</li>
           <li>Enable "Allow this user to log in remotely" in Sharing settings</li>
         </ul>
       </div>
@@ -698,7 +698,7 @@ sudo echo "test"
     <div class="section" id="install-openclaw">
       <div class="section-number">05</div>
       <h2>Install OpenClaw</h2>
-      <p>SSH into the Mac Mini as the <code>openclaw</code> user and install OpenClaw. Check <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> for the latest install command — it changes as versions update.</p>
+      <p>SSH into the Mac Mini as the <code>openclaw</code> user and install OpenClaw. Check <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> for the latest install command – it changes as versions update.</p>
 
       <p>After installation, run setup to initialize your workspace:</p>
       <pre><code># Initialize workspace
@@ -708,11 +708,11 @@ openclaw setup --workspace ~/.openclaw/workspace
 openclaw --version
 openclaw status</code><span class="code-label">terminal</span></pre>
 
-      <p>The workspace directory is where your agent lives — its identity files, memory, tools, and configuration. Everything your agent reads and writes happens here.</p>
+      <p>The workspace directory is where your agent lives – its identity files, memory, tools, and configuration. Everything your agent reads and writes happens here.</p>
 
       <div class="callout callout-tip">
         <div class="callout-title">Node.js requirement</div>
-        OpenClaw requires Node.js. If it's not installed on the openclaw user account, you'll need to install it. Since the openclaw user doesn't have sudo, use a version manager like <code>nvm</code> (Node Version Manager) which installs to the user's home directory — no admin privileges needed.
+        OpenClaw requires Node.js. If it's not installed on the openclaw user account, you'll need to install it. Since the openclaw user doesn't have sudo, use a version manager like <code>nvm</code> (Node Version Manager) which installs to the user's home directory – no admin privileges needed.
       </div>
     </div>
 
@@ -720,14 +720,14 @@ openclaw status</code><span class="code-label">terminal</span></pre>
     <div class="section" id="auth-models">
       <div class="section-number">06</div>
       <h2>Authenticate your models</h2>
-      <p>Your agent needs at least one AI model to think with. OpenClaw supports multiple providers — OpenAI, Anthropic, Google, OpenRouter, local models via Ollama, and more.</p>
+      <p>Your agent needs at least one AI model to think with. OpenClaw supports multiple providers – OpenAI, Anthropic, Google, OpenRouter, local models via Ollama, and more.</p>
 
       <p>The onboarding wizard handles this interactively:</p>
-      <pre><code># Interactive setup — walks you through provider selection and auth
+      <pre><code># Interactive setup – walks you through provider selection and auth
 openclaw onboard</code><span class="code-label">terminal</span></pre>
 
       <p>Or set up specific providers directly:</p>
-      <pre><code># OpenAI Codex (OAuth — flat $20/month with usage quota)
+      <pre><code># OpenAI Codex (OAuth – flat $20/month with usage quota)
 openclaw models auth login --provider openai-codex --set-default
 
 # Anthropic Claude (CLI login)
@@ -736,7 +736,7 @@ openclaw models auth login --provider anthropic --method cli --set-default
 # Gemini (API key)
 openclaw onboard --auth-choice gemini-api-key
 
-# OpenRouter (API key — access to many models through one key)
+# OpenRouter (API key – access to many models through one key)
 openclaw onboard --auth-choice openrouter-api-key</code><span class="code-label">terminal</span></pre>
 
       <p>Set your primary model:</p>
@@ -758,7 +758,7 @@ openclaw models status --probe    # Live auth check (uses a small amount of toke
       <div class="section-number">07</div>
       <h2>Set up model fallbacks</h2>
       <p>Your agent runs 24/7. Models have rate limits, outages, and quota caps. Without fallbacks, your agent hits a limit and stops dead until the quota resets.</p>
-      <p>Fallbacks let your agent cascade through models automatically — if the primary model fails or hits a limit, it tries the next one, then the next.</p>
+      <p>Fallbacks let your agent cascade through models automatically – if the primary model fails or hits a limit, it tries the next one, then the next.</p>
 
       <pre><code># Add fallback models (in priority order)
 openclaw models fallbacks add gemini-2.5-flash
@@ -770,11 +770,11 @@ openclaw models status</code><span class="code-label">terminal</span></pre>
 
       <div class="diagram"><span style="color: var(--accent)">Model Cascade (example)</span>
 
-Primary:    GPT-5.4 (Codex OAuth — $20/mo flat, 5hr/week quota)
+Primary:    GPT-5.4 (Codex OAuth – $20/mo flat, 5hr/week quota)
     ↓ quota exceeded
-Fallback 1: Gemini 2.5 Flash (paid tier — high throughput)
+Fallback 1: Gemini 2.5 Flash (paid tier – high throughput)
     ↓ rate limited
-Fallback 2: Claude Sonnet 4.6 (API key — pay per token)
+Fallback 2: Claude Sonnet 4.6 (API key – pay per token)
     ↓ all cloud models down
 Fallback 3: Ollama local model (free, runs on your Mac Mini)</div>
 
@@ -782,14 +782,14 @@ Fallback 3: Ollama local model (free, runs on your Mac Mini)</div>
 
       <div class="callout callout-tip">
         <div class="callout-title">Local models as the safety net</div>
-        If you install <a href="https://ollama.com">Ollama</a> on the Mac Mini, you can run a local model as your final fallback. It won't be as capable as cloud models, but it means your agent never fully stops — it can still process simple tasks, check emails, and send notifications even when every cloud provider is down.
+        If you install <a href="https://ollama.com">Ollama</a> on the Mac Mini, you can run a local model as your final fallback. It won't be as capable as cloud models, but it means your agent never fully stops – it can still process simple tasks, check emails, and send notifications even when every cloud provider is down.
       </div>
     </div>
 
     <!-- SECTION 8 -->
     <div class="section" id="workspace">
       <div class="section-number">08</div>
-      <h2>Build the workspace — identity, memory, and standing rules</h2>
+      <h2>Build the workspace – identity, memory, and standing rules</h2>
       <p>Your workspace is your agent's home. The files you put here determine who your agent is, what it remembers, and how it behaves.</p>
 
       <div class="file-tree"><span class="folder">~/.openclaw/workspace/</span>
@@ -806,7 +806,7 @@ Fallback 3: Ollama local model (free, runs on your Mac Mini)</div>
 │   └── <span class="file">lessons-learned.md</span>
 └── <span class="folder">scripts/</span>           <span class="note">← custom scripts your agent can invoke</span></div>
 
-      <h3>IDENTITY.md — Who your agent is</h3>
+      <h3>IDENTITY.md – Who your agent is</h3>
       <p>This file gives your agent a consistent personality and role across all sessions. Without it, your agent starts every conversation as a blank slate.</p>
       <pre><code># Agent Identity
 
@@ -814,27 +814,27 @@ Fallback 3: Ollama local model (free, runs on your Mac Mini)</div>
 [Your agent's name]
 
 ## Role
-[What this agent does — be specific. "AI assistant" is too vague.
+[What this agent does – be specific. "AI assistant" is too vague.
 "Sales development agent that researches prospects and sends
 personalized outreach" gives the agent a clear lane.]
 
 ## Voice
-[How your agent communicates — professional, casual, technical,
+[How your agent communicates – professional, casual, technical,
 warm, direct? This affects every email, message, and report.]
 
 ## Boundaries
-[What your agent should NOT do — just as important as what it should do.]</code><span class="code-label">IDENTITY.md</span></pre>
+[What your agent should NOT do – just as important as what it should do.]</code><span class="code-label">IDENTITY.md</span></pre>
 
-      <h3>OPERATIONS.md — Standing rules</h3>
+      <h3>OPERATIONS.md – Standing rules</h3>
       <p>This is where you put rules that persist across all sessions and cron jobs. Think of it as your agent's employee handbook.</p>
       <pre><code># Operations
 
 ## Standing Rules
 - Check email for replies at the start of every task
-- Never overwrite MEMORY.md — append only
+- Never overwrite MEMORY.md – append only
 - Notify [your contact] immediately when someone replies to outreach
 - BCC [your email] on every outgoing email
-- Never fabricate information — use web search for every factual claim
+- Never fabricate information – use web search for every factual claim
 
 ## Accounts & Credentials
 - [Document which accounts your agent has access to and any policies]
@@ -851,15 +851,15 @@ openclaw agents set-identity --agent main \
 
       <div class="callout callout-warn">
         <div class="callout-title">The append-only rule for MEMORY.md</div>
-        Your agent should never overwrite or edit MEMORY.md — only append new entries. If your agent rewrites the file, it loses everything it previously learned. Put this rule in OPERATIONS.md and enforce it. This one will burn you if you forget it.
+        Your agent should never overwrite or edit MEMORY.md – only append new entries. If your agent rewrites the file, it loses everything it previously learned. Put this rule in OPERATIONS.md and enforce it. This one will burn you if you forget it.
       </div>
     </div>
 
     <!-- SECTION 9 -->
     <div class="section" id="channels">
       <div class="section-number">09</div>
-      <h2>Connect channels — email, messaging, social</h2>
-      <p>Channels are how your agent communicates with the outside world. Each channel is a separate connection — email, WhatsApp, Discord, X, SMS, etc.</p>
+      <h2>Connect channels – email, messaging, social</h2>
+      <p>Channels are how your agent communicates with the outside world. Each channel is a separate connection – email, WhatsApp, Discord, X, SMS, etc.</p>
 
       <pre><code># See available channels
 openclaw channels list
@@ -871,7 +871,7 @@ openclaw channels login --channel whatsapp
 # Check status of all channels
 openclaw channels status --probe</code><span class="code-label">terminal</span></pre>
 
-      <p>For email specifically, you'll want a dedicated email address for your agent — not your personal email. This keeps your agent's outreach separate from your inbox and protects your personal domain reputation.</p>
+      <p>For email specifically, you'll want a dedicated email address for your agent – not your personal email. This keeps your agent's outreach separate from your inbox and protects your personal domain reputation.</p>
 
       <div class="callout callout-info">
         <div class="callout-title">Email deliverability matters</div>
@@ -896,12 +896,12 @@ openclaw agents bindings</code><span class="code-label">terminal</span></pre>
       <h2>Run your first agent turn</h2>
       <p>Everything is set up. Time to make your agent do something.</p>
 
-      <pre><code># Simple test — ask your agent to read its own identity
+      <pre><code># Simple test – ask your agent to read its own identity
 openclaw agent --agent main \
   --message "Read IDENTITY.md and tell me who you are." \
   --local
 
-# Test with delivery — agent responds via its bound channel
+# Test with delivery – agent responds via its bound channel
 openclaw agent --agent main \
   --message "Check your workspace and summarize what files exist." \
   --deliver
@@ -915,7 +915,7 @@ openclaw agent --agent main \
 
       <div class="callout callout-tip">
         <div class="callout-title">Use the TUI for interactive testing</div>
-        OpenClaw has a terminal UI that lets you chat with your agent in real time — much easier for testing than one-shot commands:
+        OpenClaw has a terminal UI that lets you chat with your agent in real time – much easier for testing than one-shot commands:
         <pre style="margin-top: 0.8rem; margin-bottom: 0"><code>openclaw tui --deliver --thinking medium</code></pre>
       </div>
     </div>
@@ -924,7 +924,7 @@ openclaw agent --agent main \
     <div class="section" id="heartbeat">
       <div class="section-number">11</div>
       <h2>Enable the heartbeat</h2>
-      <p>The heartbeat is your agent's pulse — a periodic check-in that fires on a schedule (default: every 30 minutes). It's what makes your agent proactive instead of purely reactive.</p>
+      <p>The heartbeat is your agent's pulse – a periodic check-in that fires on a schedule (default: every 30 minutes). It's what makes your agent proactive instead of purely reactive.</p>
 
       <pre><code># Enable the heartbeat
 openclaw system heartbeat enable
@@ -939,7 +939,7 @@ openclaw system heartbeat disable</code><span class="code-label">terminal</span>
 
       <div class="callout callout-warn">
         <div class="callout-title">Heartbeats consume tokens</div>
-        Every heartbeat is an agent turn that uses your model's tokens. At every-30-minutes, that's 48 heartbeats per day. Make sure your heartbeat instructions are focused and efficient — don't ask your agent to do heavy research every 30 minutes. Save the intensive work for cron jobs with longer intervals.
+        Every heartbeat is an agent turn that uses your model's tokens. At every-30-minutes, that's 48 heartbeats per day. Make sure your heartbeat instructions are focused and efficient – don't ask your agent to do heavy research every 30 minutes. Save the intensive work for cron jobs with longer intervals.
       </div>
     </div>
 
@@ -947,7 +947,7 @@ openclaw system heartbeat disable</code><span class="code-label">terminal</span>
     <div class="section" id="cron-jobs">
       <div class="section-number">12</div>
       <h2>Set up cron jobs</h2>
-      <p>Cron jobs are scheduled tasks — the backbone of autonomous operation. This is where your agent goes from "responds when I ask" to "does things on its own while I sleep."</p>
+      <p>Cron jobs are scheduled tasks – the backbone of autonomous operation. This is where your agent goes from "responds when I ask" to "does things on its own while I sleep."</p>
 
       <pre><code># Add a daily task
 openclaw cron add \
@@ -979,7 +979,7 @@ openclaw cron runs --id &lt;id&gt;</code><span class="code-label">terminal</span
 
       <div class="callout callout-danger">
         <div class="callout-title">Make cron jobs self-contained</div>
-        Each cron job should include everything the agent needs to know in the message itself — or tell it which files to read. Don't assume the agent remembers what happened in a previous cron run. Cron sessions are isolated. If your morning check depends on data from last night's report, tell the agent to read the report file.
+        Each cron job should include everything the agent needs to know in the message itself – or tell it which files to read. Don't assume the agent remembers what happened in a previous cron run. Cron sessions are isolated. If your morning check depends on data from last night's report, tell the agent to read the report file.
       </div>
 
       <h3>A starter cron schedule</h3>
@@ -993,13 +993,13 @@ Every 2h    memory-sweep       Search recent context, update daily memory note
 5:00 PM     evening-update     Post to social, review day's activity
 9:00 PM     daily-report       Summarize the day, email you a report</div>
 
-      <p>Start with fewer jobs and add more as you learn what your agent is good at. Every cron job costs tokens — don't schedule ten jobs on day one.</p>
+      <p>Start with fewer jobs and add more as you learn what your agent is good at. Every cron job costs tokens – don't schedule ten jobs on day one.</p>
     </div>
 
     <!-- SECTION 13 -->
     <div class="section" id="memory">
       <div class="section-number">13</div>
-      <h2>Memory architecture — making your agent remember</h2>
+      <h2>Memory architecture – making your agent remember</h2>
       <p>Without memory, your agent starts every session from scratch. With memory, it compounds knowledge across days and weeks. This is the difference between a tool and an agent.</p>
 
       <p>OpenClaw's memory system works through files in your workspace that get semantically indexed:</p>
@@ -1020,22 +1020,22 @@ openclaw memory promote</code><span class="code-label">terminal</span></pre>
       <h3>The memory pattern that works</h3>
       <p>After running agents for months, this is the pattern that actually works in production:</p>
 
-      <p><strong>MEMORY.md</strong> at the workspace root is your agent's long-term memory. It's append-only — your agent adds entries but never edits or deletes existing ones. This file gets indexed and is searchable across all sessions.</p>
+      <p><strong>MEMORY.md</strong> at the workspace root is your agent's long-term memory. It's append-only – your agent adds entries but never edits or deletes existing ones. This file gets indexed and is searchable across all sessions.</p>
 
-      <p><strong>memory/YYYY-MM-DD.md</strong> files are daily notes. Each cron job appends a 2-3 line summary of what it did. These daily files are like a work journal — they give your agent context about recent activity without bloating the main memory file.</p>
+      <p><strong>memory/YYYY-MM-DD.md</strong> files are daily notes. Each cron job appends a 2-3 line summary of what it did. These daily files are like a work journal – they give your agent context about recent activity without bloating the main memory file.</p>
 
-      <p><strong>The memory protocol for every cron job:</strong> At the start of a task, run <code>memory_search</code> for relevant context. At the end, append a brief summary to the daily memory note. This creates a feedback loop — each session builds on the last.</p>
+      <p><strong>The memory protocol for every cron job:</strong> At the start of a task, run <code>memory_search</code> for relevant context. At the end, append a brief summary to the daily memory note. This creates a feedback loop – each session builds on the last.</p>
 
       <div class="callout callout-tip">
         <div class="callout-title">Put the memory protocol in your cron messages</div>
-        Your cron job messages should explicitly tell the agent to search memory before starting and log to memory after finishing. If you don't include this, the agent won't do it — cron sessions don't inherit instructions from other sessions.
+        Your cron job messages should explicitly tell the agent to search memory before starting and log to memory after finishing. If you don't include this, the agent won't do it – cron sessions don't inherit instructions from other sessions.
       </div>
     </div>
 
     <!-- SECTION 14 -->
     <div class="section" id="gateway">
       <div class="section-number">14</div>
-      <h2>The gateway — running as a background service</h2>
+      <h2>The gateway – running as a background service</h2>
       <p>The gateway is what keeps your agent running in the background. Without it, you'd need a terminal window open 24/7. The gateway runs as a macOS service (launchd) and starts automatically on boot.</p>
 
       <pre><code># Install the gateway as a system service
@@ -1057,7 +1057,7 @@ openclaw gateway restart
 # Stop if needed
 openclaw gateway stop</code><span class="code-label">terminal</span></pre>
 
-      <p>Once the gateway is installed and running, your agent processes messages, heartbeats, and cron jobs automatically — even after the machine reboots.</p>
+      <p>Once the gateway is installed and running, your agent processes messages, heartbeats, and cron jobs automatically – even after the machine reboots.</p>
 
       <div class="callout callout-info">
         <div class="callout-title">Gateway vs. local mode</div>
@@ -1069,7 +1069,7 @@ openclaw gateway stop</code><span class="code-label">terminal</span></pre>
     <div class="section" id="monitoring">
       <div class="section-number">15</div>
       <h2>Monitoring and health checks</h2>
-      <p>Your agent is running 24/7. Things will break — auth tokens expire, channels disconnect, models hit rate limits. Build a habit of checking health regularly, or set up your agent to do it for you.</p>
+      <p>Your agent is running 24/7. Things will break – auth tokens expire, channels disconnect, models hit rate limits. Build a habit of checking health regularly, or set up your agent to do it for you.</p>
 
       <pre><code># Full system diagnosis
 openclaw status --all
@@ -1090,19 +1090,19 @@ openclaw update status</code><span class="code-label">terminal</span></pre>
       <div class="checklist">
         <div class="checklist-title">Weekly health check routine</div>
         <ul>
-          <li>Run <code>openclaw doctor</code> — fix any issues it finds</li>
-          <li>Run <code>openclaw models status --probe</code> — verify all auth is valid</li>
-          <li>Run <code>openclaw channels status --probe</code> — verify all channels are connected</li>
-          <li>Check <code>openclaw cron list</code> — make sure all jobs are enabled and running</li>
-          <li>Review your agent's daily memory notes — is it doing what you expect?</li>
-          <li>Check your model provider usage — are you staying within budget?</li>
-          <li>Run <code>openclaw update status</code> — install updates if available</li>
+          <li>Run <code>openclaw doctor</code> – fix any issues it finds</li>
+          <li>Run <code>openclaw models status --probe</code> – verify all auth is valid</li>
+          <li>Run <code>openclaw channels status --probe</code> – verify all channels are connected</li>
+          <li>Check <code>openclaw cron list</code> – make sure all jobs are enabled and running</li>
+          <li>Review your agent's daily memory notes – is it doing what you expect?</li>
+          <li>Check your model provider usage – are you staying within budget?</li>
+          <li>Run <code>openclaw update status</code> – install updates if available</li>
         </ul>
       </div>
 
       <div class="callout callout-tip">
         <div class="callout-title">Automate the health check</div>
-        Add a cron job that runs health checks and reports issues to you. Your agent can run <code>openclaw doctor</code> and <code>openclaw models status</code> and send you a summary — so you only need to intervene when something is actually broken.
+        Add a cron job that runs health checks and reports issues to you. Your agent can run <code>openclaw doctor</code> and <code>openclaw models status</code> and send you a summary – so you only need to intervene when something is actually broken.
       </div>
     </div>
 
@@ -1122,10 +1122,10 @@ openclaw update status</code><span class="code-label">terminal</span></pre>
       <p>Agent "cleaned up" its memory file by rewriting it. Lost weeks of accumulated context. Added the append-only rule to OPERATIONS.md and never had the issue again.</p>
 
       <h3>Cron jobs that reference other cron jobs</h3>
-      <p>Had cron jobs that depended on a shared state file (HEARTBEAT.md). When one job updated the file, it broke the assumptions of another job running later. Fixed by making every cron job self-contained — each reads its own input files and writes its own output.</p>
+      <p>Had cron jobs that depended on a shared state file (HEARTBEAT.md). When one job updated the file, it broke the assumptions of another job running later. Fixed by making every cron job self-contained – each reads its own input files and writes its own output.</p>
 
       <h3>No bounce handling for outreach emails</h3>
-      <p>Agent sent emails to bad addresses, bounces piled up, sender domain reputation tanked. Emails started landing in spam. Built bounce detection and domain blacklisting into the workflow. Check your inbox for bounces before sending new outreach — every run.</p>
+      <p>Agent sent emails to bad addresses, bounces piled up, sender domain reputation tanked. Emails started landing in spam. Built bounce detection and domain blacklisting into the workflow. Check your inbox for bounces before sending new outreach – every run.</p>
 
       <h3>Too many heartbeats, too few tokens</h3>
       <p>Set the heartbeat to every 15 minutes with a complex prompt. Burned through the model's daily quota by noon. Dialed it back to every 2 hours with a lean prompt for the heartbeat, and moved the heavy work to dedicated cron jobs with longer intervals.</p>
@@ -1139,7 +1139,7 @@ openclaw update status</code><span class="code-label">terminal</span></pre>
     <!-- CTA -->
     <div class="cta-section">
       <h2>Ready to make your agent sell?</h2>
-      <p>This guide gets your agent running. Prospector gets it earning. A complete B2B outreach workflow — prospect research, email templates, pipeline tracking, and a self-improving lessons loop. Built from running production outreach on this exact setup.</p>
+      <p>This guide gets your agent running. Prospector gets it earning. A complete B2B outreach workflow – prospect research, email templates, pipeline tracking, and a self-improving lessons loop. Built from running production outreach on this exact setup.</p>
       <div class="cta-links">
         <a href="https://sora-labs.net/tools/" class="cta-btn cta-btn-primary">Browse Tools</a>
         <a href="https://buttondown.com/nclawdev" class="cta-btn cta-btn-secondary">Subscribe to the Newsletter</a>
