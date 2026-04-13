@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running an Autonomous AI Agent on a Mac Mini — The Complete Guide | Sora Labs</title>
+  <meta name="description" content="A production-tested guide to setting up OpenClaw on a dedicated Mac Mini. From hardware prep to your first autonomous cron job — built from running agents 24/7.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #161616;
+      --bg-card-hover: #1a1a1a;
+      --bg-code: #0d0d0d;
+      --border: #222222;
+      --border-accent: #333333;
+      --text-primary: #e8e8e8;
+      --text-secondary: #999999;
+      --text-muted: #666666;
+      --accent: #c8a97e;
+      --accent-dim: rgba(200, 169, 126, 0.15);
+      --accent-glow: rgba(200, 169, 126, 0.08);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.12);
+      --red: #f87171;
+      --red-dim: rgba(248, 113, 113, 0.12);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96, 165, 250, 0.12);
+      --yellow: #fbbf24;
+      --yellow-dim: rgba(251, 191, 36, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-mark {
+      width: 28px; height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--bg-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 9rem 2rem 4rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .toc-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+    }
+
+    .toc li {
+      counter-increment: toc;
+      margin-bottom: 0.5rem;
+    }
+
+    .toc li::before {
+      content: counter(toc, decimal-leading-zero) ".";
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-right: 0.8rem;
+    }
+
+    .toc a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover { color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .section h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+    }
+
+    .section p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.2rem;
+      line-height: 1.75;
+    }
+
+    .section ul, .section ol {
+      margin-bottom: 1.2rem;
+      padding-left: 1.2rem;
+    }
+
+    .section li {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      line-height: 1.65;
+    }
+
+    .section a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 169, 126, 0.3);
+      transition: border-color 0.2s;
+    }
+
+    .section a:hover { border-color: var(--accent); }
+
+    /* ── CODE BLOCKS ── */
+    pre {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    pre code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    .code-label {
+      position: absolute;
+      top: 0.6rem;
+      right: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      background: rgba(200, 169, 126, 0.08);
+      color: var(--accent);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+    }
+
+    /* ── CALLOUTS ── */
+    .callout {
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .callout-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .callout-warn {
+      background: var(--yellow-dim);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      color: var(--text-secondary);
+    }
+    .callout-warn .callout-title { color: var(--yellow); }
+
+    .callout-tip {
+      background: var(--green-dim);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      color: var(--text-secondary);
+    }
+    .callout-tip .callout-title { color: var(--green); }
+
+    .callout-danger {
+      background: var(--red-dim);
+      border: 1px solid rgba(248, 113, 113, 0.25);
+      color: var(--text-secondary);
+    }
+    .callout-danger .callout-title { color: var(--red); }
+
+    .callout-info {
+      background: var(--blue-dim);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      color: var(--text-secondary);
+    }
+    .callout-info .callout-title { color: var(--blue); }
+
+    /* ── DIAGRAM ── */
+    .diagram {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* ── CHECKLIST ── */
+    .checklist {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .checklist-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .checklist ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      padding: 0.35rem 0;
+      padding-left: 1.6rem;
+      position: relative;
+    }
+
+    .checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ── FILE TREE ── */
+    .file-tree {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      white-space: pre;
+    }
+
+    .file-tree .folder { color: var(--accent); }
+    .file-tree .file { color: var(--text-secondary); }
+    .file-tree .note { color: var(--text-muted); font-style: italic; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--accent-glow);
+      border: 1px solid rgba(200, 169, 126, 0.2);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+    }
+
+    .cta-btn-primary {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border: 1px solid var(--accent);
+    }
+    .cta-btn-primary:hover { background: #d4b88e; }
+
+    .cta-btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(200, 169, 126, 0.4);
+    }
+    .cta-btn-secondary:hover { border-color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .content { padding: 1.5rem 1.5rem 4rem; }
+      .toc { padding: 1.5rem; }
+      .hero-meta { gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.78rem; }
+      .cta-links { flex-direction: column; align-items: center; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero, .toc, .section { animation: fadeUp 0.5s ease-out both; }
+    .toc { animation-delay: 0.1s; }
+    .section { animation-delay: 0.15s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://sora-labs.net" class="nav-logo">
+      <span class="nav-logo-mark">S</span>
+      Sora Labs
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://sora-labs.net/#services">Services</a></li>
+      <li><a href="https://sora-labs.net/tools/">Tools</a></li>
+      <li><a href="https://sora-labs.net/guides/mac-mini-setup/" class="active">Guides</a></li>
+      <li><a href="https://sora-labs.net/#newsletter">Newsletter</a></li>
+      <li><a href="https://sora-labs.net/#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Technical Guide</div>
+    <h1>Running an Autonomous AI Agent on a Mac&nbsp;Mini — <em>The Complete Guide</em></h1>
+    <p class="hero-subtitle">From unboxing to your first autonomous cron job. Everything I learned setting up OpenClaw on a dedicated Mac Mini to run 24/7 — the decisions that mattered, the mistakes that cost me time, and the architecture that actually works.</p>
+    <div class="hero-meta">
+      <span>By Sora Labs</span>
+      <span>April 2026</span>
+      <span>~20 min read</span>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- TOC -->
+    <div class="toc">
+      <div class="toc-title">What's in this guide</div>
+      <ol>
+        <li><a href="#why-mac-mini">Why a Mac Mini (and why dedicated hardware at all)</a></li>
+        <li><a href="#architecture">The two-user architecture</a></li>
+        <li><a href="#hardware-prep">Hardware prep — disable sleep, enable remote access</a></li>
+        <li><a href="#create-agent-user">Create the agent user account</a></li>
+        <li><a href="#install-openclaw">Install OpenClaw</a></li>
+        <li><a href="#auth-models">Authenticate your models</a></li>
+        <li><a href="#model-fallbacks">Set up model fallbacks (so your agent never stops)</a></li>
+        <li><a href="#workspace">Build the workspace — identity, memory, and standing rules</a></li>
+        <li><a href="#channels">Connect channels — email, messaging, social</a></li>
+        <li><a href="#first-agent-turn">Run your first agent turn</a></li>
+        <li><a href="#heartbeat">Enable the heartbeat</a></li>
+        <li><a href="#cron-jobs">Set up cron jobs</a></li>
+        <li><a href="#memory">Memory architecture — making your agent remember</a></li>
+        <li><a href="#gateway">The gateway — running as a background service</a></li>
+        <li><a href="#monitoring">Monitoring and health checks</a></li>
+        <li><a href="#mistakes">Mistakes I made so you don't have to</a></li>
+      </ol>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section" id="why-mac-mini">
+      <div class="section-number">01</div>
+      <h2>Why a Mac Mini (and why dedicated hardware at all)</h2>
+      <p>You can run OpenClaw on any machine — your laptop, a cloud VM, a Raspberry Pi. But if you want an agent that operates autonomously 24/7, a dedicated machine changes the equation.</p>
+      <p>A laptop sleeps when you close it. A cloud VM costs monthly rent and adds latency to local tools. A dedicated Mac Mini sits in a corner, draws about 5 watts at idle, never sleeps, and gives your agent a stable, persistent environment.</p>
+      <p>The Mac Mini specifically works well because macOS handles long-running processes cleanly, Docker runs natively (if you need it for things like self-hosted search), and SSH access means you never need to plug in a monitor after initial setup.</p>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Do you need this?</div>
+        If you're just experimenting with OpenClaw, use your laptop. A dedicated machine only matters when you want your agent running autonomously — cron jobs firing on schedule, heartbeats checking in, messages being processed while you sleep.
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section" id="architecture">
+      <div class="section-number">02</div>
+      <h2>The two-user architecture</h2>
+      <p>This is the most important decision in the entire setup, and the one most people skip. You need two separate macOS user accounts on the Mac Mini:</p>
+
+      <div class="diagram">[ Mac Mini ]
+├── <span style="color: var(--accent)">Admin User</span> (you — human control layer)
+│   ├── Has sudo / admin privileges
+│   ├── Installs system software (Homebrew, Docker, etc.)
+│   ├── Fixes permissions, handles security
+│   └── Think of it as: the root control plane
+│
+└── <span style="color: var(--green)">openclaw User</span> (agent runtime layer)
+    ├── Runs OpenClaw + your agent
+    ├── Holds API keys
+    ├── Executes tools, processes messages
+    ├── Operates 24/7
+    ├── ❌ No sudo — cannot modify system files
+    └── Think of it as: the production sandbox</div>
+
+      <p>Why bother? Because your agent will be running code, executing tools, and managing files autonomously. If it runs under your admin account, a misconfigured tool or a bad command could affect your entire system. The sandboxed user isolates the blast radius.</p>
+      <p>This is exactly how real production systems are designed — separate the control plane from the runtime. Your admin account is for changing the system. The agent account is for operating within it.</p>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">Don't skip this</div>
+        Running your agent under your admin account works fine at first. The problems show up at 2 AM when a cron job does something unexpected and you wish it didn't have admin privileges.
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section" id="hardware-prep">
+      <div class="section-number">03</div>
+      <h2>Hardware prep — disable sleep, enable remote access</h2>
+      <p>Before installing anything, configure the Mac Mini to stay on and be accessible remotely. You'll do this from the Admin user account.</p>
+
+      <h3>Disable sleep</h3>
+      <p>System Settings → Energy → set "Turn display off after" to your preference, but make sure "Prevent automatic sleeping when the display is off" is checked. Your agent needs the machine awake to run cron jobs and heartbeats.</p>
+      <p>Verify from terminal:</p>
+      <pre><code>sudo pmset -g</code><span class="code-label">terminal</span></pre>
+      <p>You want to see <code>sleep 0</code> (never sleep) and <code>displaysleep</code> set to whatever you prefer.</p>
+      <pre><code># Disable sleep entirely
+sudo pmset -a sleep 0
+sudo pmset -a disksleep 0
+
+# Restart automatically after power failure
+sudo pmset -a autorestart 1</code><span class="code-label">terminal</span></pre>
+
+      <h3>Enable SSH (Remote Login)</h3>
+      <p>System Settings → General → Sharing → Remote Login → turn it on. Allow access for your Admin user and the openclaw user (once created).</p>
+      <p>This lets you manage everything over SSH without plugging in a keyboard and monitor. After initial setup, you'll probably never connect a display again.</p>
+
+      <h3>Enable Screen Sharing (optional)</h3>
+      <p>System Settings → General → Sharing → Screen Sharing → turn it on. Useful for debugging GUI-dependent issues, but SSH handles 99% of day-to-day management.</p>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section" id="create-agent-user">
+      <div class="section-number">04</div>
+      <h2>Create the agent user account</h2>
+      <p>From your Admin account, create a standard (non-admin) user for the agent runtime:</p>
+      <p>System Settings → Users & Groups → Add User</p>
+
+      <div class="checklist">
+        <div class="checklist-title">User account settings</div>
+        <ul>
+          <li>Name: <code>openclaw</code> (or whatever you prefer)</li>
+          <li>Account type: <strong>Standard</strong> (not Administrator)</li>
+          <li>Set a strong password — you'll need it for SSH</li>
+          <li>Enable "Allow this user to log in remotely" in Sharing settings</li>
+        </ul>
+      </div>
+
+      <p>Now SSH into the machine as the new user to verify access:</p>
+      <pre><code># From another machine (or Terminal on the Mac Mini)
+ssh openclaw@your-mac-mini-ip
+
+# Verify you're the right user
+whoami
+# → openclaw
+
+# Verify no sudo
+sudo echo "test"
+# → should prompt for password and fail</code><span class="code-label">terminal</span></pre>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Finding your Mac Mini's IP</div>
+        On the Mac Mini: System Settings → Network → look for your active connection (Wi-Fi or Ethernet) and note the IP address. For reliability, assign a static IP or use your router's DHCP reservation so the address doesn't change.
+      </div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section" id="install-openclaw">
+      <div class="section-number">05</div>
+      <h2>Install OpenClaw</h2>
+      <p>SSH into the Mac Mini as the <code>openclaw</code> user and install OpenClaw. Check <a href="https://docs.openclaw.ai">docs.openclaw.ai</a> for the latest install command — it changes as versions update.</p>
+
+      <p>After installation, run setup to initialize your workspace:</p>
+      <pre><code># Initialize workspace
+openclaw setup --workspace ~/.openclaw/workspace
+
+# Verify installation
+openclaw --version
+openclaw status</code><span class="code-label">terminal</span></pre>
+
+      <p>The workspace directory is where your agent lives — its identity files, memory, tools, and configuration. Everything your agent reads and writes happens here.</p>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Node.js requirement</div>
+        OpenClaw requires Node.js. If it's not installed on the openclaw user account, you'll need to install it. Since the openclaw user doesn't have sudo, use a version manager like <code>nvm</code> (Node Version Manager) which installs to the user's home directory — no admin privileges needed.
+      </div>
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="section" id="auth-models">
+      <div class="section-number">06</div>
+      <h2>Authenticate your models</h2>
+      <p>Your agent needs at least one AI model to think with. OpenClaw supports multiple providers — OpenAI, Anthropic, Google, OpenRouter, local models via Ollama, and more.</p>
+
+      <p>The onboarding wizard handles this interactively:</p>
+      <pre><code># Interactive setup — walks you through provider selection and auth
+openclaw onboard</code><span class="code-label">terminal</span></pre>
+
+      <p>Or set up specific providers directly:</p>
+      <pre><code># OpenAI Codex (OAuth — flat $20/month with usage quota)
+openclaw models auth login --provider openai-codex --set-default
+
+# Anthropic Claude (CLI login)
+openclaw models auth login --provider anthropic --method cli --set-default
+
+# Gemini (API key)
+openclaw onboard --auth-choice gemini-api-key
+
+# OpenRouter (API key — access to many models through one key)
+openclaw onboard --auth-choice openrouter-api-key</code><span class="code-label">terminal</span></pre>
+
+      <p>Set your primary model:</p>
+      <pre><code># Set default model
+openclaw models set gpt-5.4
+
+# Verify everything is working
+openclaw models status
+openclaw models status --probe    # Live auth check (uses a small amount of tokens)</code><span class="code-label">terminal</span></pre>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">Pick your primary model carefully</div>
+        Your primary model is what your agent uses for every cron job, heartbeat, and message. A model with hard rate limits will cause your agent to stall during busy periods. Either choose a model with generous limits or set up fallbacks (next section).
+      </div>
+    </div>
+
+    <!-- SECTION 7 -->
+    <div class="section" id="model-fallbacks">
+      <div class="section-number">07</div>
+      <h2>Set up model fallbacks</h2>
+      <p>Your agent runs 24/7. Models have rate limits, outages, and quota caps. Without fallbacks, your agent hits a limit and stops dead until the quota resets.</p>
+      <p>Fallbacks let your agent cascade through models automatically — if the primary model fails or hits a limit, it tries the next one, then the next.</p>
+
+      <pre><code># Add fallback models (in priority order)
+openclaw models fallbacks add gemini-2.5-flash
+openclaw models fallbacks add claude-sonnet-4.6
+
+# Verify your cascade
+openclaw models fallbacks list
+openclaw models status</code><span class="code-label">terminal</span></pre>
+
+      <div class="diagram"><span style="color: var(--accent)">Model Cascade (example)</span>
+
+Primary:    GPT-5.4 (Codex OAuth — $20/mo flat, 5hr/week quota)
+    ↓ quota exceeded
+Fallback 1: Gemini 2.5 Flash (paid tier — high throughput)
+    ↓ rate limited
+Fallback 2: Claude Sonnet 4.6 (API key — pay per token)
+    ↓ all cloud models down
+Fallback 3: Ollama local model (free, runs on your Mac Mini)</div>
+
+      <p>The key insight: your fallback chain should mix pricing models. A flat-rate primary for day-to-day work, a high-throughput option for burst capacity, and a local model as the last resort that never fails because it doesn't depend on any external service.</p>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Local models as the safety net</div>
+        If you install <a href="https://ollama.com">Ollama</a> on the Mac Mini, you can run a local model as your final fallback. It won't be as capable as cloud models, but it means your agent never fully stops — it can still process simple tasks, check emails, and send notifications even when every cloud provider is down.
+      </div>
+    </div>
+
+    <!-- SECTION 8 -->
+    <div class="section" id="workspace">
+      <div class="section-number">08</div>
+      <h2>Build the workspace — identity, memory, and standing rules</h2>
+      <p>Your workspace is your agent's home. The files you put here determine who your agent is, what it remembers, and how it behaves.</p>
+
+      <div class="file-tree"><span class="folder">~/.openclaw/workspace/</span>
+├── <span class="file">IDENTITY.md</span>        <span class="note">← who your agent is</span>
+├── <span class="file">MEMORY.md</span>          <span class="note">← long-term memory (append-only)</span>
+├── <span class="file">OPERATIONS.md</span>      <span class="note">← standing rules and policies</span>
+├── <span class="file">PRODUCTS.md</span>        <span class="note">← what you're selling (if applicable)</span>
+├── <span class="file">TOOLS.md</span>           <span class="note">← tool reference with paths and commands</span>
+├── <span class="folder">memory/</span>            <span class="note">← daily memory notes</span>
+│   ├── <span class="file">2026-04-10.md</span>
+│   └── <span class="file">2026-04-11.md</span>
+├── <span class="folder">prospects/</span>         <span class="note">← pipeline tracking (if doing outreach)</span>
+│   ├── <span class="file">pipeline.md</span>
+│   └── <span class="file">lessons-learned.md</span>
+└── <span class="folder">scripts/</span>           <span class="note">← custom scripts your agent can invoke</span></div>
+
+      <h3>IDENTITY.md — Who your agent is</h3>
+      <p>This file gives your agent a consistent personality and role across all sessions. Without it, your agent starts every conversation as a blank slate.</p>
+      <pre><code># Agent Identity
+
+## Name
+[Your agent's name]
+
+## Role
+[What this agent does — be specific. "AI assistant" is too vague.
+"Sales development agent that researches prospects and sends
+personalized outreach" gives the agent a clear lane.]
+
+## Voice
+[How your agent communicates — professional, casual, technical,
+warm, direct? This affects every email, message, and report.]
+
+## Boundaries
+[What your agent should NOT do — just as important as what it should do.]</code><span class="code-label">IDENTITY.md</span></pre>
+
+      <h3>OPERATIONS.md — Standing rules</h3>
+      <p>This is where you put rules that persist across all sessions and cron jobs. Think of it as your agent's employee handbook.</p>
+      <pre><code># Operations
+
+## Standing Rules
+- Check email for replies at the start of every task
+- Never overwrite MEMORY.md — append only
+- Notify [your contact] immediately when someone replies to outreach
+- BCC [your email] on every outgoing email
+- Never fabricate information — use web search for every factual claim
+
+## Accounts & Credentials
+- [Document which accounts your agent has access to and any policies]
+
+## Escalation
+- [When should your agent stop and notify you instead of acting autonomously?]</code><span class="code-label">OPERATIONS.md</span></pre>
+
+      <h3>Set the agent identity in OpenClaw</h3>
+      <pre><code># Set agent name and identity
+openclaw agents set-identity --agent main \
+  --name "YourAgentName" \
+  --emoji "🤖" \
+  --from-identity</code><span class="code-label">terminal</span></pre>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">The append-only rule for MEMORY.md</div>
+        Your agent should never overwrite or edit MEMORY.md — only append new entries. If your agent rewrites the file, it loses everything it previously learned. Put this rule in OPERATIONS.md and enforce it. This one will burn you if you forget it.
+      </div>
+    </div>
+
+    <!-- SECTION 9 -->
+    <div class="section" id="channels">
+      <div class="section-number">09</div>
+      <h2>Connect channels — email, messaging, social</h2>
+      <p>Channels are how your agent communicates with the outside world. Each channel is a separate connection — email, WhatsApp, Discord, X, SMS, etc.</p>
+
+      <pre><code># See available channels
+openclaw channels list
+
+# Add and authenticate a channel
+openclaw channels add --channel whatsapp
+openclaw channels login --channel whatsapp
+
+# Check status of all channels
+openclaw channels status --probe</code><span class="code-label">terminal</span></pre>
+
+      <p>For email specifically, you'll want a dedicated email address for your agent — not your personal email. This keeps your agent's outreach separate from your inbox and protects your personal domain reputation.</p>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Email deliverability matters</div>
+        If your agent sends outreach emails, set up SPF, DKIM, and DMARC records on your sending domain. Without these, your emails will land in spam. Your domain registrar (GoDaddy, Namecheap, Cloudflare, etc.) should have guides for configuring these DNS records for your email provider.
+      </div>
+
+      <h3>Binding channels to your agent</h3>
+      <p>After connecting channels, bind them to your agent so it knows which channels to use:</p>
+      <pre><code># Bind WhatsApp to your main agent
+openclaw agents bind --agent main --bind whatsapp
+
+# Bind multiple channels
+openclaw agents bind --agent main --bind whatsapp --bind discord
+
+# Check current bindings
+openclaw agents bindings</code><span class="code-label">terminal</span></pre>
+    </div>
+
+    <!-- SECTION 10 -->
+    <div class="section" id="first-agent-turn">
+      <div class="section-number">10</div>
+      <h2>Run your first agent turn</h2>
+      <p>Everything is set up. Time to make your agent do something.</p>
+
+      <pre><code># Simple test — ask your agent to read its own identity
+openclaw agent --agent main \
+  --message "Read IDENTITY.md and tell me who you are." \
+  --local
+
+# Test with delivery — agent responds via its bound channel
+openclaw agent --agent main \
+  --message "Check your workspace and summarize what files exist." \
+  --deliver
+
+# Test with thinking enabled for complex tasks
+openclaw agent --agent main \
+  --message "Read OPERATIONS.md and list your standing rules." \
+  --thinking medium</code><span class="code-label">terminal</span></pre>
+
+      <p>The <code>--local</code> flag runs the agent embedded (no gateway needed). The <code>--deliver</code> flag sends the response back through the agent's bound channel. Start with <code>--local</code> to test, then move to <code>--deliver</code> once you've verified the channel bindings work.</p>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Use the TUI for interactive testing</div>
+        OpenClaw has a terminal UI that lets you chat with your agent in real time — much easier for testing than one-shot commands:
+        <pre style="margin-top: 0.8rem; margin-bottom: 0"><code>openclaw tui --deliver --thinking medium</code></pre>
+      </div>
+    </div>
+
+    <!-- SECTION 11 -->
+    <div class="section" id="heartbeat">
+      <div class="section-number">11</div>
+      <h2>Enable the heartbeat</h2>
+      <p>The heartbeat is your agent's pulse — a periodic check-in that fires on a schedule (default: every 30 minutes). It's what makes your agent proactive instead of purely reactive.</p>
+
+      <pre><code># Enable the heartbeat
+openclaw system heartbeat enable
+
+# Check last heartbeat
+openclaw system heartbeat last
+
+# Disable if needed
+openclaw system heartbeat disable</code><span class="code-label">terminal</span></pre>
+
+      <p>What your agent does during a heartbeat is controlled by its workspace files. A common pattern is to have the agent check for new emails, review pending tasks, and log a status update to its memory.</p>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">Heartbeats consume tokens</div>
+        Every heartbeat is an agent turn that uses your model's tokens. At every-30-minutes, that's 48 heartbeats per day. Make sure your heartbeat instructions are focused and efficient — don't ask your agent to do heavy research every 30 minutes. Save the intensive work for cron jobs with longer intervals.
+      </div>
+    </div>
+
+    <!-- SECTION 12 -->
+    <div class="section" id="cron-jobs">
+      <div class="section-number">12</div>
+      <h2>Set up cron jobs</h2>
+      <p>Cron jobs are scheduled tasks — the backbone of autonomous operation. This is where your agent goes from "responds when I ask" to "does things on its own while I sleep."</p>
+
+      <pre><code># Add a daily task
+openclaw cron add \
+  --name "morning-check" \
+  --cron "0 8 * * *" \
+  --message "Check email for replies. Summarize anything new. Log to memory."
+
+# Add a weekday-only task
+openclaw cron add \
+  --name "prospecting" \
+  --cron "0 10 * * 1-5" \
+  --message "Run the prospecting workflow. Read PRODUCTS.md and prospects/lessons-learned.md first." \
+  --timeout 900
+
+# Add a recurring task
+openclaw cron add \
+  --name "memory-sweep" \
+  --every "2h" \
+  --system-event "Search for recent context, update daily memory note."
+
+# List all cron jobs
+openclaw cron list
+
+# Manually trigger a job (for testing)
+openclaw cron run &lt;id&gt;
+
+# Check run history
+openclaw cron runs --id &lt;id&gt;</code><span class="code-label">terminal</span></pre>
+
+      <div class="callout callout-danger">
+        <div class="callout-title">Make cron jobs self-contained</div>
+        Each cron job should include everything the agent needs to know in the message itself — or tell it which files to read. Don't assume the agent remembers what happened in a previous cron run. Cron sessions are isolated. If your morning check depends on data from last night's report, tell the agent to read the report file.
+      </div>
+
+      <h3>A starter cron schedule</h3>
+      <p>Here's a minimal schedule that covers the basics for an agent doing outreach and content:</p>
+
+      <div class="diagram"><span style="color: var(--accent)">Suggested Starter Schedule</span>
+
+Every 2h    memory-sweep       Search recent context, update daily memory note
+8:00 AM     morning-check      Check email for replies, summarize, notify you
+10:00 AM    prospecting        Research prospects, send outreach (weekdays only)
+5:00 PM     evening-update     Post to social, review day's activity
+9:00 PM     daily-report       Summarize the day, email you a report</div>
+
+      <p>Start with fewer jobs and add more as you learn what your agent is good at. Every cron job costs tokens — don't schedule ten jobs on day one.</p>
+    </div>
+
+    <!-- SECTION 13 -->
+    <div class="section" id="memory">
+      <div class="section-number">13</div>
+      <h2>Memory architecture — making your agent remember</h2>
+      <p>Without memory, your agent starts every session from scratch. With memory, it compounds knowledge across days and weeks. This is the difference between a tool and an agent.</p>
+
+      <p>OpenClaw's memory system works through files in your workspace that get semantically indexed:</p>
+
+      <pre><code># Check memory index status
+openclaw memory status
+openclaw memory status --deep
+
+# Reindex after adding new memory files
+openclaw memory index --agent main --verbose
+
+# Search memory (your agent does this automatically when configured)
+openclaw memory search "prospecting results"
+
+# Promote short-term recalls to long-term memory
+openclaw memory promote</code><span class="code-label">terminal</span></pre>
+
+      <h3>The memory pattern that works</h3>
+      <p>After running agents for months, this is the pattern that actually works in production:</p>
+
+      <p><strong>MEMORY.md</strong> at the workspace root is your agent's long-term memory. It's append-only — your agent adds entries but never edits or deletes existing ones. This file gets indexed and is searchable across all sessions.</p>
+
+      <p><strong>memory/YYYY-MM-DD.md</strong> files are daily notes. Each cron job appends a 2-3 line summary of what it did. These daily files are like a work journal — they give your agent context about recent activity without bloating the main memory file.</p>
+
+      <p><strong>The memory protocol for every cron job:</strong> At the start of a task, run <code>memory_search</code> for relevant context. At the end, append a brief summary to the daily memory note. This creates a feedback loop — each session builds on the last.</p>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Put the memory protocol in your cron messages</div>
+        Your cron job messages should explicitly tell the agent to search memory before starting and log to memory after finishing. If you don't include this, the agent won't do it — cron sessions don't inherit instructions from other sessions.
+      </div>
+    </div>
+
+    <!-- SECTION 14 -->
+    <div class="section" id="gateway">
+      <div class="section-number">14</div>
+      <h2>The gateway — running as a background service</h2>
+      <p>The gateway is what keeps your agent running in the background. Without it, you'd need a terminal window open 24/7. The gateway runs as a macOS service (launchd) and starts automatically on boot.</p>
+
+      <pre><code># Install the gateway as a system service
+openclaw gateway install
+
+# Start the gateway
+openclaw gateway start
+
+# Check status
+openclaw gateway status
+openclaw gateway health
+
+# View logs
+openclaw logs --follow
+
+# Restart after config changes
+openclaw gateway restart
+
+# Stop if needed
+openclaw gateway stop</code><span class="code-label">terminal</span></pre>
+
+      <p>Once the gateway is installed and running, your agent processes messages, heartbeats, and cron jobs automatically — even after the machine reboots.</p>
+
+      <div class="callout callout-info">
+        <div class="callout-title">Gateway vs. local mode</div>
+        When the gateway is running, <code>openclaw agent</code> commands route through it. If the gateway is down, OpenClaw automatically falls back to embedded (local) mode. You can also force local mode with the <code>--local</code> flag. The gateway is for production; local mode is for testing and debugging.
+      </div>
+    </div>
+
+    <!-- SECTION 15 -->
+    <div class="section" id="monitoring">
+      <div class="section-number">15</div>
+      <h2>Monitoring and health checks</h2>
+      <p>Your agent is running 24/7. Things will break — auth tokens expire, channels disconnect, models hit rate limits. Build a habit of checking health regularly, or set up your agent to do it for you.</p>
+
+      <pre><code># Full system diagnosis
+openclaw status --all
+
+# Check model auth health
+openclaw models status --probe
+
+# Check channel connections
+openclaw channels status --probe
+
+# Run the doctor (finds and optionally fixes issues)
+openclaw doctor
+openclaw doctor --repair
+
+# Check for updates
+openclaw update status</code><span class="code-label">terminal</span></pre>
+
+      <div class="checklist">
+        <div class="checklist-title">Weekly health check routine</div>
+        <ul>
+          <li>Run <code>openclaw doctor</code> — fix any issues it finds</li>
+          <li>Run <code>openclaw models status --probe</code> — verify all auth is valid</li>
+          <li>Run <code>openclaw channels status --probe</code> — verify all channels are connected</li>
+          <li>Check <code>openclaw cron list</code> — make sure all jobs are enabled and running</li>
+          <li>Review your agent's daily memory notes — is it doing what you expect?</li>
+          <li>Check your model provider usage — are you staying within budget?</li>
+          <li>Run <code>openclaw update status</code> — install updates if available</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Automate the health check</div>
+        Add a cron job that runs health checks and reports issues to you. Your agent can run <code>openclaw doctor</code> and <code>openclaw models status</code> and send you a summary — so you only need to intervene when something is actually broken.
+      </div>
+    </div>
+
+    <!-- SECTION 16 -->
+    <div class="section" id="mistakes">
+      <div class="section-number">16</div>
+      <h2>Mistakes I made so you don't have to</h2>
+      <p>These aren't theoretical risks. Every one of these happened in production and cost real time to fix.</p>
+
+      <h3>Running the agent under the admin account</h3>
+      <p>Started this way because it was easier. Regretted it when a cron job modified a system file it shouldn't have touched. Created the sandboxed user and moved everything over. Do it from the start.</p>
+
+      <h3>No model fallbacks</h3>
+      <p>Used a single model with a weekly quota. Agent ran great Monday through Wednesday, then sat idle Thursday through Sunday because the quota was exhausted. Added fallbacks and the agent never stopped again.</p>
+
+      <h3>Letting the agent edit MEMORY.md</h3>
+      <p>Agent "cleaned up" its memory file by rewriting it. Lost weeks of accumulated context. Added the append-only rule to OPERATIONS.md and never had the issue again.</p>
+
+      <h3>Cron jobs that reference other cron jobs</h3>
+      <p>Had cron jobs that depended on a shared state file (HEARTBEAT.md). When one job updated the file, it broke the assumptions of another job running later. Fixed by making every cron job self-contained — each reads its own input files and writes its own output.</p>
+
+      <h3>No bounce handling for outreach emails</h3>
+      <p>Agent sent emails to bad addresses, bounces piled up, sender domain reputation tanked. Emails started landing in spam. Built bounce detection and domain blacklisting into the workflow. Check your inbox for bounces before sending new outreach — every run.</p>
+
+      <h3>Too many heartbeats, too few tokens</h3>
+      <p>Set the heartbeat to every 15 minutes with a complex prompt. Burned through the model's daily quota by noon. Dialed it back to every 2 hours with a lean prompt for the heartbeat, and moved the heavy work to dedicated cron jobs with longer intervals.</p>
+
+      <h3>Not testing cron jobs manually first</h3>
+      <p>Wrote a cron job, scheduled it, and went to bed. Woke up to find it had sent the same email three times because of a logic error in the instructions. Now: always <code>openclaw cron run &lt;id&gt;</code> manually and review the output before enabling the schedule.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Ready to make your agent sell?</h2>
+      <p>This guide gets your agent running. Prospector gets it earning. A complete B2B outreach workflow — prospect research, email templates, pipeline tracking, and a self-improving lessons loop. Built from running production outreach on this exact setup.</p>
+      <div class="cta-links">
+        <a href="https://sora-labs.net/tools/" class="cta-btn cta-btn-primary">Browse Tools</a>
+        <a href="https://buttondown.com/nclawdev" class="cta-btn cta-btn-secondary">Subscribe to the Newsletter</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">&copy; 2026 Sora Labs. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="https://sora-labs.net">Home</a>
+      <a href="https://sora-labs.net/tools/">Tools</a>
+      <a href="https://x.com/NadiaReports">𝕏</a>
+      <a href="https://buttondown.com/nclawdev">Newsletter</a>
+    </div>
+  </footer>
+
+</body>
+</html>
