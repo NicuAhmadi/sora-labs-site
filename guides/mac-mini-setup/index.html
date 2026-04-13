@@ -536,16 +536,17 @@
     /* ── FLOATING SIDE NAV ── */
     .side-nav {
       position: fixed;
-      left: max(1rem, calc((100vw - 820px) / 2 - 64px));
+      right: max(12px, calc((100vw - 820px) / 2 - 48px));
       top: 50%;
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      align-items: center;
+      gap: 0;
       z-index: 50;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s;
+      transition: opacity 0.4s;
     }
 
     .side-nav.visible {
@@ -557,33 +558,40 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.55rem;
-      font-weight: 500;
-      color: var(--text-muted);
+      width: 20px;
+      height: 20px;
       text-decoration: none;
-      transition: color 0.2s, background 0.2s;
       position: relative;
     }
 
-    .side-nav a:hover {
-      color: var(--text-primary);
-      background: var(--bg-card);
+    .side-nav a .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--border-accent);
+      transition: all 0.2s;
     }
 
-    .side-nav a.active {
-      color: var(--accent);
-      background: var(--accent-dim);
+    .side-nav a:hover .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--text-secondary);
+    }
+
+    .side-nav a.active .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      box-shadow: 0 0 6px rgba(200, 169, 126, 0.4);
     }
 
     .side-nav a .side-nav-tooltip {
       position: absolute;
-      left: 36px;
+      right: 24px;
       white-space: nowrap;
-      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
       color: var(--text-secondary);
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -591,11 +599,13 @@
       padding: 4px 10px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.15s;
+      transform: translateX(4px);
+      transition: opacity 0.15s, transform 0.15s;
     }
 
     .side-nav a:hover .side-nav-tooltip {
       opacity: 1;
+      transform: translateX(0);
     }
 
     @media (max-width: 1100px) {
@@ -1230,22 +1240,22 @@ openclaw update status</code><span class="code-label">terminal</span></pre>
 
 <!-- FLOATING SIDE NAV -->
 <nav class="side-nav" id="sideNav">
-  <a href="#why-mac-mini" data-section="why-mac-mini"><span>01</span><span class="side-nav-tooltip">Why a Mac Mini</span></a>
-  <a href="#architecture" data-section="architecture"><span>02</span><span class="side-nav-tooltip">Two-user architecture</span></a>
-  <a href="#hardware-prep" data-section="hardware-prep"><span>03</span><span class="side-nav-tooltip">Hardware prep</span></a>
-  <a href="#create-agent-user" data-section="create-agent-user"><span>04</span><span class="side-nav-tooltip">Agent user account</span></a>
-  <a href="#install-openclaw" data-section="install-openclaw"><span>05</span><span class="side-nav-tooltip">Install OpenClaw</span></a>
-  <a href="#auth-models" data-section="auth-models"><span>06</span><span class="side-nav-tooltip">Authenticate models</span></a>
-  <a href="#model-fallbacks" data-section="model-fallbacks"><span>07</span><span class="side-nav-tooltip">Model fallbacks</span></a>
-  <a href="#workspace" data-section="workspace"><span>08</span><span class="side-nav-tooltip">Build the workspace</span></a>
-  <a href="#channels" data-section="channels"><span>09</span><span class="side-nav-tooltip">Connect channels</span></a>
-  <a href="#first-agent-turn" data-section="first-agent-turn"><span>10</span><span class="side-nav-tooltip">First agent turn</span></a>
-  <a href="#heartbeat" data-section="heartbeat"><span>11</span><span class="side-nav-tooltip">Heartbeat</span></a>
-  <a href="#cron-jobs" data-section="cron-jobs"><span>12</span><span class="side-nav-tooltip">Cron jobs</span></a>
-  <a href="#memory" data-section="memory"><span>13</span><span class="side-nav-tooltip">Memory architecture</span></a>
-  <a href="#gateway" data-section="gateway"><span>14</span><span class="side-nav-tooltip">The gateway</span></a>
-  <a href="#monitoring" data-section="monitoring"><span>15</span><span class="side-nav-tooltip">Monitoring</span></a>
-  <a href="#mistakes" data-section="mistakes"><span>16</span><span class="side-nav-tooltip">Mistakes I made</span></a>
+  <a href="#why-mac-mini" data-section="why-mac-mini"><span class="dot"></span><span class="side-nav-tooltip">01 &middot; Why a Mac Mini</span></a>
+  <a href="#architecture" data-section="architecture"><span class="dot"></span><span class="side-nav-tooltip">02 &middot; Two-user architecture</span></a>
+  <a href="#hardware-prep" data-section="hardware-prep"><span class="dot"></span><span class="side-nav-tooltip">03 &middot; Hardware prep</span></a>
+  <a href="#create-agent-user" data-section="create-agent-user"><span class="dot"></span><span class="side-nav-tooltip">04 &middot; Agent user account</span></a>
+  <a href="#install-openclaw" data-section="install-openclaw"><span class="dot"></span><span class="side-nav-tooltip">05 &middot; Install OpenClaw</span></a>
+  <a href="#auth-models" data-section="auth-models"><span class="dot"></span><span class="side-nav-tooltip">06 &middot; Authenticate models</span></a>
+  <a href="#model-fallbacks" data-section="model-fallbacks"><span class="dot"></span><span class="side-nav-tooltip">07 &middot; Model fallbacks</span></a>
+  <a href="#workspace" data-section="workspace"><span class="dot"></span><span class="side-nav-tooltip">08 &middot; Build the workspace</span></a>
+  <a href="#channels" data-section="channels"><span class="dot"></span><span class="side-nav-tooltip">09 &middot; Connect channels</span></a>
+  <a href="#first-agent-turn" data-section="first-agent-turn"><span class="dot"></span><span class="side-nav-tooltip">10 &middot; First agent turn</span></a>
+  <a href="#heartbeat" data-section="heartbeat"><span class="dot"></span><span class="side-nav-tooltip">11 &middot; Heartbeat</span></a>
+  <a href="#cron-jobs" data-section="cron-jobs"><span class="dot"></span><span class="side-nav-tooltip">12 &middot; Cron jobs</span></a>
+  <a href="#memory" data-section="memory"><span class="dot"></span><span class="side-nav-tooltip">13 &middot; Memory architecture</span></a>
+  <a href="#gateway" data-section="gateway"><span class="dot"></span><span class="side-nav-tooltip">14 &middot; The gateway</span></a>
+  <a href="#monitoring" data-section="monitoring"><span class="dot"></span><span class="side-nav-tooltip">15 &middot; Monitoring</span></a>
+  <a href="#mistakes" data-section="mistakes"><span class="dot"></span><span class="side-nav-tooltip">16 &middot; Mistakes I made</span></a>
 </nav>
 
 <script>
