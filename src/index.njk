@@ -1,0 +1,824 @@
+---
+permalink: /index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sora Labs — Research, Intelligence, Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0C;
+  --bg-elevated: #111114;
+  --bg-card: #161619;
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-border-hover: rgba(255,255,255,0.1);
+  --border: #252529;
+  --border-subtle: #1A1A1E;
+  --text: #E8E7E3;
+  --text-secondary: #94939B;
+  --text-dim: #5E5D65;
+  --accent: #C9A84C;
+  --accent-soft: #C9A84C20;
+  --accent-glow: #C9A84C15;
+  --accent-hover: #DABB5E;
+  --green: #4EAD6B;
+  --green-soft: #4EAD6B18;
+  --blue: #5B8DEF;
+  --blue-soft: #5B8DEF15;
+  --coral: #D97756;
+  --coral-soft: #D9775615;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Libre Franklin', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --gap: 16px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.anim { animation: fadeUp 0.65s ease-out both; animation-play-state: paused; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.1s; }
+.d3 { animation-delay: 0.15s; } .d4 { animation-delay: 0.2s; }
+.d5 { animation-delay: 0.25s; } .d6 { animation-delay: 0.3s; }
+.d7 { animation-delay: 0.35s; } .d8 { animation-delay: 0.4s; }
+
+/* ═══ NAV ═══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  background: rgba(10,10,12,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+nav .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-size: 1.3rem; font-weight: 500;
+}
+.nav-mark {
+  width: 30px; height: 30px; background: var(--accent); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg);
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 0.82rem; font-weight: 500; color: var(--text-dim);
+  transition: color 0.2s; letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--text-secondary); }
+.nav-cta {
+  color: var(--bg) !important; background: var(--accent);
+  padding: 7px 16px; border-radius: 6px; font-weight: 600 !important;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--accent-hover); }
+
+/* ═══ HERO ═══ */
+.hero {
+  padding: 160px 0 80px; position: relative; text-align: center;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-label {
+  display: inline-block;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+  color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.14em;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--display); font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 500; line-height: 1.08; letter-spacing: -0.03em;
+  max-width: 700px; margin: 0 auto 20px;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 1.05rem; color: var(--text-secondary);
+  max-width: 480px; margin: 0 auto 36px; line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--body); font-size: 0.88rem; font-weight: 600;
+  color: var(--bg); background: var(--accent);
+  padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-soft); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--body); font-size: 0.88rem; font-weight: 500;
+  color: var(--text-secondary); background: transparent;
+  padding: 12px 24px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--text-dim); color: var(--text); }
+
+/* ═══ INDUSTRIES ═══ */
+.industries {
+  padding: 36px 0; border-bottom: 1px solid var(--border-subtle); text-align: center;
+}
+.industries-text { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.06em; }
+.industries-text span {
+  font-family: var(--display); font-style: italic; color: var(--text-secondary); font-size: 0.88rem;
+}
+
+/* ═══ BENTO GRID ═══ */
+.bento-section { padding: 80px 0 40px; }
+.bento-header { text-align: center; margin-bottom: 48px; }
+.bento-header h2 {
+  font-family: var(--display); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px;
+}
+.bento-header p { font-size: 0.95rem; color: var(--text-secondary); }
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(80px, auto);
+  gap: var(--gap);
+}
+
+/* Card base */
+.tile {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 32px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.tile:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+/* Tile sizing */
+.tile-hero    { grid-column: span 7; grid-row: span 4; }
+.tile-medium  { grid-column: span 5; grid-row: span 4; }
+.tile-wide    { grid-column: span 6; grid-row: span 3; }
+.tile-full    { grid-column: span 12; grid-row: span 3; }
+
+/* Shared tile elements */
+.tile-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+  color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--accent-soft); padding: 5px 12px; border-radius: 100px;
+  margin-bottom: 20px; align-self: flex-start;
+}
+.tile-title {
+  font-family: var(--display); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px;
+}
+.tile-price {
+  font-family: var(--mono); font-size: 0.82rem; font-weight: 500;
+  color: var(--accent); margin-bottom: 14px;
+}
+.tile-desc {
+  font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; max-width: 440px;
+}
+.tile-bottom { margin-top: auto; padding-top: 24px; }
+.tile-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 500;
+  color: var(--accent); transition: gap 0.2s;
+}
+.tile-cta:hover { gap: 10px; }
+
+/* ── TILE: Competitive Intel (Hero) ── */
+.tile-intel { display: flex; flex-direction: column; justify-content: space-between; }
+.tile-intel::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tile-intel .tile-title { font-size: 1.8rem; }
+
+.intel-preview {
+  margin-top: 20px;
+  background: var(--bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  padding: 18px 20px;
+}
+.intel-preview-label {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+  color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.intel-preview-items { display: flex; flex-direction: column; gap: 8px; }
+.intel-preview-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.8rem; color: var(--text-secondary);
+}
+.intel-preview-item .dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.dot-accent { background: var(--accent); }
+.dot-blue { background: var(--blue); }
+.dot-green { background: var(--green); }
+
+/* ── TILE: AI Readiness Audit ── */
+.tile-audit { display: flex; flex-direction: column; }
+.tile-audit::before {
+  content: ''; position: absolute; bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, var(--blue-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tile-audit .tile-title { font-size: 1.45rem; }
+.audit-visual { margin-top: 20px; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; }
+.audit-bars { display: flex; gap: 6px; align-items: flex-end; height: 80px; }
+.audit-bar { flex: 1; border-radius: 4px 4px 0 0; transition: height 0.6s ease; }
+.audit-bar:nth-child(1) { height: 45%; background: var(--blue); opacity: 0.3; }
+.audit-bar:nth-child(2) { height: 65%; background: var(--blue); opacity: 0.45; }
+.audit-bar:nth-child(3) { height: 80%; background: var(--blue); opacity: 0.6; }
+.audit-bar:nth-child(4) { height: 55%; background: var(--blue); opacity: 0.5; }
+.audit-bar:nth-child(5) { height: 95%; background: var(--blue); opacity: 0.8; }
+.audit-bar:nth-child(6) { height: 70%; background: var(--blue); opacity: 0.55; }
+.tile-audit:hover .audit-bar:nth-child(1) { height: 55%; }
+.tile-audit:hover .audit-bar:nth-child(2) { height: 75%; }
+.tile-audit:hover .audit-bar:nth-child(3) { height: 60%; }
+.tile-audit:hover .audit-bar:nth-child(4) { height: 90%; }
+.tile-audit:hover .audit-bar:nth-child(5) { height: 70%; }
+.tile-audit:hover .audit-bar:nth-child(6) { height: 85%; }
+.audit-labels { display: flex; justify-content: space-between; margin-top: 8px; }
+.audit-labels span {
+  font-family: var(--mono); font-size: 0.58rem; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+/* ── TILE: Website Build ── */
+.tile-website { display: flex; flex-direction: column; }
+.tile-website::before {
+  content: ''; position: absolute; top: -30px; right: -30px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, var(--green-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tile-website .tile-title { font-size: 1.45rem; }
+.website-visual { margin-top: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; justify-content: flex-end; }
+.review-badge {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+}
+.review-stars { color: var(--accent); font-size: 0.85rem; letter-spacing: 2px; }
+.review-text { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
+.review-count { font-family: var(--mono); font-size: 0.75rem; color: var(--text-secondary); font-weight: 500; }
+.map-hint {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); padding: 10px 16px;
+  font-size: 0.78rem; color: var(--text-dim);
+}
+.map-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green); box-shadow: 0 0 8px var(--green);
+  flex-shrink: 0;
+}
+
+/* ── TILE: Weekly Digest ── */
+.tile-digest { display: flex; flex-direction: column; }
+.tile-digest::before {
+  content: ''; position: absolute; bottom: -30px; right: -30px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, var(--coral-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tile-digest .tile-title { font-size: 1.45rem; }
+.digest-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+  color: var(--coral); text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--coral-soft); padding: 5px 12px; border-radius: 100px;
+  margin-bottom: 16px; align-self: flex-start;
+}
+.digest-preview { margin-top: auto; display: flex; flex-direction: column; gap: 6px; }
+.digest-item {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); padding: 10px 14px;
+  font-size: 0.78rem; color: var(--text-secondary);
+}
+.digest-icon { font-size: 0.9rem; }
+
+/* ── TILE: Newsletter ── */
+.tile-news {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.tile-news::before {
+  content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.news-info .tile-title { font-size: 1.8rem; margin-bottom: 12px; }
+.news-desc {
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;
+}
+
+/* Buttondown form — styled to match */
+.embeddable-buttondown-form { display: flex; gap: 10px; }
+.embeddable-buttondown-form label { display: none; }
+.embeddable-buttondown-form input[type="email"] {
+  flex: 1;
+  font-family: var(--body); font-size: 0.88rem;
+  padding: 13px 18px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); outline: none;
+  transition: border-color 0.2s;
+}
+.embeddable-buttondown-form input[type="email"]::placeholder { color: var(--text-dim); }
+.embeddable-buttondown-form input[type="email"]:focus { border-color: var(--accent); }
+.embeddable-buttondown-form input[type="submit"] {
+  font-family: var(--body); font-size: 0.85rem; font-weight: 600;
+  padding: 13px 22px;
+  background: var(--accent); color: var(--bg);
+  border: none; border-radius: 8px; cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.embeddable-buttondown-form input[type="submit"]:hover { background: var(--accent-hover); }
+.embeddable-buttondown-form p {
+  display: none; /* hide "Powered by Buttondown" */
+}
+.form-note {
+  font-size: 0.75rem; color: var(--text-dim); margin-top: 10px;
+}
+
+/* Newsletter preview */
+.news-preview {
+  background: var(--bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
+  padding: 24px; position: relative; z-index: 1;
+}
+.news-preview-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border-subtle);
+}
+.news-preview-title { font-family: var(--display); font-size: 1rem; font-weight: 500; }
+.news-preview-date { font-family: var(--mono); font-size: 0.65rem; color: var(--text-dim); }
+.news-preview-item { padding: 10px 0; border-bottom: 1px solid var(--border-subtle); }
+.news-preview-item:last-child { border-bottom: none; }
+.news-preview-label {
+  font-family: var(--mono); font-size: 0.6rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent); margin-bottom: 3px;
+}
+.news-preview-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* ═══ FEATURED RESEARCH ═══ */
+.featured-research {
+  padding: 64px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.featured-research-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.featured-research-text {
+  max-width: 600px;
+}
+.featured-research-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.featured-research-text h3 {
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.featured-research-text p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.featured-research-link {
+  flex-shrink: 0;
+}
+.featured-research-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 12px 24px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.featured-research-link a:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+@media (max-width: 768px) {
+  .featured-research-inner {
+    flex-direction: column;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .featured-research-link { width: 100%; }
+  .featured-research-link a { width: 100%; justify-content: center; }
+}
+
+/* ═══ ABOUT ═══ */
+.about-strip { padding: 80px 0; border-top: 1px solid var(--border-subtle); }
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-inner h2 {
+  font-family: var(--display); font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 500; letter-spacing: -0.02em; margin-bottom: 20px;
+}
+.about-inner h2 em { font-style: italic; color: var(--accent); }
+.about-text { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.75; }
+.about-text + .about-text { margin-top: 14px; }
+.about-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.metric {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm); padding: 24px; text-align: center;
+}
+.metric-val {
+  font-family: var(--display); font-size: 1.8rem; color: var(--accent);
+  line-height: 1.2; margin-bottom: 4px;
+}
+.metric-label {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* ═══ CTA ═══ */
+.cta { text-align: center; padding: 100px 0; position: relative; }
+.cta::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 400px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta h2 {
+  font-family: var(--display); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 500; letter-spacing: -0.02em;
+  max-width: 500px; margin: 0 auto 12px;
+}
+.cta p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 32px; }
+.cta-email { font-family: var(--mono); font-size: 0.88rem; color: var(--accent); margin-top: 20px; }
+
+/* ═══ FOOTER ═══ */
+footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.footer-left { font-size: 0.78rem; color: var(--text-dim); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.78rem; color: var(--text-dim); transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .tile-hero { grid-column: span 12; grid-row: span 3; }
+  .tile-medium { grid-column: span 6; grid-row: span 3; }
+  .tile-wide { grid-column: span 6; grid-row: span 3; }
+  .tile-full { grid-column: span 12; }
+}
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .tile-hero, .tile-medium, .tile-wide, .tile-full { grid-column: span 12; grid-row: auto; }
+  .tile-news { grid-template-columns: 1fr; gap: 32px; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-metrics { order: -1; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  .hero { padding: 140px 0 60px; }
+  .bento-section { padding: 60px 0 20px; }
+  .intel-preview { display: none; }
+  .embeddable-buttondown-form { flex-direction: column; }
+}
+@media (max-width: 500px) {
+  .hero-actions { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+  .about-metrics { grid-template-columns: 1fr; }
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">
+      <span class="nav-mark">S</span>
+      Sora Labs
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="https://sora-labs.net/tools/">Tools</a>
+      <a href="https://sora-labs.net/guides/mac-mini-setup/">Guides</a>
+      <a href="#newsletter">Newsletter</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Get Started</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label anim d1">Research · Intelligence · Growth</div>
+    <h1 class="anim d2">Market intelligence<br>that <em>moves the needle</em></h1>
+    <p class="hero-sub anim d3">Competitive research, industry analysis, and growth strategy — delivered on a schedule so you can focus on running your business.</p>
+    <div class="hero-actions anim d4">
+      <a href="#services" class="btn-primary">Explore Services →</a>
+      <a href="#newsletter" class="btn-ghost">Read The Briefing</a>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<div class="industries anim d5">
+  <div class="container">
+    <div class="industries-text">
+      Serving leaders in <span>Logistics</span> · <span>Construction</span> · <span>Healthcare</span> · <span>Insurance</span> · <span>Manufacturing</span> · <span>Legal</span> · <span>Real Estate</span>
+    </div>
+  </div>
+</div>
+
+<!-- BENTO GRID -->
+<section class="bento-section" id="services">
+  <div class="container">
+    <div class="bento-header anim d1">
+      <h2>What we do</h2>
+      <p>A modular suite of research and intelligence services. Pick what fits.</p>
+    </div>
+
+    <div class="bento">
+
+      <!-- TILE 1: Competitive Intelligence (Hero) -->
+      <div class="tile tile-hero tile-intel anim d2">
+        <div>
+          <div class="tile-badge">◆ Flagship Service</div>
+          <h3 class="tile-title">Competitive Intelligence</h3>
+          <div class="tile-price">$50 / month</div>
+          <p class="tile-desc">Weekly briefings tailored to your competitive landscape — who's moving, what's shifting, and what you should do about it. Specific to your market, delivered every week.</p>
+          <div class="intel-preview">
+            <div class="intel-preview-label">Your free intro briefing includes</div>
+            <div class="intel-preview-items">
+              <div class="intel-preview-item"><span class="dot dot-accent"></span> 3 competitor deep-dives with sourced analysis</div>
+              <div class="intel-preview-item"><span class="dot dot-blue"></span> 1 market trend you should be watching</div>
+              <div class="intel-preview-item"><span class="dot dot-green"></span> 1 blind spot your competitors are missing</div>
+            </div>
+          </div>
+        </div>
+        <div class="tile-bottom">
+          <a href="https://buy.stripe.com/28E00i4Ly1xnc1m10Hak000" class="tile-cta">Subscribe →</a>
+        </div>
+      </div>
+
+      <!-- TILE 2: AI Readiness Audit -->
+      <div class="tile tile-medium tile-audit anim d3">
+        <div>
+          <h3 class="tile-title">AI Readiness Audit</h3>
+          <div class="tile-price">$150 — one time</div>
+          <p class="tile-desc">A full audit of where AI fits in your operations — competitive landscape, tech gaps, and a prioritized action plan. PDF delivered in 48 hours.</p>
+        </div>
+        <div class="audit-visual">
+          <div class="audit-bars">
+            <div class="audit-bar"></div><div class="audit-bar"></div>
+            <div class="audit-bar"></div><div class="audit-bar"></div>
+            <div class="audit-bar"></div><div class="audit-bar"></div>
+          </div>
+          <div class="audit-labels"><span>Ops</span><span>Stack</span><span>Market</span></div>
+        </div>
+        <div class="tile-bottom">
+          <a href="https://buy.stripe.com/8x228qce0gshd5qeRxak002" class="tile-cta">Order Audit →</a>
+        </div>
+      </div>
+
+      <!-- TILE 3: Website Build -->
+      <div class="tile tile-wide tile-website anim d4">
+        <div>
+          <h3 class="tile-title">Local Website Builds</h3>
+          <div class="tile-price">Custom quote</div>
+          <p class="tile-desc">Clean, professional, mobile-friendly websites for local businesses. Services, hours, location, reviews, contact — everything your customers need.</p>
+        </div>
+        <div class="website-visual">
+          <div class="review-badge">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">Google Reviews</div>
+            </div>
+            <div class="review-count">247 reviews</div>
+          </div>
+          <div class="map-hint">
+            <span class="map-dot"></span>
+            Your business, on the map
+          </div>
+        </div>
+        <div class="tile-bottom">
+          <a href="mailto:nadia@sora-labs.net?subject=Website%20Build%20Inquiry" class="tile-cta">Let's Talk →</a>
+        </div>
+      </div>
+
+      <!-- TILE 4: Weekly Digest -->
+      <div class="tile tile-wide tile-digest anim d5">
+        <div>
+          <div class="digest-tag">↻ Subscription</div>
+          <h3 class="tile-title">Weekly Industry Digest</h3>
+          <div class="tile-price">$29 / month</div>
+          <p class="tile-desc">What changed in your industry this week, why it matters, and what to do about it. Plain language, tailored to your sector.</p>
+        </div>
+        <div class="digest-preview">
+          <div class="digest-item"><span class="digest-icon">📊</span> Industry shifts & market moves</div>
+          <div class="digest-item"><span class="digest-icon">⚡</span> What your competitors adopted this week</div>
+          <div class="digest-item"><span class="digest-icon">🎯</span> One action item you can take Monday</div>
+        </div>
+        <div class="tile-bottom">
+          <a href="https://buy.stripe.com/cNidR83Hu2Br7L6fVBak001" class="tile-cta">Subscribe →</a>
+        </div>
+      </div>
+
+      <!-- TILE 5: Newsletter (Full Width) -->
+      <div class="tile tile-full tile-news anim d6" id="newsletter">
+        <div class="news-info">
+          <h3 class="tile-title">The Briefing</h3>
+          <p class="news-desc">A free weekly dispatch by Nadia Sora — covering the trends, tools, and shifts that actually matter for business. Written for operators, not onlookers.</p>
+          <form
+            action="https://buttondown.com/api/emails/embed-subscribe/nclawdev"
+            method="post"
+            class="embeddable-buttondown-form"
+          >
+            <label for="bd-email">Enter your email</label>
+            <input type="email" name="email" id="bd-email" placeholder="your@email.com" required />
+            <input type="submit" value="Subscribe Free" />
+            <p><a href="https://buttondown.com/refer/nclawdev" target="_blank">Powered by Buttondown.</a></p>
+          </form>
+          <div class="form-note">Free. Weekly. Unsubscribe anytime.</div>
+        </div>
+        <div class="news-preview">
+          <div class="news-preview-header">
+            <span class="news-preview-title">Latest Issue</span>
+            <span class="news-preview-date">Weekly</span>
+          </div>
+          <div class="news-preview-item">
+            <div class="news-preview-label">Lead Story</div>
+            <div class="news-preview-text">AI adoption in construction doubled in 12 months — from 17% to 38% of contractors reporting measurable impact. We broke down the 16 companies driving it and where the $126M in fresh funding is going.</div>
+          </div>
+          <div class="news-preview-item">
+            <div class="news-preview-label">Market Signal</div>
+            <div class="news-preview-text">Back-office AI for specialty trades is the most underhyped category in contech. Trayd raised a $10M Series A in three weeks. Payra's customers cut past-due invoices by 75%. The margin gains are quiet but real.</div>
+          </div>
+          <div class="news-preview-item">
+            <div class="news-preview-label">Dispatch Notes</div>
+            <div class="news-preview-text">This week we published our first full industry deep-dive: AI in Construction — Who's Winning, Who's Funded, and What It Means for Your Firm. It's free, it's detailed, and it's the kind of analysis we do for subscribers every week at a smaller scale.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED RESEARCH -->
+<section class="featured-research">
+  <div class="container">
+    <div class="featured-research-inner">
+      <div class="featured-research-text">
+        <div class="featured-research-label">See Our Work</div>
+        <h3>AI in Construction — Full Competitive Intelligence Briefing</h3>
+        <p>We published a full deep-dive covering 16 companies, $126M in recent funding, and strategic recommendations by adoption stage. Free to read.</p>
+      </div>
+      <div class="featured-research-link">
+        <a href="https://sora-labs.net/research/ai-construction/index.html">Read the briefing &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <h2>We focus where<br><em>others don't look.</em></h2>
+        <p class="about-text">Most research firms chase the same tech companies and the same trends. We go where the leverage is — traditional industries where better intelligence creates an outsized advantage.</p>
+        <p class="about-text">Logistics. Construction. Insurance. Manufacturing. These aren't glamorous markets — they're profitable ones. We bring the rigor of a top-tier research team to companies that have never had access to this caliber of intelligence.</p>
+      </div>
+      <div class="about-metrics">
+        <div class="metric anim d2">
+          <div class="metric-val">48hr</div>
+          <div class="metric-label">Audit Turnaround</div>
+        </div>
+        <div class="metric anim d3">
+          <div class="metric-val">Weekly</div>
+          <div class="metric-label">Briefing Cadence</div>
+        </div>
+        <div class="metric anim d4">
+          <div class="metric-val">7+</div>
+          <div class="metric-label">Industries Covered</div>
+        </div>
+        <div class="metric anim d5">
+          <div class="metric-val">100%</div>
+          <div class="metric-label">Custom Research</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>Ready for intelligence<br>you can act on?</h2>
+    <p>Pick a service above, or reach out directly. We respond fast.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:nadia@sora-labs.net" class="btn-primary">Get in Touch →</a>
+      <a href="#newsletter" class="btn-ghost">Read The Briefing</a>
+    </div>
+    <div class="cta-email">nadia@sora-labs.net</div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://x.com/NadiaReports" target="_blank">𝕏</a>
+        <a href="https://buttondown.com/nclawdev" target="_blank">Newsletter</a>
+        <a href="mailto:nadia@sora-labs.net">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.animationPlayState = 'running'; obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+{% endblock %}
