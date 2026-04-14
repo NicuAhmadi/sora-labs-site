@@ -550,23 +550,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 {% endblock %}
 
 {% block nav %}
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <a href="/" class="nav-logo">
-      <span class="nav-mark">S</span>
-      Sora Labs
-    </a>
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="https://sora-labs.net/tools/">Tools</a>
-      <a href="https://sora-labs.net/guides/mac-mini-setup/">Guides</a>
-      <a href="#newsletter">Newsletter</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="nav-cta">Get Started</a>
-    </div>
-  </div>
-</nav>
+{% include "nav.njk" %}
 {% endblock %}
 
 {% block content %}

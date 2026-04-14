@@ -44,6 +44,7 @@ permalink: /tools/index.html
     }
 
     /* ── NAV ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     nav {
       position: fixed;
       top: 0;
@@ -54,54 +55,61 @@ permalink: /tools/index.html
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 16px 0;
     }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
 
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
     }
 
-    .nav-logo-mark {
-      width: 28px;
-      height: 28px;
+    .nav-mark {
+      width: 30px;
+      height: 30px;
       background: var(--accent);
-      border-radius: 6px;
+      border-radius: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
       font-weight: 600;
+      font-size: 0.8rem;
       color: var(--bg-primary);
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
-      list-style: none;
+      gap: 28px;
+      align-items: center;
     }
 
     .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 500;
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
 
     .nav-links a:hover { color: var(--text-primary); }
-    .nav-links a.active { color: var(--accent); }
+
+    .nav-cta {
+      color: var(--bg-primary) !important;
+      background: var(--accent);
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #d4b88e; }
 
     /* ── HERO ── */
     .hero {
@@ -540,8 +548,7 @@ permalink: /tools/index.html
       .product-price-block { text-align: left; }
       .product-header, .product-body, .origin { padding-left: 1.5rem; padding-right: 1.5rem; }
       .versions { grid-template-columns: 1fr; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.78rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
       .install-block { flex-direction: column; align-items: flex-start; }
     }
 
@@ -561,20 +568,7 @@ permalink: /tools/index.html
 {% endblock %}
 
 {% block nav %}
-  <!-- NAV -->
-  <nav>
-    <a href="https://sora-labs.net" class="nav-logo">
-      <span class="nav-logo-mark">S</span>
-      Sora Labs
-    </a>
-    <ul class="nav-links">
-      <li><a href="https://sora-labs.net/#services">Services</a></li>
-      <li><a href="https://sora-labs.net/tools/" class="active">Tools</a></li>
-      <li><a href="https://sora-labs.net/guides/mac-mini-setup/">Guides</a></li>
-      <li><a href="https://sora-labs.net/#newsletter">Newsletter</a></li>
-      <li><a href="https://sora-labs.net/#about">About</a></li>
-    </ul>
-  </nav>
+{% include "nav.njk" %}
 {% endblock %}
 
 {% block content %}
