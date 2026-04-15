@@ -1,0 +1,617 @@
+---
+permalink: /products/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Sora Labs</title>
+  <meta name="description" content="Tools and systems for running autonomous AI agents — tested on real infrastructure, not in a sandbox.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #161616;
+      --bg-card-hover: #1a1a1a;
+      --border: #222222;
+      --border-accent: #333333;
+      --text-primary: #e8e8e8;
+      --text-secondary: #999999;
+      --text-muted: #666666;
+      --accent: #c8a97e;
+      --accent-dim: rgba(200, 169, 126, 0.15);
+      --accent-glow: rgba(200, 169, 126, 0.08);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .nav-mark {
+      width: 30px;
+      height: 30px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--bg-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-cta {
+      color: var(--bg-primary) !important;
+      background: var(--accent);
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #d4b88e; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 2rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── PRODUCT CARDS ── */
+    .products {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .product-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .product-card.featured {
+      border-color: rgba(200, 169, 126, 0.3);
+    }
+
+    .product-card.featured:hover {
+      border-color: rgba(200, 169, 126, 0.5);
+    }
+
+    .product-header {
+      padding: 2.5rem 2.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .product-title-group {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .product-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .badge-flagship {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(200, 169, 126, 0.25);
+    }
+
+    .badge-skill {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(200, 169, 126, 0.25);
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    .product-price-block {
+      text-align: right;
+    }
+
+    .product-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .product-price-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .product-body {
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    /* ── LAYER LIST (Stack card) ── */
+    .layer-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .layer-chip {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .layer-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(200, 169, 126, 0.25);
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .layer-chip-label {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── FEATURE PILLS (Prospector card) ── */
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-pill {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.45rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .feature-pill.free-note {
+      background: var(--green-dim);
+      border-color: rgba(74, 222, 128, 0.25);
+      color: var(--green);
+    }
+
+    /* ── CTAs ── */
+    .product-cta {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+    }
+
+    .cta-primary {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .cta-primary:hover {
+      background: #d4b88e;
+    }
+
+    .cta-secondary {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(200, 169, 126, 0.25);
+    }
+
+    .cta-secondary:hover {
+      background: rgba(200, 169, 126, 0.2);
+    }
+
+    .product-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── COMING SOON ── */
+    .coming-soon {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .coming-soon-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .coming-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .coming-soon-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      opacity: 0.6;
+    }
+
+    .coming-soon-name {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .coming-soon-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── FREE RESOURCES ── */
+    .free-resources {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .free-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.3s;
+    }
+
+    .free-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .footer-email a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .hero { padding: 8rem 1.5rem 3rem; }
+      .product-header { flex-direction: column; }
+      .product-price-block { text-align: left; }
+      .product-header, .product-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .layer-list { grid-template-columns: 1fr 1fr; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero { animation: fadeUp 0.6s ease-out both; }
+    .products { animation: fadeUp 0.6s ease-out 0.15s both; }
+    .coming-soon { animation: fadeUp 0.6s ease-out 0.3s both; }
+  </style>
+{% endblock %}
+
+{% block nav %}
+{% include "nav.njk" %}
+{% endblock %}
+
+{% block content %}
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Products</div>
+    <h1>Built in production.<br><em>Packaged for yours.</em></h1>
+    <p>Tools and systems for running autonomous AI agents — tested on real infrastructure, not in a sandbox.</p>
+  </section>
+
+  <!-- PRODUCT CARDS -->
+  <section class="products">
+    <div class="products-grid">
+
+      <!-- THE AUTONOMOUS STACK (featured) -->
+      <article class="product-card featured">
+        <div class="product-header">
+          <div class="product-title-group">
+            <span class="product-badge badge-flagship">Flagship</span>
+            <h2 class="product-name">The Autonomous Stack</h2>
+            <p class="product-subtitle">A complete, production-tested system for running an autonomous AI agent on your own hardware. Multi-model fallback, free search, email outreach, newsletters, social media, memory, and self-improving playbooks.</p>
+          </div>
+          <div class="product-price-block">
+            <div class="product-price">$149</div>
+            <div class="product-price-note">one-time</div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="layer-list">
+            <div class="layer-chip">
+              <span class="layer-num">01</span>
+              <span class="layer-chip-label">Infrastructure</span>
+            </div>
+            <div class="layer-chip">
+              <span class="layer-num">02</span>
+              <span class="layer-chip-label">Agent Brain</span>
+            </div>
+            <div class="layer-chip">
+              <span class="layer-num">03</span>
+              <span class="layer-chip-label">Revenue Engine</span>
+            </div>
+            <div class="layer-chip">
+              <span class="layer-num">04</span>
+              <span class="layer-chip-label">Content &amp; Growth</span>
+            </div>
+            <div class="layer-chip">
+              <span class="layer-num">05</span>
+              <span class="layer-chip-label">Reference</span>
+            </div>
+          </div>
+          <div class="product-cta-row">
+            <a href="https://sora-labs.net/products/stack/" class="product-cta cta-primary">Learn More</a>
+            <a href="https://buy.stripe.com/cNi8wOgugfod7L6aBhak004" class="product-cta cta-secondary" target="_blank" rel="noopener">Buy Now — $149</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROSPECTOR -->
+      <article class="product-card">
+        <div class="product-header">
+          <div class="product-title-group">
+            <span class="product-badge badge-skill">OpenClaw Skill</span>
+            <h2 class="product-name">Prospector</h2>
+            <p class="product-subtitle">Autonomous B2B outreach engine for OpenClaw agents. Your agent finds prospects, sends personalized outreach with PDF briefings, tracks every interaction, and gets better after every run.</p>
+          </div>
+          <div class="product-price-block">
+            <div class="product-price">$39</div>
+            <div class="product-price-note">one-time</div>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="feature-pills">
+            <span class="feature-pill">Duplicate Prevention</span>
+            <span class="feature-pill">Email Verification</span>
+            <span class="feature-pill">PDF Briefings</span>
+            <span class="feature-pill">Self-Improving</span>
+            <span class="feature-pill">Follow-Up Cadence</span>
+            <span class="feature-pill">Pipeline Tracking</span>
+            <span class="feature-pill free-note">Prospector Lite — Free on ClawHub</span>
+          </div>
+          <div class="product-cta-row">
+            <a href="https://sora-labs.net/products/prospector/" class="product-cta cta-primary">Learn More</a>
+            <a href="https://buy.stripe.com/9B67sKgug2Br2qM7p5ak003" class="product-cta cta-secondary" target="_blank" rel="noopener">Buy Now — $39</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- COMING SOON -->
+  <section class="coming-soon">
+    <div class="coming-soon-header">Coming Soon</div>
+    <div class="coming-soon-grid">
+      <div class="coming-soon-card">
+        <div class="coming-soon-name">Newsletter Engine</div>
+        <div class="coming-soon-desc">Automated research, drafting, and publishing workflow for agent-driven newsletters.</div>
+      </div>
+      <div class="coming-soon-card">
+        <div class="coming-soon-name">Heartbeat Optimizer</div>
+        <div class="coming-soon-desc">Token-efficient heartbeat configs with activity logging and self-tuning intervals.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE RESOURCES -->
+  <section class="free-resources">
+    <div class="coming-soon-header">Free Resources</div>
+    <div class="coming-soon-grid">
+      <a href="https://sora-labs.net/guides/mac-mini-setup/" class="free-card">
+        <div class="coming-soon-name">Mac Mini Setup Guide</div>
+        <div class="coming-soon-desc">The complete guide to running an autonomous OpenClaw agent on a Mac Mini 24/7 — two-user architecture, model fallbacks, cron schedules, and every mistake we made so you don't have to.</div>
+      </a>
+    </div>
+  </section>
+{% endblock %}
+
+{% block footer %}
+  <footer>
+    <div class="footer-email"><a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a></div>
+    <div class="footer-copy">&copy; 2026 Sora Labs. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="https://x.com/NadiaReports">&#x1D54F;</a>
+      <a href="https://buttondown.com/nclawdev">Newsletter</a>
+      <a href="https://sora-labs.net">Home</a>
+      <a href="mailto:nadia@sora-labs.net">Contact</a>
+    </div>
+  </footer>
+{% endblock %}

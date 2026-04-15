@@ -1,0 +1,908 @@
+---
+permalink: /products/stack/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Autonomous Stack — Sora Labs</title>
+  <meta name="description" content="A production-ready autonomous AI agent system. Tested in production, packaged for yours. Deploy on your own hardware in an afternoon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #161616;
+      --bg-card-hover: #1a1a1a;
+      --border: #222222;
+      --border-accent: #333333;
+      --text-primary: #e8e8e8;
+      --text-secondary: #999999;
+      --text-muted: #666666;
+      --accent: #c8a97e;
+      --accent-dim: rgba(200, 169, 126, 0.15);
+      --accent-glow: rgba(200, 169, 126, 0.08);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.12);
+      --red: #f87171;
+      --red-dim: rgba(248, 113, 113, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--bg-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 2rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-proof {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    .hero-proof span {
+      color: var(--accent);
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: var(--accent);
+      color: var(--bg-primary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: #d4b88e;
+    }
+
+    .hero-price {
+      display: block;
+      margin-top: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── PAIN SECTION ── */
+    .pain {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .pain-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      line-height: 1.3;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .pain-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+    }
+
+    .pain-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .pain-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .pain-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ── WHAT YOU GET ── */
+    .contents {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+
+    .layer {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .layer:hover {
+      border-color: var(--border-accent);
+    }
+
+    .layer-header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .layer-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(200, 169, 126, 0.25);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .layer-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .layer-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .layer-body {
+      padding: 1.5rem 2rem;
+    }
+
+    .layer-files {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .file-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.9rem 1rem;
+    }
+
+    .file-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .file-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── BEFORE / AFTER ── */
+    .comparison {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .comparison-col {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .comparison-col.before {
+      background: var(--bg-card);
+    }
+
+    .comparison-col.after {
+      background: var(--accent-glow);
+      border-color: rgba(200, 169, 126, 0.3);
+    }
+
+    .comparison-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .comparison-col.before .comparison-label { color: var(--text-muted); }
+    .comparison-col.after .comparison-label { color: var(--accent); }
+
+    .comparison-item {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      padding-left: 1.4rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .comparison-col.before .comparison-item::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-size: 0.78rem;
+    }
+
+    .comparison-col.after .comparison-item::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 0.78rem;
+    }
+
+    /* ── SOCIAL PROOF / NUMBERS ── */
+    .proof {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .proof-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+    }
+
+    .proof-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .proof-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ── ORIGIN ── */
+    .origin {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .origin-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .origin-text strong {
+      color: var(--text-primary);
+    }
+
+    .origin-sig {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+
+    /* ── FAQ ── */
+    .faq {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+
+    .faq-q {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--text-primary);
+    }
+
+    .faq-a {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      text-align: center;
+      padding: 5rem 2rem 6rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .final-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .footer-email a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .hero { padding: 8rem 1.5rem 3rem; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .layer-body { padding: 1.2rem 1.5rem; }
+      .layer-header { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.78rem; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero { animation: fadeUp 0.6s ease-out both; }
+    .pain { animation: fadeUp 0.6s ease-out 0.1s both; }
+    .contents { animation: fadeUp 0.6s ease-out 0.2s both; }
+    .comparison { animation: fadeUp 0.6s ease-out 0.3s both; }
+  </style>
+{% endblock %}
+
+{% block nav %}
+  <!-- NAV -->
+  <nav>
+    <a href="https://sora-labs.net" class="nav-logo">
+      <span class="nav-logo-mark">S</span>
+      Sora Labs
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://sora-labs.net/#services">Services</a></li>
+      <li><a href="https://sora-labs.net/products/" class="active">Products</a></li>
+      <li><a href="https://sora-labs.net/#newsletter">Newsletter</a></li>
+      <li><a href="https://sora-labs.net/#about">About</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">The Autonomous Stack</div>
+    <h1>Stop debugging.<br><em>Start running.</em></h1>
+    <p class="hero-sub">A complete, production-tested autonomous AI agent system. Multi-model fallback, free unlimited search, email outreach, newsletters, social media, memory, cron jobs, and self-improving playbooks. Deploy on your own hardware in an afternoon.</p>
+    <p class="hero-proof">Built from running an autonomous agent <span>24/7 in production</span> — not a tutorial.</p>
+    <a href="https://buy.stripe.com/cNi8wOgugfod7L6aBhak004" class="hero-cta">Get The Autonomous Stack</a>
+    <span class="hero-price">$149 one-time · Yours forever</span>
+  </section>
+
+  <!-- PAIN POINTS -->
+  <section class="pain">
+    <h2 class="pain-header">You installed OpenClaw.<br>Then what?</h2>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <div class="pain-label">Search</div>
+        <p class="pain-text">DuckDuckGo gets bot-detected. Brave costs $45/month at volume. Gemini rate-limits after 10 calls. You spend a weekend on SearXNG and it still doesn't work.</p>
+        <p class="pain-time">→ 5–15 hours debugging</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-label">Models</div>
+        <p class="pain-text">Your primary model burns through quota in two days. You need fallbacks but the config is undocumented. The agent crashes at 2 AM and nobody knows why.</p>
+        <p class="pain-time">→ 3–8 hours configuring</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-label">Memory</div>
+        <p class="pain-text">Your agent forgets everything between sessions. The dreaming system produces nothing. Memory files grow but recall doesn't work. You're not sure what's indexed.</p>
+        <p class="pain-time">→ 4–10 hours experimenting</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-label">Actually Doing Things</div>
+        <p class="pain-text">The agent plans endlessly but never acts. It creates markdown files instead of sending emails. The heartbeat fires but nothing visible happens.</p>
+        <p class="pain-time">→ Days of prompt engineering</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-label">Email Deliverability</div>
+        <p class="pain-text">Your outreach lands in spam. SPF, DKIM, DMARC — you've heard the acronyms but the setup is scattered across 6 different dashboards.</p>
+        <p class="pain-time">→ 4–8 hours across DNS + email providers</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-label">Security</div>
+        <p class="pain-text">Your agent runs as your main user with full admin access. API keys sit in plaintext. There's no isolation between you and the agent runtime.</p>
+        <p class="pain-time">→ "I'll get to it" (you won't)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="contents">
+    <div class="section-tag">What's Inside</div>
+    <h2 class="section-title">The complete system. Not a tutorial.</h2>
+    <p class="section-sub">Every file, config, and playbook needed to run an autonomous agent that sends real emails, publishes real content, and improves itself — tested in production for months.</p>
+
+    <!-- Layer 1: Infrastructure -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-number">01</div>
+        <div>
+          <div class="layer-title">Infrastructure</div>
+          <div class="layer-subtitle">The foundation — OS isolation, search, models, gateway</div>
+        </div>
+      </div>
+      <div class="layer-body">
+        <div class="layer-files">
+          <div class="file-item">
+            <div class="file-name">openclaw.json</div>
+            <div class="file-desc">Full config — multi-model fallback chain, SearXNG integration, heartbeat, gateway security, denied commands</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">setup-guide.md</div>
+            <div class="file-desc">Dual-user OS isolation (admin + sandboxed runtime), Docker, SearXNG, Ollama local fallback</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">docker-compose.yml</div>
+            <div class="file-desc">SearXNG with JSON format enabled, correct settings.yml, restart policy, resource limits</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">email-setup.md</div>
+            <div class="file-desc">SPF/DKIM/DMARC configuration, domain setup, deliverability testing, bounce handling</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">model-fallback.md</div>
+            <div class="file-desc">How to configure primary + 3 fallbacks, quota management, when each model gets used</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">troubleshooting.md</div>
+            <div class="file-desc">Every gotcha we hit — WhatsApp drops, glibc mismatches, sandbox networking, rate limits</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 2: Agent Brain -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-number">02</div>
+        <div>
+          <div class="layer-title">Agent Brain</div>
+          <div class="layer-subtitle">Identity, personality, rules, and operational logic</div>
+        </div>
+      </div>
+      <div class="layer-body">
+        <div class="layer-files">
+          <div class="file-item">
+            <div class="file-name">SOUL.md</div>
+            <div class="file-desc">Personality template — tone, style, warmth, wit, boundaries. Customize for your agent's voice.</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">IDENTITY.md</div>
+            <div class="file-desc">Name, role, vibe, scope. The one-page definition of who your agent is.</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">OPERATIONS.md</div>
+            <div class="file-desc">Standing rules — autonomy scope, account separation, communication protocols, memory management</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">HEARTBEAT.md</div>
+            <div class="file-desc">Two-task heartbeat config that forces real action — not planning, not logging, action.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 3: Revenue Engine -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-number">03</div>
+        <div>
+          <div class="layer-title">Revenue Engine</div>
+          <div class="layer-subtitle">Outreach, products, prospecting, and self-improvement</div>
+        </div>
+      </div>
+      <div class="layer-body">
+        <div class="layer-files">
+          <div class="file-item">
+            <div class="file-name">PROSPECTING.md</div>
+            <div class="file-desc">Full-funnel outreach playbook — decision tree, qualification criteria, email templates, follow-up cadence, pipeline tracking</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">PRODUCTS.md</div>
+            <div class="file-desc">Product catalog template with Stripe integration, pricing tiers, email standards, send commands</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">REVENUE-PLAYBOOK.md</div>
+            <div class="file-desc">Self-evolving strategy doc — the agent updates this based on what's working. Gets smarter every day.</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">pipeline.md</div>
+            <div class="file-desc">Prospect tracking template — status, dates, notes, bounce handling, follow-up scheduling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 4: Content & Growth -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-number">04</div>
+        <div>
+          <div class="layer-title">Content &amp; Growth</div>
+          <div class="layer-subtitle">Newsletter, social media, distribution, audience building</div>
+        </div>
+      </div>
+      <div class="layer-body">
+        <div class="layer-files">
+          <div class="file-item">
+            <div class="file-name">TASKS.md</div>
+            <div class="file-desc">Newsletter system — editorial voice, anti-repetition rules, distribution strategy, growth playbook, performance tracking</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">cron-templates.md</div>
+            <div class="file-desc">Tested cron job configs — newsletter, prospecting, social posting, engagement, reporting</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">distribution.md</div>
+            <div class="file-desc">Multi-channel content strategy — extract maximum leverage from every piece of content</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="comparison">
+    <div class="section-tag">The Difference</div>
+    <h2 class="section-title">Weekend project vs. production system</h2>
+    <div class="comparison-grid">
+      <div class="comparison-col before">
+        <div class="comparison-label">Without the Stack</div>
+        <div class="comparison-item">Agent installed, nothing configured</div>
+        <div class="comparison-item">Search broken or burning money</div>
+        <div class="comparison-item">One model, no fallback, quota anxiety</div>
+        <div class="comparison-item">Agent plans but never acts</div>
+        <div class="comparison-item">Memory system produces nothing</div>
+        <div class="comparison-item">Emails land in spam</div>
+        <div class="comparison-item">Agent runs as admin user</div>
+        <div class="comparison-item">Breaks at 2 AM, nobody knows why</div>
+        <div class="comparison-item">Every config decision is a rabbit hole</div>
+      </div>
+      <div class="comparison-col after">
+        <div class="comparison-label">With the Stack</div>
+        <div class="comparison-item">Full system running in an afternoon</div>
+        <div class="comparison-item">Free unlimited search via SearXNG</div>
+        <div class="comparison-item">4-model fallback chain, auto-switching</div>
+        <div class="comparison-item">Heartbeat forces one external action per cycle</div>
+        <div class="comparison-item">Memory indexed, dreaming active, recall working</div>
+        <div class="comparison-item">SPF/DKIM/DMARC configured, inbox delivery</div>
+        <div class="comparison-item">Sandboxed runtime user, no admin access</div>
+        <div class="comparison-item">Self-healing with tested cron + heartbeat</div>
+        <div class="comparison-item">Every decision already made and documented</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="proof">
+    <div class="proof-grid">
+      <div class="proof-stat">
+        <div class="proof-number">24/7</div>
+        <div class="proof-label">Production uptime on<br>a single Mac Mini</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-number">4</div>
+        <div class="proof-label">Model fallback chain<br>GPT → Gemini → Claude → Ollama</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-number">$0</div>
+        <div class="proof-label">Monthly search costs<br>with self-hosted SearXNG</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGIN STORY -->
+  <section class="origin">
+    <div class="section-tag">Why This Exists</div>
+    <h2 class="section-title" style="text-align:left; font-size:1.5rem; margin-bottom:1.5rem;">I spent $900 and weeks debugging<br>so you don't have to.</h2>
+    <p class="origin-text">I run an autonomous AI agent on a Mac Mini. It sends cold outreach emails, publishes a daily newsletter, manages a social media presence, and tracks its own performance — all without human intervention.</p>
+    <p class="origin-text">Getting here took <strong>weeks of debugging</strong>. Search providers that rate-limited or got bot-detected. Models that burned through quota in two days. A heartbeat system that logged plans instead of taking action. Emails that landed in spam. Memory that indexed but never recalled.</p>
+    <p class="origin-text">Every file in The Autonomous Stack exists because <strong>something broke without it</strong>. The heartbeat prompt forces external actions because without that exact wording, the agent just creates markdown files. The multi-model fallback chain exists because GPT's 5-hour weekly quota runs out by Wednesday. The operations rules separate the agent's accounts from the owner's because one wrong email from the wrong address is a disaster.</p>
+    <p class="origin-text">I published my search solution on Reddit and <strong>70,000 people read it</strong>. The comments were all the same: "How did you set this up?" and "I've been struggling with this for days."</p>
+    <p class="origin-text">This is the answer. Not a blog post — <strong>the actual system</strong>, production-tested, ready to deploy.</p>
+    <p class="origin-sig">— Sora Labs</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="section-tag">Questions</div>
+    <h2 class="section-title" style="margin-bottom:2rem;">FAQ</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">What hardware do I need?</div>
+      <div class="faq-a">Any machine that can run Docker and OpenClaw. A Mac Mini, a Linux server, a VPS, even a Raspberry Pi for the search layer. The system was built and tested on a Mac Mini running 24/7.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do I need to pay for AI models?</div>
+      <div class="faq-a">The Stack includes a local Ollama fallback (Qwen3 8B, completely free). For best results, you'll want at least one cloud model — the system is designed around ChatGPT Codex ($20/month flat rate) as primary, but works with any provider OpenClaw supports.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How is this different from Prospector Lite on ClawHub?</div>
+      <div class="faq-a">Prospector Lite is one skill file — a prompt for outreach. The Autonomous Stack is the entire production infrastructure: OS isolation, search, models, memory, heartbeat, email deliverability, content system, and operational playbooks. It's the difference between a recipe and a fully equipped kitchen.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I customize the agent's personality and products?</div>
+      <div class="faq-a">Everything is designed to be customized. SOUL.md, IDENTITY.md, PRODUCTS.md, and PROSPECTING.md are all templates with clear sections to replace with your own brand, voice, products, and pricing. The infrastructure layer (configs, search, models) works as-is.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What if I just want the search setup?</div>
+      <div class="faq-a">The SearXNG setup is covered in a free guide on our blog. The Stack is for people who want the whole system — search is one of six layers.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is this a subscription?</div>
+      <div class="faq-a">No. One payment, yours forever. All files live on your machine. No SaaS, no recurring fees, no vendor lock-in.</div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="buy">
+    <h2>Deploy your agent today.</h2>
+    <p>Everything you need to go from "OpenClaw installed" to "autonomous agent running in production." One purchase. No subscription.</p>
+    <a href="https://buy.stripe.com/cNi8wOgugfod7L6aBhak004" class="hero-cta">Get The Autonomous Stack — $149</a>
+    <span class="hero-price">One-time purchase · Instant delivery · All future updates included</span>
+  </section>
+{% endblock %}
+
+{% block footer %}
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-email"><a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a></div>
+    <div class="footer-copy">&copy; 2026 Sora Labs. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="https://x.com/NadiaReports">𝕏</a>
+      <a href="https://buttondown.com/nclawdev">Newsletter</a>
+      <a href="https://sora-labs.net">Home</a>
+      <a href="https://sora-labs.net/products/">Products</a>
+    </div>
+  </footer>
+{% endblock %}
