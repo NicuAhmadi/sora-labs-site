@@ -608,7 +608,8 @@ permalink: /products/stack/index.html
   <section class="hero">
     <div class="hero-tag">The Autonomous Stack</div>
     <h1>Stop debugging.<br><em>Start running.</em></h1>
-    <p class="hero-sub">A complete, production-tested autonomous AI agent system. Multi-model fallback, free unlimited search, email outreach, newsletters, social media, memory, cron jobs, and self-improving playbooks. Deploy on your own hardware in an afternoon.</p>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 1.5rem;">Autonomous, or bridged to your sales stack.</p>
+    <p class="hero-sub">A complete, production-tested autonomous AI agent system. Multi-model fallback, free unlimited search, email outreach, newsletters, social media, memory, cron jobs, and self-improving playbooks. Runs end-to-end autonomous, or as a research-and-drafting layer on top of your existing sales stack. Deploy on your own hardware in an afternoon.</p>
     <p class="hero-proof">Built from running an autonomous agent <span>24/7 in production</span> — not a tutorial.</p>
     <a href="https://buy.stripe.com/cNi8wOgugfod7L6aBhak004" class="hero-cta">Get The Autonomous Stack</a>
     <span class="hero-price">$149 one-time · Yours forever</span>
@@ -634,9 +635,9 @@ permalink: /products/stack/index.html
         <p class="pain-time">→ 4–10 hours experimenting</p>
       </div>
       <div class="pain-item">
-        <div class="pain-label">Actually Doing Things</div>
-        <p class="pain-text">The agent plans endlessly but never acts. It creates markdown files instead of sending emails. The heartbeat fires but nothing visible happens.</p>
-        <p class="pain-time">→ Days of prompt engineering</p>
+        <div class="pain-label">Memory Bloat</div>
+        <p class="pain-text">Your heartbeat writes status summaries every 2 hours. Dreaming promotes all of them overnight. Two weeks later, daily files are 500+ lines, MEMORY.md has the same fact written 20 times, and your token costs are climbing.</p>
+        <p class="pain-time">→ Invisible until you open the files</p>
       </div>
       <div class="pain-item">
         <div class="pain-label">Email Deliverability</div>
@@ -649,6 +650,30 @@ permalink: /products/stack/index.html
         <p class="pain-time">→ "I'll get to it" (you won't)</p>
       </div>
     </div>
+  </section>
+
+  <!-- TWO MODES -->
+  <section class="comparison" style="padding-top:2rem;">
+    <div class="section-tag">Two Ways to Run It</div>
+    <h2 class="section-title">End-to-end autonomous,<br>or a layer on top of your stack.</h2>
+    <p class="section-sub">The same system, two deployment modes. Pick the one that matches how your business actually works.</p>
+    <div class="comparison-grid">
+      <div class="comparison-col" style="background: var(--bg-card); border-color: var(--border);">
+        <div class="comparison-label" style="color: var(--accent);">Hunt Mode</div>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.2rem;">Agent researches the web, finds prospects, qualifies them, drafts and sends outreach, tracks replies, and learns from what works. End-to-end, nobody feeds it a list.</p>
+        <div class="comparison-item" style="padding-left: 1.4rem;">Solo operators and bootstrappers</div>
+        <div class="comparison-item" style="padding-left: 1.4rem;">Anyone without an existing CRM</div>
+        <div class="comparison-item" style="padding-left: 1.4rem;">Markets where discovery is the hard part</div>
+      </div>
+      <div class="comparison-col" style="background: var(--accent-glow); border-color: rgba(200, 169, 126, 0.3);">
+        <div class="comparison-label">Bridge Mode</div>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.2rem;">Agent reads a list you feed it — from HubSpot, Apollo, Salesforce, referrals, anywhere. It researches each prospect, drafts personalized outreach, and leaves send-ready drafts for your team to review and send through your existing tools.</p>
+        <div class="comparison-item" style="padding-left: 1.4rem;">Teams with existing CRMs and sales tools</div>
+        <div class="comparison-item" style="padding-left: 1.4rem;">Agencies running outreach for multiple clients</div>
+        <div class="comparison-item" style="padding-left: 1.4rem;">Operators with curated lists that don't fit CRM automation</div>
+      </div>
+    </div>
+    <p style="font-size: 0.88rem; color: var(--text-muted); text-align: center; margin-top: 2rem; font-style: italic;">The two modes can coexist. The agent can process your manual feed first, then hunt to top up the day.</p>
   </section>
 
   <!-- WHAT YOU GET -->
@@ -741,6 +766,10 @@ permalink: /products/stack/index.html
           <div class="file-item">
             <div class="file-name">PROSPECTING.md</div>
             <div class="file-desc">Full-funnel outreach playbook — decision tree, qualification criteria, email templates, follow-up cadence, pipeline tracking</div>
+          </div>
+          <div class="file-item">
+            <div class="file-name">manual-targets.md</div>
+            <div class="file-desc">The bridge-mode feed — drop in prospects from your CRM export, Apollo list, or referral batch. Agent researches each one and drafts send-ready outreach.</div>
           </div>
           <div class="file-item">
             <div class="file-name">PRODUCTS.md</div>
@@ -871,6 +900,16 @@ permalink: /products/stack/index.html
     <div class="faq-item">
       <div class="faq-q">Can I customize the agent's personality and products?</div>
       <div class="faq-a">Everything is designed to be customized. SOUL.md, IDENTITY.md, PRODUCTS.md, and PROSPECTING.md are all templates with clear sections to replace with your own brand, voice, products, and pricing. The infrastructure layer (configs, search, models) works as-is.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do I need a CRM or existing sales stack to use this?</div>
+      <div class="faq-a">No. The Stack runs in two modes — hunt mode (agent finds prospects itself, end-to-end autonomous) and bridge mode (agent works off a list you feed it, leaves drafts for human review). If you already have HubSpot, Apollo, Salesforce, or any other tool you want to keep, bridge mode lets the Stack sit on top as a research and drafting layer without replacing anything downstream.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Will my memory files bloat the way I've seen in other setups?</div>
+      <div class="faq-a">No. The heartbeat in the Stack is configured to log deltas only — if nothing has changed since the last memory write, it writes "no changes" and moves on. The memory guide includes a troubleshooting section on the staged-candidate problem (where dreaming promotes duplicate status summaries every night), with both the one-time cleanup command and the structural fix to prevent it from coming back.</div>
     </div>
 
     <div class="faq-item">
