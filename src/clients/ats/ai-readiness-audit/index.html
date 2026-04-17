@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1F2ETBV5K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1F2ETBV5K');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Readiness Audit — Adaptive Tech Solutions &amp; LogiqLab</title>
+  <meta name="description" content="AI Readiness Audit prepared by Sora Labs for Adaptive Tech Solutions &amp; LogiqLab.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #161616;
+      --bg-card-hover: #1a1a1a;
+      --border: #222222;
+      --border-accent: #333333;
+      --text-primary: #e8e8e8;
+      --text-secondary: #b0b0b0;
+      --text-muted: #777777;
+      --accent: #c8a97e;
+      --accent-bright: #d4b88e;
+      --accent-dim: rgba(200, 169, 126, 0.15);
+      --accent-glow: rgba(200, 169, 126, 0.08);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.12);
+      --red: #f87171;
+      --urgency: #f59e0b;
+      --urgency-dim: rgba(245, 158, 11, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+
+    ::selection { background: var(--accent-dim); color: var(--text-primary); }
+
+    /* ── NAV ── */
+    nav.top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--bg-primary);
+    }
+
+    .nav-doc-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 60px;
+    }
+
+    /* ── SIDEBAR TOC ── */
+    aside.toc {
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      padding: 3rem 1.5rem 2rem 2rem;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+
+    .toc-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list > li {
+      margin-bottom: 0.4rem;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 0.45rem 0.75rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .toc-list a:hover {
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+    }
+
+    .toc-list a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .toc-sub {
+      list-style: none;
+      margin-top: 0.2rem;
+      margin-left: 0.75rem;
+      border-left: 1px solid var(--border);
+    }
+
+    .toc-sub li {
+      margin-bottom: 0.1rem;
+    }
+
+    .toc-sub a {
+      padding: 0.3rem 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .toc-sub a.active {
+      background: transparent;
+      border-left-color: transparent;
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      padding: 4rem 4rem 6rem;
+      max-width: 860px;
+    }
+
+    /* ── HEADER BLOCK ── */
+    .doc-header {
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .doc-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--accent);
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+    .doc-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .meta-value {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .meta-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .meta-value a:hover { color: var(--accent-bright); }
+
+    /* ── SECTIONS ── */
+    section.audit-section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 80px;
+    }
+
+    h2.section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    h2.section-heading .section-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    h3.sub-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 3rem 0 1.25rem;
+      color: var(--text-primary);
+      scroll-margin-top: 80px;
+    }
+
+    h4.mini-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 2rem 0 0.75rem;
+      color: var(--text-primary);
+      letter-spacing: -0.005em;
+    }
+
+    /* ── PARAGRAPHS & TEXT ── */
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    p em {
+      color: var(--text-primary);
+      font-style: italic;
+    }
+
+    /* ── LINKS ── */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 169, 126, 0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: var(--accent-bright);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── LISTS ── */
+    ul.clean-list, ol.clean-list {
+      margin: 1rem 0 1.5rem 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    ul.clean-list li, ol.clean-list li {
+      margin-bottom: 0.75rem;
+      padding-left: 0.5rem;
+    }
+
+    ul.clean-list li::marker {
+      color: var(--accent);
+    }
+
+    ol.clean-list li::marker {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+    }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .callout.urgent {
+      border-left-color: var(--urgency);
+      background: linear-gradient(to right, var(--urgency-dim), var(--bg-card) 30%);
+    }
+
+    .callout-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .callout.urgent .callout-label { color: var(--urgency); }
+
+    .callout p:last-child { margin-bottom: 0; }
+
+    /* ── EXEC SUMMARY FINDINGS ── */
+    .findings {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .finding {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      transition: border-color 0.3s;
+    }
+
+    .finding:hover { border-color: var(--border-accent); }
+
+    .finding-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      font-style: italic;
+    }
+
+    .finding-body h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+
+    .finding-body p {
+      font-size: 0.92rem;
+      margin-bottom: 0;
+      line-height: 1.65;
+    }
+
+    /* ── PITCH COMPARISON BLOCKS ── */
+    .pitch-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .pitch-block {
+      padding: 1.25rem 1.4rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .pitch-block.original {
+      background: var(--bg-secondary);
+    }
+
+    .pitch-block.sharpened {
+      background: var(--accent-glow);
+      border-color: rgba(200, 169, 126, 0.3);
+    }
+
+    .pitch-block-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .pitch-block.original .pitch-block-label { color: var(--text-muted); }
+    .pitch-block.sharpened .pitch-block-label { color: var(--accent); }
+
+    .pitch-block .pitch-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .pitch-add {
+      padding: 1.25rem 1.4rem;
+      margin: 1rem 0 0;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(200, 169, 126, 0.3);
+    }
+
+    .why-sharper {
+      margin-top: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      border-left: 2px solid var(--border-accent);
+    }
+
+    .why-sharper strong {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── TOOLS SECTION ── */
+    .tool-category {
+      margin: 2rem 0;
+    }
+
+    .tool-category-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tool-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 0;
+    }
+
+    .tool-item {
+      padding: 1.1rem 1.25rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .tool-item:hover {
+      background: var(--bg-card);
+      border-color: var(--border-accent);
+    }
+
+    .tool-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .tool-name a {
+      color: var(--accent);
+      border-bottom: 1px solid transparent;
+    }
+
+    .tool-name a:hover { border-bottom-color: var(--accent); }
+
+    .tool-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-top: 0.35rem;
+      line-height: 1.6;
+    }
+
+    /* ── ROADMAP TIMELINE ── */
+    .roadmap {
+      margin: 2rem 0;
+      border-left: 2px solid var(--border);
+      padding-left: 0;
+    }
+
+    .roadmap-item {
+      position: relative;
+      padding: 0 0 2rem 2rem;
+      margin-left: 0.5rem;
+    }
+
+    .roadmap-item::before {
+      content: '';
+      position: absolute;
+      left: -0.55rem;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 5px var(--border);
+    }
+
+    .roadmap-timeframe {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .roadmap-title {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .roadmap-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── NEXT STEPS LIST ── */
+    .next-steps {
+      counter-reset: steps;
+      list-style: none;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .next-steps li {
+      counter-increment: steps;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.3rem 1.5rem 1.3rem 4rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .next-steps li:hover { border-color: var(--accent); }
+
+    .next-steps li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 1.2rem;
+      top: 1.3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .step-title {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer.doc-footer {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand a {
+      color: var(--text-primary);
+      border-bottom: none;
+    }
+
+    .footer-contact {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-contact a {
+      color: var(--text-secondary);
+      border-bottom: none;
+    }
+
+    .footer-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .footer-confidential {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ── ORNAMENTAL DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 4rem 0;
+      gap: 1rem;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider-mark {
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: 1fr; }
+      aside.toc {
+        display: none;
+      }
+      main { padding: 3rem 2rem 4rem; }
+    }
+
+    @media (max-width: 700px) {
+      main { padding: 2rem 1.5rem 4rem; }
+      .doc-header { margin-bottom: 3rem; padding-bottom: 2rem; }
+      h2.section-heading { font-size: 1.6rem; flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+      h3.sub-heading { font-size: 1.2rem; }
+      .pitch-compare { grid-template-columns: 1fr; }
+      .finding { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.4rem; }
+      .finding-num { font-size: 2rem; }
+      .doc-meta { grid-template-columns: 1fr; gap: 1rem; padding: 1.25rem; }
+      nav.top-nav { padding: 0 1rem; }
+      .nav-doc-title { display: none; }
+      .next-steps li { padding: 1.2rem 1.2rem 1.2rem 3.5rem; }
+      .next-steps li::before { left: 1rem; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .doc-header, section.audit-section {
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    section.audit-section:nth-of-type(1) { animation-delay: 0.1s; }
+    section.audit-section:nth-of-type(2) { animation-delay: 0.15s; }
+    section.audit-section:nth-of-type(3) { animation-delay: 0.2s; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      nav.top-nav, aside.toc { display: none; }
+      .layout { grid-template-columns: 1fr; padding-top: 0; }
+      main { padding: 2rem; max-width: 100%; }
+      body { background: white; color: #111; }
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f8f8;
+        --bg-card: #f0f0f0;
+        --text-primary: #111;
+        --text-secondary: #333;
+        --text-muted: #666;
+        --border: #ddd;
+      }
+      a { color: #8b6e45 !important; border-bottom: 1px solid #8b6e45 !important; }
+      .finding, .tool-item, .next-steps li, .callout { break-inside: avoid; }
+      h2.section-heading, h3.sub-heading { break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <a href="https://sora-labs.net" class="nav-logo">
+      <span class="nav-logo-mark">S</span>
+      Sora Labs
+    </a>
+    <div class="nav-doc-title">AI Readiness Audit · Confidential</div>
+  </nav>
+
+  <div class="layout">
+
+    <!-- SIDEBAR TOC -->
+    <aside class="toc">
+      <div class="toc-label">Contents</div>
+      <ul class="toc-list">
+        <li><a href="#summary">Executive summary</a></li>
+        <li>
+          <a href="#cteig">1. CTEIG execution</a>
+          <ul class="toc-sub">
+            <li><a href="#pitch">Pitch hierarchy — sharpened</a></li>
+            <li><a href="#bdr">BDR architecture changes</a></li>
+            <li><a href="#openclaw">OpenClaw vs Managed Agents</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#product">2. LogiqLab product AI</a>
+          <ul class="toc-sub">
+            <li><a href="#layer1">Layer 1 — Moodle plugins</a></li>
+            <li><a href="#layer2">Layer 2 — Proprietary AI</a></li>
+            <li><a href="#competitive">Competitive landscape</a></li>
+            <li><a href="#roadmap">AI roadmap</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#ats">3. ATS operations</a>
+          <ul class="toc-sub">
+            <li><a href="#internal">Internal AI for delivery</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#funding">4. Vendor-side funding</a>
+        </li>
+        <li><a href="#next-steps">5. Next steps</a></li>
+        <li><a href="#closing">Closing note</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+      <!-- DOC HEADER -->
+      <header class="doc-header">
+        <div class="doc-kicker">AI Readiness Audit</div>
+        <h1 class="doc-title">Adaptive Tech Solutions<br>&amp; LogiqLab</h1>
+        <div class="doc-subtitle">A strategic read on AI posture, product moat, and the 10-week CTEIG execution window.</div>
+
+        <div class="doc-meta">
+          <div class="meta-item">
+            <div class="meta-label">Prepared for</div>
+            <div class="meta-value">Edwin Moossaian<br><span style="font-size:0.8rem;color:var(--text-muted);">Managing Director, ATS</span></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Prepared by</div>
+            <div class="meta-value"><a href="https://sora-labs.net">Sora Labs</a></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Date</div>
+            <div class="meta-value">April 2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Classification</div>
+            <div class="meta-value" style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;">Confidential</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- EXECUTIVE SUMMARY -->
+      <section class="audit-section" id="summary">
+        <h2 class="section-heading"><span class="section-number">00</span>Executive summary</h2>
+
+        <p>Three findings drive this audit, in order of priority.</p>
+
+        <div class="findings">
+          <div class="finding">
+            <div class="finding-num">1</div>
+            <div class="finding-body">
+              <h4>The CTEIG-led GTM has a 10-week execution window that the current outreach isn't designed to exploit.</h4>
+              <p>California districts are under a June 30, 2026 match encumbrance deadline. $13M went unused in 2025 because districts couldn't line up qualifying expenditures in time. The pitch hierarchy Edwin's team drafted is structurally correct, but every line can be sharpened, and the BDR architecture needs three specific changes to run it at scale. This is the largest immediate revenue lever in this audit.</p>
+            </div>
+          </div>
+
+          <div class="finding">
+            <div class="finding-num">2</div>
+            <div class="finding-body">
+              <h4>LogiqLab's real AI moat is in the experimentation layer, not the LMS layer.</h4>
+              <p>LogiqLab runs on <a href="https://moodle.org">Moodle</a> for its LMS backbone while the differentiated value lives in proprietary LabVIEW-based experimentation, hardware kits, and data dashboards. This is a two-layer product. The Moodle layer is where quick AI wins exist via existing plugins. The proprietary layer is where LogiqLab can build features competitors cannot replicate. Sequence the roadmap accordingly.</p>
+            </div>
+          </div>
+
+          <div class="finding">
+            <div class="finding-num">3</div>
+            <div class="finding-body">
+              <h4>ATS's "AI-driven strategies" claim is currently aspirational, not operational — and that gap is a strategic opportunity.</h4>
+              <p>Public evidence shows ATS uses AI language in marketing but has no documented AI practice, named model stack, or AI-specific case studies. Closing this gap in the next 90 days converts a marketing claim into a billable capability and positions ATS for the next 24 months of mid-market consulting demand.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Also worth attention</div>
+          <p>Two funding pathways can directly fund the AI investments this audit recommends. <strong><a href="https://ies.ed.gov/funding/research/programs/small-business-innovation-research-sbir/program-applicant-information">ED/IES SBIR</a></strong> (up to $250K Phase I, up to $1M Phase II) is explicitly for-profit EdTech R&amp;D and fits LogiqLab's Layer 2 roadmap exactly. <strong><a href="https://calosba.ca.gov/funding-grants-incentives/accelerate-california/">Accelerate California Innovation Grants</a></strong> ($25K-$100K) named AI as a 2026 strategic sector. Pursuing these is non-dilutive capital for work LogiqLab would do anyway.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 1: CTEIG -->
+      <section class="audit-section" id="cteig">
+        <h2 class="section-heading"><span class="section-number">01</span>CTEIG execution — the immediate revenue lever</h2>
+
+        <p><a href="https://www.cde.ca.gov/ci/ct/ig/">CTEIG</a> is a $300M annual California state grant distributed to districts that operate CTE programs. Round 11/11B awards for FY 2025-26 were notified January-April 2026. The money is in districts' accounts right now. Under <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=EDC&amp;sectionNum=53071">EC Section 53071(a)(1)(D)(i)</a>, every district must encumber $2 in local CTE spending for every $1 of grant money received. Under <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=EDC&amp;sectionNum=53076">EC Section 53076(c)</a>, failure to meet the match means grant reduction or remittance.</p>
+
+        <div class="callout urgent">
+          <div class="callout-label">The deadline</div>
+          <p><strong>June 30, 2026.</strong> All match expenditures must be encumbered (PO signed) by that date. Not paid. Encumbered. This is roughly 10 weeks from now.</p>
+        </div>
+
+        <p>The strategic opportunity is that a LogiqLab deployment is procurement-ready match-eligible expenditure: $45K hardware coded Goal 3800 / Object 6400 plus $20-25K LMS subscription coded Object 5800, totaling $65-70K of Year 1 match credit per district. Districts are scrambling for qualifying expenditures. LogiqLab is a ready-made fulfillment mechanism.</p>
+
+        <p>The additional strategic layer is <a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202320240AB1694">AB 1694</a>. Starting 2026-27, CTEIG shifts to automatic 3-year renewals with 90% of funding allocated to renewals and only 10% to new applicants. Districts that establish qualifying CTE programs this cycle are locked in for years. Districts that don't may not have the chance next cycle.</p>
+
+        <h3 class="sub-heading" id="pitch">Pitch hierarchy — sharpened</h3>
+
+        <p>The three-line hierarchy your team drafted is structurally correct. Lead with CTEIG urgency, follow with match-eligible specifics, close with execution path. Every line can be sharpened. Specific revisions follow.</p>
+
+        <h4 class="mini-heading">The opener</h4>
+        <div class="pitch-compare">
+          <div class="pitch-block original">
+            <div class="pitch-block-label">Your version</div>
+            <p class="pitch-text">Your district has CTEIG funding with a 2:1 match deadline on June 30. Are you covered?</p>
+          </div>
+          <div class="pitch-block sharpened">
+            <div class="pitch-block-label">Sharpened</div>
+            <p class="pitch-text">California districts left $13M in CTEIG funding unused last year because they missed the June 30 match encumbrance deadline. [District Name] received $[X] this cycle.</p>
+          </div>
+        </div>
+        <div class="why-sharper">
+          <strong>Why sharper</strong>
+          A question opener at the CTE Director level signals "vendor pitch incoming" and filters to trash. A fact opener creates urgency without asking for engagement. The $13M number is social proof — real dollars real districts lost. Naming the district and their specific award size signals research, which is the single strongest trust signal in cold B2B outreach.
+        </div>
+
+        <h4 class="mini-heading">The second line</h4>
+        <div class="pitch-compare">
+          <div class="pitch-block original">
+            <div class="pitch-block-label">Your version</div>
+            <p class="pitch-text">A LogiqLab deployment is a $65K match-eligible CTE expenditure — Goal Code 3800, Object Code 6400 — that ships in August.</p>
+          </div>
+          <div class="pitch-block sharpened">
+            <div class="pitch-block-label">Sharpened</div>
+            <p class="pitch-text">The encumbrance deadline is June 30. Districts in [County] are scrambling for qualifying CTE expenditures right now.</p>
+          </div>
+        </div>
+        <div class="why-sharper">
+          <strong>Why sharper</strong>
+          The original jumps to product too early, which shifts the recipient into vendor-comparison mode. Holding the product one line longer keeps them reading for a solution instead of evaluating a pitch. The localization to their county and the peer-pressure framing both reinforce urgency without selling.
+        </div>
+
+        <h4 class="mini-heading">The third line</h4>
+        <div class="pitch-compare">
+          <div class="pitch-block original">
+            <div class="pitch-block-label">Your version</div>
+            <p class="pitch-text">We handle the standards documentation, PD is included, and your teachers keep all the hardware permanently.</p>
+          </div>
+          <div class="pitch-block sharpened">
+            <div class="pitch-block-label">Sharpened</div>
+            <p class="pitch-text">LogiqLab is a complete match-eligible package coded to Goal 3800, Object 6400. POs signed by June 15 deploy in August. Standards documentation and teacher PD included. I can send you the procurement-ready one-pager if useful.</p>
+          </div>
+        </div>
+        <div class="why-sharper">
+          <strong>Why sharper</strong>
+          The original combines three benefits in one line, which dilutes each. The sharpened version leads with execution certainty, which is what a CTE Director facing a June 30 deadline actually cares about. The CTA is a low-commitment ask (send me a PDF) rather than the implicit "let's set up a call," which raises reply rates at the cold stage.
+        </div>
+
+        <h4 class="mini-heading">Add a fourth line for strategic urgency</h4>
+        <div class="pitch-add">
+          <div class="pitch-block-label" style="color:var(--accent);">New</div>
+          <p class="pitch-text">Starting 2026-27, CTEIG shifts to automatic 3-year renewals — 90% of funding goes to existing programs. Districts that qualify this cycle are locked in for the next funding round. The window to establish a new program is closing.</p>
+        </div>
+        <div class="why-sharper">
+          <strong>Why add it</strong>
+          AB 1694 is a once-in-a-cycle event. Districts that understand its implications will move faster. Districts that don't need to be told. This line converts deadline urgency (10 weeks) into existential urgency (establish now or lose access to the category).
+        </div>
+
+        <h3 class="sub-heading" id="bdr">BDR architecture — three changes to run CTEIG at scale</h3>
+
+        <p>Your team's BDR system is technically sound. The role separation is clean, Agent 1's "classification only, never send" boundary is correct, the four-dimension HubSpot taxonomy is more disciplined than most mid-market B2B sales ops. The Apollo Step 2 LinkedIn pattern is the right choice given the current plan tier.</p>
+
+        <p>Three specific changes to add before deployment:</p>
+
+        <h4 class="mini-heading">1. Add grant-window awareness to Agent 2's prioritization</h4>
+        <p>Current logic prioritizes by <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:var(--accent);">ll_campaign_tier</code> and geography. Add a third dimension: schools with active or upcoming grant application windows, or schools with unmet CTEIG match obligations, should be prioritized over schools without one. This requires a new HubSpot field (<code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:var(--accent);">ll_grant_status</code>) with values like <em>Match Gap Active</em>, <em>Match Closed</em>, <em>No CTEIG This Cycle</em>. Data source: the CDE publishes award lists; enrichment can pull match spending from public 990s and district budget reports. Converts the system from broadcast to timing-aware.</p>
+
+        <h4 class="mini-heading">2. Split Agent 1's "Interested" classification</h4>
+        <p>Split into <em>Interested — Grant-Aware</em> (they know about CTEIG and replied with interest) and <em>Interested — Needs Grant Education</em> (they replied but don't seem to know the match rule). These convert at very different rates and need different Edwin follow-ups. Grant-Aware goes straight to a call. Needs-Grant-Education gets a one-page explainer first, then a call. Measure them separately in the weekly report.</p>
+
+        <h4 class="mini-heading">3. Add Fall 2026 vs Fall 2027 tagging</h4>
+        <p>California sales cycles run 6-12 months from first contact to signed pilot because of <a href="https://www.cde.ca.gov/re/lc/">LCAP planning</a> and board approval. A reply from a CTE Director in April 2026 is likely a Fall 2027 conversation, not Fall 2026. Running both through the same five-step Apollo sequence blurs the signal. Tag every contact. Urgency messaging for Fall 2026 short-runway conversations. Relationship-building messaging for Fall 2027 longer-cycle conversations. This is consequential — about half your replies right now are probably Fall 2027 conversations being worked as if they're Fall 2026.</p>
+
+        <h3 class="sub-heading" id="openclaw">The OpenClaw vs Managed Agents question</h3>
+
+        <p>Your BDR architecture is built on Claude Managed Agents API with HubSpot MCP and Apollo. You've also directed your team to set up <a href="https://openclaw.ai">OpenClaw</a>. These aren't in conflict.</p>
+
+        <p>Managed Agents is the right choice for the BDR pipeline work — reply classification, queue management, briefing generation. These are structured, webhook-driven, stateful tasks that benefit from the native Claude platform.</p>
+
+        <p>OpenClaw is the right choice for autonomous outbound content work — newsletters, founder-voice outreach, social presence, content-to-leads pipelines running independently of the BDR machine. These are long-running, memory-rich, self-directing tasks that benefit from OpenClaw's heartbeat and memory architecture.</p>
+
+        <p>Keep the BDR architecture as designed. Deploy OpenClaw separately for top-of-funnel content work. The two systems complement each other: the OpenClaw system drives outbound content that feeds warm leads into HubSpot; the Managed Agents system handles reply classification and pipeline management. Different layers of the funnel, same company, no redundancy.</p>
+      </section>
+
+      <!-- SECTION 2: PRODUCT -->
+      <section class="audit-section" id="product">
+        <h2 class="section-heading"><span class="section-number">02</span>LogiqLab product AI roadmap</h2>
+
+        <p>LogiqLab is a two-layer platform, and understanding the distinction is the foundation for the AI roadmap.</p>
+
+        <div class="callout">
+          <div class="callout-label">Layer 1 — LMS backbone</div>
+          <p>Moodle provides student accounts, course delivery, grading, assignments, and teacher dashboards. This is infrastructure. It's not where LogiqLab differentiates. Every serious K-12 platform runs Moodle, Canvas, or a proprietary equivalent. AI opportunities here are commodity — everyone will have them soon.</p>
+        </div>
+
+        <div class="callout" style="border-left-color: var(--accent-bright); background: linear-gradient(to right, var(--accent-glow), var(--bg-card) 40%);">
+          <div class="callout-label">Layer 2 — Proprietary experimentation platform</div>
+          <p>LabVIEW-based virtual instruments, hardware kits, data-visualization dashboards, device-control interfaces, experiment automation. This is LogiqLab's actual product. It's what schools are buying. It's what competitors (<a href="https://www.magicschool.ai">MagicSchool</a>, <a href="https://schoolai.com">SchoolAI</a>, <a href="https://www.khanmigo.ai">Khanmigo</a>, <a href="https://curipod.com">Curipod</a>, <a href="https://nearpod.com">Nearpod</a>) cannot replicate because they don't have the hardware or the LabVIEW integration.</p>
+        </div>
+
+        <p>The AI strategy for each layer is different. Layer 1 gets standard AI features fast, via Moodle plugins, to meet table-stakes expectations. Layer 2 gets custom AI features built specifically on the experimentation stack to create a moat.</p>
+
+        <h3 class="sub-heading" id="layer1">Layer 1 — AI via Moodle plugins (table stakes, fast)</h3>
+
+        <p>The 2026 Moodle plugin ecosystem now offers three AI integration options. Each has a specific strategic fit.</p>
+
+        <h4 class="mini-heading"><a href="https://moodle.org/plugins/local_ai_manager">AI Manager</a> — the architectural foundation</h4>
+        <p><code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:var(--accent);">local_ai_manager</code>, Feb. 2026 release, Moodle 5.0/5.1 compatible. A central AI-management layer inside Moodle supporting ChatGPT, Ollama, and Gemini through modular architecture. This is the strongest architectural foundation. Every future AI feature can sit on top of it rather than integrating piecemeal. Pick this if you want to build toward a unified AI experience.</p>
+
+        <h4 class="mini-heading"><a href="https://moodle.org/plugins/local_edugears">EduGears AI LTI</a> — the turnkey suite</h4>
+        <p><code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:var(--accent);">local_edugears</code>. A bundled AI suite delivered over LTI 1.3 with AI Course Modules, AI Question Generator, AI Grading, AI Tutor, AI Slides, Worksheets, Study Guides, Lesson Planner, AI Assistant, and Curriculum Intelligence. Pick this if you want turnkey AI feature breadth to demonstrate in a pilot school fast.</p>
+
+        <h4 class="mini-heading"><a href="https://moodle.org/plugins/local_savian_ai">Savian AI</a> — the marketing-claim match</h4>
+        <p><code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;color:var(--accent);">local_savian_ai</code>, Moodle 4.5+. AI-powered course generation, tutoring chatbot, analytics, writing-practice evaluation, at-risk student detection. Pick this if you want the plugin that most directly reinforces LogiqLab's current marketing claims about personalized learning paths and real-time progress monitoring.</p>
+
+        <div class="callout">
+          <div class="callout-label">Recommendation</div>
+          <p><strong>AI Manager first.</strong> The architectural foundation compounds. EduGears or Savian can be layered on afterward. Going in reverse order means rebuilding infrastructure later.</p>
+        </div>
+
+        <h3 class="sub-heading" id="layer2">Layer 2 — Proprietary AI features (the moat)</h3>
+
+        <p>This is where the audit delivers its product-strategy value. Your competitors cannot build these features because they don't have LogiqLab's architecture. You should build them because they are what makes LogiqLab defensibly different.</p>
+
+        <p>Four specific feature opportunities, each grounded in LogiqLab's existing platform:</p>
+
+        <h4 class="mini-heading">AI-guided experiment design</h4>
+        <p>When a student sets up an experiment in LogiqLab's LabVIEW environment, AI suggests variable selections, predicts likely outcomes, flags methodological errors before the experiment runs, and generates variant experiments the student could try next. This is impossible for a competitor without the LabVIEW integration. For LogiqLab, it's a natural extension of the existing virtual instrument workflow.</p>
+
+        <h4 class="mini-heading">AI analysis of experiment data captured by the hardware kits</h4>
+        <p>Once a student runs an experiment, AI analyzes the captured data, explains results in grade-appropriate language, connects findings to the curriculum standard being taught, suggests follow-up investigations, and flags anomalies that may indicate equipment problems or methodological issues. <strong>This is the single highest-leverage AI feature LogiqLab could build.</strong> It's what makes the hardware meaningfully better in a way nothing else in the market can match.</p>
+
+        <h4 class="mini-heading">AI-generated curriculum variations based on classroom data</h4>
+        <p>As teachers use LogiqLab and student-performance data accumulates, AI generates new lesson plans, new experiments, and new assessments tailored to the specific patterns in that classroom — which topics the class struggled with, which experiments engaged them most, which misconceptions came up. This makes LogiqLab's curriculum adaptive in a way static curriculum products cannot match.</p>
+
+        <h4 class="mini-heading">AI-powered IEP and 504 accommodation generation for STEM</h4>
+        <p>Special education students using LogiqLab generate the same experimental data as everyone else. AI uses that data to auto-draft accommodation recommendations, suggest experiment modifications for accessibility, and flag when a student may need additional support. MagicSchool has a generic IEP drafting feature. No competitor has one tied to actual STEM experimentation data. This is an underserved market adjacent to your core.</p>
+
+        <h3 class="sub-heading" id="competitive">The competitive K-12 AI landscape</h3>
+
+        <p>To ground these recommendations, the broader K-12 AI vendor landscape has invested across four user types with different depths.</p>
+
+        <h4 class="mini-heading">Teachers — the most crowded category</h4>
+        <p><a href="https://www.magicschool.ai/magic-tools">MagicSchool</a> offers 80+ tools including lesson plans, quizzes, rubrics, writing feedback, 504 plans, and family translation. <a href="https://www.khanmigo.ai/teachers">Khanmigo</a> has 20+ teacher tools now deployed directly in Canvas. <a href="https://www.briskteaching.com">Brisk Teaching</a> overlays inside existing tools for differentiation. Curipod does real-time AI feedback in live lessons. Nearpod's AI Create generates standards-aligned lessons with required teacher review. Table-stakes features here: lesson planning, quiz generation, rubric creation, writing feedback, multilingual support.</p>
+
+        <h4 class="mini-heading">Students — growing fast, mostly mediated through teachers</h4>
+        <p>Khanmigo grounds tutoring in Khan Academy content and explicitly guides rather than answers. SchoolAI provides classroom-connected AI mentors with teacher dashboards. MagicSchool offers configurable student chatbot rooms. Table-stakes features: AI tutoring, adaptive practice, writing feedback, study guides.</p>
+
+        <h4 class="mini-heading">Administrators — clustering around governance and analytics</h4>
+        <p>District dashboards with role-based oversight. Privacy and compliance positioning. Real-time visibility into student performance. MagicSchool, SchoolAI, <a href="https://www.parentsquare.com">ParentSquare</a>, <a href="https://talkingpts.org">TalkingPoints</a>, and <a href="https://newsela.com">Newsela</a> all compete here.</p>
+
+        <h4 class="mini-heading">Parents — the thinnest category</h4>
+        <p>AI embedded in communication platforms rather than standalone. ParentSquare, TalkingPoints, and Khanmigo parent subscriptions are the clearest examples.</p>
+
+        <div class="callout">
+          <div class="callout-label">What this means for LogiqLab</div>
+          <p>Competing on teacher-facing AI is difficult and table-stakes. Student-facing AI depends on pre-existing content libraries (Khan Academy's, MagicSchool's) LogiqLab doesn't have. Administrator AI is governance dashboards. Parent AI is thin.</p>
+          <p style="margin-top:1rem;">LogiqLab's unique opportunity is in a category none of these competitors address: <strong>AI-enhanced hands-on experimentation.</strong> That's where Layer 2 recommendations go. That's the defensible moat. That's also, incidentally, exactly what CTEIG and Perkins V are designed to fund — CTE-specific instructional equipment that improves (not maintains) existing programs. The funding story and the product story align.</p>
+        </div>
+
+        <h3 class="sub-heading" id="roadmap">AI roadmap recommendation</h3>
+
+        <div class="roadmap">
+          <div class="roadmap-item">
+            <div class="roadmap-timeframe">30–60 days</div>
+            <div class="roadmap-title">Deploy AI Manager on the Moodle layer</div>
+            <div class="roadmap-desc">Foundation for everything else. Meets table-stakes expectations.</div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-timeframe">60–120 days</div>
+            <div class="roadmap-title">Build AI experiment-data analysis (Layer 2)</div>
+            <div class="roadmap-desc">Single most differentiating thing LogiqLab can ship. Visible demo in any district meeting. Maps cleanly to CTE pathway instructional outcomes.</div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-timeframe">6–12 months</div>
+            <div class="roadmap-title">AI-guided experiment design &amp; curriculum variations</div>
+            <div class="roadmap-desc">These are the defensibility features.</div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-timeframe">12+ months</div>
+            <div class="roadmap-title">IEP/504 accommodation AI for STEM</div>
+            <div class="roadmap-desc">Expansion into special education. Bigger market than most K-12 vendors realize. Almost nobody is serving it well.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: ATS OPS -->
+      <section class="audit-section" id="ats">
+        <h2 class="section-heading"><span class="section-number">03</span>ATS operations — closing the AI-driven gap</h2>
+
+        <p>Your public positioning says "AI-driven strategies" and "AI-driven threat analysis for predictive security." A review of your public materials found no named AI model provider, no documented AI implementation, no AI case studies, and no AI-specific service offering. The strongest adjacent capability is your analytics practice, which names specific tools (GA4, Hotjar, Amplitude, Crazy Egg, Adobe Analytics) and references predictive analytics language.</p>
+
+        <p>This is not a criticism. Most mid-market software consulting firms are in the same position. "AI-driven" became marketing table stakes before most firms had real AI practices. The firms that will win the next 24 months of consulting revenue are the ones closing this gap now.</p>
+
+        <div class="callout">
+          <div class="callout-label">The approach</div>
+          <p>The fastest way to close the gap is internal adoption: use AI to accelerate how ATS already delivers software. Margin improves, delivery speed improves, and the work itself becomes the case study that upgrades the public positioning.</p>
+        </div>
+
+        <h3 class="sub-heading" id="internal">Use AI internally for delivery acceleration</h3>
+
+        <p>ATS's operational reality — offshore dev team, multiple concurrent clients, standard software delivery — is exactly the shape AI tools are being built for in 2026. Sales and outreach automation is covered by the Autonomous Stack deployment already underway, which means the meaningful AI-tooling decisions for ATS sit in three categories: software delivery, internal operations, and marketing. The following tools pass a two-source verification test and fit offshore consulting operations specifically.</p>
+
+        <div class="tool-category">
+          <div class="tool-category-label">Software delivery</div>
+          <div class="tool-list">
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://www.codacy.com">Codacy</a></div>
+              <div class="tool-desc">AI-assisted code quality and security across IDE, PRs, SAST, and dependency scanning. Team tier $18/developer/month. Fits offshore consulting where review consistency across multiple client repos matters.</div>
+            </div>
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://www.diffblue.com">Diffblue</a></div>
+              <div class="tool-desc">AI testing agent for Java unit-test generation and coverage. Outcome-based pricing. Fits modernization programs with large Java estates specifically.</div>
+            </div>
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://docs.github.com/copilot/concepts/agents/code-review">GitHub Copilot Code Review</a></div>
+              <div class="tool-desc">Runs inside existing PR workflow. Lowest-friction AI adoption for a GitHub-based team.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-category">
+          <div class="tool-category-label">Client services &amp; account management</div>
+          <div class="tool-list">
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://www.glean.com">Glean</a></div>
+              <div class="tool-desc">Work AI platform for enterprise search and cross-app knowledge retrieval, 100+ connectors. Enterprise pricing. Fits account management where past-project context lives scattered across tools.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-category">
+          <div class="tool-category-label">Internal operations</div>
+          <div class="tool-list">
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://www.paradox.ai">Paradox (Olivia)</a></div>
+              <div class="tool-desc">Conversational hiring platform covering screening, scheduling, interview prep, offer creation, onboarding. Enterprise pricing. Fits firms hiring across geographies.</div>
+            </div>
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://betterproposals.io">Better Proposals</a></div>
+              <div class="tool-desc">Fast proposal creation with tracking and e-signature. Starter tier $19/user/month. Fits service businesses turning discovery notes into proposals quickly.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-category">
+          <div class="tool-category-label">Marketing &amp; content</div>
+          <div class="tool-list">
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://www.contentharmony.com">Content Harmony</a></div>
+              <div class="tool-desc">Content-brief and grading platform for SEO and editorial workflow. Starts at $99/month. Fits agencies producing repeatable content.</div>
+            </div>
+            <div class="tool-item">
+              <div class="tool-name"><a href="https://www.siteimprove.com/platform/content-strategy/">Siteimprove.ai</a></div>
+              <div class="tool-desc">Agentic content intelligence combining content strategy, SEO, analytics, accessibility. Enterprise pricing. Fits firms managing client websites.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-label">Sequencing</div>
+          <p>Don't adopt all of these. Pick two to start, measure impact for 60 days, then expand based on what worked. The highest-leverage starting pair for ATS specifically:</p>
+          <p style="margin-top:1rem;"><strong>GitHub Copilot Code Review (delivery) + Glean (internal knowledge).</strong> Copilot because it affects offshore team throughput directly in the tool your engineers already live in. Glean because the biggest hidden cost in a multi-client consulting shop is the time engineers spend searching for past project context — and that cost compounds as the team grows. Combined cost stays modest per seat; impact shows up inside 30 days.</p>
+          <p style="margin-top:1rem;">That 60-day experiment also becomes the AI case study that upgrades ATS's public positioning from aspirational to operational — a compounding benefit.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 4: FUNDING -->
+      <section class="audit-section" id="funding">
+        <h2 class="section-heading"><span class="section-number">04</span>Vendor-side funding for the AI roadmap</h2>
+
+        <p>Most discussion of grants in K-12 EdTech focuses on grants schools use to buy products. There's a separate category worth attention: grants the vendor (ATS / LogiqLab) can apply for directly to fund the AI investments this audit recommends.</p>
+
+        <p>Two programs are concretely actionable.</p>
+
+        <h3 class="sub-heading">ED/IES SBIR — the strongest direct-to-vendor EdTech funding path</h3>
+
+        <p>The Institute of Education Sciences SBIR program funds research and development of next-generation education technology products. It is explicitly designed for for-profit small businesses building EdTech. LogiqLab fits exactly. Full program details at <a href="https://ies.ed.gov/funding/research/programs/small-business-innovation-research-sbir/program-applicant-information">the IES applicant information page</a>, with current solicitations at <a href="https://ies.ed.gov/funding/research/programs/small-business-innovation-research-sbir/solicitation-information">the FY 2026 solicitation page</a>.</p>
+
+        <div class="doc-meta" style="margin: 1.5rem 0; grid-template-columns: 1fr 1fr;">
+          <div class="meta-item">
+            <div class="meta-label">Phase I</div>
+            <div class="meta-value">$250,000 over 8 months<br><span style="font-size:0.8rem;color:var(--text-muted);">Initial R&amp;D and feasibility</span></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Phase II</div>
+            <div class="meta-value">$1,000,000 over 2 years<br><span style="font-size:0.8rem;color:var(--text-muted);">Continuation toward commercial product</span></div>
+          </div>
+        </div>
+
+        <p>Pre-solicitation notices for Phase IA and Phase IB were posted April 14, 2026. Full solicitations typically follow pre-solicitations by 30-60 days. Application windows are tight; preparation should start now if this is a target. Direct-to-Phase-II option exists for teams with prototype-stage work already complete.</p>
+
+        <h4 class="mini-heading">Eligibility</h4>
+        <p>For-profit small business, independently owned, U.S.-based, 500 or fewer employees, at least 51% U.S.-owned, principal investigator employed by the small business at least 51% time. ATS almost certainly qualifies.</p>
+
+        <h4 class="mini-heading">Strategic fit</h4>
+        <p>The Layer 2 AI features recommended in Section 2 — AI-guided experiment design, AI experiment-data analysis, AI curriculum variations — are exactly the kind of R&amp;D work ED/IES SBIR funds. Pursuing this is funding <em>for</em> the roadmap and credibility validation <em>of</em> the product, simultaneously.</p>
+
+        <h3 class="sub-heading"><a href="https://calosba.ca.gov/funding-grants-incentives/accelerate-california/">Accelerate California Innovation Grants</a></h3>
+
+        <p>California's Office of the Small Business Advocate runs this as the nation's first statewide program directly investing in innovation-based businesses. The <a href="https://www.gov.ca.gov/2026/03/05/governor-newsom-announces-over-2-million-in-funding-for-small-businesses-innovating-in-the-golden-state/">March 5, 2026 Governor's announcement</a> explicitly named artificial intelligence as a strategic sector in 2026 awards.</p>
+
+        <ul class="clean-list">
+          <li><strong>Award size:</strong> $25,000 to $100,000 per company.</li>
+          <li><strong>Application window:</strong> Program "remains open" per the March 2026 announcement. Rolling applications appear possible.</li>
+          <li><strong>Eligibility:</strong> Innovative California entrepreneurs cultivated through an Accelerate California Hub. ATS qualifies as a California technology business.</li>
+          <li><strong>Strategic fit:</strong> Smaller than SBIR, faster turnaround, lower bar. Reasonable path to fund a specific Layer 1 or Layer 2 feature build.</li>
+        </ul>
+
+        <h3 class="sub-heading">Other programs reviewed but weaker fits</h3>
+        <p><a href="https://seedfund.nsf.gov/apply/project-pitch/">NSF SBIR/STTR</a> is general technology funding, not education-specific. Plausible but materially less documented for EdTech use cases. <a href="https://www.ed.gov/grants-and-programs/grants-special-populations/grants-economically-disadvantaged-students/education-innovation-and-research">EIR (Education Innovation and Research)</a> and <a href="https://www.ed.gov/grants-and-programs/teacher-preparation-grants/supporting-effective-educator-development-grant-program">SEED (Supporting Effective Educator Development)</a> are federal education programs but appear oriented toward districts, nonprofits, and educator-preparation institutions rather than for-profit vendors. California Community Colleges Chancellor's Office programs are college-led or LEA-led, not direct-to-vendor. <a href="https://ucop.edu/research-initiatives/programs/innovation-opportunities/discovery-grant.html">UC Discovery Grant</a> is not accepting new applications. <a href="https://citris-uc.org/labs-programs/seed-funding/citris-core-seed-funding/">CITRIS Core Seed Funding</a> requires a UC principal investigator.</p>
+
+        <h3 class="sub-heading">Perkins V as the sustainability layer</h3>
+        <p>One additional note on <a href="https://www.cde.ca.gov/ci/ct/pk/">Perkins V</a>. CTEIG is the urgency play (June 30 deadline, use-it-or-lose-it). Perkins V is the sustainability play (annual federal funding, supports expansion-kit purchases in Years 2-4, stricter "improve not maintain" rules). Once LogiqLab is deployed via CTEIG in Year 1, Perkins V funds Year 2-4 expansion. Districts using both grants in sequence become 4-year customers by design. The BDR outreach should reference both, with CTEIG for urgency and Perkins V for the "we're not a one-year expense" conversation.</p>
+
+        <div class="callout">
+          <div class="callout-label">Recommendation</div>
+          <p>Prioritize <strong>ED/IES SBIR Phase I</strong> as primary and <strong>Accelerate California Innovation Grants</strong> as secondary. The SBIR application is more involved, but the funding and credibility are both materially higher. Both can be pursued in parallel if capacity allows.</p>
+        </div>
+      </section>
+
+      <!-- SECTION 5: NEXT STEPS -->
+      <section class="audit-section" id="next-steps">
+        <h2 class="section-heading"><span class="section-number">05</span>Recommended next steps</h2>
+
+        <p>Six actions, in priority order.</p>
+
+        <ol class="next-steps">
+          <li>
+            <div class="step-title">Rewrite BDR outreach copy using the sharpened four-line hierarchy</div>
+            <div class="step-desc">All three Apollo sequences, all LinkedIn connection notes, all follow-ups. 4 hours of copy work. Single highest-leverage change in this document.</div>
+          </li>
+          <li>
+            <div class="step-title">Add the three BDR architecture changes before deployment</div>
+            <div class="step-desc">Grant-window awareness in Agent 2. Split Agent 1's Interested classification. Fall 2026 vs Fall 2027 tagging across the pipeline.</div>
+          </li>
+          <li>
+            <div class="step-title">Deploy AI Manager on the Moodle layer</div>
+            <div class="step-desc">30-60 day timeline. Foundation for the rest of the product AI roadmap.</div>
+          </li>
+          <li>
+            <div class="step-title">Start the Layer 2 AI experiment-data analysis feature build</div>
+            <div class="step-desc">60-120 day timeline. Single most differentiating feature. Becomes your signature demo in district meetings.</div>
+          </li>
+          <li>
+            <div class="step-title">Start the two internal AI tool adoptions for ATS</div>
+            <div class="step-desc">GitHub Copilot Code Review and Glean. 60-day experiment. Output becomes the AI case study that upgrades ATS's public positioning from aspirational to operational.</div>
+          </li>
+          <li>
+            <div class="step-title">Begin ED/IES SBIR Phase I application preparation</div>
+            <div class="step-desc">Next solicitation expected 30-60 days out. Preparation time is real. Worth starting before the window opens.</div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- CLOSING -->
+      <section class="audit-section" id="closing">
+        <h2 class="section-heading"><span class="section-number">✦</span>A closing note</h2>
+
+        <p>The grant-led GTM framing is the biggest near-term lever. Your team already has the structure right; the sharpened messaging and the three architecture changes are about execution precision rather than strategy rework. Run the 10 weeks before June 30 well, and LogiqLab converts more districts into Fall 2026 and Fall 2027 pilots than a longer generic outreach cycle would.</p>
+
+        <p>One strategic choice worth making deliberately: the first two or three Fall 2026 pilots aren't just early customers, they're the proof points that unlock every Fall 2027 conversation. Picking districts with recognizable names, measurable outcomes, and CTE Directors willing to be referenced will do more for the pipeline than five additional anonymous pilots would.</p>
+      </section>
+
+      <div class="divider">
+        <span class="divider-mark">✦ ✦ ✦</span>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="doc-footer">
+        <div class="footer-brand"><a href="https://sora-labs.net">Sora Labs</a></div>
+        <div class="footer-contact"><a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a></div>
+        <div class="footer-meta">© 2026 Sora Labs. Prepared for Adaptive Tech Solutions.</div>
+        <div class="footer-confidential">Confidential · For internal use by the named recipient</div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- SCROLLSPY NAV HIGHLIGHTING -->
+  <script>
+    (function() {
+      const tocLinks = document.querySelectorAll('.toc-list a');
+      const sections = Array.from(tocLinks).map(link => {
+        const id = link.getAttribute('href').substring(1);
+        return { link, section: document.getElementById(id) };
+      }).filter(item => item.section);
+
+      function onScroll() {
+        const scrollPos = window.scrollY + 120;
+        let current = null;
+
+        for (const item of sections) {
+          if (item.section.offsetTop <= scrollPos) {
+            current = item;
+          }
+        }
+
+        tocLinks.forEach(link => link.classList.remove('active'));
+        if (current) current.link.classList.add('active');
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+</body>
+</html>
