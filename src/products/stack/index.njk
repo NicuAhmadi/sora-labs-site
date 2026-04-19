@@ -103,6 +103,15 @@ permalink: /products/stack/index.html
 
     .nav-links a:hover { color: var(--text-primary); }
     .nav-links a.active { color: var(--accent); }
+    .nav-links a.nav-cta {
+      color: var(--bg-primary) !important;
+      background: var(--accent);
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-links a.nav-cta:hover { background: #d4b88e; color: var(--bg-primary); }
 
     /* ── HERO ── */
     .hero {
@@ -590,15 +599,15 @@ permalink: /products/stack/index.html
 {% block nav %}
   <!-- NAV -->
   <nav>
-    <a href="https://sora-labs.net" class="nav-logo">
+    <a href="/" class="nav-logo">
       <span class="nav-logo-mark">S</span>
       Sora Labs
     </a>
     <ul class="nav-links">
-      <li><a href="https://sora-labs.net/#services">Services</a></li>
-      <li><a href="https://sora-labs.net/products/" class="active">Products</a></li>
-      <li><a href="https://sora-labs.net/#newsletter">Newsletter</a></li>
-      <li><a href="https://sora-labs.net/#about">About</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/products/" class="active">Products</a></li>
+      <li><a href="/resources/">Resources</a></li>
+      <li><a href="/#contact" class="nav-cta">Get Started</a></li>
     </ul>
   </nav>
 {% endblock %}

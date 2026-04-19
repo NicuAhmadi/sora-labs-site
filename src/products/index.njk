@@ -400,27 +400,29 @@ permalink: /products/index.html
       line-height: 1.55;
     }
 
-    /* ── FREE RESOURCES ── */
-    .free-resources {
+    /* ── RESOURCES LINK ── */
+    .resources-link {
       max-width: 1000px;
       margin: 0 auto;
       padding: 0 2rem 6rem;
+      text-align: center;
     }
 
-    .free-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
+    .resources-link p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .resources-link a {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
       text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: border-color 0.3s;
+      transition: opacity 0.2s;
     }
 
-    .free-card:hover {
-      border-color: var(--border-accent);
-    }
+    .resources-link a:hover { opacity: 0.75; }
 
     /* ── FOOTER ── */
     footer {
@@ -485,6 +487,7 @@ permalink: /products/index.html
 {% endblock %}
 
 {% block nav %}
+{% set nav_active = "products" %}
 {% include "nav.njk" %}
 {% endblock %}
 
@@ -591,15 +594,9 @@ permalink: /products/index.html
     </div>
   </section>
 
-  <!-- FREE RESOURCES -->
-  <section class="free-resources">
-    <div class="coming-soon-header">Free Resources</div>
-    <div class="coming-soon-grid">
-      <a href="https://sora-labs.net/guides/mac-mini-setup/" class="free-card">
-        <div class="coming-soon-name">Mac Mini Setup Guide</div>
-        <div class="coming-soon-desc">The complete guide to running an autonomous OpenClaw agent on a Mac Mini 24/7 — two-user architecture, model fallbacks, cron schedules, and every mistake we made so you don't have to.</div>
-      </a>
-    </div>
+  <!-- RESOURCES LINK -->
+  <section class="resources-link">
+    <p>Looking for free guides? <a href="/resources/#free-guides">Resources →</a></p>
   </section>
 {% endblock %}
 

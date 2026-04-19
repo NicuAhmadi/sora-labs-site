@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1F2ETBV5K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1F2ETBV5K');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Pipeline Briefing: South Florida Commercial Construction — Sora Labs</title>
+  <meta name="description" content="A sample of what a monthly pipeline research briefing looks like — five verified commercial construction opportunities in South Florida, each with a likely construction need, fit rationale, and draft outreach email.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #121212;
+      --panel-2: #171717;
+      --text: #e8e8e8;
+      --muted: #b9b9b9;
+      --gold: #c8a97e;
+      --gold-soft: rgba(200,169,126,0.12);
+      --line: rgba(200,169,126,0.26);
+      --line-soft: rgba(255,255,255,0.08);
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: var(--max); margin: 0 auto; padding: 40px 24px 80px; }
+    .sample-banner {
+      border: 1px solid var(--line);
+      background: var(--gold-soft);
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      color: var(--text);
+      font-size: 14px;
+    }
+    .sample-banner strong { color: var(--gold); }
+    .cover {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 42px;
+      background: radial-gradient(circle at top right, rgba(200,169,126,0.14), transparent 32%), linear-gradient(180deg, #121212 0%, #0c0c0c 100%);
+      margin-bottom: 24px;
+    }
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    h1, h2, h3 { margin: 0; }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 50px;
+      line-height: 1.04;
+      max-width: 860px;
+      margin-bottom: 14px;
+    }
+    .subtitle {
+      max-width: 840px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 24px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .meta .card, .section, .lead-card, .email-card, .profile, .note {
+      border: 1px solid var(--line-soft);
+      background: var(--panel);
+      border-radius: 18px;
+    }
+    .meta .card {
+      padding: 16px 18px;
+    }
+    .k {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-weight: 700;
+    }
+    .v {
+      margin-top: 6px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .section {
+      margin-top: 22px;
+      padding: 28px;
+    }
+    .section h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+    .lede { color: var(--muted); max-width: 980px; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .profile, .note {
+      padding: 20px;
+      background: var(--panel-2);
+    }
+    .profile ul, .note ul, .body-copy ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+    .lead-card {
+      margin-top: 18px;
+      overflow: hidden;
+      border-color: var(--line);
+      background: linear-gradient(180deg, rgba(200,169,126,0.06), rgba(255,255,255,0.02));
+    }
+    .lead-head {
+      padding: 22px 24px 16px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .lead-num {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .lead-title {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+    .lead-sub { color: var(--muted); }
+    .lead-body {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 18px;
+      padding: 22px 24px 26px;
+    }
+    .body-copy > div {
+      padding: 16px 18px;
+      border: 1px solid var(--line-soft);
+      background: rgba(255,255,255,0.02);
+      border-radius: 16px;
+      margin-bottom: 14px;
+    }
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .email-card {
+      padding: 18px;
+      background: #0f0f0f;
+      border-color: var(--line);
+    }
+    .email-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+      display: grid;
+      gap: 6px;
+    }
+    blockquote {
+      margin: 0;
+      padding: 0 0 0 16px;
+      border-left: 2px solid var(--gold);
+      white-space: pre-wrap;
+    }
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      margin: 6px 8px 0 0;
+    }
+    .cta {
+      margin-top: 28px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, rgba(200,169,126,0.10), transparent 40%), var(--panel);
+    }
+    .cta h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .cta p { color: var(--muted); max-width: 720px; }
+    .cta a.button {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 12px 22px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .cta a.button:hover { background: var(--gold-soft); text-decoration: none; }
+    .footer {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 980px) {
+      .meta, .grid-2, .lead-body { grid-template-columns: 1fr; }
+      .cover { padding: 30px; }
+      h1 { font-size: 38px; }
+    }
+    @media print {
+      .page { max-width: none; padding: 0; }
+      .section, .lead-card, .cover { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="sample-banner">
+      <strong>Sample deliverable.</strong> This is a representative example of what a monthly pipeline research briefing from Sora Labs looks like. Company lease announcements are real and publicly sourced; the client identity and outreach drafts have been generalized.
+    </div>
+
+    <section class="cover">
+      <div class="eyebrow">Sora Labs • Sample Pipeline Briefing</div>
+      <h1>Pipeline Briefing: South Florida Commercial Construction Opportunities</h1>
+      <div class="subtitle">A sample monthly briefing prepared by <strong>Nadia Sora, AI Chief of Staff at Sora Labs</strong>. Example client: a South Florida commercial general contractor serving Broward, Miami-Dade, and Palm Beach. April 2026.</div>
+      <div class="meta">
+        <div class="card"><div class="k">Coverage</div><div class="v">Broward, Miami-Dade, Palm Beach</div></div>
+        <div class="card"><div class="k">Lead count</div><div class="v">5 verified leads</div></div>
+        <div class="card"><div class="k">Lead type</div><div class="v">Lease / relocation / expansion announcements</div></div>
+        <div class="card"><div class="k">Standard</div><div class="v">Verified and cross-checked</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Example client profile</h2>
+      <div class="grid-2">
+        <div class="profile">
+          <div class="label">Who this briefing was built for</div>
+          <p>A South Florida commercial general contractor with roughly 17 years of experience, a Florida GC license, and a focus on commercial renovations, tenant improvements, permit resolution, urgent construction, and open-store / live construction. Tri-county coverage across Broward, Miami-Dade, and Palm Beach. Owner-operated, with direct involvement on every project.</p>
+          <ul>
+            <li>Commercial renovations and tenant build-outs</li>
+            <li>Retail and occupied-space experience</li>
+            <li>Permit resolution and fast-turn interior work</li>
+            <li>Local owner access, not bureaucratic handoffs</li>
+          </ul>
+        </div>
+        <div class="note">
+          <div class="label">Why this matters for lead selection</div>
+          <p>The best-fit opportunities for a contractor in this lane are not generic new construction. They are leased spaces, HQ relocations, retail fit-outs, and interior projects where a tenant or owner needs a reliable local GC who can move fast, coordinate trades cleanly, and protect opening timelines. That's exactly the lane these leads were filtered for.</p>
+          <ul>
+            <li>Tri-county coverage</li>
+            <li>Retail and commercial interior experience</li>
+            <li>Open-store / occupied-space sensitivity</li>
+            <li>Brand-driven finish standards</li>
+            <li>Local owner access instead of bureaucratic handoffs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Method and market notes</h2>
+      <p class="lede">Every lead in this briefing was pulled from live commercial real estate sources dated within the last 90 days, then cross-checked to confirm the project hasn't already been completed. If a lead couldn't be verified with a dated source and a current-reality check, it didn't make the cut. No padding, no guesswork — just opportunities that are actually in motion right now.</p>
+    </section>
+
+    <section class="section">
+      <h2>Verified opportunities</h2>
+
+      <article class="lead-card">
+        <div class="lead-head">
+          <div class="lead-num">Lead 01</div>
+          <div class="lead-title">D-Wave Quantum</div>
+          <div class="lead-sub">Quantum computing company relocating its corporate headquarters and U.S. R&amp;D facility to Boca Raton Innovation Campus in Boca Raton, Palm Beach County.</div>
+        </div>
+        <div class="lead-body">
+          <div class="body-copy">
+            <div>
+              <div class="label">Company + source</div>
+              <p>D-Wave builds quantum computing systems, software, and services. Verified move announcement: <a href="https://ir.dwavequantum.com/news/news-details/2026/D-Wave-Selects-Boca-Raton-for-New-Corporate-Headquarters-and-U-S--RD-Facility/default.aspx">D-Wave official release, January 27, 2026</a>.</p>
+            </div>
+            <div>
+              <div class="label">Current reality check</div>
+              <p>The official release says D-Wave <strong>plans to transition its headquarters from Palo Alto to Boca Raton before the end of 2026</strong>. That means the HQ relocation was announced but not completed as of the source date.</p>
+            </div>
+            <div>
+              <div class="label">Likely construction need</div>
+              <ul>
+                <li>Corporate office and R&amp;D-support build-out within an existing innovation campus</li>
+                <li>Executive, collaboration, and branded client-facing space</li>
+                <li>MEP coordination, IT room readiness, and phased occupancy work</li>
+              </ul>
+            </div>
+            <div>
+              <div class="label">Why the fit works</div>
+              <p>A local tri-county GC with 17 years in South Florida and commercial build-out experience is credibly positioned for fast, controlled interior execution. Direct owner involvement is attractive for a relocating HQ that cannot tolerate schedule drift.</p>
+              <span class="tag">Palm Beach</span><span class="tag">HQ relocation</span><span class="tag">Office / R&amp;D</span>
+            </div>
+          </div>
+          <div class="email-card">
+            <div class="email-meta">
+              <div><strong>To:</strong> Dr. Alan Baratz, CEO, D-Wave Quantum</div>
+              <div><strong>From:</strong> [Your Name], [Your Company]</div>
+              <div><strong>Subject:</strong> Boca Raton HQ build-out support for D-Wave</div>
+            </div>
+            <blockquote>Alan,
+
+Congratulations on D-Wave selecting Boca Raton for its new headquarters and U.S. R&amp;D facility.
+
+I own a commercial construction company here in South Florida. We focus on commercial renovations and build-outs across Broward, Miami-Dade, and Palm Beach, and a relocation like yours is exactly the kind of project where local execution matters, especially once schedule, branding, and occupancy planning start tightening up.
+
+We've spent 17 years helping businesses deliver interior work on time and on budget, including high-visibility brand environments, and we're used to coordinating around real operational constraints rather than idealized construction schedules.
+
+If helpful, I'd be happy to share a quick outside perspective on the construction side of a Boca HQ move and what I would lock down early to keep the project moving cleanly.
+
+Best,
+[Your Name]
+[Your Company]
+FL License [Your License #]</blockquote>
+          </div>
+        </div>
+      </article>
+
+      <article class="lead-card">
+        <div class="lead-head">
+          <div class="lead-num">Lead 02</div>
+          <div class="lead-title">Fuze House</div>
+          <div class="lead-sub">Boutique fitness studio leasing 3,690 square feet at The Mark at Cityscape in Boca Raton, Palm Beach County.</div>
+        </div>
+        <div class="lead-body">
+          <div class="body-copy">
+            <div>
+              <div class="label">Company + source</div>
+              <p>Fuze House is an infrared-heated boutique fitness studio brand. Verified lease announcement: <a href="https://www.nmrk.com/insights/press-releases/newmark-arranges-lease-for-fuze-house-in-boca-raton-expanding-fitness-studios-south-florida-presence">Newmark press release, April 2, 2026</a>.</p>
+            </div>
+            <div>
+              <div class="label">Current reality check</div>
+              <p>Newmark states the Boca studio is <strong>expected to open in Q3 2026</strong>. Fuze House's current studio page still lists only Miami, South Miami, NYC, and Montauk locations, with <strong>no Boca studio listed</strong>: <a href="https://www.fuzehouse.com/ourstudios">Fuze House studios page</a>.</p>
+            </div>
+            <div>
+              <div class="label">Likely construction need</div>
+              <ul>
+                <li>Retail fitness build-out with reception, studio flooring, mirrors, lighting, acoustics, and locker/changing support</li>
+                <li>Landlord coordination inside a mixed-use residential asset</li>
+                <li>Brand-driven storefront and finish execution ahead of opening</li>
+              </ul>
+            </div>
+            <div>
+              <div class="label">Why the fit works</div>
+              <p>This is the cleanest retail-build-out profile in the set. A contractor with deep South Florida retail experience, live-environment construction history, and a portfolio of major-brand remodels can lead on premium brand feel, tight opening schedule, and local accountability.</p>
+              <span class="tag">Palm Beach</span><span class="tag">Retail build-out</span><span class="tag">Fitness / wellness</span>
+            </div>
+          </div>
+          <div class="email-card">
+            <div class="email-meta">
+              <div><strong>To:</strong> Eli Kaylin, Founder &amp; CEO, Fuze House</div>
+              <div><strong>From:</strong> [Your Name], [Your Company]</div>
+              <div><strong>Subject:</strong> Boca opening support for Fuze House</div>
+            </div>
+            <blockquote>Eli,
+
+Congrats on the Boca Raton lease at The Mark at Cityscape.
+
+I own a commercial construction company in South Florida. We specialize in commercial build-outs and remodels across Broward, Miami-Dade, and Palm Beach, and retail-style environments with a premium brand experience are a big part of what we do.
+
+A boutique fitness concept usually has zero room for sloppy execution. The details matter, from flooring, lighting, and mirrors to reception flow, storefront presence, acoustics, and timing everything around opening.
+
+We've been doing this for 17 years and have completed hundreds of retail remodels for major brands, so if it helps, I'd be glad to give you a quick local GC perspective on what I'd prioritize to get the Boca studio delivered cleanly and on schedule.
+
+Best,
+[Your Name]
+[Your Company]
+FL License [Your License #]</blockquote>
+          </div>
+        </div>
+      </article>
+
+      <article class="lead-card">
+        <div class="lead-head">
+          <div class="lead-num">Lead 03</div>
+          <div class="lead-title">Terrabank</div>
+          <div class="lead-sub">Community bank relocating and expanding its headquarters into 40,000 square feet at One Alhambra Plaza in Coral Gables, Miami-Dade County.</div>
+        </div>
+        <div class="lead-body">
+          <div class="body-copy">
+            <div>
+              <div class="label">Company + source</div>
+              <p>Terrabank is a Florida community bank serving business clients. Verified lease announcement: <a href="https://commercialobserver.com/2026/03/terrabank-icoral-gables-office-tourmaline/">Commercial Observer, March 27, 2026</a>.</p>
+            </div>
+            <div>
+              <div class="label">Current reality check</div>
+              <p>Commercial Observer says the move was <strong>expected to be finalized by the end of March</strong>. During this research window, Terrabank's own locations page still showed the main branch at <a href="https://www.terrabank.com/en-us/Domestic/LOCATIONS">3191 Coral Way</a>, which supports that the transition was still recent and not yet fully reflected across public-facing channels.</p>
+            </div>
+            <div>
+              <div class="label">Likely construction need</div>
+              <ul>
+                <li>Corporate office tenant improvements across two floors</li>
+                <li>Ground-floor branch build-out, client areas, branding, and security-related coordination</li>
+                <li>Possible phased move and post-occupancy adjustments</li>
+              </ul>
+            </div>
+            <div>
+              <div class="label">Why the fit works</div>
+              <p>A responsive local GC is well positioned for clean, business-critical office and branch work. Tri-county coverage, permit experience, and schedule discipline are the hook here, especially for a client that wants a contractor who can move without drama.</p>
+              <span class="tag">Miami-Dade</span><span class="tag">HQ expansion</span><span class="tag">Office + branch</span>
+            </div>
+          </div>
+          <div class="email-card">
+            <div class="email-meta">
+              <div><strong>To:</strong> Antonio Uribe, President &amp; CEO, Terrabank</div>
+              <div><strong>From:</strong> [Your Name], [Your Company]</div>
+              <div><strong>Subject:</strong> Construction support for Terrabank's move to One Alhambra Plaza</div>
+            </div>
+            <blockquote>Antonio,
+
+Congratulations on Terrabank's headquarters move to One Alhambra Plaza.
+
+I own a commercial construction company here in South Florida. We handle commercial interior renovations and build-outs across Miami-Dade, Broward, and Palm Beach, and projects like yours are where local coordination really matters, especially when there is both executive office space and a customer-facing branch component involved.
+
+We've spent 17 years delivering commercial work for businesses that cannot afford schedule slips or messy punch work, and we're used to moving quickly while keeping communication simple.
+
+If useful, I'd be happy to share a quick perspective on the construction side of a transition like this and what I would prioritize first.
+
+Best,
+[Your Name]
+[Your Company]
+FL License [Your License #]</blockquote>
+          </div>
+        </div>
+      </article>
+
+      <article class="lead-card">
+        <div class="lead-head">
+          <div class="lead-num">Lead 04</div>
+          <div class="lead-title">INB, N.A.</div>
+          <div class="lead-sub">Bank relocating from Brickell to a 7,987-square-foot standalone office building at 133 Sevilla Avenue in Coral Gables, Miami-Dade County.</div>
+        </div>
+        <div class="lead-body">
+          <div class="body-copy">
+            <div>
+              <div class="label">Company + source</div>
+              <p>INB is a commercial bank expanding its South Florida footprint. Verified lease announcement: <a href="https://naimia-ftl.com/blog/coral-gables-office-lease/">NAI Miami | Fort Lauderdale, March 3, 2026</a>.</p>
+            </div>
+            <div>
+              <div class="label">Current reality check</div>
+              <p>NAI says INB was <strong>previously based in Brickell</strong>. INB's own site still features its Miami office ribbon-cutting at <a href="https://www.inb.com/Blog/Posts/2154/Uncategorized/2023/7/Miami-Office-Leaves-No-Doubt-Were-Open-for-Business/blog-post/">1395 Brickell Ave., Suite 1080</a>, which supports the Coral Gables site as a new and still-recent move.</p>
+            </div>
+            <div>
+              <div class="label">Likely construction need</div>
+              <ul>
+                <li>Standalone office retrofit or refresh for banking teams and client meetings</li>
+                <li>Branding, conference, access control, and back-office support spaces</li>
+                <li>Potential fast-turn interior changes as the team settles into the new footprint</li>
+              </ul>
+            </div>
+            <div>
+              <div class="label">Why the fit works</div>
+              <p>This is a practical office relocation target where a local GC wins by sounding specific and easy to work with. Commercial renovation lane, permit-resolution capability, and tri-county footprint are all relevant here.</p>
+              <span class="tag">Miami-Dade</span><span class="tag">Office relocation</span><span class="tag">Banking</span>
+            </div>
+          </div>
+          <div class="email-card">
+            <div class="email-meta">
+              <div><strong>To:</strong> Gabriella Cioli, SVP &amp; South Florida Market President, INB</div>
+              <div><strong>From:</strong> [Your Name], [Your Company]</div>
+              <div><strong>Subject:</strong> Coral Gables office build-out / refresh support for INB</div>
+            </div>
+            <blockquote>Gabriella,
+
+I saw INB's recent move into 133 Sevilla and wanted to reach out.
+
+I own a commercial construction company here in South Florida. We focus on commercial renovations and build-outs across Miami-Dade, Broward, and Palm Beach, and office relocations like this are where a local GC can help keep the last-mile construction work from slowing everything down.
+
+Whether it's layout refinements, conference and client-facing areas, branding updates, or the smaller interior items that show up after a team begins planning real occupancy, that is very much in our wheelhouse.
+
+If it's useful, I'd be happy to give you a quick outside perspective on what I'd prioritize from the construction side as INB grows into the new Coral Gables office.
+
+Best,
+[Your Name]
+[Your Company]
+FL License [Your License #]</blockquote>
+          </div>
+        </div>
+      </article>
+
+      <article class="lead-card">
+        <div class="lead-head">
+          <div class="lead-num">Lead 05</div>
+          <div class="lead-title">Deloitte</div>
+          <div class="lead-sub">Professional-services firm signing 18,657 square feet at Las Olas Centre in Fort Lauderdale, Broward County.</div>
+        </div>
+        <div class="lead-body">
+          <div class="body-copy">
+            <div>
+              <div class="label">Company + source</div>
+              <p>Deloitte is a global professional-services firm. Verified lease announcement: <a href="https://www.taylorjohnson.com/tj-news/bradford-allen-secures-18657-square-foot-office-lease-with-deloitte-at-las-olas-centre-in-fort-lauderdale-fla/">Taylor Johnson / Bradford Allen release, February 6, 2026</a>. Deal-date cross-check: <a href="https://traded.co/deals/florida/office/lease/350-east-las-olas-boulevard-1/">Traded, dated January 14, 2026</a>.</p>
+            </div>
+            <div>
+              <div class="label">Current reality check</div>
+              <p>The February release says the lease begins in 2026 and is part of Bradford Allen's active <strong>$25 million renovation</strong> of Las Olas Centre, with move-in-ready suites expected by the end of February 2026. That indicates the building and tenant-improvement environment was still actively in process around the announcement window.</p>
+            </div>
+            <div>
+              <div class="label">Likely construction need</div>
+              <ul>
+                <li>Professional-services office build-out or customization inside a repositioned tower</li>
+                <li>Conference-heavy, client-facing finish work</li>
+                <li>Coordination around building-wide renovations, AV, and occupancy timing</li>
+              </ul>
+            </div>
+            <div>
+              <div class="label">Why the fit works</div>
+              <p>For a Fort Lauderdale office move, the pitch is the nimble local GC with tri-county coverage, clean execution, and high-finish commercial experience. A brand-work history reinforces quality and deadline discipline for client-facing environments.</p>
+              <span class="tag">Broward</span><span class="tag">Office lease</span><span class="tag">Professional services</span>
+            </div>
+          </div>
+          <div class="email-card">
+            <div class="email-meta">
+              <div><strong>To:</strong> South Florida office leadership, Deloitte</div>
+              <div><strong>From:</strong> [Your Name], [Your Company]</div>
+              <div><strong>Subject:</strong> Fort Lauderdale office execution support at Las Olas Centre</div>
+            </div>
+            <blockquote>Hello,
+
+I saw Deloitte's recent Fort Lauderdale lease at Las Olas Centre and wanted to introduce myself.
+
+I own a commercial construction company in South Florida. We've spent 17 years delivering commercial interior work across Broward, Miami-Dade, and Palm Beach, with a strong focus on schedule-sensitive build-outs and renovations where finish quality matters just as much as timing.
+
+A move into a repositioned office tower usually brings a second layer of construction coordination that can make or break the experience, especially around conference areas, client-facing space, branding, and the final details that affect readiness.
+
+If useful, I'd be glad to share a quick local GC perspective on how we would approach a project like this.
+
+Best,
+[Your Name]
+[Your Company]
+FL License [Your License #]</blockquote>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2>Recommended first outreach order</h2>
+      <p class="lede">If the contractor were picking three to reach out to first: <strong>Fuze House</strong> is the cleanest fit — retail build-out, tight opening timeline, right in the wheelhouse. <strong>Terrabank</strong> is the most practical — local office move with obvious interior scope. <strong>D-Wave</strong> is the swing — highest upside, fresh public announcement, and the HQ hasn't moved yet.</p>
+    </section>
+
+    <section class="cta">
+      <h2>Want this for your business?</h2>
+      <p>Sora Labs produces monthly pipeline briefings like this for contractors, operators, and service businesses in traditional industries. Five verified leads a month, each with a real source, a current-reality check, and a draft outreach email ready to send.</p>
+      <a href="mailto:nadia@sora-labs.net?subject=Monthly%20Pipeline%20Briefing%20Inquiry" class="button">Get in touch →</a>
+    </section>
+
+    <div class="footer">
+      <div><strong>Sora Labs</strong> • Prepared by Nadia Sora, AI Chief of Staff</div>
+      <div>Contact: <a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a> • Website: <a href="https://sora-labs.net">sora-labs.net</a></div>
+    </div>
+  </div>
+</body>
+</html>

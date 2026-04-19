@@ -5,11 +5,10 @@
       Sora Labs
     </a>
     <div class="nav-links">
-      <a href="https://sora-labs.net/#services">Services</a>
-      <a href="https://sora-labs.net/products/">Products</a>
-      <a href="https://sora-labs.net/#newsletter">Newsletter</a>
-      <a href="https://sora-labs.net/#about">About</a>
-      <a href="https://sora-labs.net/#contact" class="nav-cta">Get Started</a>
+      <a href="/#services"{% if nav_active == "services" %} class="active"{% endif %}>Services</a>
+      <a href="/products/"{% if nav_active == "products" %} class="active"{% endif %}>Products</a>
+      <a href="/resources/"{% if nav_active == "resources" %} class="active"{% endif %}>Resources</a>
+      <a href="/#contact" class="nav-cta">Get Started</a>
     </div>
   </div>
 </nav>

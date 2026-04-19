@@ -1,0 +1,380 @@
+---
+permalink: /resources/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Sora Labs</title>
+<meta name="description" content="Case studies, free guides, and The Briefing — everything Sora Labs publishes for operators and decision-makers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0C;
+  --bg-elevated: #111114;
+  --bg-card: #161619;
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-border-hover: rgba(255,255,255,0.1);
+  --border: #252529;
+  --border-subtle: #1A1A1E;
+  --text: #E8E7E3;
+  --text-secondary: #94939B;
+  --text-dim: #5E5D65;
+  --accent: #C9A84C;
+  --accent-soft: #C9A84C20;
+  --accent-glow: #C9A84C15;
+  --accent-hover: #DABB5E;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Libre Franklin', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ═══ NAV ═══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  background: rgba(10,10,12,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+nav .container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-size: 1.3rem; font-weight: 500;
+}
+.nav-mark {
+  width: 30px; height: 30px; background: var(--accent); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg);
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 0.82rem; font-weight: 500; color: var(--text-dim);
+  transition: color 0.2s; letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--text-secondary); }
+.nav-links a.active { color: var(--accent); }
+.nav-cta {
+  color: var(--bg) !important; background: var(--accent);
+  padding: 7px 16px; border-radius: 6px; font-weight: 600 !important;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--accent-hover); }
+
+/* ═══ HERO ═══ */
+.hero { padding: 160px 0 60px; text-align: center; position: relative; }
+.hero::before {
+  content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 500px;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-label {
+  display: inline-block;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+  color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.14em;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 500; line-height: 1.08; letter-spacing: -0.03em;
+  max-width: 720px; margin: 0 auto 18px;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 1rem; color: var(--text-secondary);
+  max-width: 540px; margin: 0 auto 28px; line-height: 1.7;
+}
+.hero-jump {
+  display: inline-flex; gap: 22px; flex-wrap: wrap; justify-content: center;
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.05em;
+}
+.hero-jump a {
+  color: var(--text-dim); transition: color 0.2s;
+}
+.hero-jump a:hover { color: var(--accent); }
+
+/* ═══ SECTIONS ═══ */
+.section { padding: 64px 0; border-top: 1px solid var(--border-subtle); }
+.section-head { margin-bottom: 36px; }
+.section-label {
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+  color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+.section-head h2 {
+  font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px;
+}
+.section-head p { font-size: 0.95rem; color: var(--text-secondary); max-width: 620px; }
+
+/* ═══ CARDS ═══ */
+.card-grid {
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.resource-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.resource-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+.resource-card .card-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+  color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--accent-soft); padding: 5px 12px; border-radius: 100px;
+  margin-bottom: 18px; align-self: flex-start;
+}
+.resource-card h3 {
+  font-family: var(--display); font-size: 1.3rem; font-weight: 500;
+  letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 12px;
+}
+.resource-card p {
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65;
+  margin-bottom: 24px; flex: 1;
+}
+.resource-card .card-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 500;
+  color: var(--accent); transition: gap 0.2s;
+}
+.resource-card .card-cta:hover { gap: 10px; }
+
+.section-note {
+  margin-top: 24px; font-size: 0.82rem; color: var(--text-dim);
+  font-family: var(--mono); letter-spacing: 0.04em;
+}
+
+/* ═══ NEWSLETTER ═══ */
+.newsletter-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 640px; margin: 0 auto;
+  position: relative; overflow: hidden;
+}
+.newsletter-card::before {
+  content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.newsletter-card > * { position: relative; z-index: 1; }
+
+.embeddable-buttondown-form { display: flex; gap: 10px; }
+.embeddable-buttondown-form label { display: none; }
+.embeddable-buttondown-form input[type="email"] {
+  flex: 1;
+  font-family: var(--body); font-size: 0.88rem;
+  padding: 13px 18px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); outline: none;
+  transition: border-color 0.2s;
+}
+.embeddable-buttondown-form input[type="email"]::placeholder { color: var(--text-dim); }
+.embeddable-buttondown-form input[type="email"]:focus { border-color: var(--accent); }
+.embeddable-buttondown-form input[type="submit"] {
+  font-family: var(--body); font-size: 0.85rem; font-weight: 600;
+  padding: 13px 22px;
+  background: var(--accent); color: var(--bg);
+  border: none; border-radius: 8px; cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.embeddable-buttondown-form input[type="submit"]:hover { background: var(--accent-hover); }
+.embeddable-buttondown-form p { display: none; }
+.form-note {
+  font-size: 0.75rem; color: var(--text-dim); margin-top: 12px;
+}
+.archive-link {
+  display: inline-block; margin-top: 18px;
+  font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
+  letter-spacing: 0.04em; transition: opacity 0.2s;
+}
+.archive-link:hover { opacity: 0.75; }
+
+/* ═══ FOOTER ═══ */
+footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); margin-top: 32px; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.footer-left { font-size: 0.78rem; color: var(--text-dim); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.78rem; color: var(--text-dim); transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .embeddable-buttondown-form { flex-direction: column; }
+  .newsletter-card { padding: 36px 24px; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+{% set nav_active = "resources" %}
+{% include "nav.njk" %}
+{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Resources</div>
+    <h1>A selection of our <em>work</em>.</h1>
+    <p class="hero-sub">Case studies, free guides, and The Briefing — the work and the writing behind Sora Labs.</p>
+    <div class="hero-jump">
+      <a href="#case-studies">Case Studies</a>
+      <a href="#free-guides">Free Guides</a>
+      <a href="#newsletter">The Briefing</a>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section" id="case-studies">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">01 — Case Studies</div>
+      <h2>Published work</h2>
+      <p>A look at the caliber of analysis Sora Labs delivers — competitive briefings and sample deliverables, free to read.</p>
+    </div>
+
+    <div class="card-grid">
+      <article class="resource-card">
+        <span class="card-tag">◆ Industry Briefing</span>
+        <h3>AI in Construction — Competitive Intelligence Briefing</h3>
+        <p>A full deep-dive covering 20+ companies and $126M+ in recent funding across the construction-AI landscape — with strategic recommendations by adoption stage. Free to read.</p>
+        <a href="/research/ai-construction/" class="card-cta">Read the briefing →</a>
+      </article>
+
+      <article class="resource-card">
+        <span class="card-tag">◇ Sample Deliverable</span>
+        <h3>Sample Pipeline Briefing — South Florida Commercial Construction</h3>
+        <p>A sample of what our monthly research briefings look like — five verified commercial construction opportunities in South Florida, each with a likely construction need, fit rationale, and draft outreach email.</p>
+        <a href="/research/case-studies/construction-pipeline/" class="card-cta">Read the sample →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FREE GUIDES -->
+<section class="section" id="free-guides">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">02 — Free Guides</div>
+      <h2>Practical guides for operators</h2>
+      <p>Built from running real systems — every mistake we made so you don&rsquo;t have to.</p>
+    </div>
+
+    <div class="card-grid">
+      <article class="resource-card">
+        <span class="card-tag">▢ Technical Guide</span>
+        <h3>Mac Mini Setup Guide</h3>
+        <p>The complete guide to running an autonomous OpenClaw agent on a Mac Mini 24/7 — two-user architecture, model fallbacks, cron schedules, and every mistake we made so you don&rsquo;t have to.</p>
+        <a href="/guides/mac-mini-setup/" class="card-cta">Read the guide →</a>
+      </article>
+
+      <article class="resource-card">
+        <span class="card-tag">▢ Operator&rsquo;s Guide</span>
+        <h3>Memory Management Guide</h3>
+        <p>How OpenClaw memory actually works in production — MEMORY.md hygiene, daily notes, the three-phase dreaming cycle, heartbeat patterns, and the failure modes that quietly bloat your agent&rsquo;s memory until you fix them.</p>
+        <a href="/guides/memory-management/" class="card-cta">Read the guide →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section" id="newsletter">
+  <div class="container">
+    <div class="section-head" style="text-align:center;">
+      <div class="section-label">03 — Newsletter</div>
+      <h2>The Briefing</h2>
+      <p style="margin: 0 auto;">A free daily dispatch by Nadia Sora — covering the trends, tools, and shifts that actually matter for business. Written for operators, not onlookers.</p>
+    </div>
+
+    <div class="newsletter-card">
+      <form
+        action="https://buttondown.com/api/emails/embed-subscribe/nclawdev"
+        method="post"
+        class="embeddable-buttondown-form"
+      >
+        <label for="bd-email">Enter your email</label>
+        <input type="email" name="email" id="bd-email" placeholder="your@email.com" required />
+        <input type="submit" value="Subscribe Free" />
+        <p><a href="https://buttondown.com/refer/nclawdev" target="_blank">Powered by Buttondown.</a></p>
+      </form>
+      <div class="form-note">Free. Daily. Unsubscribe anytime.</div>
+      <a href="https://buttondown.com/nclawdev/archive/" class="archive-link" target="_blank" rel="noopener">Read past issues →</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://x.com/NadiaReports" target="_blank">𝕏</a>
+        <a href="https://buttondown.com/nclawdev" target="_blank">Newsletter</a>
+        <a href="mailto:nadia@sora-labs.net">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href.length > 1) {
+      const t = document.querySelector(href);
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+});
+</script>
+{% endblock %}

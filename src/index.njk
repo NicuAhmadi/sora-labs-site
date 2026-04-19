@@ -99,6 +99,7 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   transition: color 0.2s; letter-spacing: 0.02em;
 }
 .nav-links a:hover { color: var(--text-secondary); }
+.nav-links a.active { color: var(--accent); }
 .nav-cta {
   color: var(--bg) !important; background: var(--accent);
   padding: 7px 16px; border-radius: 6px; font-weight: 600 !important;
@@ -285,36 +286,6 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   text-transform: uppercase; letter-spacing: 0.06em;
 }
 
-/* ── TILE: Website Build ── */
-.tile-website { display: flex; flex-direction: column; }
-.tile-website::before {
-  content: ''; position: absolute; top: -30px; right: -30px;
-  width: 180px; height: 180px;
-  background: radial-gradient(circle, var(--green-soft) 0%, transparent 70%);
-  pointer-events: none;
-}
-.tile-website .tile-title { font-size: 1.45rem; }
-.website-visual { margin-top: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; justify-content: flex-end; }
-.review-badge {
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--bg); border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm); padding: 12px 16px;
-}
-.review-stars { color: var(--accent); font-size: 0.85rem; letter-spacing: 2px; }
-.review-text { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
-.review-count { font-family: var(--mono); font-size: 0.75rem; color: var(--text-secondary); font-weight: 500; }
-.map-hint {
-  display: flex; align-items: center; gap: 8px;
-  background: var(--bg); border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm); padding: 10px 16px;
-  font-size: 0.78rem; color: var(--text-dim);
-}
-.map-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--green); box-shadow: 0 0 8px var(--green);
-  flex-shrink: 0;
-}
-
 /* ── TILE: Weekly Digest ── */
 .tile-digest { display: flex; flex-direction: column; }
 .tile-digest::before {
@@ -323,7 +294,13 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   background: radial-gradient(circle, var(--coral-soft) 0%, transparent 70%);
   pointer-events: none;
 }
-.tile-digest .tile-title { font-size: 1.45rem; }
+.tile-digest .tile-title { font-size: 1.6rem; }
+.tile-digest .tile-desc { max-width: 540px; }
+.digest-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap; margin-bottom: 24px;
+}
+.digest-cta { padding-top: 8px; white-space: nowrap; }
 .digest-tag {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
@@ -331,18 +308,24 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   background: var(--coral-soft); padding: 5px 12px; border-radius: 100px;
   margin-bottom: 16px; align-self: flex-start;
 }
-.digest-preview { margin-top: auto; display: flex; flex-direction: column; gap: 6px; }
+.digest-preview {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
 .digest-item {
   display: flex; align-items: center; gap: 10px;
   background: var(--bg); border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm); padding: 10px 14px;
-  font-size: 0.78rem; color: var(--text-secondary);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  font-size: 0.82rem; color: var(--text-secondary);
 }
-.digest-icon { font-size: 0.9rem; }
+.digest-icon { font-size: 0.95rem; }
+@media (max-width: 768px) {
+  .digest-preview { grid-template-columns: 1fr; }
+}
 
 /* ── TILE: Newsletter ── */
 .tile-news {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 48px 32px;
 }
 .tile-news::before {
   content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
@@ -350,10 +333,17 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
   pointer-events: none;
 }
+.news-info { max-width: 520px; width: 100%; position: relative; z-index: 1; }
 .news-info .tile-title { font-size: 1.8rem; margin-bottom: 12px; }
 .news-desc {
-  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;
+  font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px;
 }
+.news-archive-link {
+  display: inline-block; margin-top: 18px;
+  font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
+  letter-spacing: 0.04em; transition: opacity 0.2s;
+}
+.news-archive-link:hover { opacity: 0.75; }
 
 /* Buttondown form — styled to match */
 .embeddable-buttondown-form { display: flex; gap: 10px; }
@@ -383,26 +373,6 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .form-note {
   font-size: 0.75rem; color: var(--text-dim); margin-top: 10px;
 }
-
-/* Newsletter preview */
-.news-preview {
-  background: var(--bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);
-  padding: 24px; position: relative; z-index: 1;
-}
-.news-preview-header {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border-subtle);
-}
-.news-preview-title { font-family: var(--display); font-size: 1rem; font-weight: 500; }
-.news-preview-date { font-family: var(--mono); font-size: 0.65rem; color: var(--text-dim); }
-.news-preview-item { padding: 10px 0; border-bottom: 1px solid var(--border-subtle); }
-.news-preview-item:last-child { border-bottom: none; }
-.news-preview-label {
-  font-family: var(--mono); font-size: 0.6rem; font-weight: 500;
-  text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--accent); margin-bottom: 3px;
-}
-.news-preview-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
 
 /* ═══ FEATURED RESEARCH ═══ */
 .featured-research {
@@ -464,6 +434,15 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   background: var(--accent);
   color: var(--bg);
 }
+.featured-research-secondary {
+  text-align: center; margin-top: 24px;
+}
+.featured-research-secondary a {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--text-secondary); letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.featured-research-secondary a:hover { color: var(--accent); }
 @media (max-width: 768px) {
   .featured-research-inner {
     flex-direction: column;
@@ -496,6 +475,40 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .metric-label {
   font-family: var(--mono); font-size: 0.65rem; color: var(--text-dim);
   text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* ═══ PRODUCTS MENTION ═══ */
+.products-mention { padding: 64px 0; border-top: 1px solid var(--border-subtle); }
+.products-mention-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 36px 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+}
+.products-mention-text { max-width: 640px; }
+.products-mention-label {
+  font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px;
+}
+.products-mention-text h3 {
+  font-family: var(--display); font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 12px;
+}
+.products-mention-text h3 em { font-style: italic; color: var(--accent); }
+.products-mention-text p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+.products-mention-link a {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em;
+  color: var(--accent); padding: 12px 24px;
+  border: 1px solid var(--accent); border-radius: var(--radius-sm);
+  white-space: nowrap; transition: background 0.2s, color 0.2s;
+}
+.products-mention-link a:hover { background: var(--accent); color: var(--bg); }
+@media (max-width: 768px) {
+  .products-mention-inner { flex-direction: column; padding: 28px 22px; text-align: center; }
+  .products-mention-link { width: 100%; }
+  .products-mention-link a { width: 100%; justify-content: center; }
 }
 
 /* ═══ CTA ═══ */
@@ -532,7 +545,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 @media (max-width: 768px) {
   .nav-links a:not(.nav-cta) { display: none; }
   .tile-hero, .tile-medium, .tile-wide, .tile-full { grid-column: span 12; grid-row: auto; }
-  .tile-news { grid-template-columns: 1fr; gap: 32px; }
+  .tile-news { padding: 36px 24px; }
   .about-inner { grid-template-columns: 1fr; gap: 40px; }
   .about-metrics { order: -1; }
   .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
@@ -550,6 +563,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 {% endblock %}
 
 {% block nav %}
+{% set nav_active = "services" %}
 {% include "nav.njk" %}
 {% endblock %}
 
@@ -627,54 +641,29 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
         </div>
       </div>
 
-      <!-- TILE 3: Website Build -->
-      <div class="tile tile-wide tile-website anim d4">
-        <div>
-          <h3 class="tile-title">Local Website Builds</h3>
-          <div class="tile-price">Custom quote</div>
-          <p class="tile-desc">Clean, professional, mobile-friendly websites for local businesses. Services, hours, location, reviews, contact — everything your customers need.</p>
-        </div>
-        <div class="website-visual">
-          <div class="review-badge">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <div class="review-text">Google Reviews</div>
-            </div>
-            <div class="review-count">247 reviews</div>
+      <!-- TILE 3: Weekly Industry Digest (full-width) -->
+      <div class="tile tile-full tile-digest anim d4">
+        <div class="digest-head">
+          <div>
+            <div class="digest-tag">↻ Subscription</div>
+            <h3 class="tile-title">Weekly Industry Digest</h3>
+            <div class="tile-price">$29 / month</div>
+            <p class="tile-desc">What changed in your industry this week, why it matters, and what to do about it. Plain language, tailored to your sector.</p>
           </div>
-          <div class="map-hint">
-            <span class="map-dot"></span>
-            Your business, on the map
-          </div>
-        </div>
-        <div class="tile-bottom">
-          <a href="mailto:nadia@sora-labs.net?subject=Website%20Build%20Inquiry" class="tile-cta">Let's Talk →</a>
-        </div>
-      </div>
-
-      <!-- TILE 4: Weekly Digest -->
-      <div class="tile tile-wide tile-digest anim d5">
-        <div>
-          <div class="digest-tag">↻ Subscription</div>
-          <h3 class="tile-title">Weekly Industry Digest</h3>
-          <div class="tile-price">$29 / month</div>
-          <p class="tile-desc">What changed in your industry this week, why it matters, and what to do about it. Plain language, tailored to your sector.</p>
+          <a href="https://buy.stripe.com/cNidR83Hu2Br7L6fVBak001" class="tile-cta digest-cta">Subscribe →</a>
         </div>
         <div class="digest-preview">
-          <div class="digest-item"><span class="digest-icon">📊</span> Industry shifts & market moves</div>
+          <div class="digest-item"><span class="digest-icon">📊</span> Industry shifts &amp; market moves</div>
           <div class="digest-item"><span class="digest-icon">⚡</span> What your competitors adopted this week</div>
           <div class="digest-item"><span class="digest-icon">🎯</span> One action item you can take Monday</div>
-        </div>
-        <div class="tile-bottom">
-          <a href="https://buy.stripe.com/cNidR83Hu2Br7L6fVBak001" class="tile-cta">Subscribe →</a>
         </div>
       </div>
 
       <!-- TILE 5: Newsletter (Full Width) -->
-      <div class="tile tile-full tile-news anim d6" id="newsletter">
+      <div class="tile tile-full tile-news anim d5" id="newsletter">
         <div class="news-info">
           <h3 class="tile-title">The Briefing</h3>
-          <p class="news-desc">A free weekly dispatch by Nadia Sora — covering the trends, tools, and shifts that actually matter for business. Written for operators, not onlookers.</p>
+          <p class="news-desc">A free daily dispatch by Nadia Sora — covering the trends, tools, and shifts that actually matter for business. Written for operators, not onlookers.</p>
           <form
             action="https://buttondown.com/api/emails/embed-subscribe/nclawdev"
             method="post"
@@ -685,25 +674,8 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
             <input type="submit" value="Subscribe Free" />
             <p><a href="https://buttondown.com/refer/nclawdev" target="_blank">Powered by Buttondown.</a></p>
           </form>
-          <div class="form-note">Free. Weekly. Unsubscribe anytime.</div>
-        </div>
-        <div class="news-preview">
-          <div class="news-preview-header">
-            <span class="news-preview-title">Latest Issue</span>
-            <span class="news-preview-date">Weekly</span>
-          </div>
-          <div class="news-preview-item">
-            <div class="news-preview-label">Lead Story</div>
-            <div class="news-preview-text">AI adoption in construction doubled in 12 months — from 17% to 38% of contractors reporting measurable impact. We broke down the 16 companies driving it and where the $126M in fresh funding is going.</div>
-          </div>
-          <div class="news-preview-item">
-            <div class="news-preview-label">Market Signal</div>
-            <div class="news-preview-text">Back-office AI for specialty trades is the most underhyped category in contech. Trayd raised a $10M Series A in three weeks. Payra's customers cut past-due invoices by 75%. The margin gains are quiet but real.</div>
-          </div>
-          <div class="news-preview-item">
-            <div class="news-preview-label">Dispatch Notes</div>
-            <div class="news-preview-text">This week we published our first full industry deep-dive: AI in Construction — Who's Winning, Who's Funded, and What It Means for Your Firm. It's free, it's detailed, and it's the kind of analysis we do for subscribers every week at a smaller scale.</div>
-          </div>
+          <div class="form-note">Free. Daily. Unsubscribe anytime.</div>
+          <a href="https://buttondown.com/nclawdev/archive/" class="news-archive-link" target="_blank" rel="noopener">Read past issues →</a>
         </div>
       </div>
 
@@ -718,11 +690,14 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
       <div class="featured-research-text">
         <div class="featured-research-label">See Our Work</div>
         <h3>AI in Construction — Full Competitive Intelligence Briefing</h3>
-        <p>We published a full deep-dive covering 16 companies, $126M in recent funding, and strategic recommendations by adoption stage. Free to read.</p>
+        <p>We published a full deep-dive covering 20+ companies, $126M+ in recent funding, and strategic recommendations by adoption stage. Free to read.</p>
       </div>
       <div class="featured-research-link">
-        <a href="https://sora-labs.net/research/ai-construction/index.html">Read the briefing &rarr;</a>
+        <a href="/research/ai-construction/">Read the briefing &rarr;</a>
       </div>
+    </div>
+    <div class="featured-research-secondary">
+      <a href="/resources/#case-studies">See all our case studies &rarr;</a>
     </div>
   </div>
 </section>
@@ -742,7 +717,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
           <div class="metric-label">Audit Turnaround</div>
         </div>
         <div class="metric anim d3">
-          <div class="metric-val">Weekly</div>
+          <div class="metric-val">Daily</div>
           <div class="metric-label">Briefing Cadence</div>
         </div>
         <div class="metric anim d4">
@@ -753,6 +728,22 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
           <div class="metric-val">100%</div>
           <div class="metric-label">Custom Research</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS MENTION -->
+<section class="products-mention">
+  <div class="container">
+    <div class="products-mention-inner">
+      <div class="products-mention-text">
+        <div class="products-mention-label">Products</div>
+        <h3>We also build products for operators<br>running <em>AI agents</em>.</h3>
+        <p>Sora Labs publishes tools for people running autonomous AI agents in production — The Autonomous Stack and Prospector. Tested on real infrastructure, not in a sandbox.</p>
+      </div>
+      <div class="products-mention-link">
+        <a href="/products/">See Products &rarr;</a>
       </div>
     </div>
   </div>

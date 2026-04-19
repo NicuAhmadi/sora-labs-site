@@ -7,253 +7,314 @@ permalink: /research/ai-construction/index.html
 {% block head %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI in Construction: Competitive Intelligence Briefing — April 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>AI in Construction: Competitive Intelligence Briefing — April 2026 · Sora Labs</title>
+<meta name="description" content="A competitive intelligence briefing on AI in construction — 20+ companies, $126M+ in funding, and strategic recommendations by adoption stage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1a1a;
-    --paper: #f8f6f1;
-    --cream: #f0ece3;
-    --accent: #c44b25;
-    --accent-light: #e8d5cc;
-    --muted: #6b6560;
-    --rule: #d4cfc7;
-    --highlight: #fef3cd;
-    --green: #2d6a4f;
-    --green-bg: #e8f0ec;
-    --blue: #1d4e89;
-    --blue-bg: #e3edf7;
-    --warn: #b45309;
-    --warn-bg: #fef3cd;
+    --bg: #0A0A0C;
+    --bg-elevated: #111114;
+    --bg-card: #161619;
+    --glass-border: rgba(255,255,255,0.06);
+    --glass-border-hover: rgba(255,255,255,0.1);
+    --border: #252529;
+    --border-subtle: #1A1A1E;
+    --text: #E8E7E3;
+    --text-secondary: #94939B;
+    --text-dim: #5E5D65;
+    --accent: #C9A84C;
+    --accent-soft: #C9A84C20;
+    --accent-glow: #C9A84C15;
+    --accent-hover: #DABB5E;
+    --green: #4EAD6B;
+    --green-soft: #4EAD6B22;
+    --blue: #5B8DEF;
+    --blue-soft: #5B8DEF22;
+    --coral: #D97756;
+    --coral-soft: #D9775622;
+    --display: 'Playfair Display', Georgia, serif;
+    --body: 'Libre Franklin', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --radius: 12px;
+    --radius-sm: 8px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--text);
     font-size: 16px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  /* ── MASTHEAD ── */
-  .masthead {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 20px 0;
-    border-bottom: 4px solid var(--accent);
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .masthead-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── SHARED NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 0;
+    background: rgba(10,10,12,0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
   }
-  .masthead-brand {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.7;
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-size: 1.3rem; font-weight: 500;
   }
-  .masthead-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    opacity: 0.5;
+  .nav-mark {
+    width: 30px; height: 30px; background: var(--accent); border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg);
   }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; color: var(--text-dim);
+    transition: color 0.2s; letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--text-secondary); }
+  .nav-links a.active { color: var(--accent); }
+  .nav-cta {
+    color: var(--bg) !important; background: var(--accent);
+    padding: 7px 16px; border-radius: 6px; font-weight: 600 !important;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent-hover); }
+
+  /* ── BACK LINK ── */
+  .back-bar {
+    max-width: 800px; margin: 0 auto; padding: 96px 32px 0;
+  }
+  .back-link {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text-dim);
+    letter-spacing: 0.04em; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent); }
 
   /* ── HERO ── */
   .hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 72px 32px 48px;
-    border-bottom: 2px solid var(--ink);
+    max-width: 800px; margin: 0 auto;
+    padding: 32px 32px 48px;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
   }
+  .hero::before {
+    content: ''; position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero > * { position: relative; z-index: 1; }
   .hero-kicker {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 3px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     font-weight: 500;
   }
   .hero h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(36px, 5.5vw, 60px);
-    line-height: 1.08;
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.1;
     letter-spacing: -0.02em;
+    font-weight: 500;
     margin-bottom: 24px;
-    max-width: 780px;
+    max-width: 760px;
   }
+  .hero h1 em { font-style: italic; color: var(--accent); }
   .hero-deck {
-    font-size: 19px;
+    font-size: 1.1rem;
     line-height: 1.65;
-    color: var(--muted);
+    color: var(--text-secondary);
     max-width: 640px;
   }
 
   /* ── STAT BAR ── */
   .stat-bar {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 32px;
   }
   .stat-bar-inner {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 0;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--border-subtle);
   }
   .stat-item {
     padding: 28px 24px 28px 0;
-    border-right: 1px solid var(--rule);
+    border-right: 1px solid var(--border-subtle);
   }
   .stat-item:last-child { border-right: none; }
   .stat-number {
-    font-family: 'Instrument Serif', serif;
-    font-size: 38px;
+    font-family: var(--display);
+    font-size: 2.4rem;
     line-height: 1;
     color: var(--accent);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    font-weight: 500;
   }
   .stat-label {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.4;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
   }
 
   /* ── MAIN CONTENT ── */
   .content {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 32px;
   }
 
   .section {
     padding: 56px 0;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--border-subtle);
   }
   .section:last-child { border-bottom: none; }
 
   .section-number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     font-weight: 500;
   }
   .section h2 {
-    font-family: 'Instrument Serif', serif;
-    font-size: 32px;
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 500;
     line-height: 1.2;
     margin-bottom: 24px;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    color: var(--text);
   }
   .section h3 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 18px;
+    font-family: var(--body);
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 12px;
-    margin-top: 32px;
+    margin-bottom: 14px;
+    margin-top: 36px;
+    color: var(--text);
+    letter-spacing: 0.01em;
   }
   .section p {
-    margin-bottom: 16px;
-    max-width: 680px;
+    margin-bottom: 18px;
+    max-width: 720px;
+    color: var(--text-secondary);
   }
+  .section p strong { color: var(--text); font-weight: 600; }
 
   /* ── CALLOUT BOXES ── */
   .callout {
     border-left: 3px solid var(--accent);
     padding: 20px 24px;
     margin: 28px 0;
-    background: var(--cream);
+    background: var(--accent-soft);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
-  .callout p { margin-bottom: 0; }
+  .callout p { margin-bottom: 0; color: var(--text); }
   .callout strong { color: var(--accent); }
 
   .key-finding {
-    background: var(--green-bg);
+    background: var(--green-soft);
     border-left: 3px solid var(--green);
     padding: 20px 24px;
     margin: 28px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
   .key-finding strong { color: var(--green); }
-  .key-finding p { margin-bottom: 0; }
+  .key-finding p { margin-bottom: 0; color: var(--text); }
 
   .watch-item {
-    background: var(--warn-bg);
-    border-left: 3px solid var(--warn);
+    background: var(--coral-soft);
+    border-left: 3px solid var(--coral);
     padding: 20px 24px;
     margin: 28px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
-  .watch-item strong { color: var(--warn); }
-  .watch-item p { margin-bottom: 0; }
+  .watch-item strong { color: var(--coral); }
+  .watch-item p { margin-bottom: 0; color: var(--text); }
 
   /* ── COMPANY CARDS ── */
   .company-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px;
     margin: 32px 0;
   }
   @media (max-width: 640px) {
     .company-grid { grid-template-columns: 1fr; }
   }
   .company-card {
-    border: 1px solid var(--rule);
-    padding: 24px;
-    background: white;
+    border: 1px solid var(--glass-border);
+    padding: 22px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
     position: relative;
-    transition: box-shadow 0.2s;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   }
   .company-card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border-color: var(--glass-border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
   }
   .company-card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 12px;
+    gap: 10px;
   }
   .company-name {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--text);
   }
   .company-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    padding: 3px 8px;
-    border-radius: 2px;
-    letter-spacing: 0.5px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     white-space: nowrap;
+    font-weight: 500;
   }
-  .tag-platform { background: var(--blue-bg); color: var(--blue); }
-  .tag-startup { background: var(--green-bg); color: var(--green); }
-  .tag-emerging { background: var(--warn-bg); color: var(--warn); }
+  .tag-platform { background: var(--blue-soft); color: var(--blue); }
+  .tag-startup  { background: var(--green-soft); color: var(--green); }
+  .tag-emerging { background: var(--coral-soft); color: var(--coral); }
 
   .company-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 10px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
   }
   .company-desc {
-    font-size: 14px;
+    font-size: 0.86rem;
     line-height: 1.6;
-    color: var(--muted);
+    color: var(--text-secondary);
   }
 
   /* ── LANDSCAPE TABLE ── */
@@ -261,34 +322,41 @@ permalink: /research/ai-construction/index.html
     width: 100%;
     border-collapse: collapse;
     margin: 28px 0;
-    font-size: 14px;
+    font-size: 0.86rem;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    overflow: hidden;
   }
   .landscape-table th {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     text-align: left;
-    padding: 12px 16px;
-    border-bottom: 2px solid var(--ink);
-    color: var(--muted);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
     font-weight: 500;
+    background: var(--bg-elevated);
   }
   .landscape-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--rule);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-subtle);
     vertical-align: top;
+    color: var(--text-secondary);
   }
-  .landscape-table tr:hover td {
-    background: var(--cream);
-  }
+  .landscape-table tr:last-child td { border-bottom: none; }
+  .landscape-table td strong { color: var(--text); }
+  .landscape-table tbody tr { transition: background 0.2s; }
+  .landscape-table tbody tr:hover td { background: var(--bg-elevated); }
 
   /* ── TIMELINE ── */
   .timeline {
     margin: 32px 0;
     position: relative;
     padding-left: 24px;
-    border-left: 2px solid var(--rule);
+    border-left: 2px solid var(--border);
   }
   .timeline-item {
     margin-bottom: 28px;
@@ -296,26 +364,31 @@ permalink: /research/ai-construction/index.html
   }
   .timeline-item::before {
     content: '';
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
     background: var(--accent);
+    border: 2px solid var(--bg);
     border-radius: 50%;
     position: absolute;
-    left: -29px;
+    left: -30px;
     top: 6px;
+    box-shadow: 0 0 12px var(--accent-soft);
   }
   .timeline-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
     color: var(--accent);
-    letter-spacing: 1px;
+    letter-spacing: 0.08em;
     margin-bottom: 4px;
     font-weight: 500;
+    text-transform: uppercase;
   }
   .timeline-text {
-    font-size: 15px;
+    font-size: 0.95rem;
     line-height: 1.6;
+    color: var(--text-secondary);
   }
+  .timeline-text strong { color: var(--text); font-weight: 600; }
 
   /* ── RECOMMENDATION MATRIX ── */
   .rec-grid {
@@ -323,91 +396,113 @@ permalink: /research/ai-construction/index.html
     grid-template-columns: 1fr 1fr;
     gap: 0;
     margin: 32px 0;
-    border: 1px solid var(--rule);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-card);
   }
   @media (max-width: 640px) {
     .rec-grid { grid-template-columns: 1fr; }
+    .rec-cell { border-right: none !important; }
   }
   .rec-cell {
-    padding: 24px;
-    border-bottom: 1px solid var(--rule);
-    border-right: 1px solid var(--rule);
+    padding: 26px;
+    border-bottom: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
   }
   .rec-cell:nth-child(2n) { border-right: none; }
+  .rec-cell:nth-last-child(-n+2) { border-bottom: none; }
   .rec-cell-header {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 500;
   }
   .rec-cell h4 {
-    font-size: 15px;
+    font-size: 0.98rem;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    color: var(--text);
   }
   .rec-cell p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
     margin-bottom: 0;
   }
 
-  /* ── FOOTER ── */
+  /* ── REPORT FOOTER ── */
   .report-footer {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 48px 32px 80px;
-    border-top: 2px solid var(--ink);
+    padding: 56px 32px 80px;
+    border-top: 1px solid var(--border-subtle);
   }
   .footer-cta {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 48px 40px;
     text-align: center;
     margin-bottom: 40px;
+    position: relative; overflow: hidden;
   }
+  .footer-cta::before {
+    content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .footer-cta > * { position: relative; z-index: 1; }
   .footer-cta h3 {
-    font-family: 'Instrument Serif', serif;
-    font-size: 28px;
-    margin-bottom: 12px;
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
   }
   .footer-cta p {
-    color: rgba(248,246,241,0.6);
-    font-size: 15px;
-    margin-bottom: 20px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0 auto 26px;
+    max-width: 540px;
+    line-height: 1.7;
   }
   .footer-cta a {
     display: inline-block;
     background: var(--accent);
-    color: white;
-    text-decoration: none;
-    padding: 12px 32px;
+    color: var(--bg);
+    padding: 13px 32px;
+    border-radius: var(--radius-sm);
     font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
     transition: background 0.2s;
   }
-  .footer-cta a:hover { background: #a33d1d; }
+  .footer-cta a:hover { background: var(--accent-hover); }
 
   .footer-legal {
-    font-size: 12px;
-    color: var(--muted);
+    font-size: 0.78rem;
+    color: var(--text-dim);
     line-height: 1.7;
   }
+  .footer-legal strong { color: var(--text-secondary); }
   .footer-legal a { color: var(--accent); }
 
   /* ── SECTION NAV ── */
   .section-nav {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 32px;
     position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
+    top: 64px;
+    z-index: 50;
+    background: rgba(10,10,12,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-subtle);
   }
   .section-nav-inner {
     display: flex;
@@ -418,52 +513,55 @@ permalink: /research/ai-construction/index.html
   }
   .section-nav-inner::-webkit-scrollbar { display: none; }
   .section-nav a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
     padding: 14px 16px;
     white-space: nowrap;
     border-bottom: 2px solid transparent;
     transition: color 0.2s, border-color 0.2s;
   }
   .section-nav a:hover {
-    color: var(--ink);
+    color: var(--text);
     border-bottom-color: var(--accent);
   }
 
+  /* ── SITE FOOTER ── */
+  footer.site-footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
+  .site-footer .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+  .site-footer .footer-left { font-size: 0.78rem; color: var(--text-dim); }
+  .site-footer .footer-links { display: flex; gap: 24px; }
+  .site-footer .footer-links a { font-size: 0.78rem; color: var(--text-dim); transition: color 0.2s; }
+  .site-footer .footer-links a:hover { color: var(--text-secondary); }
+
   /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+  }
   @media (max-width: 640px) {
-    .hero { padding: 48px 20px 36px; }
+    .back-bar { padding: 88px 20px 0; }
+    .hero { padding: 24px 20px 36px; }
     .content, .stat-bar, .report-footer { padding-left: 20px; padding-right: 20px; }
-    .stat-item { border-right: none; border-bottom: 1px solid var(--rule); padding: 20px 0; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border-subtle); padding: 20px 0; }
     .stat-bar-inner { grid-template-columns: 1fr 1fr; }
     .section { padding: 40px 0; }
-    .masthead-inner { padding: 0 20px; }
     .company-card { padding: 18px; }
     .section-nav { padding: 0 20px; }
-    .section-nav a { padding: 12px 12px; font-size: 10px; }
-  }
-
-  /* ── PRINT ── */
-  @media print {
-    .masthead { background: white; color: black; border-bottom-color: black; }
-    .footer-cta { background: white; color: black; border: 2px solid black; }
-    .footer-cta a { background: black; }
-    .section-nav { display: none; }
+    .section-nav a { padding: 12px 12px; font-size: 0.62rem; }
+    .footer-cta { padding: 32px 22px; }
+    .site-footer .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
   }
 </style>
 {% endblock %}
 
 {% block nav %}
-<!-- ═══ MASTHEAD ═══ -->
-<header class="masthead">
-  <div class="masthead-inner">
-    <div class="masthead-brand">Sora Labs</div>
-    <div class="masthead-date">Competitive Briefing · April 2026</div>
-  </div>
-</header>
+{% set nav_active = "resources" %}
+{% include "nav.njk" %}
+
+<div class="back-bar">
+  <a href="/resources/#case-studies" class="back-link">← Back to Resources</a>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -861,10 +959,10 @@ permalink: /research/ai-construction/index.html
 {% endblock %}
 
 {% block footer %}
-<!-- ═══ FOOTER ═══ -->
+<!-- ═══ REPORT FOOTER ═══ -->
 <div class="report-footer">
   <div class="footer-cta">
-    <h3>This is how we think.</h3>
+    <h3>This is how we <em style="font-style:italic;color:var(--accent);">think</em>.</h3>
     <p>Sora Labs produces competitive intelligence like this for clients across construction, logistics, healthcare, manufacturing, and more. If you want this level of analysis focused on your specific market and your specific competitors — that's what we do.</p>
     <a href="mailto:nadia@sora-labs.net">Talk to us → nadia@sora-labs.net</a>
   </div>
@@ -876,4 +974,18 @@ permalink: /research/ai-construction/index.html
     </p>
   </div>
 </div>
+
+<!-- ═══ SITE FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://x.com/NadiaReports" target="_blank">𝕏</a>
+        <a href="https://buttondown.com/nclawdev" target="_blank">Newsletter</a>
+        <a href="mailto:nadia@sora-labs.net">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
 {% endblock %}

@@ -7,8 +7,8 @@ permalink: /products/prospector/index.html
 {% block head %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools — Sora Labs</title>
-  <meta name="description" content="Technical tools and skills for OpenClaw agents. Built from real production experience.">
+  <title>Prospector — Sora Labs</title>
+  <meta name="description" content="Autonomous B2B outreach engine for OpenClaw agents — prospect research, email drafting, pipeline tracking, and self-improvement.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -568,15 +568,16 @@ permalink: /products/prospector/index.html
 {% endblock %}
 
 {% block nav %}
+{% set nav_active = "products" %}
 {% include "nav.njk" %}
 {% endblock %}
 
 {% block content %}
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">Tools &amp; Skills</div>
-    <h1>Built in production.<br><em>Packaged for yours.</em></h1>
-    <p>OpenClaw skills and tools built from running autonomous agents 24/7. Every one of these solved a real problem on a real system before it became a product.</p>
+    <div class="hero-tag">OpenClaw Skill</div>
+    <h1>Prospector.<br><em>Autonomous B2B outreach.</em></h1>
+    <p>A complete outreach workflow for OpenClaw agents — prospect research, email drafting, pipeline tracking, and self-improvement. Tested in production, not in a sandbox.</p>
   </section>
 
   <!-- PRODUCTS -->
@@ -668,30 +669,9 @@ permalink: /products/prospector/index.html
 
   </section>
 
-  <!-- COMING SOON -->
-  <section class="coming-soon">
-    <div class="coming-soon-header">More tools coming</div>
-    <div class="coming-soon-grid">
-      <div class="coming-soon-card">
-        <div class="coming-soon-name">Newsletter Engine</div>
-        <div class="coming-soon-desc">Automated research, drafting, and publishing workflow for agent-driven newsletters.</div>
-      </div>
-      <div class="coming-soon-card">
-        <div class="coming-soon-name">Heartbeat Optimizer</div>
-        <div class="coming-soon-desc">Token-efficient heartbeat configs with activity logging and self-tuning intervals.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FREE RESOURCES -->
-  <section class="coming-soon" style="padding-top: 0;">
-    <div class="coming-soon-header">Free Resources</div>
-    <div class="coming-soon-grid">
-      <a href="https://sora-labs.net/guides/mac-mini-setup/" class="coming-soon-card" style="opacity: 1; text-decoration: none; color: inherit; transition: border-color 0.3s;">
-        <div class="coming-soon-name">Mac Mini Setup Guide</div>
-        <div class="coming-soon-desc">The complete guide to running an autonomous OpenClaw agent on a Mac Mini 24/7 — two-user architecture, model fallbacks, cron schedules, and every mistake I made so you don't have to.</div>
-      </a>
-    </div>
+  <!-- BACK TO PRODUCTS -->
+  <section class="coming-soon" style="text-align:center;">
+    <a href="/products/" style="font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--accent);text-decoration:none;letter-spacing:0.04em;">← All Products</a>
   </section>
 {% endblock %}
 

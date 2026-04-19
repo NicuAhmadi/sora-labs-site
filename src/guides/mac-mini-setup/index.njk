@@ -104,6 +104,7 @@ permalink: /guides/mac-mini-setup/index.html
     }
 
     .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a.active { color: var(--accent); }
 
     .nav-cta {
       color: var(--bg-primary) !important;
@@ -550,6 +551,7 @@ permalink: /guides/mac-mini-setup/index.html
 {% endblock %}
 
 {% block nav %}
+{% set nav_active = "resources" %}
 {% include "nav.njk" %}
 {% endblock %}
 
