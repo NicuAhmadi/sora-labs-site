@@ -1,0 +1,4007 @@
+[
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "C0837",
+    "districtName": "ARISE High",
+    "awardAmount": 278291,
+    "matchObligation": 556582,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "10017",
+    "districtName": "Alameda County Office of Education",
+    "awardAmount": 230148,
+    "matchObligation": 460296,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "61119",
+    "districtName": "Alameda Unified",
+    "awardAmount": 430698,
+    "matchObligation": 861396,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "61127",
+    "districtName": "Albany City Unified",
+    "awardAmount": 95436,
+    "matchObligation": 190872,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "61143",
+    "districtName": "Berkeley Unified",
+    "awardAmount": 479511,
+    "matchObligation": 959022,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "40428",
+    "districtName": "Eden Area ROP JPA",
+    "awardAmount": 2496858,
+    "matchObligation": 4993716,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "C1449",
+    "districtName": "LPS Oakland R & D Campus",
+    "awardAmount": 74979,
+    "matchObligation": 149958,
+    "round": "11B"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "C2015",
+    "districtName": "Latitude 37.8 High",
+    "awardAmount": 281265,
+    "matchObligation": 562530,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "C0700",
+    "districtName": "Lighthouse Community Charter High",
+    "awardAmount": 83729,
+    "matchObligation": 167458,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "40402",
+    "districtName": "Mission Valley ROC/P",
+    "awardAmount": 2789406,
+    "matchObligation": 5578812,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "C0349",
+    "districtName": "Oakland Military Institute, College Preparatory Academy",
+    "awardAmount": 307629,
+    "matchObligation": 615258,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "C0340",
+    "districtName": "Oakland School for the Arts",
+    "awardAmount": 72896,
+    "matchObligation": 145792,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "61259",
+    "districtName": "Oakland Unified",
+    "awardAmount": 1957104,
+    "matchObligation": 3914208,
+    "round": "11"
+  },
+  {
+    "countyCode": "01",
+    "countyName": "Alameda",
+    "districtCode": "74005",
+    "districtName": "Tri-Valley ROP",
+    "awardAmount": 2318270,
+    "matchObligation": 4636540,
+    "round": "11"
+  },
+  {
+    "countyCode": "03",
+    "countyName": "Amador",
+    "districtCode": "73981",
+    "districtName": "Amador County Unified",
+    "awardAmount": 333775,
+    "matchObligation": 667550,
+    "round": "11B"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "C0945",
+    "districtName": "CORE Butte Charter",
+    "awardAmount": 347763,
+    "matchObligation": 695526,
+    "round": "11"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "61424",
+    "districtName": "Chico Unified",
+    "awardAmount": 710681,
+    "matchObligation": 1421362,
+    "round": "11"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "61432",
+    "districtName": "Durham Unified",
+    "awardAmount": 123007,
+    "matchObligation": 246014,
+    "round": "11"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "75507",
+    "districtName": "Gridley Unified",
+    "awardAmount": 156197,
+    "matchObligation": 312394,
+    "round": "11"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "10041",
+    "districtName": "Hearthstone",
+    "awardAmount": 435745,
+    "matchObligation": 871490,
+    "round": "11"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "C1114",
+    "districtName": "Inspire School of Arts and Sciences",
+    "awardAmount": 250456,
+    "matchObligation": 500912,
+    "round": "11"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "61515",
+    "districtName": "Oroville Union High",
+    "awardAmount": 330368,
+    "matchObligation": 660736,
+    "round": "11"
+  },
+  {
+    "countyCode": "04",
+    "countyName": "Butte",
+    "districtCode": "61531",
+    "districtName": "Paradise Unified",
+    "awardAmount": 119770,
+    "matchObligation": 239540,
+    "round": "11"
+  },
+  {
+    "countyCode": "05",
+    "countyName": "Calaveras",
+    "districtCode": "61556",
+    "districtName": "Bret Harte Union High",
+    "awardAmount": 250000,
+    "matchObligation": 500000,
+    "round": "11"
+  },
+  {
+    "countyCode": "05",
+    "countyName": "Calaveras",
+    "districtCode": "61564",
+    "districtName": "Calaveras Unified",
+    "awardAmount": 186471,
+    "matchObligation": 372942,
+    "round": "11"
+  },
+  {
+    "countyCode": "06",
+    "countyName": "Colusa",
+    "districtCode": "61598",
+    "districtName": "Colusa Unified",
+    "awardAmount": 111861,
+    "matchObligation": 223722,
+    "round": "11"
+  },
+  {
+    "countyCode": "06",
+    "countyName": "Colusa",
+    "districtCode": "61606",
+    "districtName": "Maxwell Unified",
+    "awardAmount": 161890,
+    "matchObligation": 323780,
+    "round": "11"
+  },
+  {
+    "countyCode": "06",
+    "countyName": "Colusa",
+    "districtCode": "61614",
+    "districtName": "Pierce Joint Unified",
+    "awardAmount": 113084,
+    "matchObligation": 226168,
+    "round": "11"
+  },
+  {
+    "countyCode": "06",
+    "countyName": "Colusa",
+    "districtCode": "61622",
+    "districtName": "Williams Unified",
+    "awardAmount": 196667,
+    "matchObligation": 393334,
+    "round": "11"
+  },
+  {
+    "countyCode": "07",
+    "countyName": "Contra Costa",
+    "districtCode": "10074",
+    "districtName": "Contra Costa County Office of Education",
+    "awardAmount": 6234708,
+    "matchObligation": 12469416,
+    "round": "11"
+  },
+  {
+    "countyCode": "07",
+    "countyName": "Contra Costa",
+    "districtCode": "C0868",
+    "districtName": "Making Waves Academy",
+    "awardAmount": 89899,
+    "matchObligation": 179798,
+    "round": "11"
+  },
+  {
+    "countyCode": "07",
+    "countyName": "Contra Costa",
+    "districtCode": "61754",
+    "districtName": "Mt. Diablo Unified",
+    "awardAmount": 1296288,
+    "matchObligation": 2592576,
+    "round": "11"
+  },
+  {
+    "countyCode": "07",
+    "countyName": "Contra Costa",
+    "districtCode": "61796",
+    "districtName": "West Contra Costa Unified",
+    "awardAmount": 1128362,
+    "matchObligation": 2256724,
+    "round": "11"
+  },
+  {
+    "countyCode": "08",
+    "countyName": "Del Norte",
+    "districtCode": "10082",
+    "districtName": "Del Norte County Office of Education",
+    "awardAmount": 325112,
+    "matchObligation": 650224,
+    "round": "11"
+  },
+  {
+    "countyCode": "09",
+    "countyName": "El Dorado",
+    "districtCode": "10090",
+    "districtName": "El Dorado County Office of Education",
+    "awardAmount": 1955068,
+    "matchObligation": 3910136,
+    "round": "11"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "C1905",
+    "districtName": "Ambassador Phillip V. Sanchez II Public Charter",
+    "awardAmount": 274236,
+    "matchObligation": 548472,
+    "round": "11B"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "C1850",
+    "districtName": "Career Technical Education Charter",
+    "awardAmount": 500000,
+    "matchObligation": 1000000,
+    "round": "11"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "C0378",
+    "districtName": "Carter G. Woodson Public Charter",
+    "awardAmount": 240000,
+    "matchObligation": 480000,
+    "round": "11"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "62117",
+    "districtName": "Clovis Unified",
+    "awardAmount": 2439675,
+    "matchObligation": 4879350,
+    "round": "11"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "C1893",
+    "districtName": "Crescent View South II",
+    "awardAmount": 180921,
+    "matchObligation": 361842,
+    "round": "11B"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "C0746",
+    "districtName": "Crescent View West Public Charter",
+    "awardAmount": 225107,
+    "matchObligation": 450214,
+    "round": "11B"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "10108",
+    "districtName": "Fresno County Office of Education",
+    "awardAmount": 3581737,
+    "matchObligation": 7163474,
+    "round": "11"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "62166",
+    "districtName": "Fresno Unified",
+    "awardAmount": 3562536,
+    "matchObligation": 7125072,
+    "round": "11"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "75234",
+    "districtName": "Golden Plains Unified",
+    "awardAmount": 457078,
+    "matchObligation": 914156,
+    "round": "11"
+  },
+  {
+    "countyCode": "10",
+    "countyName": "Fresno",
+    "districtCode": "74153",
+    "districtName": "Valley ROP",
+    "awardAmount": 3803569,
+    "matchObligation": 7607138,
+    "round": "11"
+  },
+  {
+    "countyCode": "11",
+    "countyName": "Glenn",
+    "districtCode": "10116",
+    "districtName": "Glenn County Office of Education",
+    "awardAmount": 473659,
+    "matchObligation": 947318,
+    "round": "11"
+  },
+  {
+    "countyCode": "11",
+    "countyName": "Glenn",
+    "districtCode": "76562",
+    "districtName": "Hamilton Unified",
+    "awardAmount": 264430,
+    "matchObligation": 528860,
+    "round": "11"
+  },
+  {
+    "countyCode": "11",
+    "countyName": "Glenn",
+    "districtCode": "75481",
+    "districtName": "Orland Joint Unified",
+    "awardAmount": 169848,
+    "matchObligation": 339696,
+    "round": "11"
+  },
+  {
+    "countyCode": "11",
+    "countyName": "Glenn",
+    "districtCode": "62646",
+    "districtName": "Princeton Joint Unified",
+    "awardAmount": 103553,
+    "matchObligation": 207106,
+    "round": "11"
+  },
+  {
+    "countyCode": "11",
+    "countyName": "Glenn",
+    "districtCode": "62653",
+    "districtName": "Stony Creek Joint Unified",
+    "awardAmount": 50000,
+    "matchObligation": 100000,
+    "round": "11"
+  },
+  {
+    "countyCode": "11",
+    "countyName": "Glenn",
+    "districtCode": "C1350",
+    "districtName": "Walden Academy",
+    "awardAmount": 25000,
+    "matchObligation": 50000,
+    "round": "11"
+  },
+  {
+    "countyCode": "11",
+    "countyName": "Glenn",
+    "districtCode": "62661",
+    "districtName": "Willows Unified",
+    "awardAmount": 399338,
+    "matchObligation": 798676,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "C1962",
+    "districtName": "Alder Grove Charter School 2",
+    "awardAmount": 160000,
+    "matchObligation": 320000,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "75515",
+    "districtName": "Eureka City Schools",
+    "awardAmount": 250306,
+    "matchObligation": 500612,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "75374",
+    "districtName": "Ferndale Unified",
+    "awardAmount": 152841,
+    "matchObligation": 305682,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "62810",
+    "districtName": "Fortuna Union High",
+    "awardAmount": 142829,
+    "matchObligation": 285658,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "10124",
+    "districtName": "Humboldt County Office of Education",
+    "awardAmount": 256258,
+    "matchObligation": 512516,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "62687",
+    "districtName": "Northern Humboldt Union High",
+    "awardAmount": 207983,
+    "matchObligation": 415966,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "62687",
+    "districtName": "Six Rivers Charter High",
+    "awardAmount": 300000,
+    "matchObligation": 600000,
+    "round": "11"
+  },
+  {
+    "countyCode": "12",
+    "countyName": "Humboldt",
+    "districtCode": "63040",
+    "districtName": "Southern Humboldt Joint Unified",
+    "awardAmount": 89268,
+    "matchObligation": 178536,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "63073",
+    "districtName": "Brawley Elementary",
+    "awardAmount": 175289,
+    "matchObligation": 350578,
+    "round": "11B"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "63081",
+    "districtName": "Brawley Union High",
+    "awardAmount": 303398,
+    "matchObligation": 606796,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "63099",
+    "districtName": "Calexico Unified",
+    "awardAmount": 200000,
+    "matchObligation": 400000,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "63107",
+    "districtName": "Calipatria Unified",
+    "awardAmount": 139500,
+    "matchObligation": 279000,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "63115",
+    "districtName": "Central Union High",
+    "awardAmount": 488544,
+    "matchObligation": 977088,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "63149",
+    "districtName": "Holtville Unified",
+    "awardAmount": 143727,
+    "matchObligation": 287454,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "10132",
+    "districtName": "Imperial County Office of Education",
+    "awardAmount": 80000,
+    "matchObligation": 160000,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "10132",
+    "districtName": "Imperial Pathways Charter",
+    "awardAmount": 80000,
+    "matchObligation": 160000,
+    "round": "11"
+  },
+  {
+    "countyCode": "13",
+    "countyName": "Imperial",
+    "districtCode": "63164",
+    "districtName": "Imperial Unified",
+    "awardAmount": 197000,
+    "matchObligation": 394000,
+    "round": "11B"
+  },
+  {
+    "countyCode": "14",
+    "countyName": "Inyo",
+    "districtCode": "C1593",
+    "districtName": "College Bridge Academy",
+    "awardAmount": 159070,
+    "matchObligation": 318140,
+    "round": "11"
+  },
+  {
+    "countyCode": "14",
+    "countyName": "Inyo",
+    "districtCode": "63289",
+    "districtName": "Lone Pine Unified",
+    "awardAmount": 159598,
+    "matchObligation": 319196,
+    "round": "11"
+  },
+  {
+    "countyCode": "14",
+    "countyName": "Inyo",
+    "districtCode": "C1594",
+    "districtName": "The Education Corps",
+    "awardAmount": 183586,
+    "matchObligation": 367172,
+    "round": "11"
+  },
+  {
+    "countyCode": "14",
+    "countyName": "Inyo",
+    "districtCode": "C1012",
+    "districtName": "YouthBuild Charter School of California",
+    "awardAmount": 69579,
+    "matchObligation": 139158,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "63412",
+    "districtName": "Delano Joint Union High",
+    "awardAmount": 629316,
+    "matchObligation": 1258632,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "75168",
+    "districtName": "El Tejon Unified",
+    "awardAmount": 289346,
+    "matchObligation": 578692,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "C2149",
+    "districtName": "Grow Public Schools",
+    "awardAmount": 46800,
+    "matchObligation": 93600,
+    "round": "11B"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "10157",
+    "districtName": "Kern County Office of Education",
+    "awardAmount": 215000,
+    "matchObligation": 430000,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "63529",
+    "districtName": "Kern High",
+    "awardAmount": 7270224,
+    "matchObligation": 14540448,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "73908",
+    "districtName": "McFarland Unified",
+    "awardAmount": 257411,
+    "matchObligation": 514822,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "63685",
+    "districtName": "Muroc Joint Unified",
+    "awardAmount": 110518,
+    "matchObligation": 221036,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "73742",
+    "districtName": "Sierra Sands Unified",
+    "awardAmount": 352871,
+    "matchObligation": 705742,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "63776",
+    "districtName": "Southern Kern Unified",
+    "awardAmount": 237847,
+    "matchObligation": 475694,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "63818",
+    "districtName": "Taft Union High",
+    "awardAmount": 179252,
+    "matchObligation": 358504,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "63826",
+    "districtName": "Tehachapi Unified",
+    "awardAmount": 291926,
+    "matchObligation": 583852,
+    "round": "11"
+  },
+  {
+    "countyCode": "15",
+    "countyName": "Kern",
+    "districtCode": "63859",
+    "districtName": "Wasco Union High",
+    "awardAmount": 281927,
+    "matchObligation": 563854,
+    "round": "11"
+  },
+  {
+    "countyCode": "16",
+    "countyName": "Kings",
+    "districtCode": "63891",
+    "districtName": "Corcoran Joint Unified",
+    "awardAmount": 234852,
+    "matchObligation": 469704,
+    "round": "11"
+  },
+  {
+    "countyCode": "16",
+    "countyName": "Kings",
+    "districtCode": "63925",
+    "districtName": "Hanford Joint Union High",
+    "awardAmount": 485479,
+    "matchObligation": 970958,
+    "round": "11"
+  },
+  {
+    "countyCode": "16",
+    "countyName": "Kings",
+    "districtCode": "10165",
+    "districtName": "Kings County Office of Education",
+    "awardAmount": 75000,
+    "matchObligation": 150000,
+    "round": "11"
+  },
+  {
+    "countyCode": "16",
+    "countyName": "Kings",
+    "districtCode": "C1896",
+    "districtName": "Kings Valley Academy II",
+    "awardAmount": 135790,
+    "matchObligation": 271580,
+    "round": "11B"
+  },
+  {
+    "countyCode": "16",
+    "countyName": "Kings",
+    "districtCode": "73932",
+    "districtName": "Reef-Sunset Unified",
+    "awardAmount": 225040,
+    "matchObligation": 450080,
+    "round": "11"
+  },
+  {
+    "countyCode": "17",
+    "countyName": "Lake",
+    "districtCode": "64014",
+    "districtName": "Kelseyville Unified",
+    "awardAmount": 126101,
+    "matchObligation": 252202,
+    "round": "11"
+  },
+  {
+    "countyCode": "17",
+    "countyName": "Lake",
+    "districtCode": "64022",
+    "districtName": "Konocti Unified",
+    "awardAmount": 324849,
+    "matchObligation": 649698,
+    "round": "11"
+  },
+  {
+    "countyCode": "17",
+    "countyName": "Lake",
+    "districtCode": "64055",
+    "districtName": "Middletown Unified",
+    "awardAmount": 117857,
+    "matchObligation": 235714,
+    "round": "11"
+  },
+  {
+    "countyCode": "17",
+    "countyName": "Lake",
+    "districtCode": "76976",
+    "districtName": "Upper Lake Unified",
+    "awardAmount": 150000,
+    "matchObligation": 300000,
+    "round": "11"
+  },
+  {
+    "countyCode": "18",
+    "countyName": "Lassen",
+    "districtCode": "64089",
+    "districtName": "Big Valley Joint Unified",
+    "awardAmount": 23750,
+    "matchObligation": 47500,
+    "round": "11"
+  },
+  {
+    "countyCode": "18",
+    "countyName": "Lassen",
+    "districtCode": "75036",
+    "districtName": "Fort Sage Unified",
+    "awardAmount": 85750,
+    "matchObligation": 171500,
+    "round": "11"
+  },
+  {
+    "countyCode": "18",
+    "countyName": "Lassen",
+    "districtCode": "64139",
+    "districtName": "Lassen Union High",
+    "awardAmount": 124451,
+    "matchObligation": 248902,
+    "round": "11"
+  },
+  {
+    "countyCode": "18",
+    "countyName": "Lassen",
+    "districtCode": "64204",
+    "districtName": "Westwood Unified",
+    "awardAmount": 122732,
+    "matchObligation": 245464,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64212",
+    "districtName": "ABC Unified",
+    "awardAmount": 1010552,
+    "matchObligation": 2021104,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "75713",
+    "districtName": "Alhambra Unified",
+    "awardAmount": 984178,
+    "matchObligation": 1968356,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1859",
+    "districtName": "Alma Fuerte Public",
+    "awardAmount": 80000,
+    "matchObligation": 160000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64246",
+    "districtName": "Antelope Valley Union High",
+    "awardAmount": 2356747,
+    "matchObligation": 4713494,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64261",
+    "districtName": "Arcadia Unified",
+    "awardAmount": 544955,
+    "matchObligation": 1089910,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64295",
+    "districtName": "Bassett Unified",
+    "awardAmount": 151365,
+    "matchObligation": 302730,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64303",
+    "districtName": "Bellflower Unified",
+    "awardAmount": 569219,
+    "matchObligation": 1138438,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64311",
+    "districtName": "Beverly Hills Unified",
+    "awardAmount": 199567,
+    "matchObligation": 399134,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1119",
+    "districtName": "Birmingham Community Charter High",
+    "awardAmount": 373568,
+    "matchObligation": 747136,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64329",
+    "districtName": "Bonita Unified",
+    "awardAmount": 692515,
+    "matchObligation": 1385030,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64337",
+    "districtName": "Burbank Unified",
+    "awardAmount": 650000,
+    "matchObligation": 1300000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0712",
+    "districtName": "CHAMPS - Charter HS of Arts-Multimedia & Performing",
+    "awardAmount": 257500,
+    "matchObligation": 515000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1751",
+    "districtName": "California Pacific Charter- Los Angeles",
+    "awardAmount": 166090,
+    "matchObligation": 332180,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1838",
+    "districtName": "California School of the Arts - San Gabriel Valley",
+    "awardAmount": 147312,
+    "matchObligation": 294624,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64352",
+    "districtName": "Centinela Valley Union High",
+    "awardAmount": 626608,
+    "matchObligation": 1253216,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64378",
+    "districtName": "Charter Oak Unified",
+    "awardAmount": 1000000,
+    "matchObligation": 2000000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "73437",
+    "districtName": "Compton Unified",
+    "awardAmount": 928123,
+    "matchObligation": 1856246,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64436",
+    "districtName": "Covina-Valley Unified",
+    "awardAmount": 652739,
+    "matchObligation": 1305478,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64444",
+    "districtName": "Culver City Unified",
+    "awardAmount": 365989,
+    "matchObligation": 731978,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1689",
+    "districtName": "Da Vinci Communications",
+    "awardAmount": 361522,
+    "matchObligation": 723044,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1597",
+    "districtName": "Da Vinci Connect",
+    "awardAmount": 236689,
+    "matchObligation": 473378,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1081",
+    "districtName": "Da Vinci Design",
+    "awardAmount": 322237,
+    "matchObligation": 644474,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C2017",
+    "districtName": "Da Vinci RISE High",
+    "awardAmount": 179803,
+    "matchObligation": 359606,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1060",
+    "districtName": "Da Vinci Science",
+    "awardAmount": 312007,
+    "matchObligation": 624014,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64451",
+    "districtName": "Downey Unified",
+    "awardAmount": 1414161,
+    "matchObligation": 2828322,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1314",
+    "districtName": "El Camino Real Charter High",
+    "awardAmount": 336453,
+    "matchObligation": 672906,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64519",
+    "districtName": "El Monte Union High",
+    "awardAmount": 817117,
+    "matchObligation": 1634234,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64568",
+    "districtName": "Glendale Unified",
+    "awardAmount": 1300000,
+    "matchObligation": 2600000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0285",
+    "districtName": "Gorman Learning Center",
+    "awardAmount": 240170,
+    "matchObligation": 480340,
+    "round": "11B"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0572",
+    "districtName": "Granada Hills Charter",
+    "awardAmount": 114758,
+    "matchObligation": 229516,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "73445",
+    "districtName": "Hacienda la Puente Unified",
+    "awardAmount": 884365,
+    "matchObligation": 1768730,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0543",
+    "districtName": "ICEF View Park Preparatory High",
+    "awardAmount": 234314,
+    "matchObligation": 468628,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64634",
+    "districtName": "Inglewood Unified",
+    "awardAmount": 251722,
+    "matchObligation": 503444,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64659",
+    "districtName": "La Canada Unified",
+    "awardAmount": 140434,
+    "matchObligation": 280868,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64683",
+    "districtName": "Las Virgenes Unified",
+    "awardAmount": 584138,
+    "matchObligation": 1168276,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64725",
+    "districtName": "Long Beach Unified",
+    "awardAmount": 3356862,
+    "matchObligation": 6713724,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0675",
+    "districtName": "Los Angeles Academy of Arts and Enterprise",
+    "awardAmount": 349404,
+    "matchObligation": 698808,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "10199",
+    "districtName": "Los Angeles County Office of Education",
+    "awardAmount": 245722,
+    "matchObligation": 491444,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64733",
+    "districtName": "Los Angeles Unified",
+    "awardAmount": 13575060,
+    "matchObligation": 27150120,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64774",
+    "districtName": "Lynwood Unified",
+    "awardAmount": 613112,
+    "matchObligation": 1226224,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "75333",
+    "districtName": "Manhattan Beach Unified",
+    "awardAmount": 328500,
+    "matchObligation": 657000,
+    "round": "11B"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64808",
+    "districtName": "Montebello Unified",
+    "awardAmount": 500000,
+    "matchObligation": 1000000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0601",
+    "districtName": "New Designs Charter",
+    "awardAmount": 80232,
+    "matchObligation": 160464,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64840",
+    "districtName": "Norwalk-La Mirada Unified",
+    "awardAmount": 878970,
+    "matchObligation": 1757940,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0037",
+    "districtName": "Palisades Charter High",
+    "awardAmount": 300000,
+    "matchObligation": 600000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64873",
+    "districtName": "Paramount Unified",
+    "awardAmount": 683935,
+    "matchObligation": 1367870,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64881",
+    "districtName": "Pasadena Unified",
+    "awardAmount": 767312,
+    "matchObligation": 1534624,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64907",
+    "districtName": "Pomona Unified",
+    "awardAmount": 750000,
+    "matchObligation": 1500000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0542",
+    "districtName": "Port of Los Angeles High",
+    "awardAmount": 145937,
+    "matchObligation": 291874,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "75341",
+    "districtName": "Redondo Beach Unified",
+    "awardAmount": 282698,
+    "matchObligation": 565396,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0579",
+    "districtName": "Renaissance Arts Academy",
+    "awardAmount": 176907,
+    "matchObligation": 353814,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "73452",
+    "districtName": "Rowland Unified",
+    "awardAmount": 600000,
+    "matchObligation": 1200000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "75291",
+    "districtName": "San Gabriel Unified",
+    "awardAmount": 266060,
+    "matchObligation": 532120,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "74195",
+    "districtName": "San Gabriel Valley Regional Occupational Program",
+    "awardAmount": 2000000,
+    "matchObligation": 4000000,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "64980",
+    "districtName": "Santa Monica-Malibu Unified",
+    "awardAmount": 511407,
+    "matchObligation": 1022814,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C0505",
+    "districtName": "School of Arts and Enterprise",
+    "awardAmount": 433913,
+    "matchObligation": 867826,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "65029",
+    "districtName": "South Pasadena Unified",
+    "awardAmount": 274971,
+    "matchObligation": 549942,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "74336",
+    "districtName": "Southern California ROC",
+    "awardAmount": 838435,
+    "matchObligation": 1676870,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "65052",
+    "districtName": "Temple City Unified",
+    "awardAmount": 332623,
+    "matchObligation": 665246,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "65060",
+    "districtName": "Torrance Unified",
+    "awardAmount": 1196390,
+    "matchObligation": 2392780,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "74328",
+    "districtName": "Tri-Cities ROP",
+    "awardAmount": 1816140,
+    "matchObligation": 3632280,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "C1863",
+    "districtName": "WISH Academy High",
+    "awardAmount": 182928,
+    "matchObligation": 365856,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "65094",
+    "districtName": "West Covina Unified",
+    "awardAmount": 508226,
+    "matchObligation": 1016452,
+    "round": "11"
+  },
+  {
+    "countyCode": "19",
+    "countyName": "Los Angeles",
+    "districtCode": "65136",
+    "districtName": "William S. Hart Union High",
+    "awardAmount": 2301469,
+    "matchObligation": 4602938,
+    "round": "11"
+  },
+  {
+    "countyCode": "20",
+    "countyName": "Madera",
+    "districtCode": "65201",
+    "districtName": "Chowchilla Union High",
+    "awardAmount": 163199,
+    "matchObligation": 326398,
+    "round": "11"
+  },
+  {
+    "countyCode": "20",
+    "countyName": "Madera",
+    "districtCode": "65243",
+    "districtName": "Madera Unified",
+    "awardAmount": 1127726,
+    "matchObligation": 2255452,
+    "round": "11"
+  },
+  {
+    "countyCode": "21",
+    "countyName": "Marin",
+    "districtCode": "10215",
+    "districtName": "Marin County Office of Education",
+    "awardAmount": 1450024,
+    "matchObligation": 2900048,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "65540",
+    "districtName": "Anderson Valley Unified",
+    "awardAmount": 133525,
+    "matchObligation": 267050,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "65565",
+    "districtName": "Fort Bragg Unified",
+    "awardAmount": 134725,
+    "matchObligation": 269450,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "73916",
+    "districtName": "Laytonville Unified",
+    "awardAmount": 87500,
+    "matchObligation": 175000,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "65581",
+    "districtName": "Mendocino Unified",
+    "awardAmount": 121111,
+    "matchObligation": 242222,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "65599",
+    "districtName": "Point Arena Joint Union High",
+    "awardAmount": 160000,
+    "matchObligation": 320000,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "73866",
+    "districtName": "Potter Valley Community Unified",
+    "awardAmount": 121358,
+    "matchObligation": 242716,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "65607",
+    "districtName": "Round Valley Unified",
+    "awardAmount": 120000,
+    "matchObligation": 240000,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "65615",
+    "districtName": "Ukiah Unified",
+    "awardAmount": 446878,
+    "matchObligation": 893756,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "C0166",
+    "districtName": "Willits Charter",
+    "awardAmount": 104294,
+    "matchObligation": 208588,
+    "round": "11"
+  },
+  {
+    "countyCode": "23",
+    "countyName": "Mendocino",
+    "districtCode": "65623",
+    "districtName": "Willits Unified",
+    "awardAmount": 106950,
+    "matchObligation": 213900,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "75366",
+    "districtName": "Delhi Unified",
+    "awardAmount": 164389,
+    "matchObligation": 328778,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "75317",
+    "districtName": "Dos Palos Oro Loma Joint Unified",
+    "awardAmount": 150724,
+    "matchObligation": 301448,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "73619",
+    "districtName": "Gustine Unified",
+    "awardAmount": 160099,
+    "matchObligation": 320198,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "65698",
+    "districtName": "Hilmar Unified",
+    "awardAmount": 161564,
+    "matchObligation": 323128,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "65730",
+    "districtName": "Le Grand Union High",
+    "awardAmount": 360733,
+    "matchObligation": 721466,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "65755",
+    "districtName": "Los Banos Unified",
+    "awardAmount": 791781,
+    "matchObligation": 1583562,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "74476",
+    "districtName": "Merced County ROP",
+    "awardAmount": 251008,
+    "matchObligation": 502016,
+    "round": "11"
+  },
+  {
+    "countyCode": "24",
+    "countyName": "Merced",
+    "districtCode": "65789",
+    "districtName": "Merced Union High",
+    "awardAmount": 1755721,
+    "matchObligation": 3511442,
+    "round": "11"
+  },
+  {
+    "countyCode": "25",
+    "countyName": "Modoc",
+    "districtCode": "65896",
+    "districtName": "Surprise Valley Joint Unified",
+    "awardAmount": 55317,
+    "matchObligation": 110634,
+    "round": "11"
+  },
+  {
+    "countyCode": "25",
+    "countyName": "Modoc",
+    "districtCode": "73593",
+    "districtName": "Tulelake Basin Joint Unified",
+    "awardAmount": 167109,
+    "matchObligation": 334218,
+    "round": "11"
+  },
+  {
+    "countyCode": "27",
+    "countyName": "Monterey",
+    "districtCode": "40105",
+    "districtName": "Mission Trails ROP JPA",
+    "awardAmount": 4081182,
+    "matchObligation": 8162364,
+    "round": "11"
+  },
+  {
+    "countyCode": "27",
+    "countyName": "Monterey",
+    "districtCode": "10272",
+    "districtName": "Monterey County Office of Education",
+    "awardAmount": 265082,
+    "matchObligation": 530164,
+    "round": "11"
+  },
+  {
+    "countyCode": "27",
+    "countyName": "Monterey",
+    "districtCode": "66134",
+    "districtName": "Pacific Grove Unified",
+    "awardAmount": 80167,
+    "matchObligation": 160334,
+    "round": "11"
+  },
+  {
+    "countyCode": "28",
+    "countyName": "Napa",
+    "districtCode": "10280",
+    "districtName": "Napa County Office of Education",
+    "awardAmount": 1187670,
+    "matchObligation": 2375340,
+    "round": "11"
+  },
+  {
+    "countyCode": "29",
+    "countyName": "Nevada",
+    "districtCode": "C1680",
+    "districtName": "EPIC de Cesar Chavez",
+    "awardAmount": 437296,
+    "matchObligation": 874592,
+    "round": "11"
+  },
+  {
+    "countyCode": "29",
+    "countyName": "Nevada",
+    "districtCode": "C0255",
+    "districtName": "John Muir Charter",
+    "awardAmount": 484421,
+    "matchObligation": 968842,
+    "round": "11"
+  },
+  {
+    "countyCode": "29",
+    "countyName": "Nevada",
+    "districtCode": "66357",
+    "districtName": "Nevada Joint Union High",
+    "awardAmount": 352245,
+    "matchObligation": 704490,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "74252",
+    "districtName": "Central Orange County CTE Partnership (CTEp)",
+    "awardAmount": 2071556,
+    "matchObligation": 4143112,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "74120",
+    "districtName": "Coastline ROP",
+    "awardAmount": 886021,
+    "matchObligation": 1772042,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "40089",
+    "districtName": "College and Career Advantage ROP JPA",
+    "awardAmount": 3487146,
+    "matchObligation": 6974292,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "66522",
+    "districtName": "Garden Grove Unified",
+    "awardAmount": 1625468,
+    "matchObligation": 3250936,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "66548",
+    "districtName": "Huntington Beach Union High",
+    "awardAmount": 1446060,
+    "matchObligation": 2892120,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "73650",
+    "districtName": "Irvine Unified",
+    "awardAmount": 1100000,
+    "matchObligation": 2200000,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "66597",
+    "districtName": "Newport-Mesa Unified",
+    "awardAmount": 823288,
+    "matchObligation": 1646576,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "40063",
+    "districtName": "North Orange County ROP JPA",
+    "awardAmount": 6886684,
+    "matchObligation": 13773368,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "C0290",
+    "districtName": "OCSA",
+    "awardAmount": 116205,
+    "matchObligation": 232410,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "10306",
+    "districtName": "Orange County Department of Education",
+    "awardAmount": 508567,
+    "matchObligation": 1017134,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "66621",
+    "districtName": "Orange Unified",
+    "awardAmount": 710648,
+    "matchObligation": 1421296,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "C2135",
+    "districtName": "Oxford Preparatory Academy - Middle",
+    "awardAmount": 91071,
+    "matchObligation": 182142,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "73635",
+    "districtName": "Saddleback Valley Unified",
+    "awardAmount": 1049017,
+    "matchObligation": 2098034,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "C1419",
+    "districtName": "Samueli Academy",
+    "awardAmount": 82644,
+    "matchObligation": 165288,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "66670",
+    "districtName": "Santa Ana Unified",
+    "awardAmount": 1488830,
+    "matchObligation": 2977660,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "C0066",
+    "districtName": "Santiago Charter Middle",
+    "awardAmount": 109259,
+    "matchObligation": 218518,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "73643",
+    "districtName": "Tustin Unified",
+    "awardAmount": 1248276,
+    "matchObligation": 2496552,
+    "round": "11"
+  },
+  {
+    "countyCode": "30",
+    "countyName": "Orange",
+    "districtCode": "C1752",
+    "districtName": "Vista Heritage Global Academy",
+    "awardAmount": 338295,
+    "matchObligation": 676590,
+    "round": "11"
+  },
+  {
+    "countyCode": "31",
+    "countyName": "Placer",
+    "districtCode": "10314",
+    "districtName": "Placer County Office of Education",
+    "awardAmount": 163857,
+    "matchObligation": 327714,
+    "round": "11"
+  },
+  {
+    "countyCode": "31",
+    "countyName": "Placer",
+    "districtCode": "66894",
+    "districtName": "Placer Union High",
+    "awardAmount": 300000,
+    "matchObligation": 600000,
+    "round": "11"
+  },
+  {
+    "countyCode": "31",
+    "countyName": "Placer",
+    "districtCode": "75085",
+    "districtName": "Rocklin Unified",
+    "awardAmount": 612329,
+    "matchObligation": 1224658,
+    "round": "11"
+  },
+  {
+    "countyCode": "31",
+    "countyName": "Placer",
+    "districtCode": "66928",
+    "districtName": "Roseville Joint Union High",
+    "awardAmount": 1136835,
+    "matchObligation": 2273670,
+    "round": "11"
+  },
+  {
+    "countyCode": "31",
+    "countyName": "Placer",
+    "districtCode": "66944",
+    "districtName": "Tahoe-Truckee Unified",
+    "awardAmount": 264210,
+    "matchObligation": 528420,
+    "round": "11"
+  },
+  {
+    "countyCode": "31",
+    "countyName": "Placer",
+    "districtCode": "66951",
+    "districtName": "Western Placer Unified",
+    "awardAmount": 393811,
+    "matchObligation": 787622,
+    "round": "11"
+  },
+  {
+    "countyCode": "32",
+    "countyName": "Plumas",
+    "districtCode": "10322",
+    "districtName": "Plumas County Office of Education",
+    "awardAmount": 16000,
+    "matchObligation": 32000,
+    "round": "11"
+  },
+  {
+    "countyCode": "32",
+    "countyName": "Plumas",
+    "districtCode": "66969",
+    "districtName": "Plumas Unified",
+    "awardAmount": 104070,
+    "matchObligation": 208140,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "66977",
+    "districtName": "Alvord Unified",
+    "awardAmount": 1162858,
+    "matchObligation": 2325716,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "C2118",
+    "districtName": "Audeo Valley Charter",
+    "awardAmount": 193156,
+    "matchObligation": 386312,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "66985",
+    "districtName": "Banning Unified",
+    "awardAmount": 196087,
+    "matchObligation": 392174,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "66993",
+    "districtName": "Beaumont Unified",
+    "awardAmount": 595291,
+    "matchObligation": 1190582,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "73676",
+    "districtName": "Coachella Valley Unified",
+    "awardAmount": 759903,
+    "matchObligation": 1519806,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67033",
+    "districtName": "Corona-Norco Unified",
+    "awardAmount": 2656103,
+    "matchObligation": 5312206,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67058",
+    "districtName": "Desert Sands Unified",
+    "awardAmount": 1249742,
+    "matchObligation": 2499484,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "C2058",
+    "districtName": "Garvey/Allen Visual & Performing Arts Academy for STEM",
+    "awardAmount": 95051,
+    "matchObligation": 190102,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67082",
+    "districtName": "Hemet Unified",
+    "awardAmount": 1460250,
+    "matchObligation": 2920500,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "C1988",
+    "districtName": "Julia Lee Performing Arts Academy",
+    "awardAmount": 229900,
+    "matchObligation": 459800,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67090",
+    "districtName": "Jurupa Unified",
+    "awardAmount": 882428,
+    "matchObligation": 1764856,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "75176",
+    "districtName": "Lake Elsinore Unified",
+    "awardAmount": 1037913,
+    "matchObligation": 2075826,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67116",
+    "districtName": "Menifee Union",
+    "awardAmount": 283148,
+    "matchObligation": 566296,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67124",
+    "districtName": "Moreno Valley Unified",
+    "awardAmount": 1570210,
+    "matchObligation": 3140420,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "75200",
+    "districtName": "Murrieta Valley Unified",
+    "awardAmount": 1180083,
+    "matchObligation": 2360166,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67173",
+    "districtName": "Palm Springs Unified",
+    "awardAmount": 954758,
+    "matchObligation": 1909516,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67207",
+    "districtName": "Perris Union High",
+    "awardAmount": 1086232,
+    "matchObligation": 2172464,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67215",
+    "districtName": "Riverside Unified",
+    "awardAmount": 1945787,
+    "matchObligation": 3891574,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "67249",
+    "districtName": "San Jacinto Unified",
+    "awardAmount": 682669,
+    "matchObligation": 1365338,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "C0730",
+    "districtName": "Santa Rosa Academy",
+    "awardAmount": 82238,
+    "matchObligation": 164476,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "75192",
+    "districtName": "Temecula Valley Unified",
+    "awardAmount": 1395373,
+    "matchObligation": 2790746,
+    "round": "11"
+  },
+  {
+    "countyCode": "33",
+    "countyName": "Riverside",
+    "districtCode": "75242",
+    "districtName": "Val Verde Unified",
+    "awardAmount": 996007,
+    "matchObligation": 1992014,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C2133",
+    "districtName": "Capital College & Career Academy",
+    "awardAmount": 200000,
+    "matchObligation": 400000,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "73973",
+    "districtName": "Center Joint Unified",
+    "awardAmount": 212560,
+    "matchObligation": 425120,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C0699",
+    "districtName": "Community Collaborative Charter",
+    "awardAmount": 325733,
+    "matchObligation": 651466,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "67314",
+    "districtName": "Elk Grove Unified",
+    "awardAmount": 3213533,
+    "matchObligation": 6427066,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "67330",
+    "districtName": "Folsom-Cordova Unified",
+    "awardAmount": 1031447,
+    "matchObligation": 2062894,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C0560",
+    "districtName": "Futures High",
+    "awardAmount": 334402,
+    "matchObligation": 668804,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "67348",
+    "districtName": "Galt Joint Union Elementary",
+    "awardAmount": 100000,
+    "matchObligation": 200000,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "67355",
+    "districtName": "Galt Joint Union High",
+    "awardAmount": 260164,
+    "matchObligation": 520328,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C1970",
+    "districtName": "Marconi Learning Academy",
+    "awardAmount": 200000,
+    "matchObligation": 400000,
+    "round": "11B"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "75283",
+    "districtName": "Natomas Unified",
+    "awardAmount": 511212,
+    "matchObligation": 1022424,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "67413",
+    "districtName": "River Delta Joint Unified",
+    "awardAmount": 126479,
+    "matchObligation": 252958,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C0878",
+    "districtName": "SAVA - Sacramento Academic and Vocational Academy",
+    "awardAmount": 323780,
+    "matchObligation": 647560,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C1949",
+    "districtName": "SAVA - Sacramento Academic and Vocational Academy - EGUSD",
+    "awardAmount": 254046,
+    "matchObligation": 508092,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C1948",
+    "districtName": "SAVA - Sacramento Academic and Vocational Academy - SCUSD",
+    "awardAmount": 125671,
+    "matchObligation": 251342,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "67439",
+    "districtName": "Sacramento City Unified",
+    "awardAmount": 1650222,
+    "matchObligation": 3300444,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "10348",
+    "districtName": "Sacramento County Office of Education",
+    "awardAmount": 91092,
+    "matchObligation": 182184,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "67447",
+    "districtName": "San Juan Unified",
+    "awardAmount": 1910025,
+    "matchObligation": 3820050,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "76505",
+    "districtName": "Twin Rivers Unified",
+    "awardAmount": 958622,
+    "matchObligation": 1917244,
+    "round": "11"
+  },
+  {
+    "countyCode": "34",
+    "countyName": "Sacramento",
+    "districtCode": "C0248",
+    "districtName": "Visions In Education",
+    "awardAmount": 80000,
+    "matchObligation": 160000,
+    "round": "11"
+  },
+  {
+    "countyCode": "35",
+    "countyName": "San Benito",
+    "districtCode": "75259",
+    "districtName": "Aromas - San Juan Unified",
+    "awardAmount": 77436,
+    "matchObligation": 154872,
+    "round": "11"
+  },
+  {
+    "countyCode": "35",
+    "countyName": "San Benito",
+    "districtCode": "67538",
+    "districtName": "San Benito High",
+    "awardAmount": 526157,
+    "matchObligation": 1052314,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C1945",
+    "districtName": "Allegiance STEAM Academy - Thrive",
+    "awardAmount": 141292,
+    "matchObligation": 282584,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C1895",
+    "districtName": "Alta Vista Innovation High",
+    "awardAmount": 110875,
+    "matchObligation": 221750,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C0885",
+    "districtName": "Altus Schools Mirus",
+    "awardAmount": 269237,
+    "matchObligation": 538474,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "75077",
+    "districtName": "Apple Valley Unified",
+    "awardAmount": 4699673,
+    "matchObligation": 9399346,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "40048",
+    "districtName": "Baldy View ROP JPA",
+    "awardAmount": 5188570,
+    "matchObligation": 10377140,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "74138",
+    "districtName": "Colton-Redlands-Yucaipa ROP",
+    "awardAmount": 2732018,
+    "matchObligation": 5464036,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C1923",
+    "districtName": "Elite Academic Academy - Lucerne",
+    "awardAmount": 87170,
+    "matchObligation": 174340,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C1922",
+    "districtName": "Entrepreneur High",
+    "awardAmount": 342518,
+    "matchObligation": 685036,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C2095",
+    "districtName": "Entrepreneur High Fontana",
+    "awardAmount": 330364,
+    "matchObligation": 660728,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "67710",
+    "districtName": "Fontana Unified",
+    "awardAmount": 1696938,
+    "matchObligation": 3393876,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C0180",
+    "districtName": "Grove",
+    "awardAmount": 68546,
+    "matchObligation": 137092,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "67850",
+    "districtName": "Rialto Unified",
+    "awardAmount": 1147660,
+    "matchObligation": 2295320,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C0855",
+    "districtName": "Riverside Preparatory",
+    "awardAmount": 191966,
+    "matchObligation": 383932,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "67876",
+    "districtName": "San Bernardino City Unified",
+    "awardAmount": 1980959,
+    "matchObligation": 3961918,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "74518",
+    "districtName": "San Bernardino County ROP",
+    "awardAmount": 852765,
+    "matchObligation": 1705530,
+    "round": "11"
+  },
+  {
+    "countyCode": "36",
+    "countyName": "San Bernardino",
+    "districtCode": "C0671",
+    "districtName": "Summit Leadership Academy-High Desert",
+    "awardAmount": 160000,
+    "matchObligation": 320000,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0406",
+    "districtName": "Altus Schools Audeo",
+    "awardAmount": 353008,
+    "matchObligation": 706016,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0028",
+    "districtName": "Altus Schools Charter School of San Diego",
+    "awardAmount": 162200,
+    "matchObligation": 324400,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1889",
+    "districtName": "Altus Schools East County",
+    "awardAmount": 211514,
+    "matchObligation": 423028,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1935",
+    "districtName": "Altus Schools North County",
+    "awardAmount": 125798,
+    "matchObligation": 251596,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1903",
+    "districtName": "Altus Schools South Bay",
+    "awardAmount": 284880,
+    "matchObligation": 569760,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1835",
+    "districtName": "Audeo Charter II",
+    "awardAmount": 217964,
+    "matchObligation": 435928,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "76851",
+    "districtName": "Bonsall Unified",
+    "awardAmount": 75000,
+    "matchObligation": 150000,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "67983",
+    "districtName": "Borrego Springs Unified",
+    "awardAmount": 125647,
+    "matchObligation": 251294,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1758",
+    "districtName": "California Pacific Charter - San Diego",
+    "awardAmount": 121150,
+    "matchObligation": 242300,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68031",
+    "districtName": "Coronado Unified",
+    "awardAmount": 138164,
+    "matchObligation": 276328,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1946",
+    "districtName": "Dimensions Collaborative",
+    "awardAmount": 50000,
+    "matchObligation": 100000,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1924",
+    "districtName": "Elite Academic Academy - Mountain Empire",
+    "awardAmount": 61155,
+    "matchObligation": 122310,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68106",
+    "districtName": "Escondido Union High",
+    "awardAmount": 646612,
+    "matchObligation": 1293224,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68122",
+    "districtName": "Fallbrook Union High",
+    "awardAmount": 277824,
+    "matchObligation": 555648,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0121",
+    "districtName": "Feaster (Mae L.) Charter",
+    "awardAmount": 48000,
+    "matchObligation": 96000,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68130",
+    "districtName": "Grossmont Union High",
+    "awardAmount": 1655004,
+    "matchObligation": 3310008,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0876",
+    "districtName": "Health Sciences High and Middle College",
+    "awardAmount": 488051,
+    "matchObligation": 976102,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0150",
+    "districtName": "Helix High",
+    "awardAmount": 267706,
+    "matchObligation": 535412,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0269",
+    "districtName": "High Tech High",
+    "awardAmount": 348619,
+    "matchObligation": 697238,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68171",
+    "districtName": "Julian Union High",
+    "awardAmount": 75000,
+    "matchObligation": 150000,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68213",
+    "districtName": "Mountain Empire Unified",
+    "awardAmount": 91196,
+    "matchObligation": 182392,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0064",
+    "districtName": "Mueller Charter (Robert L.)",
+    "awardAmount": 77847,
+    "matchObligation": 155694,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "73569",
+    "districtName": "Oceanside Unified",
+    "awardAmount": 724127,
+    "matchObligation": 1448254,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68296",
+    "districtName": "Poway Unified",
+    "awardAmount": 2377401,
+    "matchObligation": 4754802,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68304",
+    "districtName": "Ramona City Unified",
+    "awardAmount": 258783,
+    "matchObligation": 517566,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "10371",
+    "districtName": "San Diego County Office of Education",
+    "awardAmount": 146419,
+    "matchObligation": 292838,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68338",
+    "districtName": "San Diego Unified",
+    "awardAmount": 4250208,
+    "matchObligation": 8500416,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1832",
+    "districtName": "San Diego Workforce Innovation High",
+    "awardAmount": 294444,
+    "matchObligation": 588888,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68346",
+    "districtName": "San Dieguito Union High",
+    "awardAmount": 1245827,
+    "matchObligation": 2491654,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "73791",
+    "districtName": "San Marcos Unified",
+    "awardAmount": 942445,
+    "matchObligation": 1884890,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C0893",
+    "districtName": "Steele Canyon High",
+    "awardAmount": 310732,
+    "matchObligation": 621464,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68411",
+    "districtName": "Sweetwater Union High",
+    "awardAmount": 2061707,
+    "matchObligation": 4123414,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "75614",
+    "districtName": "Valley Center-Pauma Unified",
+    "awardAmount": 244299,
+    "matchObligation": 488598,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "68452",
+    "districtName": "Vista Unified",
+    "awardAmount": 828578,
+    "matchObligation": 1657156,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "75416",
+    "districtName": "Warner Unified",
+    "awardAmount": 90000,
+    "matchObligation": 180000,
+    "round": "11"
+  },
+  {
+    "countyCode": "37",
+    "countyName": "San Diego",
+    "districtCode": "C1302",
+    "districtName": "e3 Civic High",
+    "awardAmount": 145250,
+    "matchObligation": 290500,
+    "round": "11"
+  },
+  {
+    "countyCode": "38",
+    "countyName": "San Francisco",
+    "districtCode": "C1028",
+    "districtName": "Five Keys Independence HS (SF Sheriff's)",
+    "awardAmount": 277386,
+    "matchObligation": 554772,
+    "round": "11"
+  },
+  {
+    "countyCode": "38",
+    "countyName": "San Francisco",
+    "districtCode": "68478",
+    "districtName": "San Francisco Unified",
+    "awardAmount": 2295337,
+    "matchObligation": 4590674,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68627",
+    "districtName": "Delta Charter",
+    "awardAmount": 321676,
+    "matchObligation": 643352,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68502",
+    "districtName": "Escalon Unified",
+    "awardAmount": 196561,
+    "matchObligation": 393122,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "76760",
+    "districtName": "Lammersville Joint Unified",
+    "awardAmount": 428849,
+    "matchObligation": 857698,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68569",
+    "districtName": "Lincoln Unified",
+    "awardAmount": 518873,
+    "matchObligation": 1037746,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68577",
+    "districtName": "Linden Unified",
+    "awardAmount": 169156,
+    "matchObligation": 338312,
+    "round": "11B"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68585",
+    "districtName": "Lodi Unified",
+    "awardAmount": 2016209,
+    "matchObligation": 4032418,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68593",
+    "districtName": "Manteca Unified",
+    "awardAmount": 1451064,
+    "matchObligation": 2902128,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68650",
+    "districtName": "Ripon Unified",
+    "awardAmount": 247019,
+    "matchObligation": 494038,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "10397",
+    "districtName": "San Joaquin County Office of Education",
+    "awardAmount": 150000,
+    "matchObligation": 300000,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "68676",
+    "districtName": "Stockton Unified",
+    "awardAmount": 1747660,
+    "matchObligation": 3495320,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "75499",
+    "districtName": "Tracy Joint Unified",
+    "awardAmount": 1119963,
+    "matchObligation": 2239926,
+    "round": "11"
+  },
+  {
+    "countyCode": "39",
+    "countyName": "San Joaquin",
+    "districtCode": "C0423",
+    "districtName": "Venture Academy",
+    "awardAmount": 217996,
+    "matchObligation": 435992,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "68700",
+    "districtName": "Atascadero Unified",
+    "awardAmount": 211152,
+    "matchObligation": 422304,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "75465",
+    "districtName": "Coast Unified",
+    "awardAmount": 177385,
+    "matchObligation": 354770,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "68759",
+    "districtName": "Lucia Mar Unified",
+    "awardAmount": 506496,
+    "matchObligation": 1012992,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "75457",
+    "districtName": "Paso Robles Joint Unified",
+    "awardAmount": 459377,
+    "matchObligation": 918754,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "68809",
+    "districtName": "San Luis Coastal Unified",
+    "awardAmount": 374526,
+    "matchObligation": 749052,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "10405",
+    "districtName": "San Luis Obispo County Office of Education",
+    "awardAmount": 162194,
+    "matchObligation": 324388,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "68833",
+    "districtName": "Shandon Joint Unified",
+    "awardAmount": 199738,
+    "matchObligation": 399476,
+    "round": "11"
+  },
+  {
+    "countyCode": "40",
+    "countyName": "San Luis Obispo",
+    "districtCode": "68841",
+    "districtName": "Templeton Unified",
+    "awardAmount": 115185,
+    "matchObligation": 230370,
+    "round": "11"
+  },
+  {
+    "countyCode": "41",
+    "countyName": "San Mateo",
+    "districtCode": "68890",
+    "districtName": "Cabrillo Unified",
+    "awardAmount": 176485,
+    "matchObligation": 352970,
+    "round": "11"
+  },
+  {
+    "countyCode": "41",
+    "countyName": "San Mateo",
+    "districtCode": "68924",
+    "districtName": "Jefferson Union High",
+    "awardAmount": 374114,
+    "matchObligation": 748228,
+    "round": "11"
+  },
+  {
+    "countyCode": "41",
+    "countyName": "San Mateo",
+    "districtCode": "69047",
+    "districtName": "San Mateo Union High",
+    "awardAmount": 847174,
+    "matchObligation": 1694348,
+    "round": "11"
+  },
+  {
+    "countyCode": "41",
+    "countyName": "San Mateo",
+    "districtCode": "69062",
+    "districtName": "Sequoia Union High",
+    "awardAmount": 855142,
+    "matchObligation": 1710284,
+    "round": "11"
+  },
+  {
+    "countyCode": "41",
+    "countyName": "San Mateo",
+    "districtCode": "69070",
+    "districtName": "South San Francisco Unified",
+    "awardAmount": 322910,
+    "matchObligation": 645820,
+    "round": "11"
+  },
+  {
+    "countyCode": "42",
+    "countyName": "Santa Barbara",
+    "districtCode": "69146",
+    "districtName": "Carpinteria Unified",
+    "awardAmount": 94708,
+    "matchObligation": 189416,
+    "round": "11"
+  },
+  {
+    "countyCode": "42",
+    "countyName": "Santa Barbara",
+    "districtCode": "75010",
+    "districtName": "Cuyama Joint Unified",
+    "awardAmount": 139569,
+    "matchObligation": 279138,
+    "round": "11"
+  },
+  {
+    "countyCode": "42",
+    "countyName": "Santa Barbara",
+    "districtCode": "69229",
+    "districtName": "Lompoc Unified",
+    "awardAmount": 434962,
+    "matchObligation": 869924,
+    "round": "11"
+  },
+  {
+    "countyCode": "42",
+    "countyName": "Santa Barbara",
+    "districtCode": "10421",
+    "districtName": "Santa Barbara County Office of Education",
+    "awardAmount": 298600,
+    "matchObligation": 597200,
+    "round": "11"
+  },
+  {
+    "countyCode": "42",
+    "countyName": "Santa Barbara",
+    "districtCode": "76786",
+    "districtName": "Santa Barbara Unified",
+    "awardAmount": 885795,
+    "matchObligation": 1771590,
+    "round": "11"
+  },
+  {
+    "countyCode": "42",
+    "countyName": "Santa Barbara",
+    "districtCode": "69310",
+    "districtName": "Santa Maria Joint Union High",
+    "awardAmount": 919895,
+    "matchObligation": 1839790,
+    "round": "11"
+  },
+  {
+    "countyCode": "42",
+    "countyName": "Santa Barbara",
+    "districtCode": "69328",
+    "districtName": "Santa Ynez Valley Union High",
+    "awardAmount": 111727,
+    "matchObligation": 223454,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69401",
+    "districtName": "Campbell Union High",
+    "awardAmount": 865469,
+    "matchObligation": 1730938,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69427",
+    "districtName": "East Side Union High",
+    "awardAmount": 1953518,
+    "matchObligation": 3907036,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69468",
+    "districtName": "Fremont Union High",
+    "awardAmount": 971972,
+    "matchObligation": 1943944,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69484",
+    "districtName": "Gilroy Unified",
+    "awardAmount": 539172,
+    "matchObligation": 1078344,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69534",
+    "districtName": "Los Gatos-Saratoga Union High",
+    "awardAmount": 311596,
+    "matchObligation": 623192,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "74294",
+    "districtName": "Metro Education",
+    "awardAmount": 1638499,
+    "matchObligation": 3276998,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "73387",
+    "districtName": "Milpitas Unified",
+    "awardAmount": 488447,
+    "matchObligation": 976894,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69583",
+    "districtName": "Morgan Hill Unified",
+    "awardAmount": 394898,
+    "matchObligation": 789796,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69609",
+    "districtName": "Mountain View-Los Altos Union High",
+    "awardAmount": 459707,
+    "matchObligation": 919414,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69641",
+    "districtName": "Palo Alto Unified",
+    "awardAmount": 536687,
+    "matchObligation": 1073374,
+    "round": "11"
+  },
+  {
+    "countyCode": "43",
+    "countyName": "Santa Clara",
+    "districtCode": "69674",
+    "districtName": "Santa Clara Unified",
+    "awardAmount": 673484,
+    "matchObligation": 1346968,
+    "round": "11"
+  },
+  {
+    "countyCode": "44",
+    "countyName": "Santa Cruz",
+    "districtCode": "69799",
+    "districtName": "Pajaro Valley Unified",
+    "awardAmount": 870336,
+    "matchObligation": 1740672,
+    "round": "11"
+  },
+  {
+    "countyCode": "44",
+    "countyName": "Santa Cruz",
+    "districtCode": "69807",
+    "districtName": "San Lorenzo Valley Unified",
+    "awardAmount": 130765,
+    "matchObligation": 261530,
+    "round": "11"
+  },
+  {
+    "countyCode": "44",
+    "countyName": "Santa Cruz",
+    "districtCode": "69823",
+    "districtName": "Santa Cruz City High",
+    "awardAmount": 439924,
+    "matchObligation": 879848,
+    "round": "11"
+  },
+  {
+    "countyCode": "45",
+    "countyName": "Shasta",
+    "districtCode": "69856",
+    "districtName": "Anderson Union High",
+    "awardAmount": 187144,
+    "matchObligation": 374288,
+    "round": "11"
+  },
+  {
+    "countyCode": "45",
+    "countyName": "Shasta",
+    "districtCode": "69989",
+    "districtName": "Fall River Joint Unified",
+    "awardAmount": 379035,
+    "matchObligation": 758070,
+    "round": "11"
+  },
+  {
+    "countyCode": "45",
+    "countyName": "Shasta",
+    "districtCode": "75267",
+    "districtName": "Gateway Unified",
+    "awardAmount": 103686,
+    "matchObligation": 207372,
+    "round": "11"
+  },
+  {
+    "countyCode": "45",
+    "countyName": "Shasta",
+    "districtCode": "C1793",
+    "districtName": "Redding School of the Arts",
+    "awardAmount": 93630,
+    "matchObligation": 187260,
+    "round": "11"
+  },
+  {
+    "countyCode": "45",
+    "countyName": "Shasta",
+    "districtCode": "70136",
+    "districtName": "Shasta Union High",
+    "awardAmount": 400327,
+    "matchObligation": 800654,
+    "round": "11"
+  },
+  {
+    "countyCode": "45",
+    "countyName": "Shasta",
+    "districtCode": "40329",
+    "districtName": "Shasta-Trinity ROP JPA",
+    "awardAmount": 567167,
+    "matchObligation": 1134334,
+    "round": "11"
+  },
+  {
+    "countyCode": "45",
+    "countyName": "Shasta",
+    "districtCode": "C1869",
+    "districtName": "Tree of Life International Charter",
+    "awardAmount": 60000,
+    "matchObligation": 120000,
+    "round": "11B"
+  },
+  {
+    "countyCode": "46",
+    "countyName": "Sierra",
+    "districtCode": "70177",
+    "districtName": "Sierra-Plumas Joint Unified",
+    "awardAmount": 151098,
+    "matchObligation": 302196,
+    "round": "11"
+  },
+  {
+    "countyCode": "47",
+    "countyName": "Siskiyou",
+    "districtCode": "73684",
+    "districtName": "Butte Valley Unified",
+    "awardAmount": 137640,
+    "matchObligation": 275280,
+    "round": "11"
+  },
+  {
+    "countyCode": "47",
+    "countyName": "Siskiyou",
+    "districtCode": "C0983",
+    "districtName": "Golden Eagle Charter",
+    "awardAmount": 132214,
+    "matchObligation": 264428,
+    "round": "11"
+  },
+  {
+    "countyCode": "47",
+    "countyName": "Siskiyou",
+    "districtCode": "76455",
+    "districtName": "Scott Valley Unified",
+    "awardAmount": 256387,
+    "matchObligation": 512774,
+    "round": "11"
+  },
+  {
+    "countyCode": "47",
+    "countyName": "Siskiyou",
+    "districtCode": "70466",
+    "districtName": "Siskiyou Union High",
+    "awardAmount": 366377,
+    "matchObligation": 732754,
+    "round": "11"
+  },
+  {
+    "countyCode": "47",
+    "countyName": "Siskiyou",
+    "districtCode": "70516",
+    "districtName": "Yreka Union High",
+    "awardAmount": 91159,
+    "matchObligation": 182318,
+    "round": "11"
+  },
+  {
+    "countyCode": "48",
+    "countyName": "Solano",
+    "districtCode": "70524",
+    "districtName": "Benicia Unified",
+    "awardAmount": 207593,
+    "matchObligation": 415186,
+    "round": "11"
+  },
+  {
+    "countyCode": "48",
+    "countyName": "Solano",
+    "districtCode": "70532",
+    "districtName": "Dixon Unified",
+    "awardAmount": 199232,
+    "matchObligation": 398464,
+    "round": "11"
+  },
+  {
+    "countyCode": "48",
+    "countyName": "Solano",
+    "districtCode": "70540",
+    "districtName": "Fairfield-Suisun Unified",
+    "awardAmount": 875000,
+    "matchObligation": 1750000,
+    "round": "11"
+  },
+  {
+    "countyCode": "48",
+    "countyName": "Solano",
+    "districtCode": "70565",
+    "districtName": "Travis Unified",
+    "awardAmount": 261356,
+    "matchObligation": 522712,
+    "round": "11"
+  },
+  {
+    "countyCode": "48",
+    "countyName": "Solano",
+    "districtCode": "70573",
+    "districtName": "Vacaville Unified",
+    "awardAmount": 600730,
+    "matchObligation": 1201460,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "C2037",
+    "districtName": "California Pacific Charter - Sonoma",
+    "awardAmount": 80251,
+    "matchObligation": 160502,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "70656",
+    "districtName": "Cloverdale Unified",
+    "awardAmount": 85720,
+    "matchObligation": 171440,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "75390",
+    "districtName": "Healdsburg Unified",
+    "awardAmount": 79771,
+    "matchObligation": 159542,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "C0492",
+    "districtName": "Pathways Charter",
+    "awardAmount": 30716,
+    "matchObligation": 61432,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "70862",
+    "districtName": "Petaluma Joint Union High",
+    "awardAmount": 445770,
+    "matchObligation": 891540,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "70920",
+    "districtName": "Santa Rosa High",
+    "awardAmount": 946627,
+    "matchObligation": 1893254,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "70953",
+    "districtName": "Sonoma Valley Unified",
+    "awardAmount": 227482,
+    "matchObligation": 454964,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "70607",
+    "districtName": "West Sonoma County Union High",
+    "awardAmount": 274999,
+    "matchObligation": 549998,
+    "round": "11"
+  },
+  {
+    "countyCode": "49",
+    "countyName": "Sonoma",
+    "districtCode": "75358",
+    "districtName": "Windsor Unified",
+    "awardAmount": 252420,
+    "matchObligation": 504840,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "71043",
+    "districtName": "Ceres Unified",
+    "awardAmount": 777955,
+    "matchObligation": 1555910,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "C0477",
+    "districtName": "Connecting Waters Charter",
+    "awardAmount": 125000,
+    "matchObligation": 250000,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "71068",
+    "districtName": "Denair Unified",
+    "awardAmount": 520693,
+    "matchObligation": 1041386,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "75549",
+    "districtName": "Hughson Unified",
+    "awardAmount": 196820,
+    "matchObligation": 393640,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "71175",
+    "districtName": "Modesto City High",
+    "awardAmount": 1778586,
+    "matchObligation": 3557172,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "73601",
+    "districtName": "Newman-Crows Landing Unified",
+    "awardAmount": 226160,
+    "matchObligation": 452320,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "75564",
+    "districtName": "Oakdale Joint Unified",
+    "awardAmount": 370375,
+    "matchObligation": 740750,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "71217",
+    "districtName": "Patterson Joint Unified",
+    "awardAmount": 504050,
+    "matchObligation": 1008100,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "75556",
+    "districtName": "Riverbank Unified",
+    "awardAmount": 134079,
+    "matchObligation": 268158,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "10504",
+    "districtName": "Stanislaus County Office of Education",
+    "awardAmount": 477374,
+    "matchObligation": 954748,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "75739",
+    "districtName": "Turlock Unified",
+    "awardAmount": 370395,
+    "matchObligation": 740790,
+    "round": "11"
+  },
+  {
+    "countyCode": "50",
+    "countyName": "Stanislaus",
+    "districtCode": "75572",
+    "districtName": "Waterford Unified",
+    "awardAmount": 171056,
+    "matchObligation": 342112,
+    "round": "11"
+  },
+  {
+    "countyCode": "51",
+    "countyName": "Sutter",
+    "districtCode": "71373",
+    "districtName": "East Nicolaus Joint Union High",
+    "awardAmount": 233119,
+    "matchObligation": 466238,
+    "round": "11"
+  },
+  {
+    "countyCode": "51",
+    "countyName": "Sutter",
+    "districtCode": "71399",
+    "districtName": "Live Oak Unified",
+    "awardAmount": 173746,
+    "matchObligation": 347492,
+    "round": "11"
+  },
+  {
+    "countyCode": "51",
+    "countyName": "Sutter",
+    "districtCode": "71449",
+    "districtName": "Sutter Union High",
+    "awardAmount": 230000,
+    "matchObligation": 460000,
+    "round": "11"
+  },
+  {
+    "countyCode": "51",
+    "countyName": "Sutter",
+    "districtCode": "74633",
+    "districtName": "Tri-County ROP",
+    "awardAmount": 464601,
+    "matchObligation": 929202,
+    "round": "11"
+  },
+  {
+    "countyCode": "51",
+    "countyName": "Sutter",
+    "districtCode": "C0289",
+    "districtName": "Yuba City Charter",
+    "awardAmount": 232661,
+    "matchObligation": 465322,
+    "round": "11"
+  },
+  {
+    "countyCode": "51",
+    "countyName": "Sutter",
+    "districtCode": "71464",
+    "districtName": "Yuba City Unified",
+    "awardAmount": 625109,
+    "matchObligation": 1250218,
+    "round": "11"
+  },
+  {
+    "countyCode": "52",
+    "countyName": "Tehama",
+    "districtCode": "71506",
+    "districtName": "Corning Union High",
+    "awardAmount": 165630,
+    "matchObligation": 331260,
+    "round": "11"
+  },
+  {
+    "countyCode": "52",
+    "countyName": "Tehama",
+    "districtCode": "71571",
+    "districtName": "Los Molinos Unified",
+    "awardAmount": 236280,
+    "matchObligation": 472560,
+    "round": "11"
+  },
+  {
+    "countyCode": "52",
+    "countyName": "Tehama",
+    "districtCode": "71639",
+    "districtName": "Red Bluff Joint Union High",
+    "awardAmount": 257944,
+    "matchObligation": 515888,
+    "round": "11"
+  },
+  {
+    "countyCode": "52",
+    "countyName": "Tehama",
+    "districtCode": "C0430",
+    "districtName": "Tehama eLearning Academy",
+    "awardAmount": 28000,
+    "matchObligation": 56000,
+    "round": "11"
+  },
+  {
+    "countyCode": "53",
+    "countyName": "Trinity",
+    "districtCode": "C1809",
+    "districtName": "California Heritage Youthbuild Academy II",
+    "awardAmount": 185803,
+    "matchObligation": 371606,
+    "round": "11"
+  },
+  {
+    "countyCode": "53",
+    "countyName": "Trinity",
+    "districtCode": "75028",
+    "districtName": "Mountain Valley Unified",
+    "awardAmount": 483602,
+    "matchObligation": 967204,
+    "round": "11"
+  },
+  {
+    "countyCode": "53",
+    "countyName": "Trinity",
+    "districtCode": "76513",
+    "districtName": "Trinity Alps Unified",
+    "awardAmount": 292515,
+    "matchObligation": 585030,
+    "round": "11"
+  },
+  {
+    "countyCode": "54",
+    "countyName": "Tulare",
+    "districtCode": "C1894",
+    "districtName": "Crescent Valley Public Charter II",
+    "awardAmount": 119045,
+    "matchObligation": 238090,
+    "round": "11B"
+  },
+  {
+    "countyCode": "54",
+    "countyName": "Tulare",
+    "districtCode": "C0395",
+    "districtName": "Eleanor Roosevelt Community Learning Center",
+    "awardAmount": 162649,
+    "matchObligation": 325298,
+    "round": "11"
+  },
+  {
+    "countyCode": "54",
+    "countyName": "Tulare",
+    "districtCode": "76836",
+    "districtName": "Exeter Unified",
+    "awardAmount": 217798,
+    "matchObligation": 435596,
+    "round": "11"
+  },
+  {
+    "countyCode": "54",
+    "countyName": "Tulare",
+    "districtCode": "75523",
+    "districtName": "Porterville Unified",
+    "awardAmount": 870464,
+    "matchObligation": 1740928,
+    "round": "11"
+  },
+  {
+    "countyCode": "54",
+    "countyName": "Tulare",
+    "districtCode": "10546",
+    "districtName": "Tulare County Office of Education",
+    "awardAmount": 1906750,
+    "matchObligation": 3813500,
+    "round": "11"
+  },
+  {
+    "countyCode": "54",
+    "countyName": "Tulare",
+    "districtCode": "72256",
+    "districtName": "Visalia Technical Early College",
+    "awardAmount": 168600,
+    "matchObligation": 337200,
+    "round": "11"
+  },
+  {
+    "countyCode": "54",
+    "countyName": "Tulare",
+    "districtCode": "72256",
+    "districtName": "Visalia Unified",
+    "awardAmount": 1543239,
+    "matchObligation": 3086478,
+    "round": "11"
+  },
+  {
+    "countyCode": "55",
+    "countyName": "Tuolumne",
+    "districtCode": "75184",
+    "districtName": "Big Oak Flat-Groveland Unified",
+    "awardAmount": 121077,
+    "matchObligation": 242154,
+    "round": "11"
+  },
+  {
+    "countyCode": "55",
+    "countyName": "Tuolumne",
+    "districtCode": "72389",
+    "districtName": "Sonora Union High",
+    "awardAmount": 132807,
+    "matchObligation": 265614,
+    "round": "11"
+  },
+  {
+    "countyCode": "55",
+    "countyName": "Tuolumne",
+    "districtCode": "72413",
+    "districtName": "Summerville Union High",
+    "awardAmount": 159259,
+    "matchObligation": 318518,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "C1126",
+    "districtName": "Architecture, Construction & Engineering Charter High (ACE)",
+    "awardAmount": 173305,
+    "matchObligation": 346610,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "73759",
+    "districtName": "Conejo Valley Unified",
+    "awardAmount": 847979,
+    "matchObligation": 1695958,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "72454",
+    "districtName": "Fillmore Unified",
+    "awardAmount": 239003,
+    "matchObligation": 478006,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "73940",
+    "districtName": "Moorpark Unified",
+    "awardAmount": 275164,
+    "matchObligation": 550328,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "73874",
+    "districtName": "Oak Park Unified",
+    "awardAmount": 241826,
+    "matchObligation": 483652,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "72520",
+    "districtName": "Ojai Unified",
+    "awardAmount": 102911,
+    "matchObligation": 205822,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "72546",
+    "districtName": "Oxnard Union High",
+    "awardAmount": 1591967,
+    "matchObligation": 3183934,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "76828",
+    "districtName": "Santa Paula Unified",
+    "awardAmount": 332100,
+    "matchObligation": 664200,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "72603",
+    "districtName": "Simi Valley Unified",
+    "awardAmount": 779742,
+    "matchObligation": 1559484,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "10561",
+    "districtName": "Ventura County Office of Education",
+    "awardAmount": 351308,
+    "matchObligation": 702616,
+    "round": "11"
+  },
+  {
+    "countyCode": "56",
+    "countyName": "Ventura",
+    "districtCode": "72652",
+    "districtName": "Ventura Unified",
+    "awardAmount": 753791,
+    "matchObligation": 1507582,
+    "round": "11"
+  },
+  {
+    "countyCode": "57",
+    "countyName": "Yolo",
+    "districtCode": "72678",
+    "districtName": "Davis Joint Unified",
+    "awardAmount": 417833,
+    "matchObligation": 835666,
+    "round": "11"
+  },
+  {
+    "countyCode": "57",
+    "countyName": "Yolo",
+    "districtCode": "72686",
+    "districtName": "Esparto Unified",
+    "awardAmount": 287908,
+    "matchObligation": 575816,
+    "round": "11"
+  },
+  {
+    "countyCode": "57",
+    "countyName": "Yolo",
+    "districtCode": "72694",
+    "districtName": "Washington Unified",
+    "awardAmount": 386224,
+    "matchObligation": 772448,
+    "round": "11"
+  },
+  {
+    "countyCode": "57",
+    "countyName": "Yolo",
+    "districtCode": "72702",
+    "districtName": "Winters Joint Unified",
+    "awardAmount": 468921,
+    "matchObligation": 937842,
+    "round": "11"
+  },
+  {
+    "countyCode": "57",
+    "countyName": "Yolo",
+    "districtCode": "72710",
+    "districtName": "Woodland Joint Unified",
+    "awardAmount": 516955,
+    "matchObligation": 1033910,
+    "round": "11"
+  },
+  {
+    "countyCode": "57",
+    "countyName": "Yolo",
+    "districtCode": "10579",
+    "districtName": "Yolo County Office of Education",
+    "awardAmount": 440380,
+    "matchObligation": 880760,
+    "round": "11"
+  },
+  {
+    "countyCode": "58",
+    "countyName": "Yuba",
+    "districtCode": "C0165",
+    "districtName": "CORE Charter",
+    "awardAmount": 299491,
+    "matchObligation": 598982,
+    "round": "11"
+  },
+  {
+    "countyCode": "58",
+    "countyName": "Yuba",
+    "districtCode": "72736",
+    "districtName": "Marysville Joint Unified",
+    "awardAmount": 503157,
+    "matchObligation": 1006314,
+    "round": "11"
+  },
+  {
+    "countyCode": "58",
+    "countyName": "Yuba",
+    "districtCode": "72751",
+    "districtName": "Wheatland",
+    "awardAmount": 230445,
+    "matchObligation": 460890,
+    "round": "11"
+  },
+  {
+    "countyCode": "58",
+    "countyName": "Yuba",
+    "districtCode": "72769",
+    "districtName": "Wheatland Union High",
+    "awardAmount": 294738,
+    "matchObligation": 589476,
+    "round": "11"
+  },
+  {
+    "countyCode": "58",
+    "countyName": "Yuba",
+    "districtCode": "10587",
+    "districtName": "Yuba County Office of Education",
+    "awardAmount": 309525,
+    "matchObligation": 619050,
+    "round": "11B"
+  }
+]
