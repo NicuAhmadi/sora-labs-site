@@ -1,0 +1,193 @@
+---
+permalink: /about/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Sora Labs</title>
+<meta name="description" content="Sora Labs is a founder-led AI consulting and intelligence firm. Human strategists own the analysis and judgment; the AI agents we build — including Nadia Sora, our AI Chief of Staff — handle the leverage.">
+<link rel="canonical" href="https://sora-labs.net/about/">
+<meta property="og:title" content="About — Sora Labs">
+<meta property="og:description" content="Founder-led AI consulting and intelligence. Human judgment, AI leverage — and a clear line between the two.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sora-labs.net/about/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0C; --bg-elevated: #111114; --bg-card: #161619;
+  --glass-border: rgba(255,255,255,0.06); --glass-border-hover: rgba(255,255,255,0.1);
+  --border: #252529; --border-subtle: #1A1A1E;
+  --text: #EFEEEA; --text-secondary: #B4B3BA; --text-dim: #837F87;
+  --accent: #C9A84C; --accent-soft: #C9A84C20; --accent-glow: #C9A84C15; --accent-hover: #DABB5E;
+  --blue: #5B8DEF; --blue-soft: #5B8DEF15;
+  --display: 'Playfair Display', Georgia, serif; --body: 'Libre Franklin', system-ui, sans-serif; --mono: 'JetBrains Mono', monospace;
+  --radius: 16px; --radius-sm: 10px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(10,10,12,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+nav .container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 1.3rem; font-weight: 500; }
+.nav-mark { width: 30px; height: 30px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-dim); transition: color 0.2s; letter-spacing: 0.02em; }
+.nav-links a:hover { color: var(--text-secondary); }
+.nav-links a.active { color: var(--accent); }
+.nav-cta { color: var(--bg) !important; background: var(--accent); padding: 7px 16px; border-radius: 6px; font-weight: 600 !important; transition: background 0.2s; }
+.nav-cta:hover { background: var(--accent-hover); }
+
+/* HERO */
+.hero { padding: 150px 0 20px; text-align: center; position: relative; }
+.hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%); pointer-events: none; }
+.hero-label { display: inline-block; font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
+.hero h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.03em; max-width: 720px; margin: 0 auto 18px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 1.1rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+/* PROSE SECTIONS */
+.section { padding: 44px 0; border-top: 1px solid var(--border-subtle); }
+.section:first-of-type { border-top: none; }
+.section-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+.section h2 { font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section h2 em { font-style: italic; color: var(--accent); }
+.section p { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 14px; }
+.section p strong { color: var(--text); font-weight: 600; }
+
+/* BELIEF LIST */
+.beliefs { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+.beliefs li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.98rem; color: var(--text-secondary); line-height: 1.6; }
+.beliefs li::before { content: '›'; color: var(--accent); font-family: var(--mono); font-weight: 600; flex-shrink: 0; }
+
+/* AGENT CALLOUT */
+.agent-card { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 32px 34px; margin-top: 22px; position: relative; overflow: hidden; }
+.agent-card::before { content: ''; position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: radial-gradient(circle, var(--blue-soft) 0%, transparent 70%); pointer-events: none; }
+.agent-card .tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.62rem; font-weight: 500; color: var(--blue); text-transform: uppercase; letter-spacing: 0.1em; background: var(--blue-soft); padding: 5px 12px; border-radius: 100px; margin-bottom: 16px; }
+.agent-card h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 500; margin-bottom: 10px; }
+.agent-card p { font-size: 0.96rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+.agent-card .pledge { color: var(--text); font-weight: 600; }
+
+/* FOUNDER */
+.founder-note { font-size: 0.9rem; color: var(--text-dim); font-family: var(--mono); letter-spacing: 0.02em; line-height: 1.6; margin-top: 18px; }
+
+/* CTA */
+.cta { text-align: center; padding: 56px 0 80px; border-top: 1px solid var(--border-subtle); position: relative; }
+.cta::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 500px; height: 360px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%); pointer-events: none; }
+.cta h2 { font-family: var(--display); font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 12px; }
+.cta h2 em { font-style: italic; color: var(--accent); }
+.cta p { font-size: 1rem; color: var(--text-secondary); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; font-family: var(--body); font-size: 0.9rem; font-weight: 600; color: var(--bg); background: var(--accent); padding: 13px 26px; border-radius: 8px; transition: all 0.2s; }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-soft); }
+
+/* FOOTER */
+footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.footer-left { font-size: 0.84rem; color: var(--text-dim); }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.84rem; color: var(--text-dim); transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .agent-card { padding: 26px 24px; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+{% set nav_active = "about" %}
+{% include "nav.njk" %}
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">About</div>
+    <h1>Human judgment, <em>AI leverage</em></h1>
+    <p class="hero-sub">Sora Labs is a founder-led consulting and intelligence firm. People make the calls; the AI systems we build do the heavy lifting. Here's exactly who does what — so you always know who you're hiring.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Who we are</div>
+    <h2>A small team that goes where the leverage is</h2>
+    <p>Sora Labs is founder-led, with a team of analysts and strategists who do research and advisory work for operators in industries that rarely get this caliber of attention — logistics, construction, hospitality, insurance, retail, and the local businesses that keep a community running.</p>
+    <p>We're not a big agency, and we don't pretend to be. That's the point: you work directly with the people doing the thinking — our program manager, Logan, keeps every engagement on track — and the work stays specific to your business instead of getting averaged into a template.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">What we believe</div>
+    <h2>Most AI advice is either hype or fear. <em>Neither helps you.</em></h2>
+    <p>We started Sora Labs because business owners kept getting sold tools instead of outcomes. Our whole approach is the opposite:</p>
+    <ul class="beliefs">
+      <li>AI is worth it only where it earns its keep — more revenue, less wasted time, better decisions. Everywhere else, we'll tell you to skip it.</li>
+      <li>Judgment doesn't come from a model. It comes from people who understand your market and have looked hard at the evidence.</li>
+      <li>We're vendor-neutral. We don't resell software, so our only incentive is recommending what actually fits.</li>
+      <li>Proof beats adjectives. We'd rather show you a real briefing or a sample deliverable than talk about being "cutting-edge."</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">How we work</div>
+    <h2>People make the calls. The agents do the reps.</h2>
+    <p>Here's the honest version, because it matters when you're buying judgment: <strong>every analysis, recommendation, and deliverable is owned and reviewed by a human on our team.</strong> What makes us fast is that we've built our own AI systems to handle the parts that don't need judgment — monitoring sources around the clock, first-pass research, drafting, and formatting.</p>
+    <p>That's the leverage. A firm our size can deliver the depth of a much larger one because the humans spend their time on thinking, not busywork — and because we run the same kind of AI systems in production that we help clients adopt. We run our own agents, and we build custom ones for clients. Two examples:</p>
+
+    <div class="agent-card">
+      <span class="tag">◆ Our in-house agent</span>
+      <h3>Nadia Sora, our AI Chief of Staff</h3>
+      <p>Nadia Sora is an <strong style="color:var(--text)">AI agent</strong> we built and run in production — not a person. She's the byline you'll see on <em>The Briefing</em> newsletter, and she handles the tireless work behind the scenes: watching competitive signals, pulling first-pass research, drafting, and keeping our own operation moving.</p>
+      <p class="pledge">When you engage Sora Labs, a human strategist owns your work and signs off on every recommendation. Nadia makes us faster; she doesn't make your decisions.</p>
+    </div>
+
+    <div class="agent-card">
+      <span class="tag" style="color:var(--accent);background:var(--accent-soft);">◆ Built for a client</span>
+      <h3>Pearl, a custom agent for a dental practice</h3>
+      <p>We also build custom AI agents for our clients. Pearl is one — an agent we built for a dental office to handle patient intake and follow-up, so the front desk stops losing new patients to voicemail and missed callbacks.</p>
+      <p class="pledge">Same principle, on your side of the table: the agent does the repetitive work, and your people stay in charge of the care and the judgment.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Want to know if AI is <em>worth it</em> for you?</h2>
+    <p>Tell us where your business feels stuck. We'll give you a straight answer and the highest-value place to start.</p>
+    <a href="/contact/" class="btn-primary">Start a conversation →</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="/services/">Services</a>
+        <a href="/local-businesses/">Local Businesses</a>
+        <a href="/resources/">Resources</a>
+        <a href="/contact/">Contact</a>
+        <a href="/products/">For AI Operators</a>
+        <a href="https://buttondown.com/nclawdev" target="_blank" rel="noopener">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

@@ -1,0 +1,273 @@
+---
+permalink: /services/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — AI Consulting & Market Intelligence | Sora Labs</title>
+<meta name="description" content="Founder-led AI consulting and market intelligence. Start with an AI Opportunity Audit, then a competitive intelligence retainer, pipeline briefings, or a workflow automation sprint — scoped to your business.">
+<link rel="canonical" href="https://sora-labs.net/services/">
+<meta property="og:title" content="Services — AI Consulting & Market Intelligence | Sora Labs">
+<meta property="og:description" content="Practical AI consulting and market intelligence, scoped to your business. Start with a paid AI Opportunity Audit.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sora-labs.net/services/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0C; --bg-elevated: #111114; --bg-card: #161619;
+  --glass-border: rgba(255,255,255,0.06); --glass-border-hover: rgba(255,255,255,0.1);
+  --border: #252529; --border-subtle: #1A1A1E;
+  --text: #EFEEEA; --text-secondary: #B4B3BA; --text-dim: #837F87;
+  --accent: #C9A84C; --accent-soft: #C9A84C20; --accent-glow: #C9A84C15; --accent-hover: #DABB5E;
+  --display: 'Playfair Display', Georgia, serif; --body: 'Libre Franklin', system-ui, sans-serif; --mono: 'JetBrains Mono', monospace;
+  --radius: 16px; --radius-sm: 10px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(10,10,12,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+nav .container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 1.3rem; font-weight: 500; }
+.nav-mark { width: 30px; height: 30px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-dim); transition: color 0.2s; letter-spacing: 0.02em; }
+.nav-links a:hover { color: var(--text-secondary); }
+.nav-links a.active { color: var(--accent); }
+.nav-cta { color: var(--bg) !important; background: var(--accent); padding: 7px 16px; border-radius: 6px; font-weight: 600 !important; transition: background 0.2s; }
+.nav-cta:hover { background: var(--accent-hover); }
+
+/* HERO */
+.hero { padding: 150px 0 20px; text-align: center; position: relative; }
+.hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%); pointer-events: none; }
+.hero-label { display: inline-block; font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
+.hero h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.03em; max-width: 740px; margin: 0 auto 18px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 1.1rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+/* START-HERE STRIP */
+.start-here { padding: 36px 0 8px; }
+.start-inner { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 30px 34px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; position: relative; overflow: hidden; }
+.start-inner::before { content: ''; position: absolute; top: -60px; right: -40px; width: 260px; height: 260px; background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%); pointer-events: none; }
+.start-text { max-width: 640px; position: relative; z-index: 1; }
+.start-text .tag { font-family: var(--mono); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; }
+.start-text h2 { font-family: var(--display); font-size: 1.5rem; font-weight: 500; margin-bottom: 8px; }
+.start-text p { font-size: 0.96rem; color: var(--text-secondary); line-height: 1.65; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; font-family: var(--body); font-size: 0.9rem; font-weight: 600; color: var(--bg); background: var(--accent); padding: 13px 26px; border-radius: 8px; transition: all 0.2s; white-space: nowrap; }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-soft); }
+
+/* OFFER GRID */
+.offers { padding: 40px 0 16px; }
+.offers-head { text-align: center; margin-bottom: 32px; }
+.offers-head .section-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+.offers-head h2 { font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500; letter-spacing: -0.02em; }
+.offer-grid { display: grid; gap: 20px; grid-template-columns: repeat(2, 1fr); }
+.offer { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 32px 32px; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+.offer:hover { border-color: var(--glass-border-hover); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+.offer.featured { border-color: var(--accent-soft); }
+.offer-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.62rem; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; background: var(--accent-soft); padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; align-self: flex-start; }
+.offer h3 { font-family: var(--display); font-size: 1.4rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 6px; }
+.offer .who { font-size: 0.84rem; color: var(--text-dim); font-style: italic; margin-bottom: 14px; }
+.offer .outcome { font-size: 0.96rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 18px; }
+.offer ul { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.offer ul li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+.offer ul li::before { content: '›'; color: var(--accent); font-family: var(--mono); font-weight: 600; flex-shrink: 0; }
+.offer-foot { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.offer-price { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); }
+.offer-price small { display: block; color: var(--text-dim); font-size: 0.72rem; margin-top: 2px; }
+.offer-cta { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.8rem; font-weight: 500; color: var(--accent); transition: gap 0.2s; }
+.offer-cta:hover { gap: 10px; }
+
+/* METHOD NOTE */
+.method { padding: 40px 0; }
+.method-inner { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 30px 36px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.method-text { max-width: 640px; }
+.method-text h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 500; margin-bottom: 8px; }
+.method-text p { font-size: 0.94rem; color: var(--text-secondary); line-height: 1.65; }
+.method-link a { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--accent); padding: 11px 22px; border: 1px solid var(--accent); border-radius: var(--radius-sm); white-space: nowrap; transition: background 0.2s, color 0.2s; }
+.method-link a:hover { background: var(--accent); color: var(--bg); }
+
+/* CTA */
+.cta { text-align: center; padding: 48px 0 80px; border-top: 1px solid var(--border-subtle); position: relative; }
+.cta::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 500px; height: 360px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%); pointer-events: none; }
+.cta h2 { font-family: var(--display); font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 12px; }
+.cta h2 em { font-style: italic; color: var(--accent); }
+.cta p { font-size: 1rem; color: var(--text-secondary); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+/* FOOTER */
+footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.footer-left { font-size: 0.84rem; color: var(--text-dim); }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.84rem; color: var(--text-dim); transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+@media (max-width: 860px) { .offer-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .start-inner, .method-inner { flex-direction: column; align-items: flex-start; text-align: left; padding: 26px 24px; }
+  .offer { padding: 26px 24px; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+{% set nav_active = "services" %}
+{% include "nav.njk" %}
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Services</div>
+    <h1>AI consulting &amp; market intelligence, <em>scoped to your business</em></h1>
+    <p class="hero-sub">Engagements, not SKUs. Every one starts with understanding your actual bottleneck, and ends with something you can act on — a plan, a briefing, or a working automation.</p>
+  </div>
+</section>
+
+<!-- START HERE -->
+<section class="start-here">
+  <div class="container">
+    <div class="start-inner">
+      <div class="start-text">
+        <div class="tag">Start here</div>
+        <h2>The AI Opportunity Audit</h2>
+        <p>The front door to everything else. A working session plus a written, prioritized plan of where AI is genuinely worth it for your business — and where it isn't. Most clients start here, then decide what to build.</p>
+      </div>
+      <a href="/contact/" class="btn-primary">Book the audit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section class="offers">
+  <div class="container">
+    <div class="offers-head">
+      <div class="section-label">Engagements</div>
+      <h2>How we work together</h2>
+    </div>
+
+    <div class="offer-grid">
+
+      <!-- AI Opportunity Audit -->
+      <article class="offer featured" id="audit">
+        <span class="offer-tag">◆ Start here</span>
+        <h3>AI Opportunity Audit</h3>
+        <div class="who">For owners who want a straight answer before spending a dollar on AI.</div>
+        <p class="outcome">A fixed-scope diagnostic: we look at your operations, market, and tools, then hand you a prioritized action plan you own — whether or not you work with us further.</p>
+        <ul>
+          <li>Working session to map your bottlenecks and goals</li>
+          <li>Written, prioritized 30/60/90-day plan</li>
+          <li>Vendor-neutral tool recommendations — what to use, what to skip</li>
+        </ul>
+        <div class="offer-foot">
+          <div class="offer-price">Scoped on a call<small>custom, fixed-scope diagnostic</small></div>
+          <a href="/contact/" class="offer-cta">Book the audit →</a>
+        </div>
+      </article>
+
+      <!-- Intelligence Retainer -->
+      <article class="offer" id="intelligence">
+        <span class="offer-tag">↻ Retainer</span>
+        <h3>Competitive &amp; Market Intelligence</h3>
+        <div class="who">For leaders making decisions with incomplete information.</div>
+        <p class="outcome">An ongoing engagement that tracks your competitors, market, and customers — and tells you, in plain language, what changed and what to do about it.</p>
+        <ul>
+          <li>Competitor and market monitoring, sourced and cross-checked</li>
+          <li>Pricing, positioning, and offer benchmarking</li>
+          <li>Recurring "what changed and what to do" briefs</li>
+        </ul>
+        <div class="offer-foot">
+          <div class="offer-price">Scoped on a call<small>monthly retainer</small></div>
+          <a href="/contact/" class="offer-cta">Scope a retainer →</a>
+        </div>
+      </article>
+
+      <!-- Pipeline Briefing -->
+      <article class="offer" id="pipeline">
+        <span class="offer-tag">◇ Lead intelligence</span>
+        <h3>Pipeline Briefing</h3>
+        <div class="who">For contractors and service businesses that need a steady flow of qualified opportunities.</div>
+        <p class="outcome">A recurring briefing of verified local opportunities — each with a likely need, a fit rationale, and a draft outreach email your team can send.</p>
+        <ul>
+          <li>Verified opportunities, sourced from public signals</li>
+          <li>Fit rationale and a "current-reality check" on each</li>
+          <li>Draft outreach you can send the same day</li>
+        </ul>
+        <div class="offer-foot">
+          <div class="offer-price">Scoped on a call<small>see the <a href="/research/case-studies/construction-pipeline/" style="color:var(--accent)">sample →</a></small></div>
+          <a href="/contact/" class="offer-cta">Start a pipeline →</a>
+        </div>
+      </article>
+
+      <!-- Automation Sprint -->
+      <article class="offer" id="automation">
+        <span class="offer-tag">⚡ Implementation</span>
+        <h3>Workflow Automation Sprint</h3>
+        <div class="who">For teams losing hours to repetitive admin and manual coordination.</div>
+        <p class="outcome">A fixed-scope sprint that takes one high-value workflow — intake, scheduling, follow-up, quoting, reporting — and turns it into something that runs itself.</p>
+        <ul>
+          <li>Workflow assessment to find the highest-ROI target</li>
+          <li>Build, test, and hand off one working automation</li>
+          <li>Team training so it sticks after we leave</li>
+        </ul>
+        <div class="offer-foot">
+          <div class="offer-price">Scoped on a call<small>fixed-price sprint</small></div>
+          <a href="/contact/" class="offer-cta">Scope a sprint →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method">
+  <div class="container">
+    <div class="method-inner">
+      <div class="method-text">
+        <h3>Human judgment, not a black box</h3>
+        <p>Every analysis and recommendation is owned by a human on our team. We build and run our own AI agents to move faster — but people make the calls. Here's how that works.</p>
+      </div>
+      <div class="method-link"><a href="/about/">How we work &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>Not sure which one fits? <em>Start with a question.</em></h2>
+    <p>Tell us where your business is losing time, opportunities, or visibility. We'll point you to the highest-value place to start.</p>
+    <a href="/contact/" class="btn-primary">Start a conversation →</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="/local-businesses/">Local Businesses</a>
+        <a href="/resources/">Resources</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/products/">For AI Operators</a>
+        <a href="https://buttondown.com/nclawdev" target="_blank" rel="noopener">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

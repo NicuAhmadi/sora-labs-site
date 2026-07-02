@@ -1,0 +1,240 @@
+---
+permalink: /contact/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Sora Labs</title>
+<meta name="description" content="Tell us where your business is losing time, opportunities, or visibility, and we'll point you to the highest-value place to start with AI. Founder-led AI consulting and intelligence.">
+<link rel="canonical" href="https://sora-labs.net/contact/">
+<meta property="og:title" content="Contact — Sora Labs">
+<meta property="og:description" content="Start a conversation with Sora Labs — founder-led AI consulting and market intelligence.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sora-labs.net/contact/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0A0C; --bg-elevated: #111114; --bg-card: #161619;
+  --glass-border: rgba(255,255,255,0.06); --glass-border-hover: rgba(255,255,255,0.1);
+  --border: #252529; --border-subtle: #1A1A1E;
+  --text: #EFEEEA; --text-secondary: #B4B3BA; --text-dim: #837F87;
+  --accent: #C9A84C; --accent-soft: #C9A84C20; --accent-glow: #C9A84C15; --accent-hover: #DABB5E;
+  --green: #4EAD6B; --green-soft: #4EAD6B18;
+  --display: 'Playfair Display', Georgia, serif; --body: 'Libre Franklin', system-ui, sans-serif; --mono: 'JetBrains Mono', monospace;
+  --radius: 16px; --radius-sm: 10px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--body);
+  font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(10,10,12,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+nav .container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 1.3rem; font-weight: 500; }
+.nav-mark { width: 30px; height: 30px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-dim); transition: color 0.2s; letter-spacing: 0.02em; }
+.nav-links a:hover { color: var(--text-secondary); }
+.nav-links a.active { color: var(--accent); }
+.nav-cta { color: var(--bg) !important; background: var(--accent); padding: 7px 16px; border-radius: 6px; font-weight: 600 !important; transition: background 0.2s; }
+.nav-cta:hover { background: var(--accent-hover); }
+
+/* HERO */
+.hero { padding: 150px 0 24px; text-align: center; position: relative; }
+.hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%); pointer-events: none; }
+.hero-label { display: inline-block; font-family: var(--mono); font-size: 0.7rem; font-weight: 500; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
+.hero h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.03em; max-width: 720px; margin: 0 auto 18px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+/* CONTACT LAYOUT */
+.contact-section { padding: 40px 0 56px; }
+.contact-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 28px; align-items: start; }
+.card { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 34px 34px; }
+.card h2 { font-family: var(--display); font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 8px; }
+.card > p.card-lead { font-size: 0.98rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 24px; }
+
+/* FORM */
+.field { margin-bottom: 18px; }
+.field label { display: block; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 8px; }
+.field label .req { color: var(--accent); }
+.field input, .field textarea, .field select {
+  width: 100%; font-family: var(--body); font-size: 0.95rem; color: var(--text);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 13px 15px; outline: none; transition: border-color 0.2s;
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: var(--text-dim); }
+.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; font-family: var(--body); font-size: 0.9rem; font-weight: 600; color: var(--bg); background: var(--accent); padding: 13px 26px; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s; }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-soft); }
+.form-note { font-size: 0.82rem; color: var(--text-dim); margin-top: 14px; line-height: 1.55; }
+.form-note a { color: var(--text-secondary); }
+.form-note a:hover { color: var(--accent); }
+
+/* ASIDE */
+.aside-block { margin-bottom: 26px; }
+.aside-block:last-child { margin-bottom: 0; }
+.aside-label { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+.aside-block h3 { font-family: var(--display); font-size: 1.15rem; font-weight: 500; margin-bottom: 8px; }
+.aside-block p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px; }
+.aside-email { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); }
+.aside-divider { height: 1px; background: var(--border-subtle); margin: 24px 0; }
+
+/* Buttondown capture */
+.embeddable-buttondown-form { display: flex; flex-direction: column; gap: 10px; }
+.embeddable-buttondown-form label { display: none; }
+.embeddable-buttondown-form input[type="email"] { width: 100%; font-family: var(--body); font-size: 0.9rem; padding: 12px 15px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); outline: none; transition: border-color 0.2s; }
+.embeddable-buttondown-form input[type="email"]::placeholder { color: var(--text-dim); }
+.embeddable-buttondown-form input[type="email"]:focus { border-color: var(--accent); }
+.embeddable-buttondown-form input[type="submit"] { font-family: var(--body); font-size: 0.85rem; font-weight: 600; padding: 12px 18px; background: var(--accent); color: var(--bg); border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+.embeddable-buttondown-form input[type="submit"]:hover { background: var(--accent-hover); }
+.embeddable-buttondown-form p { display: none; }
+
+/* FOOTER */
+footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.footer-left { font-size: 0.84rem; color: var(--text-dim); }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.84rem; color: var(--text-dim); transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .card { padding: 28px 24px; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+{% set nav_active = "contact" %}
+{% include "nav.njk" %}
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Contact</div>
+    <h1>Start with one <em>practical question</em></h1>
+    <p class="hero-sub">Where is your business losing time, opportunities, or visibility? Tell us a little about it and we'll point you to the highest-value place to start — no jargon, no pressure, no tools you don't need.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="card">
+        <h2>Tell us what you're working on</h2>
+        <p class="card-lead">A few details are enough to get you a useful, specific reply — usually within one business day.</p>
+        <form action="https://formspree.io/f/mgojplrg" method="POST" novalidate>
+          <div class="field">
+            <label for="name">Name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@business.com" required>
+          </div>
+          <div class="field">
+            <label for="business">Business or website</label>
+            <input type="text" id="business" name="business" placeholder="Business name or URL">
+          </div>
+          <div class="field">
+            <label for="type">Business type</label>
+            <select id="type" name="business_type">
+              <option value="">Select one (optional)</option>
+              <option>Restaurant / hospitality</option>
+              <option>Retail</option>
+              <option>Professional / service firm</option>
+              <option>Healthcare / clinic</option>
+              <option>Contractor / trades</option>
+              <option>Events</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="improve">What are you trying to improve? <span class="req">*</span></label>
+            <textarea id="improve" name="message" placeholder="e.g. We lose leads because no one follows up fast enough — I want to fix that." required></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="company">Company (leave blank)</label>
+            <input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="_subject" value="New inquiry from sora-labs.net">
+          <button type="submit" class="btn-primary">Send message →</button>
+          <p class="form-note">Prefer email? Write us directly at <a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a>. We never share your details.</p>
+        </form>
+      </div>
+
+      <!-- ASIDE -->
+      <aside class="card">
+        <div class="aside-block">
+          <div class="aside-label">Direct</div>
+          <h3>Email us</h3>
+          <p>For anything that doesn't fit a form.</p>
+          <a class="aside-email" href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a>
+        </div>
+
+        <div class="aside-divider"></div>
+
+        <div class="aside-block">
+          <div class="aside-label">Not ready to talk?</div>
+          <h3>Get The Briefing</h3>
+          <p>A daily dispatch on the trends, tools, and shifts that actually matter for business. Written for operators.</p>
+          <form action="https://buttondown.com/api/emails/embed-subscribe/nclawdev" method="post" class="embeddable-buttondown-form">
+            <label for="bd-email">Enter your email</label>
+            <input type="email" name="email" id="bd-email" placeholder="you@business.com" required>
+            <input type="submit" value="Subscribe free">
+            <p><a href="https://buttondown.com/refer/nclawdev" target="_blank" rel="noopener">Powered by Buttondown.</a></p>
+          </form>
+        </div>
+
+        <div class="aside-divider"></div>
+
+        <div class="aside-block">
+          <div class="aside-label">See first</div>
+          <h3>Our work</h3>
+          <p>Prefer proof before a conversation? Read a <a href="/research/ai-construction/" style="color:var(--accent)">full market briefing</a> or a <a href="/research/case-studies/construction-pipeline/" style="color:var(--accent)">sample deliverable</a>.</p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="/services/">Services</a>
+        <a href="/local-businesses/">Local Businesses</a>
+        <a href="/resources/">Resources</a>
+        <a href="/about/">About</a>
+        <a href="/products/">For AI Operators</a>
+        <a href="https://buttondown.com/nclawdev" target="_blank" rel="noopener">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}

@@ -246,6 +246,21 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 }
 .pillar-industries span { color: var(--text-secondary); }
 
+/* ═══ VIGNETTES ═══ */
+.vignettes { padding: 40px 0 8px; }
+.vignettes-head { text-align: center; margin-bottom: 30px; }
+.vignettes-head .section-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+.vignettes-head h2 { font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; }
+.vignettes-head p { font-size: 0.96rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto; }
+.vignette-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); }
+.vignette { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 28px 28px; transition: border-color 0.3s, transform 0.3s; }
+.vignette:hover { border-color: var(--glass-border-hover); transform: translateY(-3px); }
+.vignette .who { font-family: var(--mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+.vignette h3 { font-family: var(--display); font-size: 1.2rem; font-weight: 500; line-height: 1.3; margin-bottom: 10px; }
+.vignette p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.65; }
+.vignette .lens { display: block; margin-top: 14px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.03em; color: var(--text-dim); }
+@media (max-width: 860px) { .vignette-grid { grid-template-columns: 1fr; } }
+
 /* ═══ OUTCOMES ═══ */
 .outcomes { padding: 46px 0 36px; border-top: 1px solid var(--border-subtle); margin-top: 24px; }
 .outcomes-head { text-align: center; margin-bottom: 30px; }
@@ -344,7 +359,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
     <h1>AI that helps local businesses <em>grow and run better</em></h1>
     <p class="hero-sub">Sora Labs combines practical AI workflows with market and competitive intelligence to help local business owners capture more opportunity, reduce manual work, and make smarter moves — without buying tools they don't need.</p>
     <div class="hero-actions">
-      <a href="mailto:nadia@sora-labs.net?subject=Start%20a%20Conversation%20—%20AI%20for%20my%20local%20business" class="btn-primary">Start a Conversation →</a>
+      <a href="/contact/" class="btn-primary">Start a Conversation →</a>
       <a href="#pillars" class="btn-ghost">See how we help</a>
     </div>
   </div>
@@ -404,6 +419,40 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
   </div>
 </section>
 
+<!-- VIGNETTES -->
+<section class="vignettes" id="examples">
+  <div class="container">
+    <div class="vignettes-head">
+      <div class="section-label">What This Looks Like</div>
+      <h2>Different business, same idea</h2>
+      <p>A few examples of how the three pillars play out in practice.</p>
+    </div>
+    <div class="vignette-grid">
+      <article class="vignette">
+        <div class="who">For a neighborhood restaurant</div>
+        <h3>Fill the slow weeknights</h3>
+        <p>We find the nearby offices, hotels, and event planners worth courting for catering and private bookings, then set up follow-up so a promising inquiry never sits unanswered until the table's already gone.</p>
+        <span class="lens">→ Win More Business</span>
+      </article>
+      <article class="vignette">
+        <div class="who">For a clinic or professional firm</div>
+        <h3>Stop dropping the intake ball</h3>
+        <p>New-client calls, forms, and emails get triaged and answered automatically, appointments and paperwork chase themselves, and your front desk stops living in a dozen open tabs.</p>
+        <span class="lens">→ Run More Efficiently</span>
+      </article>
+      <article class="vignette">
+        <div class="who">For a local contractor</div>
+        <h3>See the work before your rivals do</h3>
+        <p>A steady read on permits, local development, and competitor pricing tells you which projects are worth chasing and what to bid — so you're quoting the right jobs instead of guessing.</p>
+        <span class="lens">→ See What Others Miss</span>
+      </article>
+    </div>
+    <p style="text-align:center;margin-top:26px;font-size:0.92rem;color:var(--text-dim);">
+      Want to see the real thing? Read a <a href="/research/case-studies/construction-pipeline/" style="color:var(--accent)">sample pipeline briefing</a> or a <a href="/research/ai-construction/" style="color:var(--accent)">full market briefing</a>.
+    </p>
+  </div>
+</section>
+
 <!-- OUTCOMES -->
 <section class="outcomes" id="outcomes">
   <div class="container">
@@ -439,12 +488,12 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
     <h2>Start with one <em>practical question</em></h2>
     <p>Where is your business losing time, opportunities, or visibility? We'll help you identify the highest-value place to start — whether that's a workflow to automate, a market question to answer, or an AI opportunity worth pursuing.</p>
     <div class="cta-actions">
-      <a href="mailto:nadia@sora-labs.net?subject=Book%20an%20Intro%20Call%20—%20AI%20for%20my%20local%20business" class="btn-primary">Book an Intro Call →</a>
+      <a href="/contact/" class="btn-primary">Book an Intro Call →</a>
       <a href="/resources/" class="btn-ghost">Read our free guides</a>
     </div>
     <div class="cta-email">nadia@sora-labs.net</div>
     <div class="cta-related">
-      Sora Labs — practical AI, workflow automation, and market intelligence for local businesses. · Also see <a href="/#services">Competitive Intelligence &amp; AI Readiness Audit</a> · <a href="/products/">Products for AI operators</a>
+      Sora Labs — practical AI, workflow automation, and market intelligence for local businesses. · Also see <a href="/services/">our services</a> · <a href="/about/">how we work</a>
     </div>
   </div>
 </section>
@@ -457,13 +506,13 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
     <div class="footer-inner">
       <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
       <div class="footer-links">
-        <a href="/#services">Services</a>
-        <a href="/products/">Products</a>
-        <a href="/resources/">Resources</a>
+        <a href="/services/">Services</a>
         <a href="/local-businesses/">Local Businesses</a>
-        <a href="https://x.com/NadiaReports" target="_blank" rel="noopener">𝕏</a>
+        <a href="/resources/">Resources</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/products/">For AI Operators</a>
         <a href="https://buttondown.com/nclawdev" target="_blank" rel="noopener">Newsletter</a>
-        <a href="mailto:nadia@sora-labs.net">Contact</a>
       </div>
     </div>
   </div>
