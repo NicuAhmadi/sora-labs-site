@@ -1,0 +1,485 @@
+---
+permalink: /local-businesses/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Local Businesses — Sora Labs</title>
+<meta name="description" content="AI that helps local businesses grow and run better. Sora Labs combines practical AI strategy, workflow automation, and market intelligence to help local businesses win more business, reduce busywork, and make better decisions.">
+<link rel="canonical" href="https://sora-labs.net/local-businesses/">
+<meta property="og:title" content="AI for Local Businesses — Sora Labs">
+<meta property="og:description" content="AI that helps local businesses grow and run better — practical AI strategy, workflow automation, and market intelligence for local businesses.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sora-labs.net/local-businesses/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Service schema markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Sora Labs for Local Businesses",
+  "description": "AI consulting, workflow automation, and market intelligence for local businesses — restaurants, hospitality, service providers, retailers, event teams, and professional firms.",
+  "url": "https://sora-labs.net/local-businesses/",
+  "email": "nadia@sora-labs.net",
+  "areaServed": "Local",
+  "serviceType": ["AI consulting", "Business process automation", "Competitive intelligence", "AI readiness assessment"]
+}
+</script>
+
+<style>
+:root {
+  --bg: #0A0A0C;
+  --bg-elevated: #111114;
+  --bg-card: #161619;
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-border-hover: rgba(255,255,255,0.1);
+  --border: #252529;
+  --border-subtle: #1A1A1E;
+  --text: #EFEEEA;
+  --text-secondary: #B4B3BA;
+  --text-dim: #837F87;
+  --accent: #C9A84C;
+  --accent-soft: #C9A84C20;
+  --accent-glow: #C9A84C15;
+  --accent-hover: #DABB5E;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Libre Franklin', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ═══ NAV ═══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  background: rgba(10,10,12,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+nav .container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-size: 1.3rem; font-weight: 500;
+}
+.nav-mark {
+  width: 30px; height: 30px; background: var(--accent); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg);
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 0.82rem; font-weight: 500; color: var(--text-dim);
+  transition: color 0.2s; letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--text-secondary); }
+.nav-links a.active { color: var(--accent); }
+.nav-cta {
+  color: var(--bg) !important; background: var(--accent);
+  padding: 7px 16px; border-radius: 6px; font-weight: 600 !important;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--accent-hover); }
+
+/* ═══ HERO ═══ */
+.hero { padding: 150px 0 40px; text-align: center; position: relative; }
+.hero::before {
+  content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 500px;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-label {
+  display: inline-block;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+  color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.14em;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 500; line-height: 1.08; letter-spacing: -0.03em;
+  max-width: 760px; margin: 0 auto 18px;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--text-secondary);
+  max-width: 620px; margin: 0 auto 32px; line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--body); font-size: 0.88rem; font-weight: 600;
+  color: var(--bg); background: var(--accent);
+  padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 24px var(--accent-soft); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--body); font-size: 0.88rem; font-weight: 500;
+  color: var(--text-secondary); background: transparent;
+  padding: 12px 24px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--text-dim); color: var(--text); }
+
+/* ═══ INTRO FRAMING ═══ */
+.intro { padding: 8px 0 8px; text-align: center; }
+.intro-inner {
+  max-width: 720px; margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 40px 44px;
+  position: relative; overflow: hidden;
+}
+.intro-inner::before {
+  content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.intro-inner > * { position: relative; z-index: 1; }
+.intro h2 {
+  font-family: var(--display); font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 500; letter-spacing: -0.02em; margin-bottom: 14px;
+}
+.intro h2 em { font-style: italic; color: var(--accent); }
+.intro p { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+
+/* ═══ PILLARS ═══ */
+.pillars { padding: 40px 0 16px; }
+.pillars-head { text-align: center; margin-bottom: 30px; }
+.pillars-head .section-label {
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+  color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+.pillars-head h2 {
+  font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 500; letter-spacing: -0.02em;
+}
+.pillars-audience {
+  font-size: 0.94rem; color: var(--text-secondary); line-height: 1.6;
+  max-width: 640px; margin: 14px auto 0;
+}
+.pillar-grid {
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.pillar {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 34px 34px;
+  display: flex; flex-direction: column;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.pillar:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+.pillar-num {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.pillar h3 {
+  font-family: var(--display); font-size: 1.5rem; font-weight: 500;
+  letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 10px;
+}
+.pillar-for {
+  font-size: 0.82rem; color: var(--text-dim);
+  font-style: italic; margin-bottom: 16px;
+}
+.pillar p.pillar-copy {
+  font-size: 1rem; color: var(--text-secondary); line-height: 1.65;
+  margin-bottom: 20px;
+}
+.pillar-services {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.pillar-services li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.94rem; color: var(--text-secondary); line-height: 1.5;
+}
+.pillar-services li::before {
+  content: '›';
+  color: var(--accent); font-family: var(--mono); font-weight: 600;
+  flex-shrink: 0; line-height: 1.4;
+}
+.pillar-industries {
+  margin-top: auto; padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.76rem; color: var(--text-dim); line-height: 1.6;
+}
+.pillar-industries span { color: var(--text-secondary); }
+
+/* ═══ OUTCOMES ═══ */
+.outcomes { padding: 46px 0 36px; border-top: 1px solid var(--border-subtle); margin-top: 24px; }
+.outcomes-head { text-align: center; margin-bottom: 30px; }
+.outcomes-head .section-label {
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+  color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+.outcomes-head h2 {
+  font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 500; letter-spacing: -0.02em;
+}
+.outcome-list {
+  list-style: none; margin: 0 auto; padding: 0; max-width: 900px;
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.outcome-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 22px 24px;
+  font-size: 1rem; color: var(--text); line-height: 1.55;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.outcome-list li:hover { border-color: var(--glass-border-hover); transform: translateY(-2px); }
+.outcome-mark {
+  flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem; font-weight: 700;
+  margin-top: 1px;
+}
+
+/* ═══ CTA ═══ */
+.cta { text-align: center; padding: 56px 0 72px; position: relative; }
+.cta::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 400px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta h2 {
+  font-family: var(--display); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 500; letter-spacing: -0.02em;
+  max-width: 560px; margin: 0 auto 12px;
+}
+.cta h2 em { font-style: italic; color: var(--accent); }
+.cta p { font-size: 1.02rem; color: var(--text-secondary); margin-bottom: 32px; max-width: 540px; margin-left: auto; margin-right: auto; }
+.cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta-email { font-family: var(--mono); font-size: 0.88rem; color: var(--accent); margin-top: 22px; }
+.cta-related {
+  margin-top: 28px; font-size: 0.86rem; color: var(--text-dim); font-family: var(--mono); letter-spacing: 0.03em;
+}
+.cta-related a { color: var(--text-secondary); transition: color 0.2s; }
+.cta-related a:hover { color: var(--accent); }
+
+/* ═══ FOOTER ═══ */
+footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.footer-left { font-size: 0.84rem; color: var(--text-dim); }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.84rem; color: var(--text-dim); transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .outcome-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .intro-inner { padding: 32px 24px; }
+  .pillar { padding: 28px 26px; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+@media (max-width: 500px) {
+  .hero-actions, .cta-actions { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+{% set nav_active = "local" %}
+{% include "nav.njk" %}
+{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-label">Sora Labs for Local Businesses</div>
+    <h1>AI that helps local businesses <em>grow and run better</em></h1>
+    <p class="hero-sub">Sora Labs combines practical AI workflows with market and competitive intelligence to help local business owners capture more opportunity, reduce manual work, and make smarter moves — without buying tools they don't need.</p>
+    <div class="hero-actions">
+      <a href="mailto:nadia@sora-labs.net?subject=Start%20a%20Conversation%20—%20AI%20for%20my%20local%20business" class="btn-primary">Start a Conversation →</a>
+      <a href="#pillars" class="btn-ghost">See how we help</a>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="container">
+    <div class="pillars-head">
+      <div class="section-label">How We Help</div>
+      <h2>Three ways to put AI to work</h2>
+      <p class="pillars-audience">Built for owner-led restaurants, hospitality businesses, service providers, retailers, event teams, and professional firms.</p>
+    </div>
+
+    <div class="pillar-grid">
+
+      <!-- PILLAR 1 -->
+      <article class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Win More Business</h3>
+        <p class="pillar-copy">Find better-fit customers, partners, and local opportunities — and follow up before warm leads go cold.</p>
+        <ul class="pillar-services">
+          <li>Find the local customers and partners most worth pursuing</li>
+          <li>Spot opportunities before your competitors do</li>
+          <li>Make sure warm inquiries never go unanswered</li>
+          <li>Get quotes and proposals out faster</li>
+        </ul>
+      </article>
+
+      <!-- PILLAR 2 -->
+      <article class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Run More Efficiently</h3>
+        <p class="pillar-copy">Reduce the manual work across inquiries, scheduling, quoting, follow-up, and reporting.</p>
+        <ul class="pillar-services">
+          <li>Cut the repetitive admin that eats your team's day</li>
+          <li>Handle inquiries, scheduling, and follow-up automatically</li>
+          <li>Keep quoting and reporting from piling up</li>
+          <li>Give your team one place to find answers</li>
+        </ul>
+      </article>
+
+      <!-- PILLAR 3 -->
+      <article class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>See What Others Miss</h3>
+        <p class="pillar-copy">Understand customers, competitors, and market shifts before they affect your business.</p>
+        <ul class="pillar-services">
+          <li>See what competitors are doing before it affects you</li>
+          <li>Understand why customers choose you — or don't</li>
+          <li>Know where your pricing really stands</li>
+          <li>Catch local market shifts early</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes" id="outcomes">
+  <div class="container">
+    <div class="outcomes-head">
+      <div class="section-label">What Working With Us Looks Like</div>
+      <h2>Practical work. Clear outcomes.</h2>
+    </div>
+
+    <ul class="outcome-list">
+      <li>
+        <span class="outcome-mark" aria-hidden="true">✓</span>
+        Find where leads are being lost and tighten follow-up
+      </li>
+      <li>
+        <span class="outcome-mark" aria-hidden="true">✓</span>
+        Identify the highest-value workflow to automate
+      </li>
+      <li>
+        <span class="outcome-mark" aria-hidden="true">✓</span>
+        Map competitors, pricing, and local opportunities before a growth decision
+      </li>
+      <li>
+        <span class="outcome-mark" aria-hidden="true">✓</span>
+        Turn fragmented customer inquiries into a system your team can actually run
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>Start with one <em>practical question</em></h2>
+    <p>Where is your business losing time, opportunities, or visibility? We'll help you identify the highest-value place to start — whether that's a workflow to automate, a market question to answer, or an AI opportunity worth pursuing.</p>
+    <div class="cta-actions">
+      <a href="mailto:nadia@sora-labs.net?subject=Book%20an%20Intro%20Call%20—%20AI%20for%20my%20local%20business" class="btn-primary">Book an Intro Call →</a>
+      <a href="/resources/" class="btn-ghost">Read our free guides</a>
+    </div>
+    <div class="cta-email">nadia@sora-labs.net</div>
+    <div class="cta-related">
+      Sora Labs — practical AI, workflow automation, and market intelligence for local businesses. · Also see <a href="/#services">Competitive Intelligence &amp; AI Readiness Audit</a> · <a href="/products/">Products for AI operators</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/products/">Products</a>
+        <a href="/resources/">Resources</a>
+        <a href="/local-businesses/">Local Businesses</a>
+        <a href="https://x.com/NadiaReports" target="_blank" rel="noopener">𝕏</a>
+        <a href="https://buttondown.com/nclawdev" target="_blank" rel="noopener">Newsletter</a>
+        <a href="mailto:nadia@sora-labs.net">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href.length > 1) {
+      const t = document.querySelector(href);
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+});
+</script>
+{% endblock %}
