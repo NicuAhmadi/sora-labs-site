@@ -97,14 +97,26 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   margin-bottom: 24px;
 }
 .hero h1 {
-  font-family: var(--display); font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-family: var(--display); font-size: clamp(2.6rem, 5.4vw, 4.3rem);
   font-weight: 500; line-height: 1.08; letter-spacing: -0.03em;
-  max-width: 700px; margin: 0 auto 20px;
+  max-width: 940px; margin: 0 auto 20px; text-wrap: balance;
 }
 .hero h1 em { font-style: italic; color: var(--accent); }
 .hero-sub {
-  font-size: 1.05rem; color: var(--text-secondary);
-  max-width: 480px; margin: 0 auto 36px; line-height: 1.7;
+  font-size: 1.1rem; color: var(--text-secondary);
+  max-width: 560px; margin: 0 auto 20px; line-height: 1.6;
+}
+.hero-points {
+  display: flex; gap: 12px 30px; justify-content: center; flex-wrap: wrap;
+  max-width: 640px; margin: 0 auto 34px;
+}
+.hero-points span {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 0.98rem; font-weight: 500; color: var(--text);
+}
+.hero-points span::before {
+  content: ''; width: 7px; height: 7px; background: var(--accent);
+  transform: rotate(45deg); flex-shrink: 0;
 }
 .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
@@ -544,12 +556,14 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-label anim d1">AI Consulting · Market Intelligence</div>
-    <h1 class="anim d2">Put AI to work<br>where it <em>actually pays off</em></h1>
-    <p class="hero-sub anim d3">Sora Labs helps businesses find the highest-ROI places to use AI. We automate real workflows and deliver the market intelligence behind better decisions. Practical, commercially grounded, and no wasted spend.</p>
+    <h1 class="anim d1">Put AI to work<br>where it <em>actually pays off</em></h1>
+    <p class="hero-sub anim d2">Sora Labs helps businesses find the highest-ROI places to use AI.</p>
+    <div class="hero-points anim d3">
+      <span>Automate real workflows</span>
+      <span>Market intelligence for better decisions</span>
+    </div>
     <div class="hero-actions anim d4">
       <a href="/contact/" class="btn-primary">Start a conversation →</a>
-      <a href="/services/" class="btn-ghost">See our services</a>
     </div>
   </div>
 </section>
