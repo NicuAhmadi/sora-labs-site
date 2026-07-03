@@ -11,34 +11,7 @@ permalink: /index.html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0A0A0C;
-  --bg-elevated: #111114;
-  --bg-card: #161619;
-  --glass-border: rgba(255,255,255,0.06);
-  --glass-border-hover: rgba(255,255,255,0.1);
-  --border: #252529;
-  --border-subtle: #1A1A1E;
-  --text: #EFEEEA;
-  --text-secondary: #B4B3BA;
-  --text-dim: #837F87;
-  --accent: #C9A84C;
-  --accent-soft: #C9A84C20;
-  --accent-glow: #C9A84C15;
-  --accent-hover: #DABB5E;
-  --green: #4EAD6B;
-  --green-soft: #4EAD6B18;
-  --blue: #5B8DEF;
-  --blue-soft: #5B8DEF15;
-  --coral: #D97756;
-  --coral-soft: #D9775615;
-  --display: 'Playfair Display', Georgia, serif;
-  --body: 'Libre Franklin', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-  --radius: 16px;
-  --radius-sm: 10px;
-  --gap: 16px;
-}
+/* Design tokens loaded site-wide via base.njk → /css/tokens.css */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -603,7 +576,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
       <!-- TRACK 1: Intelligence (Hero) -->
       <div class="tile tile-hero tile-intel anim d2">
         <div>
-          <div class="tile-badge">◆ Intelligence</div>
+          <div class="tile-badge"><svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0 10 5 5 10 0 5Z"/></svg>Intelligence</div>
           <h3 class="tile-title">Competitive &amp; market intelligence</h3>
           <p class="tile-desc">Know what's changing in your market and what to do about it. We monitor your competitors, benchmark pricing and positioning, and deliver sourced, plain-language briefings on a schedule. Scoped as a retainer, specific to your business.</p>
           <div class="intel-preview">
@@ -623,7 +596,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
       <!-- TRACK 2: Consulting & Automation -->
       <div class="tile tile-medium tile-audit anim d3">
         <div>
-          <div class="tile-badge">◆ Consulting</div>
+          <div class="tile-badge"><svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0 10 5 5 10 0 5Z"/></svg>Consulting</div>
           <h3 class="tile-title">Consulting &amp; automation</h3>
           <p class="tile-desc">Start with an AI Opportunity Audit. Then we automate one high-value workflow: intake, scheduling, follow-up, quoting, or reporting. Outcomes, not tools.</p>
         </div>
@@ -644,7 +617,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
       <div class="tile tile-full anim d4">
         <div class="digest-head" style="margin-bottom:0;">
           <div>
-            <div class="tile-badge">◆ For Local Businesses</div>
+            <div class="tile-badge"><svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0 10 5 5 10 0 5Z"/></svg>For Local Businesses</div>
             <h3 class="tile-title" style="font-size:1.6rem;">Practical AI for local businesses: restaurants, salons, hotels, and more</h3>
             <p class="tile-desc" style="max-width:640px;">Win more business, run leaner, and see what others miss. Practical AI for restaurants, hospitality, retail, and local service firms. No jargon, no upsell.</p>
           </div>

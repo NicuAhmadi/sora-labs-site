@@ -7,6 +7,11 @@ module.exports = function (eleventyConfig) {
     "src/tools/cteig/districts.json": "tools/cteig/districts.json",
   });
 
+  // Shared design tokens → /css/tokens.css (linked site-wide via base.njk)
+  eleventyConfig.addPassthroughCopy({
+    "src/css/tokens.css": "css/tokens.css",
+  });
+
   return {
     dir: {
       input: "src",

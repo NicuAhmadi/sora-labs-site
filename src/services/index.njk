@@ -17,15 +17,7 @@ permalink: /services/index.html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0A0A0C; --bg-elevated: #111114; --bg-card: #161619;
-  --glass-border: rgba(255,255,255,0.06); --glass-border-hover: rgba(255,255,255,0.1);
-  --border: #252529; --border-subtle: #1A1A1E;
-  --text: #EFEEEA; --text-secondary: #B4B3BA; --text-dim: #837F87;
-  --accent: #C9A84C; --accent-soft: #C9A84C20; --accent-glow: #C9A84C15; --accent-hover: #DABB5E;
-  --display: 'Playfair Display', Georgia, serif; --body: 'Libre Franklin', system-ui, sans-serif; --mono: 'JetBrains Mono', monospace;
-  --radius: 16px; --radius-sm: 10px;
-}
+/* Design tokens loaded site-wide via base.njk → /css/tokens.css */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
@@ -161,7 +153,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 
       <!-- AI Opportunity Audit -->
       <article class="offer featured" id="audit">
-        <span class="offer-tag">◆ Start here</span>
+        <span class="offer-tag"><svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0 10 5 5 10 0 5Z"/></svg>Start here</span>
         <h3>AI Opportunity Audit</h3>
         <div class="who">For owners who want a straight answer before spending a dollar on AI.</div>
         <p class="outcome">A fixed-scope diagnostic: we look at your operations, market, and tools, then hand you a prioritized action plan you own, whether or not you work with us further.</p>
@@ -178,7 +170,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 
       <!-- Intelligence Retainer -->
       <article class="offer" id="intelligence">
-        <span class="offer-tag">↻ Retainer</span>
+        <span class="offer-tag"><svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0 10 5 5 10 0 5Z"/></svg>Retainer</span>
         <h3>Competitive &amp; Market Intelligence</h3>
         <div class="who">For leaders making decisions with incomplete information.</div>
         <p class="outcome">An ongoing engagement that tracks your competitors, market, and customers, then tells you in plain language what changed and what to do about it.</p>
@@ -195,7 +187,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 
       <!-- Pipeline Briefing -->
       <article class="offer" id="pipeline">
-        <span class="offer-tag">◇ Lead intelligence</span>
+        <span class="offer-tag"><svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 .8 9.2 5 5 9.2.8 5Z"/></svg>Lead intelligence</span>
         <h3>Pipeline Briefing</h3>
         <div class="who">For contractors and service businesses that need a steady flow of qualified opportunities.</div>
         <p class="outcome">A recurring briefing of verified local opportunities. Each comes with a likely need, a fit rationale, and a draft outreach email your team can send.</p>
@@ -212,7 +204,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 
       <!-- Automation Sprint -->
       <article class="offer" id="automation">
-        <span class="offer-tag">⚡ Implementation</span>
+        <span class="offer-tag"><svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M7 0 2 7h3l-1 5 6-7H7z"/></svg>Implementation</span>
         <h3>Workflow Automation Sprint</h3>
         <div class="who">For teams losing hours to repetitive admin and manual coordination.</div>
         <p class="outcome">A fixed-scope sprint that takes one high-value workflow (intake, scheduling, follow-up, quoting, reporting) and turns it into something that runs itself.</p>
