@@ -7,7 +7,7 @@ permalink: /index.html
 {% block head %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sora Labs — Research, Intelligence, Growth</title>
+<title>AI Consulting & Market Intelligence — Sora Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -19,9 +19,9 @@ permalink: /index.html
   --glass-border-hover: rgba(255,255,255,0.1);
   --border: #252529;
   --border-subtle: #1A1A1E;
-  --text: #E8E7E3;
-  --text-secondary: #94939B;
-  --text-dim: #5E5D65;
+  --text: #EFEEEA;
+  --text-secondary: #B4B3BA;
+  --text-dim: #837F87;
   --accent: #C9A84C;
   --accent-soft: #C9A84C20;
   --accent-glow: #C9A84C15;
@@ -47,7 +47,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--body);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -201,7 +201,7 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 /* Shared tile elements */
 .tile-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
   color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em;
   background: var(--accent-soft); padding: 5px 12px; border-radius: 100px;
   margin-bottom: 20px; align-self: flex-start;
@@ -240,8 +240,8 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
   padding: 18px 20px;
 }
 .intel-preview-label {
-  font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
-  color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+  color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em;
   margin-bottom: 10px;
 }
 .intel-preview-items { display: flex; flex-direction: column; gap: 8px; }
@@ -268,12 +268,12 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .audit-visual { margin-top: 20px; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; }
 .audit-bars { display: flex; gap: 6px; align-items: flex-end; height: 80px; }
 .audit-bar { flex: 1; border-radius: 4px 4px 0 0; transition: height 0.6s ease; }
-.audit-bar:nth-child(1) { height: 45%; background: var(--blue); opacity: 0.3; }
-.audit-bar:nth-child(2) { height: 65%; background: var(--blue); opacity: 0.45; }
-.audit-bar:nth-child(3) { height: 80%; background: var(--blue); opacity: 0.6; }
-.audit-bar:nth-child(4) { height: 55%; background: var(--blue); opacity: 0.5; }
-.audit-bar:nth-child(5) { height: 95%; background: var(--blue); opacity: 0.8; }
-.audit-bar:nth-child(6) { height: 70%; background: var(--blue); opacity: 0.55; }
+.audit-bar:nth-child(1) { height: 45%; background: var(--accent); opacity: 0.35; }
+.audit-bar:nth-child(2) { height: 65%; background: var(--accent); opacity: 0.48; }
+.audit-bar:nth-child(3) { height: 80%; background: var(--accent); opacity: 0.6; }
+.audit-bar:nth-child(4) { height: 55%; background: var(--accent); opacity: 0.72; }
+.audit-bar:nth-child(5) { height: 95%; background: var(--accent); opacity: 0.85; }
+.audit-bar:nth-child(6) { height: 70%; background: var(--accent); opacity: 1; }
 .tile-audit:hover .audit-bar:nth-child(1) { height: 55%; }
 .tile-audit:hover .audit-bar:nth-child(2) { height: 75%; }
 .tile-audit:hover .audit-bar:nth-child(3) { height: 60%; }
@@ -282,7 +282,7 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .tile-audit:hover .audit-bar:nth-child(6) { height: 85%; }
 .audit-labels { display: flex; justify-content: space-between; margin-top: 8px; }
 .audit-labels span {
-  font-family: var(--mono); font-size: 0.58rem; color: var(--text-dim);
+  font-family: var(--mono); font-size: 0.7rem; color: var(--text-secondary);
   text-transform: uppercase; letter-spacing: 0.06em;
 }
 
@@ -572,8 +572,8 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
 <section class="hero">
   <div class="container">
     <div class="hero-label anim d1">AI Consulting · Market Intelligence</div>
-    <h1 class="anim d2">Put AI to work where it <em>actually pays off</em></h1>
-    <p class="hero-sub anim d3">Sora Labs helps businesses find the highest-ROI places to use AI — automating real workflows and delivering the market and competitive intelligence behind better decisions. Practical, commercially grounded, no wasted spend on tools you don't need.</p>
+    <h1 class="anim d2">Put AI to work<br>where it <em>actually pays off</em></h1>
+    <p class="hero-sub anim d3">Sora Labs helps businesses find the highest-ROI places to use AI. We automate real workflows and deliver the market intelligence behind better decisions. Practical, commercially grounded, and no wasted spend.</p>
     <div class="hero-actions anim d4">
       <a href="/contact/" class="btn-primary">Start a conversation →</a>
       <a href="/services/" class="btn-ghost">See our services</a>
@@ -605,13 +605,13 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
         <div>
           <div class="tile-badge">◆ Intelligence</div>
           <h3 class="tile-title">Competitive &amp; market intelligence</h3>
-          <p class="tile-desc">Know what's changing in your market and what to do about it. We monitor your competitors, benchmark pricing and positioning, and deliver sourced, plain-language briefings on a schedule — scoped as a retainer, specific to your business.</p>
+          <p class="tile-desc">Know what's changing in your market and what to do about it. We monitor your competitors, benchmark pricing and positioning, and deliver sourced, plain-language briefings on a schedule. Scoped as a retainer, specific to your business.</p>
           <div class="intel-preview">
             <div class="intel-preview-label">A typical briefing includes</div>
             <div class="intel-preview-items">
               <div class="intel-preview-item"><span class="dot dot-accent"></span> Competitor moves, sourced and cross-checked</div>
               <div class="intel-preview-item"><span class="dot dot-blue"></span> A market shift worth watching</div>
-              <div class="intel-preview-item"><span class="dot dot-green"></span> One clear action to take about it</div>
+              <div class="intel-preview-item"><span class="dot dot-green"></span> One clear action worth taking</div>
             </div>
           </div>
         </div>
@@ -625,7 +625,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
         <div>
           <div class="tile-badge">◆ Consulting</div>
           <h3 class="tile-title">Consulting &amp; automation</h3>
-          <p class="tile-desc">Put AI to work where it pays off. Start with an AI Opportunity Audit, then automate a high-value workflow — intake, scheduling, follow-up, quoting, reporting. Outcomes, not tools.</p>
+          <p class="tile-desc">Start with an AI Opportunity Audit. Then we automate one high-value workflow: intake, scheduling, follow-up, quoting, or reporting. Outcomes, not tools.</p>
         </div>
         <div class="audit-visual">
           <div class="audit-bars">
@@ -645,10 +645,10 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
         <div class="digest-head" style="margin-bottom:0;">
           <div>
             <div class="tile-badge">◆ For Local Businesses</div>
-            <h3 class="tile-title" style="font-size:1.6rem;">Practical AI for local businesses — restaurants, salons, hotels &amp; more</h3>
-            <p class="tile-desc" style="max-width:640px;">Win more business, run leaner, and see what others miss. Practical AI for restaurants, hospitality, retail, and local service firms — no jargon, and no tools you don't need.</p>
+            <h3 class="tile-title" style="font-size:1.6rem;">Practical AI for local businesses: restaurants, salons, hotels, and more</h3>
+            <p class="tile-desc" style="max-width:640px;">Win more business, run leaner, and see what others miss. Practical AI for restaurants, hospitality, retail, and local service firms. No jargon, no upsell.</p>
           </div>
-          <a href="/local-businesses/" class="tile-cta digest-cta">For local businesses →</a>
+          <a href="/local-businesses/" class="tile-cta digest-cta">See how we help →</a>
         </div>
       </div>
 
@@ -656,7 +656,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
       <div class="tile tile-full tile-news anim d5" id="newsletter">
         <div class="news-info">
           <h3 class="tile-title">The Briefing</h3>
-          <p class="news-desc">A free daily dispatch from Sora Labs — covering the trends, tools, and shifts that actually matter for business. Written for operators, not onlookers.</p>
+          <p class="news-desc">A free weekly dispatch from Sora Labs covering the trends, tools, and shifts that actually matter for business. Written for operators, not onlookers.</p>
           <form
             action="https://buttondown.com/api/emails/embed-subscribe/nclawdev"
             method="post"
@@ -667,7 +667,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
             <input type="submit" value="Subscribe Free" />
             <p><a href="https://buttondown.com/refer/nclawdev" target="_blank">Powered by Buttondown.</a></p>
           </form>
-          <div class="form-note">Free. Daily. Unsubscribe anytime.</div>
+          <div class="form-note">Free. Weekly. Unsubscribe anytime.</div>
           <a href="https://buttondown.com/nclawdev/archive/" class="news-archive-link" target="_blank" rel="noopener">Read past issues →</a>
         </div>
       </div>
@@ -682,7 +682,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
     <div class="featured-research-inner">
       <div class="featured-research-text">
         <div class="featured-research-label">See Our Work</div>
-        <h3>AI in Construction — Full Competitive Intelligence Briefing</h3>
+        <h3>AI in Construction: Full Competitive Intelligence Briefing</h3>
         <p>We published a full deep-dive covering 20+ companies, $126M+ in recent funding, and strategic recommendations by adoption stage. Free to read.</p>
       </div>
       <div class="featured-research-link">
@@ -701,8 +701,8 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
     <div class="about-inner">
       <div>
         <h2>We focus where<br><em>others don't look.</em></h2>
-        <p class="about-text">We're a founder-led firm with a small team that goes where the leverage is — traditional and local industries where better intelligence and practical AI create an outsized advantage.</p>
-        <p class="about-text">Logistics. Construction. Hospitality. Insurance. Retail. These aren't glamorous markets — they're profitable ones. People own the judgment; the AI systems we build do the heavy lifting. <a href="/about/" style="color:var(--accent)">More about how we work &rarr;</a></p>
+        <p class="about-text">We're a founder-led firm with a small team, and we go where the leverage is: traditional and local industries where better intelligence and practical AI create an outsized advantage.</p>
+        <p class="about-text">Logistics. Construction. Hospitality. Insurance. Retail. These aren't glamorous markets. They're profitable ones. People own the judgment. The AI systems we build do the heavy lifting. <a href="/about/" style="color:var(--accent)">More about how we work &rarr;</a></p>
       </div>
       <div class="about-metrics">
         <div class="metric anim d2">
@@ -710,7 +710,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
           <div class="metric-label">Owns every call</div>
         </div>
         <div class="metric anim d3">
-          <div class="metric-val">Daily</div>
+          <div class="metric-val">Weekly</div>
           <div class="metric-label">Briefing Cadence</div>
         </div>
         <div class="metric anim d4">
@@ -733,7 +733,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
     <p>Tell us where your business is losing time, opportunities, or visibility. We'll point you to the highest-value place to start.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="/contact/" class="btn-primary">Start a conversation →</a>
-      <a href="#newsletter" class="btn-ghost">Read The Briefing</a>
+      <a href="/services/" class="btn-ghost">See our services</a>
     </div>
     <div class="cta-email">nadia@sora-labs.net</div>
     <div style="margin-top:28px;font-family:var(--mono);font-size:0.8rem;color:var(--text-dim);letter-spacing:0.02em;">
