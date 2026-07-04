@@ -1,0 +1,13 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- set noindex = ["/tools/", "/tools/cteig/", "/clients/ats/ai-readiness-audit/"] -%}
+{%- for page in collections.all %}
+{%- if page.url and not (page.url in noindex) %}
+  <url><loc>https://sora-labs.net{{ page.url }}</loc></url>
+{%- endif -%}
+{%- endfor %}
+</urlset>

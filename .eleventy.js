@@ -12,6 +12,9 @@ module.exports = function (eleventyConfig) {
     "src/css/tokens.css": "css/tokens.css",
   });
 
+  // SEO: robots.txt → served at site root
+  eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
+
   return {
     dir: {
       input: "src",
