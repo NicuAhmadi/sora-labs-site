@@ -21,6 +21,21 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto !important; }
     }
+    /* Shared site footer — three zones: identity, links, social.
+       Links live in a plain div with unique gf-* classes (never a nav
+       element), so they can't inherit the fixed top-nav styling. */
+    .gfooter { position: static; margin: 0; padding: 34px 0; border-top: 1px solid var(--border-subtle); background: var(--bg); }
+    .gfooter .gf-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
+    .gfooter .gf-copy { font-size: 0.84rem; color: var(--text-dim); flex-shrink: 0; }
+    .gfooter .gf-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; flex: 1 1 auto; }
+    .gfooter .gf-links a { font-family: var(--body); font-size: 0.84rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .gfooter .gf-links a:hover { color: var(--text); }
+    .gfooter .gf-social { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+    .gfooter .gf-social a { display: inline-flex; align-items: center; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .gfooter .gf-social a:hover { color: var(--accent); }
+    @media (max-width: 760px) {
+      .gfooter .gf-inner { flex-direction: column; text-align: center; gap: 18px; }
+    }
   </style>
   <link rel="canonical" href="https://sora-labs.net{{ page.url }}">
   <script type="application/ld+json">

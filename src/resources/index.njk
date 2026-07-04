@@ -332,21 +332,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); margin-top
 {% endblock %}
 
 {% block footer %}
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="/services/">Services</a>
-        <a href="/local-businesses/">Local Businesses</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/products/">For AI Operators</a>
-        <a href="/newsletter/">Newsletter</a>
-      </div>
-    </div>
-  </div>
-</footer>
+{% include "footer.njk" %}
 {% endblock %}
 
 {% block scripts %}
