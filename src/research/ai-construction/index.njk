@@ -973,5 +973,42 @@ permalink: /research/ai-construction/index.html
 {% endblock %}
 
 {% block footer %}
-{% include "footer.njk" %}
+<!-- ═══ REPORT FOOTER ═══ -->
+<div class="report-footer">
+  <div class="footer-cta">
+    <h3>This is how we <em style="font-style:italic;color:var(--accent);">think</em>.</h3>
+    <p>Sora Labs produces competitive intelligence like this for clients across construction, logistics, healthcare, manufacturing, and more. If you want this level of analysis focused on your specific market and your specific competitors — that's what we do.</p>
+    <a href="/contact/" style="display:inline-block;background:var(--accent);color:var(--bg);font-weight:600;padding:13px 26px;border-radius:8px;font-size:0.9rem;">Get intelligence like this for your market → Book a call</a>
+    <div style="margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.08);">
+      <div style="font-size:0.9rem;color:var(--text-secondary,#B4B3BA);margin-bottom:12px;">Not ready to talk? Get the next briefing in your inbox.</div>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/nclawdev" method="post" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:420px;margin:0 auto;">
+        <input type="email" name="email" placeholder="you@company.com" required style="flex:1;min-width:200px;font-size:0.9rem;padding:12px 15px;background:var(--bg,#0A0A0C);border:1px solid var(--border,#252529);border-radius:8px;color:var(--text,#EFEEEA);outline:none;">
+        <input type="submit" value="Subscribe free" style="font-weight:600;font-size:0.85rem;padding:12px 18px;background:var(--accent);color:var(--bg);border:none;border-radius:8px;cursor:pointer;">
+      </form>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <p><strong>Sora Labs</strong> · Market Intelligence &amp; Research<br>
+    This briefing was produced using publicly available data, press releases, SEC filings, and industry reports. Company information is current as of April 2026. This is not investment advice.<br><br>
+    Sources include: ServiceTitan 2026 Commercial Specialty Contractor Industry Report, Fortune Business Insights, Bridgit AI Construction Statistics 2026, Construction Dive, Crunchbase, TechCrunch, BuiltWorlds, CEMEX Ventures, IndexBox, AGC Annual Survey, RICS 2025 AI in Construction Survey, Deloitte, PwC Future of Industrials Survey, Dodge Construction Network.<br><br>
+    Questions? Reach out at <a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a>
+    </p>
+  </div>
+</div>
+
+<!-- ═══ SITE FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">© 2026 Sora Labs. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="/services/">Services</a>
+        <a href="/resources/">Resources</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/newsletter/">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
 {% endblock %}
