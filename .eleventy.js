@@ -15,6 +15,9 @@ module.exports = function (eleventyConfig) {
   // SEO: robots.txt → served at site root
   eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
 
+  // llms.txt → served at site root (points AI crawlers at key content)
+  eleventyConfig.addPassthroughCopy({ "src/llms.txt": "llms.txt" });
+
   return {
     dir: {
       input: "src",

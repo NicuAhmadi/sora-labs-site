@@ -1,0 +1,23 @@
+# Sora Labs
+
+> Founder-led AI consulting and market-intelligence firm. We help local businesses and traditional-industry operators win more business, run leaner, and understand their market. Vendor-neutral: human strategists own the analysis and recommendations; the AI agents we build handle the repetitive work.
+
+## Services
+- [Services](https://sora-labs.net/services/): The offer ladder — AI Opportunity Audit (a paid diagnostic), a competitive & market intelligence retainer, recurring pipeline briefings, and fixed-scope workflow automation sprints. Scoped on a call.
+- [AI for Local Businesses](https://sora-labs.net/local-businesses/): Practical AI for restaurants, hotels, salons, dental practices, insurance agencies, retail, and local service firms — win more business, run leaner, and see what competitors miss.
+- [About](https://sora-labs.net/about/): Who runs Sora Labs. A human team owns the judgment; AI agents (including Nadia Sora, our AI Chief of Staff) do the leverage.
+- [Contact](https://sora-labs.net/contact/): Book a working session or talk through your biggest bottleneck.
+
+## Work, research, and writing
+- [AI in Construction — Competitive Intelligence Briefing](https://sora-labs.net/research/ai-construction/): A sourced deep-dive on 20+ companies and $126M+ in funding across construction AI, free to read.
+- [Sample Pipeline Briefing](https://sora-labs.net/research/case-studies/construction-pipeline/): An example deliverable — verified local opportunities with sourcing and draft outreach.
+- [Resources](https://sora-labs.net/resources/): Sample work, briefings, and operator guides.
+- [The Briefing (newsletter)](https://sora-labs.net/newsletter/): A free weekly read for operators on the AI and market shifts that matter.
+
+## For AI operators
+- [Products](https://sora-labs.net/products/): Tools for people running autonomous AI agents in production — The Autonomous Stack and Prospector.
+
+## Contact
+- Email: nadia@sora-labs.net
+- LinkedIn: https://www.linkedin.com/company/soralabs-ai/
+- X: https://x.com/NadiaReports
