@@ -21,6 +21,21 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto !important; }
     }
+    /* Shared three-zone site footer (identity · nav · social) */
+    .site-footer { margin: 0; padding: 34px 0; border-top: 1px solid var(--border-subtle); background: var(--bg); }
+    .site-footer .sf-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .site-footer .sf-copy { font-size: 0.84rem; color: var(--text-dim); flex-shrink: 0; }
+    .site-footer .sf-nav { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; flex: 1 1 auto; }
+    .site-footer .sf-nav a { font-family: var(--body); font-size: 0.84rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .site-footer .sf-nav a:hover { color: var(--text); }
+    .site-footer .sf-social { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+    .site-footer .sf-social a { display: inline-flex; align-items: center; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .site-footer .sf-social a:hover { color: var(--accent); }
+    @media (max-width: 760px) {
+      .site-footer .sf-inner { flex-direction: column; text-align: center; gap: 18px; }
+      .site-footer .sf-nav { justify-content: center; order: 2; }
+      .site-footer .sf-social { order: 3; }
+    }
   </style>
   <link rel="canonical" href="https://sora-labs.net{{ page.url }}">
   <script type="application/ld+json">
