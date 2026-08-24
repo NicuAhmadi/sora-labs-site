@@ -1,0 +1,998 @@
+---
+permalink: /research/ai-construction/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in Construction: Competitive Intelligence Briefing — April 2026 · Sora Labs</title>
+<meta name="description" content="A competitive intelligence briefing on AI in construction — 20+ companies, $126M+ in funding, and strategic recommendations by adoption stage.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI in Construction: Competitive Intelligence Briefing",
+  "description": "A competitive intelligence briefing on AI in construction: 20+ companies, $126M+ in recent funding, and strategic recommendations by adoption stage.",
+  "author": { "@type": "Organization", "name": "Sora Labs", "url": "https://sora-labs.net/" },
+  "publisher": { "@type": "Organization", "name": "Sora Labs", "url": "https://sora-labs.net/" },
+  "datePublished": "2026-04-01T09:00:00-04:00",
+  "dateModified": "2026-04-01T09:00:00-04:00",
+  "mainEntityOfPage": "https://sora-labs.net/research/ai-construction/",
+  "about": ["Artificial intelligence", "Construction industry", "Competitive intelligence"]
+}
+</script>
+<style>
+  :root {
+    --bg: #F5F5F5;
+    --bg-elevated: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --glass-border: #E7E5E4;
+    --glass-border-hover: #D6D3D1;
+    --border: #D6D3D1;
+    --border-subtle: #E7E5E4;
+    --text: #0C0A09;
+    --text-secondary: #4E4E4E;
+    --text-dim: #6E6862;
+    --accent: #292524;
+    --accent-soft: #F0EFED;
+    --accent-glow: rgba(201,168,76,0.10);
+    --accent-hover: #0C0A09;
+    --green: #15803D;
+    --green-soft: rgba(22,163,74,0.10);
+    --blue: #3B6FC4;
+    --blue-soft: rgba(59,111,196,0.10);
+    --coral: #B4543A;
+    --coral-soft: rgba(180,84,58,0.10);
+    --display: 'Inter', system-ui, -apple-system, sans-serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+    --mono: 'Inter', system-ui, -apple-system, sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+
+  body {
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── SHARED NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 0;
+    background: rgba(245, 245, 245, 0.90);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-size: 1.3rem; font-weight: 500;
+  }
+  .nav-mark {
+    width: 30px; height: 30px; background: var(--accent); border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-weight: 600; font-size: 0.8rem; color: var(--bg);
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; color: var(--text-dim);
+    transition: color 0.2s; letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--text-secondary); }
+  .nav-links a.active { color: var(--accent); }
+  .nav-cta {
+    color: var(--bg) !important; background: var(--accent);
+    padding: 7px 16px; border-radius: 6px; font-weight: 600 !important;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent-hover); }
+
+  /* ── BACK LINK ── */
+  .back-bar {
+    max-width: 800px; margin: 0 auto; padding: 96px 32px 0;
+  }
+  .back-link {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text-dim);
+    letter-spacing: 0.04em; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 800px; margin: 0 auto;
+    padding: 32px 32px 48px;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin-bottom: 24px;
+    max-width: 760px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-deck {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 640px;
+  }
+
+  /* ── STAT BAR ── */
+  .stat-bar {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .stat-bar-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .stat-item {
+    padding: 28px 24px 28px 0;
+    border-right: 1px solid var(--border-subtle);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: var(--display);
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-number {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .section h2 {
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .section h3 {
+    font-family: var(--body);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+    margin-top: 36px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .section p {
+    margin-bottom: 18px;
+    max-width: 720px;
+    color: var(--text-secondary);
+  }
+  .section p strong { color: var(--text); font-weight: 600; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px;
+    margin: 28px 0;
+    background: var(--accent-soft);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .callout p { margin-bottom: 0; color: var(--text); }
+  .callout strong { color: var(--accent); }
+
+  .key-finding {
+    background: var(--green-soft);
+    border-left: 3px solid var(--green);
+    padding: 20px 24px;
+    margin: 28px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .key-finding strong { color: var(--green); }
+  .key-finding p { margin-bottom: 0; color: var(--text); }
+
+  .watch-item {
+    background: var(--coral-soft);
+    border-left: 3px solid var(--coral);
+    padding: 20px 24px;
+    margin: 28px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .watch-item strong { color: var(--coral); }
+  .watch-item p { margin-bottom: 0; color: var(--text); }
+
+  /* ── COMPANY CARDS ── */
+  .company-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  @media (max-width: 640px) {
+    .company-grid { grid-template-columns: 1fr; }
+  }
+  .company-card {
+    border: 1px solid var(--glass-border);
+    padding: 22px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .company-card:hover {
+    border-color: var(--glass-border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  }
+  .company-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+  .company-name {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--text);
+  }
+  .company-tag {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .tag-platform { background: var(--blue-soft); color: var(--blue); }
+  .tag-startup  { background: var(--green-soft); color: var(--green); }
+  .tag-emerging { background: var(--coral-soft); color: var(--coral); }
+
+  .company-meta {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+  .company-desc {
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* ── LANDSCAPE TABLE ── */
+  .landscape-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 0.86rem;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .landscape-table th {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-weight: 500;
+    background: var(--bg-elevated);
+  }
+  .landscape-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+    color: var(--text-secondary);
+  }
+  .landscape-table tr:last-child td { border-bottom: none; }
+  .landscape-table td strong { color: var(--text); }
+  .landscape-table tbody tr { transition: background 0.2s; }
+  .landscape-table tbody tr:hover td { background: var(--bg-elevated); }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    margin: 32px 0;
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid var(--border);
+  }
+  .timeline-item {
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    width: 11px;
+    height: 11px;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    position: absolute;
+    left: -30px;
+    top: 6px;
+    box-shadow: 0 0 12px var(--accent-soft);
+  }
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .timeline-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .timeline-text strong { color: var(--text); font-weight: 600; }
+
+  /* ── RECOMMENDATION MATRIX ── */
+  .rec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 32px 0;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  @media (max-width: 640px) {
+    .rec-grid { grid-template-columns: 1fr; }
+    .rec-cell { border-right: none !important; }
+  }
+  .rec-cell {
+    padding: 26px;
+    border-bottom: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+  }
+  .rec-cell:nth-child(2n) { border-right: none; }
+  .rec-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .rec-cell-header {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .rec-cell h4 {
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .rec-cell p {
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  /* ── REPORT FOOTER ── */
+  .report-footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .footer-cta {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 48px 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative; overflow: hidden;
+  }
+  .footer-cta::before {
+    content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .footer-cta > * { position: relative; z-index: 1; }
+  .footer-cta h3 {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .footer-cta p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0 auto 26px;
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .footer-cta a {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 13px 32px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+  .footer-cta a:hover { background: var(--accent-hover); }
+
+  .footer-legal {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .footer-legal strong { color: var(--text-secondary); }
+  .footer-legal a { color: var(--accent); }
+
+  /* ── SECTION NAV ── */
+  .section-nav {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: sticky;
+    top: 64px;
+    z-index: 50;
+    background: rgba(245, 245, 245, 0.90);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .section-nav-inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  .section-nav a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    padding: 14px 16px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .section-nav a:hover {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ── SITE FOOTER ── */
+  footer.site-footer { padding: 40px 0; border-top: 1px solid var(--border-subtle); }
+  .site-footer .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+  .site-footer .footer-left { font-size: 0.78rem; color: var(--text-dim); }
+  .site-footer .footer-links { display: flex; gap: 24px; }
+  .site-footer .footer-links a { font-size: 0.78rem; color: var(--text-dim); transition: color 0.2s; }
+  .site-footer .footer-links a:hover { color: var(--text-secondary); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+  }
+  @media (max-width: 640px) {
+    .back-bar { padding: 88px 20px 0; }
+    .hero { padding: 24px 20px 36px; }
+    .content, .stat-bar, .report-footer { padding-left: 20px; padding-right: 20px; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border-subtle); padding: 20px 0; }
+    .stat-bar-inner { grid-template-columns: 1fr 1fr; }
+    .section { padding: 40px 0; }
+    .company-card { padding: 18px; }
+    .section-nav { padding: 0 20px; }
+    .section-nav a { padding: 12px 12px; font-size: 0.62rem; }
+    .footer-cta { padding: 32px 22px; }
+    .site-footer .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+{% endblock %}
+
+{% block nav %}
+{% set nav_active = "resources" %}
+{% include "nav.njk" %}
+
+<div class="back-bar">
+  <a href="/resources/#case-studies" class="back-link">← Back to Resources</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-kicker">Industry Intelligence Briefing</div>
+  <h1>AI Tools in Construction:<br>Who's Winning, Who's Funded, and What It Means for Your Firm</h1>
+  <p class="hero-deck">A competitive intelligence briefing covering 20+ companies, $126M+ in recent funding, and the adoption data every construction executive needs to understand right now.</p>
+</div>
+
+<!-- ═══ STAT BAR ═══ -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item">
+      <div class="stat-number">38%</div>
+      <div class="stat-label">of contractors now report measurable AI impact — up from 17% one year ago</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">$6.02B</div>
+      <div class="stat-label">global AI-in-construction market size, 2026</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">499K</div>
+      <div class="stat-label">new workers the industry needs in 2026 to meet demand</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">68%</div>
+      <div class="stat-label">of contech VC in Q2 2025 went to AI/ML startups</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION NAV ═══ -->
+<nav class="section-nav">
+  <div class="section-nav-inner">
+    <a href="#executive-summary">Executive Summary</a>
+    <a href="#funding-tracker">Funding Tracker</a>
+    <a href="#competitive-landscape">Competitive Landscape</a>
+    <a href="#use-case-matrix">Use Case Matrix</a>
+    <a href="#strategic-recommendations">Recommendations</a>
+    <a href="#one-number">One Number</a>
+  </div>
+</nav>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content">
+
+  <!-- SECTION 1 -->
+  <div class="section" id="executive-summary">
+    <div class="section-number">01 — Executive Summary</div>
+    <h2>The gap between AI adopters and everyone else is now a competitive moat</h2>
+    <p>Construction AI has crossed the threshold from pilot programs to measurable business impact. The ServiceTitan 2026 Commercial Specialty Contractor Industry Report surveyed over 1,000 industry leaders and found that the share of contractors seeing real results from AI more than doubled in a single year. Cost estimating (used by 24% of contractors) and bid management (22%) are the leading use cases, with admin-workload reduction (30–50% decreases in pilot firms) emerging as the fastest path to ROI.</p>
+    <p>Meanwhile, the workforce crisis is intensifying. The industry needs nearly half a million new workers this year alone, 93% of contractors report difficulty finding skilled labor, and 41% of the current workforce will reach retirement age by 2031. AI is no longer a future promise — it's an operational necessity for firms that want to maintain their margins and project throughput.</p>
+
+    <div class="callout">
+      <p><strong>Bottom line:</strong> The firms investing in AI now aren't just gaining efficiency. They're building competitive moats that will be extremely difficult for laggards to close. The 2026 data shows this is a compounding advantage, not a one-time benefit.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="funding-tracker">
+    <div class="section-number">02 — Funding Tracker</div>
+    <h2>Where the money is going: Q4 2025 – Q1 2026</h2>
+    <p>Investor confidence in construction AI is at an all-time high. In Q2 2025, $3.96B in venture capital flowed into built-environment technology — a 75% increase year-over-year — with 68% directed at AI and ML startups, nearly triple the historical allocation. Here's what got funded in the most recent cycle:</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 2026</div>
+        <div class="timeline-text"><strong>Trayd</strong> — $10M Series A (White Star Capital, Y Combinator, Suffolk Technologies). Back-office OS for specialty trade contractors. Payroll complexity that took 14 hours can now be done in 30 minutes.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 2026</div>
+        <div class="timeline-text"><strong>Procore × NVIDIA</strong> — Strategic partnership integrating Procore's platform with NVIDIA Omniverse DSX Blueprint to create digital twin construction environments for AI factories.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Early 2026</div>
+        <div class="timeline-text"><strong>Fyld</strong> — $41M Series B (Energy Impact Partners, Partech). Reality capture and safety AI. 82% YoY growth in 2025. Customers include Kiewit and Emery Sapp & Sons.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Early 2026</div>
+        <div class="timeline-text"><strong>Sensera Systems</strong> — $27M Series B. SiteCloud platform uses AI to interpret jobsite images, flag safety hazards, and deliver daily safety/weather briefings.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Early 2026</div>
+        <div class="timeline-text"><strong>XBuild</strong> — $19M Series A (N47, a16z). Chat-based AI estimating platform. Generates project estimates in ~15 minutes. Expanding to concrete, HVAC, painting, and more.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Early 2026</div>
+        <div class="timeline-text"><strong>Moab</strong> — $16M Seed + Series A. Cloud-based OS for equipment rental businesses. Targeting $2.5B+ in annual transaction volume and $4B+ in equipment assets under management.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Dec 2025</div>
+        <div class="timeline-text"><strong>PermitFlow</strong> — $54M Series B (Accel, Kleiner Perkins). AI-powered permitting with 12M+ data points. YC W22 alum. $91M total raised.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Dec 2025</div>
+        <div class="timeline-text"><strong>Unlimited Industries</strong> — $12M Seed (a16z, CIV). AI-native construction: generates and evaluates hundreds of thousands of design configurations in parallel.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Q4 2025</div>
+        <div class="timeline-text"><strong>Payra</strong> — $15M growth equity (Edison Partners). AI-powered B2B payments for construction suppliers. Customers report 20% reduction in DSO and 75% fewer past-due invoices.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">May 2025</div>
+        <div class="timeline-text"><strong>Buildots</strong> — $45M Series D (Qumra Capital). 360° camera-based progress tracking with predictive delay alerts. Clients include Intel and ~50 construction firms.</div>
+      </div>
+    </div>
+
+    <div class="key-finding">
+      <p><strong>Key pattern:</strong> Capital is concentrating around risk-reduction intelligence — tools that prevent cost overruns, schedule delays, and safety incidents. Investors are no longer betting on raw productivity gains; they're funding platforms that directly protect margins.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="competitive-landscape">
+    <div class="section-number">03 — Competitive Landscape</div>
+    <h2>The 16 companies that matter in construction AI right now</h2>
+    <p>The market is splitting into three tiers: incumbent platforms adding AI features, well-funded vertical startups, and emerging YC-backed specialists. Here's who's where:</p>
+
+    <h3>Tier 1 — Platform Incumbents (AI layered onto existing market share)</h3>
+    <div class="company-grid">
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Procore (PCOR)</span>
+          <span class="company-tag tag-platform">Platform</span>
+        </div>
+        <div class="company-meta">Public · $10B+ market cap · 16,000+ customers</div>
+        <div class="company-desc">Added Procore Helix AI layer with Copilot (conversational doc search), AI Agents (automated RFIs, daily logs, submittals), Agent Builder (no-code custom automation), and Procore Insights (predictive risk). Acquired Datagrid to accelerate agentic AI. Now partnering with NVIDIA on digital twin construction for AI factories. The 800-lb gorilla is moving fast.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Autodesk</span>
+          <span class="company-tag tag-platform">Platform</span>
+        </div>
+        <div class="company-meta">Public · BIM + Construction Cloud</div>
+        <div class="company-desc">Embedding AI across its entire product line, with focus on Construction IQ for risk prediction, MCP Servers for connecting AI to project data, and generative design. Positioned as the design-to-build AI backbone. Publishing thought leadership aggressively — the "25 Experts" report signals they want to own the AI narrative.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Trimble</span>
+          <span class="company-tag tag-platform">Platform</span>
+        </div>
+        <div class="company-meta">Public · Hardware + Software</div>
+        <div class="company-desc">Embedding AI into contract review, scheduling, and field operations. Unique edge: combines software intelligence with physical hardware (GPS, surveying, reality capture). Focusing on reducing administrative workload and improving visibility into project obligations.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Oracle (Primavera / Aconex)</span>
+          <span class="company-tag tag-platform">Platform</span>
+        </div>
+        <div class="company-meta">Public · Enterprise</div>
+        <div class="company-desc">Partnering with contractors like Pepper Construction on AI/IoT/autonomous robotics projects. Primavera P6 remains the scheduling standard for megaprojects. AI integration is slower than Procore but aimed at enterprise-scale infrastructure.</div>
+      </div>
+    </div>
+
+    <h3>Tier 2 — Funded Vertical Specialists ($15M+ raised)</h3>
+    <div class="company-grid">
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">PermitFlow</span>
+          <span class="company-tag tag-startup">$91M Raised</span>
+        </div>
+        <div class="company-meta">YC W22 · Series B · ~80 employees</div>
+        <div class="company-desc">AI-powered construction permitting. Proprietary dataset of 12M+ permitting data points feeds AI agents that streamline approvals. Operating in one of the most fragmented, regulation-heavy bottlenecks in the industry. Accel, Kleiner Perkins, Felicis backing.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Buildots</span>
+          <span class="company-tag tag-startup">$45M Series D</span>
+        </div>
+        <div class="company-meta">Chicago · Est. 2018 · Intel is a customer</div>
+        <div class="company-desc">360° cameras on hard hats capture jobsite reality; AI tracks progress against plans, predicts delays, and surfaces pacing issues. Chatbot interface lets managers ask natural-language questions about project status. One of the most mature computer vision plays in contech.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Fyld</span>
+          <span class="company-tag tag-startup">$41M Series B</span>
+        </div>
+        <div class="company-meta">London · 82% YoY growth · Kiewit customer</div>
+        <div class="company-desc">Analyzes short jobsite video clips to identify safety risks and quality issues before they escalate. Targeting 40%+ of revenue from the U.S. by end of 2026. In a sector with 1,075 U.S. work fatalities in 2023, this is a critical use case.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Sensera Systems</span>
+          <span class="company-tag tag-startup">$27M Series B</span>
+        </div>
+        <div class="company-meta">Golden, CO · SiteCloud platform</div>
+        <div class="company-desc">AI-powered jobsite image interpretation. Daily safety/weather briefings, weekly progress summaries. Integrates with Procore. Focus on making visual jobsite data actionable at scale — turning cameras into intelligence rather than just documentation.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">XBuild</span>
+          <span class="company-tag tag-startup">$19M Series A</span>
+        </div>
+        <div class="company-meta">San Francisco · a16z backed</div>
+        <div class="company-desc">Chat-based AI estimating. Upload measurements or describe a project → cost estimate in ~15 minutes. Includes e-signatures, payments, and analytics. Currently focused on roofing; expanding to concrete, landscaping, insulation, painting, HVAC. The "ChatGPT for bids" play.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Trayd</span>
+          <span class="company-tag tag-startup">$17M Total</span>
+        </div>
+        <div class="company-meta">NYC · YC + Suffolk Technologies</div>
+        <div class="company-desc">Back-office OS for specialty trade contractors — the 80% of the industry that general contractor software wasn't built for. AI handles union rules, multistate labor laws, and complex payroll that used to take 14 hours manually. Raised $10M Series A in just 3 weeks.</div>
+      </div>
+    </div>
+
+    <h3>Tier 3 — Emerging / Early Stage (Watch List)</h3>
+    <div class="company-grid">
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Beam AI</span>
+          <span class="company-tag tag-emerging">Emerging</span>
+        </div>
+        <div class="company-meta">1,100+ firms using the platform</div>
+        <div class="company-desc">AI-driven takeoff and bid support. Human-in-the-loop model: AI reads drawings, QA team reviews before delivery. Over 1,100 firms onboarded — strong traction for an early-stage contech tool.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Opusense AI</span>
+          <span class="company-tag tag-emerging">YC</span>
+        </div>
+        <div class="company-meta">Field report automation</div>
+        <div class="company-desc">Walk a site, speak observations aloud, snap photos → AI generates organized field report in real time. Targeting the 20% of inspectors' weeks spent on report writing. Founders have 15+ combined years in construction.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Document Crunch</span>
+          <span class="company-tag tag-emerging">Emerging</span>
+        </div>
+        <div class="company-meta">Contract risk reduction</div>
+        <div class="company-desc">AI-powered risk analysis for contracts, specs, and project documents. Identifies liability clauses and inconsistencies that manual review misses. Addresses one of construction's most expensive blind spots.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Structured AI</span>
+          <span class="company-tag tag-emerging">YC</span>
+        </div>
+        <div class="company-meta">QA/QC automation</div>
+        <div class="company-desc">AI agents that learn your standards, apply building codes, and automatically review drawings for clashes and inconsistencies. Targets the enormous cost of rework — estimated at 5–20% of project budgets industry-wide.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Boon</span>
+          <span class="company-tag tag-emerging">Emerging</span>
+        </div>
+        <div class="company-meta">Workflow automation</div>
+        <div class="company-desc">AI agents that embed directly into existing workflows — from preconstruction estimating to bid management. Automates repetitive tasks while surfacing decision-quality insights. Horizontal play across the project lifecycle.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-card-header">
+          <span class="company-name">Brickanta</span>
+          <span class="company-tag tag-emerging">$8M Seed</span>
+        </div>
+        <div class="company-meta">Stockholm · Northzone backed</div>
+        <div class="company-desc">AI operating system for preconstruction workflows including bid analysis and cost estimation. Analyzes project documentation against industry standards. European-first but watch for U.S. expansion.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="use-case-matrix">
+    <div class="section-number">04 — Use Case Matrix</div>
+    <h2>Where AI is delivering real ROI today vs. where it's still experimental</h2>
+
+    <table class="landscape-table">
+      <thead>
+        <tr>
+          <th>Use Case</th>
+          <th>Maturity</th>
+          <th>Proven ROI</th>
+          <th>Key Players</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cost Estimating & Takeoff</strong></td>
+          <td>Production</td>
+          <td>30–60% time reduction on bid prep</td>
+          <td>XBuild, Beam AI, Brickanta</td>
+        </tr>
+        <tr>
+          <td><strong>Bid Management</strong></td>
+          <td>Production</td>
+          <td>Higher bid volume without added staff</td>
+          <td>Procore, Boon, Beam AI</td>
+        </tr>
+        <tr>
+          <td><strong>Safety Monitoring</strong></td>
+          <td>Production</td>
+          <td>Proactive hazard identification</td>
+          <td>Fyld, Sensera, Procore Safety Hub</td>
+        </tr>
+        <tr>
+          <td><strong>Document Review & Risk</strong></td>
+          <td>Production</td>
+          <td>Liability clause detection, fewer disputes</td>
+          <td>Document Crunch, Procore Copilot</td>
+        </tr>
+        <tr>
+          <td><strong>Field Report Automation</strong></td>
+          <td>Growth</td>
+          <td>5× reduction in reporting time</td>
+          <td>Opusense AI, Procore Daily Log Agent</td>
+        </tr>
+        <tr>
+          <td><strong>Schedule Forecasting</strong></td>
+          <td>Growth</td>
+          <td>Early delay risk flagging</td>
+          <td>Buildots, Procore Scheduling, Karmen</td>
+        </tr>
+        <tr>
+          <td><strong>Admin & Back-Office</strong></td>
+          <td>Growth</td>
+          <td>30–50% admin hour reduction</td>
+          <td>Trayd, Payra, ServiceTitan</td>
+        </tr>
+        <tr>
+          <td><strong>Permitting & Compliance</strong></td>
+          <td>Growth</td>
+          <td>Faster permit processing</td>
+          <td>PermitFlow, Permitify</td>
+        </tr>
+        <tr>
+          <td><strong>Progress Tracking (CV)</strong></td>
+          <td>Growth</td>
+          <td>Real-time plan-vs-actual data</td>
+          <td>Buildots, Sensera, EarthCam</td>
+        </tr>
+        <tr>
+          <td><strong>QA/QC & Drawing Review</strong></td>
+          <td>Early</td>
+          <td>Reduced rework (5–20% of budgets)</td>
+          <td>Structured AI, LeanCon</td>
+        </tr>
+        <tr>
+          <td><strong>Digital Twins / Simulation</strong></td>
+          <td>Early</td>
+          <td>Error detection pre-build</td>
+          <td>Procore × NVIDIA, Autodesk</td>
+        </tr>
+        <tr>
+          <td><strong>Autonomous Equipment</strong></td>
+          <td>Experimental</td>
+          <td>Proof-of-concept stage</td>
+          <td>Gravis Robotics ($23M), Unlimited Industries</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="watch-item">
+      <p><strong>Where to focus first:</strong> If you haven't started, estimating and document review offer the fastest, lowest-risk path to measurable ROI. Safety monitoring is the strongest regulatory and liability case. Schedule forecasting is where the next wave of competitive advantage will come from.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="strategic-recommendations">
+    <div class="section-number">05 — Strategic Recommendations</div>
+    <h2>What this means for your firm</h2>
+    <p>Based on the data in this briefing, here's how we'd frame the strategic conversation for construction executives at three different stages of AI adoption:</p>
+
+    <div class="rec-grid">
+      <div class="rec-cell">
+        <div class="rec-cell-header">If you haven't started</div>
+        <h4>Start with estimating or document review</h4>
+        <p>These have the clearest ROI, the lowest workflow disruption, and multiple proven vendors to choose from. XBuild or Beam AI for estimating; Document Crunch for contract risk. Budget 30 days for evaluation, 60 for pilot.</p>
+      </div>
+      <div class="rec-cell">
+        <div class="rec-cell-header">If you're in pilot mode</div>
+        <h4>Standardize and measure</h4>
+        <p>The #1 failure pattern in 2025 was firms that ran pilots but never established baseline metrics. Define what "success" means in hours saved, errors caught, or bids won before scaling. The 38% of contractors seeing results all did this.</p>
+      </div>
+      <div class="rec-cell">
+        <div class="rec-cell-header">If you're already invested</div>
+        <h4>Build data defensibility</h4>
+        <p>As AI adoption broadens, the competitive edge shifts from "using AI" to "training AI on your data." Closed-loop systems that learn from your specific project history, cost patterns, and safety incidents will compound in value. Look at Procore's Agent Builder for custom automation.</p>
+      </div>
+      <div class="rec-cell">
+        <div class="rec-cell-header">For everyone</div>
+        <h4>Watch the back-office wave</h4>
+        <p>Trayd's 3-week Series A raise signals massive investor confidence in back-office AI for specialty trades. Payroll, compliance, and payments automation is underhyped relative to the field-ops tools getting all the press. This is where quiet margin improvement lives.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="one-number">
+    <div class="section-number">06 — One Number to Remember</div>
+    <h2 style="max-width: 640px;">Only 19% of contractors have actually adapted their workflows for AI — even though 87% believe it will meaningfully impact construction.</h2>
+    <p>That 68-point gap between belief and action is where the opportunity is. The firms that close it in 2026 will own the next decade of competitive advantage. The data is clear: adoption is compounding, not linear. Moving from 17% to 38% in one year means 2027 will be even more decisive.</p>
+    <p>The question isn't whether AI will transform construction. It's whether your firm will be the one that uses it — or the one that competes against those who do.</p>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block footer %}
+<!-- ═══ REPORT FOOTER ═══ -->
+<div class="report-footer">
+  <div class="footer-cta">
+    <h3>This is how we <em style="font-style:italic;color:var(--accent);">think</em>.</h3>
+    <p>Sora Labs produces competitive intelligence like this for clients across construction, logistics, healthcare, manufacturing, and more. If you want this level of analysis focused on your specific market and your specific competitors — that's what we do.</p>
+    <a href="/contact/" style="display:inline-block;background:var(--accent);color:var(--bg);font-weight:600;padding:13px 26px;border-radius:8px;font-size:0.9rem;">Get intelligence like this for your market → Book a call</a>
+    <div style="margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.08);">
+      <div style="font-size:0.9rem;color:var(--text-secondary,#B4B3BA);margin-bottom:12px;">Not ready to talk? Get the next briefing in your inbox.</div>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/nclawdev" method="post" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:420px;margin:0 auto;">
+        <input type="email" name="email" placeholder="you@company.com" required style="flex:1;min-width:200px;font-size:0.9rem;padding:12px 15px;background:var(--bg,#F5F5F5);border:1px solid var(--border,#252529);border-radius:8px;color:var(--text,#EFEEEA);outline:none;">
+        <input type="submit" value="Subscribe free" style="font-weight:600;font-size:0.85rem;padding:12px 18px;background:var(--accent);color:var(--bg);border:none;border-radius:8px;cursor:pointer;">
+      </form>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <p><strong>Sora Labs</strong> · Market Intelligence &amp; Research<br>
+    This briefing was produced using publicly available data, press releases, SEC filings, and industry reports. Company information is current as of April 2026. This is not investment advice.<br><br>
+    Sources include: ServiceTitan 2026 Commercial Specialty Contractor Industry Report, Fortune Business Insights, Bridgit AI Construction Statistics 2026, Construction Dive, Crunchbase, TechCrunch, BuiltWorlds, CEMEX Ventures, IndexBox, AGC Annual Survey, RICS 2025 AI in Construction Survey, Deloitte, PwC Future of Industrials Survey, Dodge Construction Network.<br><br>
+    Questions? Reach out at <a href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a>
+    </p>
+  </div>
+</div>
+
+{% include "footer.njk" %}
+{% endblock %}

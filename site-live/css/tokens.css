@@ -1,0 +1,44 @@
+/* ============================================================
+   Sora Labs — canonical design tokens (single source of truth)
+   Loaded site-wide via layouts/base.njk. Change a value here and
+   every page that extends the base layout updates.
+   ============================================================ */
+:root {
+  /* Surfaces */
+  --bg: #0A0A0C;
+  --bg-elevated: #111114;
+  --bg-card: #161619;
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(255, 255, 255, 0.1);
+  --border: #252529;
+  --border-subtle: #1A1A1E;
+
+  /* Text (bright, for contrast) */
+  --text: #EFEEEA;
+  --text-secondary: #B4B3BA;
+  --text-dim: #837F87;
+
+  /* Accent — brand gold */
+  --accent: #C9A84C;
+  --accent-soft: #C9A84C20;
+  --accent-glow: #C9A84C15;
+  --accent-hover: #DABB5E;
+
+  /* Semantic */
+  --green: #4EAD6B;
+  --green-soft: #4EAD6B18;
+  --blue: #5B8DEF;
+  --blue-soft: #5B8DEF15;
+  --coral: #D97756;
+  --coral-soft: #D9775615;
+
+  /* Type */
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Libre Franklin', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+
+  /* Geometry */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --gap: 16px;
+}

@@ -1,0 +1,343 @@
+---
+permalink: /index.html
+title: "Sora Labs | Purpose-built AI agents, generated on demand"
+description: "Describe any job in plain English and Sora Labs generates a purpose-built AI agent that does it, connected to the systems you already run on. Six running in production."
+nav_active: home
+---
+{% extends "layouts/site.njk" %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero center">
+  <div class="orb-field" aria-hidden="true">
+    <span class="orb orb-mint"     style="width:520px;height:520px;top:-180px;left:8%"></span>
+    <span class="orb orb-lavender" style="width:460px;height:460px;top:-140px;right:6%"></span>
+    <span class="orb orb-peach"    style="width:380px;height:380px;top:120px;left:42%"></span>
+  </div>
+  <div class="container">
+    <div class="eyebrow anim d1">Agents on demand</div>
+    <h1 class="anim d1">Agents on demand</h1>
+    <p class="hero-sub anim d2">Describe any job in plain English and Sora Labs generates a purpose-built agent that does it, connected to the systems you already run on. One agent, one job. Not a platform to adopt, not a consultant to brief.</p>
+
+    <form class="composer anim d3" action="/build/" method="GET">
+      <div class="composer-inner">
+        <div class="composer-label">New agent</div>
+        <div class="composer-name">
+          <span>Call it</span>
+          <input type="text" name="agent_name" placeholder="Pearl" aria-label="Agent name" autocomplete="off">
+        </div>
+        <textarea name="agent_task" aria-label="What should the agent do" placeholder="Check insurance coverage before every appointment, scrub claims before they go out, and work every denial until it is paid or written off."></textarea>
+        <div class="composer-foot">
+          <div class="composer-chips">
+            <input type="checkbox" id="h-gmail" name="connectors" value="Gmail"><label for="h-gmail">Gmail</label>
+            <input type="checkbox" id="h-slack" name="connectors" value="Slack"><label for="h-slack">Slack</label>
+            <input type="checkbox" id="h-apollo" name="connectors" value="Apollo"><label for="h-apollo">Apollo</label>
+            <input type="checkbox" id="h-hubspot" name="connectors" value="HubSpot"><label for="h-hubspot">HubSpot</label>
+            <input type="checkbox" id="h-sheets" name="connectors" value="Google Sheets"><label for="h-sheets">Sheets</label>
+            <input type="checkbox" id="h-api" name="connectors" value="Our internal system or API"><label for="h-api">Our own system</label>
+          </div>
+          <button type="submit" class="btn-primary">Continue&nbsp;&rarr;</button>
+        </div>
+      </div>
+    </form>
+    <p class="composer-note anim d4">Two lines is enough to start. The next page asks the rest.</p>
+  </div>
+</section>
+
+<!-- RHYTHM -->
+<section class="section-tight" style="padding-top:8px;padding-bottom:56px;">
+  <div class="container">
+    <div class="rhythm anim d1">
+      <div>
+        <div class="display-md">10 minutes</div>
+        <p class="body-sm">to describe the job. In your own words, on one page.</p>
+      </div>
+      <div>
+        <div class="display-md">1 business day</div>
+        <p class="body-sm">to get the spec back: scope, sign-off points, and price.</p>
+      </div>
+      <div>
+        <div class="display-md">2 to 4 weeks</div>
+        <p class="body-sm">until it is doing the job inside your systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MECHANIC -->
+<section class="section section-hairline">
+  <div class="container">
+    <div class="section-head center anim d1">
+      <div class="eyebrow eyebrow-muted">The product</div>
+      <h2>From description to running agent</h2>
+      <p>Pearl runs the billing desk at a dental group. She was generated from the description on the left.</p>
+    </div>
+
+    <div id="mechanic" data-sequence>
+    <div class="assembly">
+      <div class="asm-zone">
+        <div class="asm-label">Your description</div>
+        <div class="asm-body">
+          <div class="asm-doc" data-seq="0">
+            <div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="asm-zone asm-zone-wire">
+        <div class="asm-label" aria-hidden="true">&nbsp;</div>
+        <div class="asm-body" data-seq="1" data-seq-delay="900">
+          <svg class="asm-wire" viewBox="0 0 84 150" fill="none" aria-hidden="true">
+            <defs><linearGradient id="asmFlow1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#C9A84C" stop-opacity="0"/>
+              <stop offset="45%" stop-color="#C9A84C"/>
+              <stop offset="100%" stop-color="#A7E5D3" stop-opacity=".25"/>
+            </linearGradient></defs>
+            <path class="track" d="M0 34 C36 34 48 75 84 75"/>
+            <path class="track" d="M0 75 H84"/>
+            <path class="track" d="M0 116 C36 116 48 75 84 75"/>
+            <path class="flow" style="stroke:url(#asmFlow1)" d="M0 34 C36 34 48 75 84 75"/>
+            <path class="flow" style="stroke:url(#asmFlow1)" d="M0 75 H84"/>
+            <path class="flow" style="stroke:url(#asmFlow1)" d="M0 116 C36 116 48 75 84 75"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="asm-zone">
+        <div class="asm-label">Your agent</div>
+        <div class="asm-body">
+          <div class="core" data-seq="2" data-seq-delay="1150">
+            <span class="core-ring"></span><span class="core-ring"></span><span class="core-ring"></span>
+            <div class="core-orb"><span>PEARL</span></div>
+          </div>
+        </div>
+        <div class="asm-chips" data-seq="3" data-seq-delay="1550">
+          <span class="asm-chip">Practice management</span>
+          <span class="asm-chip">Clearinghouse</span>
+          <span class="asm-chip">Payer portals</span>
+          <span class="asm-chip">Fee schedule</span>
+          <span class="asm-chip">Email</span>
+        </div>
+      </div>
+
+      <div class="asm-zone asm-zone-wire">
+        <div class="asm-label" aria-hidden="true">&nbsp;</div>
+        <div class="asm-body" data-seq="4" data-seq-delay="1950">
+          <svg class="asm-wire" viewBox="0 0 84 150" fill="none" aria-hidden="true">
+            <defs><linearGradient id="asmFlow2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#C9A84C" stop-opacity="0"/>
+              <stop offset="45%" stop-color="#C9A84C"/>
+              <stop offset="100%" stop-color="#A7E5D3" stop-opacity=".25"/>
+            </linearGradient></defs>
+            <path class="track" d="M0 75 C36 75 48 34 84 34"/>
+            <path class="track" d="M0 75 H84"/>
+            <path class="track" d="M0 75 C36 75 48 116 84 116"/>
+            <path class="flow" style="stroke:url(#asmFlow2)" d="M0 75 C36 75 48 34 84 34"/>
+            <path class="flow" style="stroke:url(#asmFlow2)" d="M0 75 H84"/>
+            <path class="flow" style="stroke:url(#asmFlow2)" d="M0 75 C36 75 48 116 84 116"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="asm-zone">
+        <div class="asm-label">Finished work</div>
+        <div class="asm-body">
+          <div class="asm-cards" data-seq="5" data-seq-delay="2250">
+            <div class="asm-card"><b>Delta Dental · #40219</b><span class="tag tag-green">Appeal drafted</span></div>
+            <div class="asm-card"><b>MetLife · #40174</b><span class="tag tag-green">Appeal drafted</span></div>
+            <div class="asm-card"><b>Aetna · #40203</b><span class="tag tag-amber">Patient call</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mechanic">
+      <div class="mechanic-step" data-seq="6" data-seq-delay="2850">
+        <div class="mechanic-num">01 · Describe</div>
+        <h3>A paragraph</h3>
+        <p>No prompt engineering, no diagrams, no requirements doc. The way you would brief a new hire.</p>
+        <div class="mechanic-panel">
+          <div class="quote-panel" data-typewriter>
+            <span class="qmark">&ldquo;</span>Check what insurance actually covers before the patient sits down. Scrub every claim before it goes out so it does not come back over a code. Then work the denials the same day they land, because right now they pile up until month end and half of them never get appealed.
+          </div>
+        </div>
+      </div>
+
+      <div class="mechanic-arrow" data-seq="7" data-seq-delay="4100" aria-hidden="true">
+        <svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 6h20M15 1l5 5-5 5"/></svg>
+      </div>
+
+      <div class="mechanic-step" data-seq="8" data-seq-delay="4350">
+        <div class="mechanic-num">02 · Generate</div>
+        <h3>A spec, then a build</h3>
+        <p>Your description becomes a spec inside a business day: what the agent does, what it will not do, and where a person stays in the loop.</p>
+        <div class="mechanic-panel">
+          <div class="ui">
+            <div class="ui-bar"><span class="ui-dots"><i></i><i></i><i></i></span><span class="ui-title">Pearl · scoped</span></div>
+            <div class="ui-body" data-stagger data-in-step="8">
+              <div class="ui-kv"><div class="ui-k">Job</div><div class="ui-v">Verify coverage, scrub claims, triage denials, work the aging balances.</div></div>
+              <div class="ui-kv"><div class="ui-k">Connect</div><div class="ui-v">Practice management · clearinghouse · payer portals</div></div>
+              <div class="ui-kv"><div class="ui-k">Reads</div><div class="ui-v">Fee schedule, 12 months of paid claims, the payer rules doc.</div></div>
+              <div class="ui-kv"><div class="ui-k">Runs</div><div class="ui-v">Daily, ahead of tomorrow's schedule.</div></div>
+              <div class="ui-kv"><div class="ui-k">Human</div><div class="ui-v">A biller approves every submission and appeal.</div></div>
+              <div class="ui-kv"><div class="ui-k">Not doing</div><div class="ui-v dim">Patient scheduling. Treatment planning. Anything clinical.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mechanic-arrow" data-seq="9" data-seq-delay="5200" aria-hidden="true">
+        <svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 6h20M15 1l5 5-5 5"/></svg>
+      </div>
+
+      <div class="mechanic-step" data-seq="10" data-seq-delay="5450">
+        <div class="mechanic-num">03 · Run</div>
+        <h3>Finished work, daily</h3>
+        <p>Not a chatbot to prompt and not a dashboard to check. Work that is already done, waiting for a yes.</p>
+        <div class="mechanic-panel">
+          <div class="ui">
+            <div class="ui-bar"><span class="ui-dots"><i></i><i></i><i></i></span><span class="ui-title">Denial worklist · 7:58am</span></div>
+            <div class="ui-body tight" data-stagger data-in-step="10">
+              <div class="ui-row"><div class="who"><b>Delta Dental · #40219</b><span>D2740 downgraded to D2751</span></div><span class="amt">$1,240</span><span class="tag tag-green">Appeal drafted</span></div>
+              <div class="ui-row"><div class="who"><b>MetLife · #40174</b><span>Missing perio narrative</span></div><span class="amt">$860</span><span class="tag tag-green">Appeal drafted</span></div>
+              <div class="ui-row"><div class="who"><b>Cigna · #40188</b><span>Frequency limit</span></div><span class="amt">$212</span><span class="tag tag-red">Write off</span></div>
+              <div class="ui-row"><div class="who"><b>Aetna · #40203</b><span>Coordination of benefits</span></div><span class="amt">$1,905</span><span class="tag tag-amber">Patient call</span></div>
+            </div>
+            <div class="ui-foot"><span>12 worked before 8am</span><span class="approve">A biller approves each one</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="btn-row center anim d5" style="margin-top:52px;">
+      <a href="/build/" class="btn-primary">Describe your agent&nbsp;&rarr;</a>
+      <a href="/how-it-works/" class="btn-outline">See the full process</a>
+      <button type="button" class="seq-replay" data-replay="mechanic" style="margin-left:8px;">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12.5 7a5.5 5.5 0 1 1-1.9-4.15M12.5 1v3.2H9.3"/></svg>
+        Replay
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS (dark band) -->
+<section class="section section-hairline section-soft" id="agents">
+  <div class="orb-field" aria-hidden="true">
+    <span class="orb orb-sky"      style="width:520px;height:520px;top:-220px;left:-60px"></span>
+    <span class="orb orb-lavender" style="width:460px;height:460px;bottom:-200px;right:-40px"></span>
+  </div>
+  <div class="container">
+    <div class="section-head center anim d1">
+      <div class="eyebrow">In production</div>
+      <h2>Six agents generated so far</h2>
+      <p>Each was generated from a description like the one above. None is a general assistant, and none would be much use at another one's desk.
+    </div>
+
+    <div class="grid-3 agent-cards">
+      {%- for a in agents %}
+      <a class="agent-card anim d{{ loop.index0 % 3 + 2 }}" href="/agents/#{{ a.id }}">
+        <div class="agent-mark" style="background:var(--orb-{{ a.accent }})">{{ a.mark | safe }}</div>
+        <div class="agent-card-name">{{ a.name }}</div>
+        <div class="agent-card-role">{{ a.role }}</div>
+        <p class="agent-card-line">{{ a.headline }}</p>
+        <span class="agent-card-go">See what {{ a.name }} hands a human &rarr;</span>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- OUTPUT -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center anim d1">
+      <div class="eyebrow eyebrow-muted">Output</div>
+      <h2>What an agent hands back</h2>
+      <p>Two more, shortened from real runs. Notice what is missing: nothing to prompt, nothing to configure, no dashboard anyone has to remember to open.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="anim d2">
+        <div class="ui">
+          <div class="ui-bar"><span class="ui-dots"><i></i><i></i><i></i></span><span class="ui-title">George · draft 14 of 25</span></div>
+          <div class="ui-body">{{ agents[4].output | safe }}</div>
+          <div class="ui-foot"><span>25 drafted this morning</span><span class="approve">A rep approves every send</span></div>
+        </div>
+        <p class="caption" style="margin-top:12px;">George found the acquisition and the job posting himself. That is the part reps skip.</p>
+      </div>
+
+      <div class="anim d3">
+        <div class="ui">
+          <div class="ui-bar"><span class="ui-dots"><i></i><i></i><i></i></span><span class="ui-title">Logan · #eng, Friday 9:02am</span></div>
+          <div class="ui-body">{{ agents[0].output | safe }}</div>
+          <div class="ui-foot"><span>Nudged the blocker owner twice</span><span class="approve">Lead approves date changes</span></div>
+        </div>
+        <p class="caption" style="margin-top:12px;">Nobody spent Friday afternoon assembling this out of tickets and memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROUND RULES -->
+<section class="section section-hairline section-soft">
+  <div class="container">
+    <div class="split">
+      <div class="anim d1">
+        <div class="eyebrow eyebrow-muted">Every agent ships with</div>
+        <h2 style="margin-bottom:20px;">Three rules, in writing</h2>
+        <p class="lead" style="margin-bottom:24px;">Agents do the repetition. People keep the judgment. These are fixed before anything is generated.</p>
+        <ul class="checklist">
+          <li><strong style="color:var(--ink);font-weight:500;">Nothing ships unwatched.</strong> You draw the line yourself. Claims, emails, and money wait for a person unless you say otherwise.</li>
+          <li><strong style="color:var(--ink);font-weight:500;">Your accounts, your data.</strong> The agent works against your systems with the narrowest access that does the job. We build no shadow copy and train nothing on your data.</li>
+          <li><strong style="color:var(--ink);font-weight:500;">We keep it running.</strong> Payers change rules and tools change APIs. Maintenance is part of the deal, not a surprise invoice.</li>
+        </ul>
+      </div>
+
+      <div class="anim d3">
+        <div class="card card-lg">
+          <div class="eyebrow eyebrow-muted" style="margin-bottom:14px;">And one disclosure</div>
+          <h3 class="display-sm" style="margin-bottom:12px;">Nadia and Logan are agents, not people</h3>
+          <p class="body-sm" style="margin-bottom:14px;">Both run inside Sora Labs as well as for customers, and both are AI. We say so wherever their work appears, including the newsletter Nadia drafts.</p>
+          <p class="body-sm">A human on our team reviews everything before it reaches you. You should expect that honesty from anyone selling you this, and you rarely get it.</p>
+          <a href="/about/" class="agent-link">How we work &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="orb-field" aria-hidden="true">
+    <span class="orb orb-rose" style="width:520px;height:520px;top:-60px;left:50%;transform:translateX(-50%)"></span>
+  </div>
+  <div class="container">
+    <h2>Generate your first agent</h2>
+    <p>Describe the job the way you would explain it to a new hire. You get a spec back within a business day, including when the honest answer is that you do not need an agent.</p>
+    <div class="btn-row center">
+      <a href="/build/" class="btn-primary">Generate an agent&nbsp;&rarr;</a>
+      <a href="/agents/" class="btn-outline">See the six running</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="news-band" id="newsletter">
+  <div class="container">
+    <div class="news-inner">
+      <div class="news-text">
+        <h3>The Briefing</h3>
+        <p>A free weekly note on what AI agents are actually doing inside real businesses.</p>
+      </div>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/nclawdev" method="post" class="embeddable-buttondown-form">
+        <label for="bd-email">Enter your email</label>
+        <input type="email" name="email" id="bd-email" placeholder="you@company.com" required>
+        <input type="submit" value="Subscribe free">
+        <p><a href="https://buttondown.com/refer/nclawdev" target="_blank" rel="noopener">Powered by Buttondown.</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

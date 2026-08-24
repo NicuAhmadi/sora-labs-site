@@ -1,0 +1,1359 @@
+---
+permalink: /tools/cteig/index.html
+eleventyExcludeFromCollections: true
+templateEngineOverride: false
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="canonical" href="https://sora-labs.net/tools/cteig/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,300;1,14..32,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens-light.css">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>California CTEIG Match Calculator &middot; Sora Labs</title>
+<meta name="description" content="Find your California district's FY 2025–26 CTEIG award and $2-for-$1 local match obligation. Data from CDE Rounds 11 and 11B.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1F2ETBV5K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J1F2ETBV5K');
+</script>
+<style>
+  :root {
+    --bg-primary: #F5F5F5;
+    --bg-secondary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #FFFFFF;
+    --border: #D6D3D1;
+    --border-accent: #E7E5E4;
+    --text-primary: #0C0A09;
+    --text-secondary: #4E4E4E;
+    --text-muted: #6E6862;
+    --accent: #292524;
+    --accent-bright: #0C0A09;
+    --accent-dim: rgba(12,10,9,0.06);
+    --accent-glow: rgba(201,168,76,0.10);
+    --urgency: #B4543A;
+    --urgency-dim: rgba(180,84,58,0.10);
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Inter', system-ui, -apple-system, sans-serif;
+    --nav-h: 60px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 375px;
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: color 0.2s ease; }
+  a:hover { color: var(--accent-bright); }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+  }
+
+  input, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  input:focus, select:focus {
+    border-color: var(--border-accent);
+    background: var(--bg-card-hover);
+  }
+
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* Nav */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: rgba(245, 245, 245, 0.90);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .brand-mark {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+    color: var(--bg-primary);
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .brand-name {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .nav-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* Layout shell */
+  .shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(var(--nav-h) + 3.5rem) 2rem 4rem;
+  }
+
+  /* Hero */
+  .hero {
+    margin-bottom: 2.75rem;
+    animation: fadeUp 0.6s ease-out;
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.8rem;
+    color: var(--text-primary);
+  }
+  .hero .sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin: 0;
+    max-width: 42em;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: inline-flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 2rem;
+    gap: 2px;
+  }
+  .tab {
+    padding: 0.55rem 1.2rem;
+    border-radius: 7px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .tab:hover { color: var(--text-primary); }
+  .tab[aria-selected="true"] {
+    background: var(--accent-dim);
+    color: var(--accent-bright);
+  }
+
+  /* Mode panels */
+  .panel[hidden] { display: none !important; }
+  .panel { animation: fadeIn 0.3s ease-out; }
+
+  /* Loading / error banner */
+  .status {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .status.error { border-color: #5a2323; color: #f5a5a5; }
+
+  /* Calculator */
+  .calc-search {
+    position: relative;
+    max-width: 640px;
+  }
+  .calc-search input {
+    width: 100%;
+    font-size: 16px;
+    padding: 0.95rem 1.1rem;
+  }
+  .suggestions {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0; right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    border-radius: 10px;
+    max-height: 340px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .suggestions[hidden] { display: none; }
+  .suggestion {
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .suggestion:last-child { border-bottom: none; }
+  .suggestion:hover,
+  .suggestion[aria-selected="true"] { background: var(--bg-card-hover); }
+  .suggestion .s-name { color: var(--text-primary); font-weight: 500; }
+  .suggestion .s-meta { color: var(--text-muted); font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
+  .suggestion mark {
+    background: var(--accent-dim);
+    color: var(--accent-bright);
+    padding: 0 2px;
+    border-radius: 3px;
+  }
+
+  /* Result card */
+  .result-card {
+    margin-top: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    animation: fadeUp 0.5s ease-out;
+  }
+  .result-card[hidden] { display: none; }
+  .rc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .rc-title { flex: 1; min-width: 260px; }
+  .rc-district {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 0.25rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .rc-county {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0;
+  }
+  .round-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-bright);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-dim);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .rc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .metric {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem;
+  }
+  .metric-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .metric-value {
+    font-family: var(--font-mono);
+    font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .metric.match .metric-value { color: var(--accent-bright); }
+
+  .countdown {
+    background: var(--urgency-dim);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .countdown-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--urgency);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .countdown-days {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--urgency);
+  }
+
+  .rc-narrative {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+  }
+  .rc-narrative strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .rc-narrative .num {
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+  }
+
+  .rc-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 0.7rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    border: 1px solid var(--border-accent);
+    background: var(--bg-card);
+    color: var(--text-primary);
+  }
+  .btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-dim);
+  }
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-primary);
+    font-weight: 600;
+  }
+  .btn.primary:hover {
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
+  }
+
+  /* Not-found card */
+  .notfound {
+    margin-top: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem 2rem;
+  }
+  .notfound[hidden] { display: none; }
+  .notfound h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    margin: 0 0 0.6rem;
+    color: var(--text-primary);
+  }
+  .notfound p {
+    color: var(--text-secondary);
+    margin: 0 0 1rem;
+    line-height: 1.65;
+  }
+
+  /* Explorer table */
+  .explorer-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+  .explorer-controls select { min-width: 200px; }
+  .filter-group {
+    display: inline-flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .filter-btn {
+    padding: 0.45rem 0.9rem;
+    border-radius: 5px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .filter-btn:hover { color: var(--text-primary); }
+  .filter-btn[aria-pressed="true"] {
+    background: var(--accent-dim);
+    color: var(--accent-bright);
+  }
+  .clear-btn {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.5rem;
+  }
+  .clear-btn:hover { color: var(--accent); }
+  .row-count {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table.explorer {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+  }
+  table.explorer th,
+  table.explorer td {
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  table.explorer th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+  table.explorer th:hover { color: var(--text-secondary); }
+  table.explorer th[aria-sort="ascending"],
+  table.explorer th[aria-sort="descending"] { color: var(--accent-bright); }
+  table.explorer th .arrow {
+    display: inline-block;
+    margin-left: 4px;
+    opacity: 0.6;
+  }
+  table.explorer td.num { font-family: var(--font-mono); text-align: right; }
+  table.explorer td.round {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  table.explorer tr { cursor: pointer; transition: background 0.15s ease; }
+  table.explorer tbody tr:hover { background: var(--bg-card-hover); }
+  table.explorer tbody tr:last-child td { border-bottom: none; }
+  .td-district { color: var(--text-primary); font-weight: 500; }
+
+  .empty-row {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  /* Footer */
+  .foot {
+    margin-top: 5rem;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .foot a { color: var(--text-secondary); }
+  .foot a:hover { color: var(--accent); }
+
+  /* No-JS fallback */
+  .nojs {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    color: var(--text-secondary);
+    margin-top: 2rem;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav { padding: 0 1rem; }
+    .shell { padding: calc(var(--nav-h) + 2rem) 1rem 3rem; }
+    .nav-meta { font-size: 11px; }
+    .hero { margin-bottom: 2rem; }
+    .rc-grid { grid-template-columns: 1fr; }
+    .result-card { padding: 1.5rem; }
+    .explorer-controls { flex-direction: column; align-items: stretch; }
+    .explorer-controls select,
+    .filter-group { width: 100%; }
+    .filter-group { justify-content: center; }
+    .row-count { margin-left: 0; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .brand-name { display: none; }
+  }
+
+  /* Print */
+  @media print {
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --border: #cccccc;
+      --border-accent: #999999;
+      --text-primary: #FAFAFA;
+      --text-secondary: #333333;
+      --text-muted: #555555;
+      --accent: #8a6b3d;
+      --accent-bright: #8a6b3d;
+      --accent-dim: #f5efe3;
+      --urgency: #b45309;
+      --urgency-dim: #fff3d4;
+    }
+    body { background: #fff; color: #111; }
+    .nav, .tabs, .calc-search, .rc-actions, .explorer-controls,
+    .table-wrap, .notfound, .status, .page-gate { display: none !important; }
+    .shell { padding: 1rem; max-width: none; }
+    .result-card {
+      border: 1px solid #ccc;
+      box-shadow: none;
+      page-break-inside: avoid;
+    }
+    .print-only { display: block !important; }
+    .foot { border-top: 1px solid #ccc; color: #555; }
+  }
+  .print-only { display: none; }
+
+  /* Full-page email gate (covers Calculator + Explorer until email submitted) */
+  .page-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    overflow-y: auto;
+  }
+  .page-gate[hidden] { display: none; }
+  .page-gate-card {
+    width: 100%;
+    max-width: 460px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.25rem 2rem;
+  }
+  .page-gate-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .page-gate-brand .dot {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .page-gate-card h1 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 1.2;
+    margin: 0 0 0.85rem;
+    color: var(--text-primary);
+  }
+  .page-gate-card .sub {
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem;
+    font-size: 14.5px;
+  }
+  .page-gate-card form { display: flex; flex-direction: column; gap: 0.9rem; }
+  .page-gate-card input[type="email"] { width: 100%; }
+  .page-gate-card label.check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    cursor: pointer;
+  }
+  .page-gate-card label.check input[type="checkbox"] {
+    margin-top: 3px;
+    accent-color: var(--accent);
+  }
+  .page-gate-card .btn {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease, opacity 0.2s ease;
+  }
+  .page-gate-card .btn:hover { background: var(--accent-bright); }
+  .page-gate-card .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .page-gate-card .gate-msg {
+    color: #f87171;
+    font-size: 13px;
+    margin: 0;
+  }
+  .page-gate-card .gate-msg[hidden] { display: none; }
+  .page-gate-fineprint {
+    margin: 1.25rem 0 0;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .page-gate-fineprint a { color: var(--text-secondary); }
+
+  /* Hide the underlying app while the gate is up to prevent any flash */
+  body.gated .nav,
+  body.gated #main { visibility: hidden; }
+
+  /* Screen-reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+</head>
+<body class="gated">
+
+<!-- Full-page email gate. Removed from DOM after a valid submission. -->
+<div class="page-gate" id="page-gate" role="dialog" aria-modal="true" aria-labelledby="page-gate-title">
+  <div class="page-gate-card">
+    <div class="page-gate-brand">
+      <span class="dot" aria-hidden="true">S</span>
+      <span>Sora Labs &middot; Tools</span>
+    </div>
+    <h1 id="page-gate-title">California CTEIG Match Calculator</h1>
+    <p class="sub">Enter your email to access the calculator and the full 445-district recipient database. FY 2025&ndash;26 awards from CDE Rounds 11 and 11B.</p>
+    <form id="page-gate-form" novalidate>
+      <label for="page-gate-email" class="sr-only">Email address</label>
+      <input id="page-gate-email" name="email" type="email" required placeholder="you@district.org" autocomplete="email">
+      <label class="check">
+        <input id="page-gate-interested" name="interested" type="checkbox">
+        <span>I'd like to hear about tools for reaching CTE-funded districts.</span>
+      </label>
+      <button type="submit" class="btn primary" id="page-gate-submit">Open the calculator</button>
+      <p class="gate-msg" id="page-gate-msg" hidden></p>
+    </form>
+    <p class="page-gate-fineprint">
+      We use your email only to follow up about CTEIG-related tools. No spam, no resale.
+    </p>
+  </div>
+</div>
+
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="brand" href="https://sora-labs.net" aria-label="Sora Labs home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Sora Labs</span>
+    </a>
+    <div class="nav-meta" aria-label="Tool identifier">CTEIG Calculator &middot; FY 2025&ndash;26</div>
+  </div>
+</header>
+
+<main class="shell" id="main">
+  <section class="hero">
+    <h1>California CTEIG Match Calculator</h1>
+    <p class="sub">Find your district's FY 2025&ndash;26 award and match obligation.</p>
+  </section>
+
+  <noscript>
+    <div class="nojs">Enable JavaScript to use the calculator.</div>
+  </noscript>
+
+  <div class="tabs" role="tablist" aria-label="Mode">
+    <button class="tab" role="tab" id="tab-calc" aria-selected="true" aria-controls="panel-calc" data-mode="calc">Calculator</button>
+    <button class="tab" role="tab" id="tab-explore" aria-selected="false" aria-controls="panel-explore" data-mode="explore">Explorer</button>
+  </div>
+
+  <div id="status" class="status" role="status" aria-live="polite">Loading CTEIG data...</div>
+
+  <!-- CALCULATOR MODE -->
+  <section class="panel" id="panel-calc" role="tabpanel" aria-labelledby="tab-calc" hidden>
+    <div class="calc-search">
+      <label for="search" class="sr-only">Search districts</label>
+      <input
+        id="search"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Search for your district..."
+        aria-autocomplete="list"
+        aria-controls="suggestions"
+        aria-expanded="false">
+      <div id="suggestions" class="suggestions" role="listbox" hidden></div>
+    </div>
+
+    <article class="result-card" id="result" hidden aria-live="polite"></article>
+    <div class="notfound" id="notfound" hidden></div>
+  </section>
+
+  <!-- EXPLORER MODE -->
+  <section class="panel" id="panel-explore" role="tabpanel" aria-labelledby="tab-explore" hidden>
+    <div id="explorer-body">
+      <div class="explorer-controls">
+        <label class="sr-only" for="filter-county">Filter by county</label>
+        <select id="filter-county" aria-label="Filter by county"></select>
+
+        <div class="filter-group" role="group" aria-label="Filter by round">
+          <button class="filter-btn" data-filter="round" data-value="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="round" data-value="11" aria-pressed="false">Round 11</button>
+          <button class="filter-btn" data-filter="round" data-value="11B" aria-pressed="false">Round 11B</button>
+        </div>
+
+        <div class="filter-group" role="group" aria-label="Filter by award size">
+          <button class="filter-btn" data-filter="size" data-value="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="size" data-value="large" aria-pressed="false">Large (&gt;$300K)</button>
+          <button class="filter-btn" data-filter="size" data-value="small" aria-pressed="false">Small (&lt;$100K)</button>
+        </div>
+
+        <button class="clear-btn" id="clear-filters" type="button">Clear</button>
+        <div class="row-count" id="row-count" aria-live="polite"></div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-scroll">
+          <table class="explorer" id="explorer-table">
+            <thead>
+              <tr>
+                <th data-sort="districtName" aria-sort="none">District Name<span class="arrow"></span></th>
+                <th data-sort="countyName" aria-sort="none">County<span class="arrow"></span></th>
+                <th data-sort="awardAmount" aria-sort="descending" class="num-head">Award<span class="arrow">&darr;</span></th>
+                <th data-sort="matchObligation" aria-sort="none" class="num-head">Match</th>
+                <th data-sort="round" aria-sort="none">Round</th>
+              </tr>
+            </thead>
+            <tbody id="explorer-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>
+      Data: <a href="https://www.cde.ca.gov/fg/fo/r17/" target="_blank" rel="noopener">California Department of Education</a>,
+      CTEIG Round 11 and Round 11B, FY 2025&ndash;26.
+      Built by <a href="https://sora-labs.net" target="_blank" rel="noopener">Sora Labs</a>.
+    </p>
+    <p class="print-only" style="margin-top: 0.5rem;">
+      Printed from sora-labs.net/tools/cteig-calculator/
+    </p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---------- Config ----------
+  var FORMSPREE_URL = 'https://formspree.io/f/xyklwbaq';
+  var STORAGE_KEY = 'sora_cteig_access';
+  var DEADLINE = new Date(Date.UTC(2026, 5, 30)); // June 30, 2026
+  var DEADLINE_LABEL = 'June 30, 2026';
+  var CDE_PERKINS = 'https://www.cde.ca.gov/ci/ct/pk/';
+
+  // ---------- State ----------
+  var districts = [];
+  var byKey = Object.create(null);
+  var mode = 'calc';
+  var filters = { county: 'all', round: 'all', size: 'all' };
+  var sort = { key: 'awardAmount', dir: 'desc' };
+  var activeSuggestionIdx = -1;
+  var suggestionList = [];
+
+  // ---------- Utils ----------
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function fmtMoney(n) {
+    return '$' + (n || 0).toLocaleString('en-US');
+  }
+  function daysUntil(date) {
+    var now = new Date();
+    var today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    var ms = date - today;
+    return Math.max(0, Math.ceil(ms / 86400000));
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+    });
+  }
+  function highlightMatch(name, q) {
+    if (!q) return escapeHtml(name);
+    var idx = name.toLowerCase().indexOf(q.toLowerCase());
+    if (idx < 0) return escapeHtml(name);
+    return escapeHtml(name.slice(0, idx))
+         + '<mark>' + escapeHtml(name.slice(idx, idx + q.length)) + '</mark>'
+         + escapeHtml(name.slice(idx + q.length));
+  }
+  function districtKey(d) {
+    return d.countyCode + '-' + d.districtCode + '-' + d.round;
+  }
+
+  // ---------- Init ----------
+  function init() {
+    wirePageGate();
+    if (!checkPageGate()) {
+      // User hasn't passed the gate yet; defer setting up the rest of the UI
+      // until they submit. Avoids any flash of the gated content underneath.
+      return;
+    }
+    bootApp();
+  }
+
+  function bootApp() {
+    document.body.classList.remove('gated');
+    wireTabs();
+    wireSearch();
+    wireExplorer();
+    loadData();
+  }
+
+  function loadData() {
+    fetch('districts.json', { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        districts = data;
+        districts.forEach(function (d) { byKey[districtKey(d)] = d; });
+        $('#status').hidden = true;
+        $('#panel-calc').hidden = false;
+        buildCountyOptions();
+        var readFromUrl = tryLoadFromHash();
+        if (readFromUrl) setMode('calc');
+      })
+      .catch(function () {
+        var s = $('#status');
+        s.className = 'status error';
+        s.textContent = "Couldn't load district data. Refresh to try again.";
+      });
+  }
+
+  // ---------- Tabs ----------
+  function wireTabs() {
+    $$('.tab').forEach(function (btn) {
+      btn.addEventListener('click', function () { setMode(btn.dataset.mode); });
+    });
+  }
+  function setMode(next) {
+    mode = next;
+    $$('.tab').forEach(function (t) {
+      var on = t.dataset.mode === mode;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    $('#panel-calc').hidden = mode !== 'calc';
+    $('#panel-explore').hidden = mode !== 'explore';
+    if (mode === 'explore') {
+      renderTable();
+    }
+  }
+
+  // ---------- Search / Autocomplete ----------
+  function wireSearch() {
+    var input = $('#search');
+    var box = $('#suggestions');
+
+    input.addEventListener('input', function () {
+      var q = input.value.trim();
+      if (q.length < 2) {
+        hideSuggestions();
+        return;
+      }
+      suggestionList = districts
+        .filter(function (d) { return d.districtName.toLowerCase().indexOf(q.toLowerCase()) >= 0; })
+        .slice(0, 12);
+      renderSuggestions(q);
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (box.hidden || !suggestionList.length) {
+        if (e.key === 'Enter') handleDirectEnter(input.value.trim());
+        return;
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeSuggestionIdx = Math.min(activeSuggestionIdx + 1, suggestionList.length - 1);
+        updateSuggestionFocus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeSuggestionIdx = Math.max(activeSuggestionIdx - 1, 0);
+        updateSuggestionFocus();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeSuggestionIdx >= 0) {
+          selectDistrict(suggestionList[activeSuggestionIdx]);
+        } else if (suggestionList.length) {
+          selectDistrict(suggestionList[0]);
+        } else {
+          handleDirectEnter(input.value.trim());
+        }
+      } else if (e.key === 'Escape') {
+        hideSuggestions();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.calc-search')) hideSuggestions();
+    });
+  }
+
+  function renderSuggestions(q) {
+    var box = $('#suggestions');
+    var input = $('#search');
+    if (!suggestionList.length) {
+      box.innerHTML = '<div class="suggestion" style="cursor: default; color: var(--text-muted);">No matching districts.</div>';
+      box.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    box.innerHTML = suggestionList.map(function (d, i) {
+      return '<div class="suggestion" role="option" data-idx="' + i + '" aria-selected="false">'
+        + '<span class="s-name">' + highlightMatch(d.districtName, q) + '</span>'
+        + '<span class="s-meta">' + escapeHtml(d.countyName) + ' &middot; R' + escapeHtml(d.round) + '</span>'
+        + '</div>';
+    }).join('');
+    box.hidden = false;
+    input.setAttribute('aria-expanded', 'true');
+    activeSuggestionIdx = -1;
+
+    $$('.suggestion[data-idx]', box).forEach(function (el) {
+      el.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        var idx = Number(el.dataset.idx);
+        selectDistrict(suggestionList[idx]);
+      });
+    });
+  }
+  function updateSuggestionFocus() {
+    $$('.suggestion[data-idx]').forEach(function (el, i) {
+      var on = i === activeSuggestionIdx;
+      el.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (on) el.scrollIntoView({ block: 'nearest' });
+    });
+  }
+  function hideSuggestions() {
+    $('#suggestions').hidden = true;
+    $('#search').setAttribute('aria-expanded', 'false');
+    activeSuggestionIdx = -1;
+  }
+
+  function handleDirectEnter(q) {
+    if (!q) return;
+    hideSuggestions();
+    showNotFound(q);
+  }
+
+  function selectDistrict(d) {
+    if (!d) return;
+    $('#search').value = d.districtName;
+    hideSuggestions();
+    renderResult(d);
+    try {
+      history.replaceState(null, '', '#d=' + encodeURIComponent(districtKey(d)));
+    } catch (e) { /* ignore */ }
+  }
+
+  function tryLoadFromHash() {
+    var m = /#d=([^&]+)/.exec(location.hash || '');
+    if (!m) return false;
+    var key = decodeURIComponent(m[1]);
+    var d = byKey[key];
+    if (!d) return false;
+    $('#search').value = d.districtName;
+    renderResult(d);
+    return true;
+  }
+
+  function renderResult(d) {
+    $('#notfound').hidden = true;
+    var daysLeft = daysUntil(DEADLINE);
+    var card = $('#result');
+    card.hidden = false;
+    card.innerHTML = [
+      '<div class="rc-head">',
+        '<div class="rc-title">',
+          '<h2 class="rc-district">', escapeHtml(d.districtName), '</h2>',
+          '<p class="rc-county mono">', escapeHtml(d.countyName), ' County</p>',
+        '</div>',
+        '<span class="round-badge">Round ', escapeHtml(d.round), '</span>',
+      '</div>',
+      '<div class="rc-grid">',
+        '<div class="metric">',
+          '<div class="metric-label">Award Amount</div>',
+          '<div class="metric-value">', fmtMoney(d.awardAmount), '</div>',
+        '</div>',
+        '<div class="metric match">',
+          '<div class="metric-label">Match Obligation (2&times;)</div>',
+          '<div class="metric-value">', fmtMoney(d.matchObligation), '</div>',
+        '</div>',
+      '</div>',
+      '<div class="countdown">',
+        '<div>',
+          '<div class="countdown-label">Encumbrance deadline</div>',
+          '<div class="mono" style="color: var(--text-primary); margin-top: 2px;">', DEADLINE_LABEL, '</div>',
+        '</div>',
+        '<div class="countdown-days">', daysLeft.toLocaleString('en-US'), ' days remaining</div>',
+      '</div>',
+      '<p class="rc-narrative">',
+        '<strong>', escapeHtml(d.districtName), '</strong> received ',
+        '<span class="num">', fmtMoney(d.awardAmount), '</span> in CTEIG funding this cycle. ',
+        'Under EC Section 53071(a)(1)(D)(i), the district must encumber ',
+        '<span class="num">', fmtMoney(d.matchObligation), '</span> in local CTE spending by June 30, 2026. ',
+        'A qualifying CTE equipment purchase of ',
+        '<span class="num">$45,000&ndash;70,000</span> coded to Goal 3800 / Object 6400 is one path to close the gap.',
+      '</p>',
+      '<div class="rc-actions">',
+        '<button class="btn primary" id="btn-print" type="button">Print this page</button>',
+        '<button class="btn" id="btn-clear" type="button">Search another district</button>',
+      '</div>'
+    ].join('');
+    $('#btn-print').addEventListener('click', function () { window.print(); });
+    $('#btn-clear').addEventListener('click', function () {
+      $('#search').value = '';
+      card.hidden = true;
+      try { history.replaceState(null, '', location.pathname); } catch (e) {}
+      $('#search').focus();
+    });
+  }
+
+  function showNotFound(q) {
+    $('#result').hidden = true;
+    var nf = $('#notfound');
+    nf.hidden = false;
+    nf.innerHTML = [
+      '<h3>No match for &ldquo;', escapeHtml(q), '&rdquo;</h3>',
+      '<p>This district did not receive CTEIG Round 11 or 11B funding for FY 2025&ndash;26. ',
+      'The next CTEIG application window is Round 12, expected Fall 2026. ',
+      'For federal CTE funding that operates on a different cycle, see ',
+      '<a href="', CDE_PERKINS, '" target="_blank" rel="noopener">Perkins V</a>.</p>'
+    ].join('');
+  }
+
+  // ---------- Page Gate ----------
+  function checkPageGate() {
+    var flag = null;
+    try { flag = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    if (flag) {
+      $('#page-gate').hidden = true;
+      return true;
+    }
+    return false;
+  }
+
+  function wirePageGate() {
+    var form = $('#page-gate-form');
+    var msg = $('#page-gate-msg');
+    var submit = $('#page-gate-submit');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = $('#page-gate-email').value.trim();
+      var interested = $('#page-gate-interested').checked;
+      msg.hidden = true;
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.textContent = 'Please enter a valid email address.';
+        msg.hidden = false;
+        return;
+      }
+
+      submit.disabled = true;
+      var prevLabel = submit.textContent;
+      submit.textContent = 'Opening...';
+
+      var payload = {
+        email: email,
+        interested: interested,
+        source: 'cteig-calculator',
+        page: 'sora-labs.net/tools/cteig/',
+        timestamp: new Date().toISOString(),
+        _subject: 'CTEIG Calculator — new lead (' + email + ')'
+      };
+
+      fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (r) {
+        if (r.status === 200) return r;
+        throw new Error('HTTP ' + r.status);
+      })
+      .then(function () {
+        try { localStorage.setItem(STORAGE_KEY, new Date().toISOString().slice(0, 10)); } catch (e) {}
+        if (window.gtag) {
+          window.gtag('event', 'cteig_gate_unlock', { email_domain: email.split('@')[1] || '' });
+        }
+        var gate = $('#page-gate');
+        gate.style.transition = 'opacity 0.3s ease';
+        gate.style.opacity = '0';
+        setTimeout(function () {
+          gate.hidden = true;
+          bootApp();
+        }, 300);
+      })
+      .catch(function () {
+        submit.disabled = false;
+        submit.textContent = prevLabel;
+        msg.textContent = "Couldn't submit right now. Please try again in a moment.";
+        msg.hidden = false;
+      });
+    });
+  }
+
+  // ---------- Explorer ----------
+  function wireExplorer() {
+    $('#filter-county').addEventListener('change', function (e) {
+      filters.county = e.target.value;
+      renderTable();
+    });
+
+    $$('.filter-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var kind = btn.dataset.filter;
+        var val = btn.dataset.value;
+        filters[kind] = val;
+        $$('.filter-btn[data-filter="' + kind + '"]').forEach(function (b) {
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+        renderTable();
+      });
+    });
+
+    $('#clear-filters').addEventListener('click', function () {
+      filters = { county: 'all', round: 'all', size: 'all' };
+      $('#filter-county').value = 'all';
+      $$('.filter-btn').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.dataset.value === 'all' ? 'true' : 'false');
+      });
+      renderTable();
+    });
+
+    $$('#explorer-table th[data-sort]').forEach(function (th) {
+      th.addEventListener('click', function () {
+        var key = th.dataset.sort;
+        if (sort.key === key) {
+          sort.dir = sort.dir === 'asc' ? 'desc' : 'asc';
+        } else {
+          sort.key = key;
+          sort.dir = (key === 'awardAmount' || key === 'matchObligation') ? 'desc' : 'asc';
+        }
+        renderTable();
+      });
+    });
+  }
+
+  function buildCountyOptions() {
+    var sel = $('#filter-county');
+    var counties = Array.from(new Set(districts.map(function (d) { return d.countyName; }))).sort();
+    sel.innerHTML = '<option value="all">All counties (' + counties.length + ')</option>'
+      + counties.map(function (c) {
+          return '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>';
+        }).join('');
+  }
+
+  function applyFilters() {
+    return districts.filter(function (d) {
+      if (filters.county !== 'all' && d.countyName !== filters.county) return false;
+      if (filters.round !== 'all' && d.round !== filters.round) return false;
+      if (filters.size === 'large' && d.awardAmount <= 300000) return false;
+      if (filters.size === 'small' && d.awardAmount >= 100000) return false;
+      return true;
+    });
+  }
+
+  function applySort(rows) {
+    var key = sort.key, dir = sort.dir === 'asc' ? 1 : -1;
+    return rows.slice().sort(function (a, b) {
+      var av = a[key], bv = b[key];
+      if (typeof av === 'string') { av = av.toLowerCase(); bv = bv.toLowerCase(); }
+      if (av < bv) return -1 * dir;
+      if (av > bv) return  1 * dir;
+      return 0;
+    });
+  }
+
+  function renderTable() {
+    var rows = applySort(applyFilters());
+
+    $$('#explorer-table th[data-sort]').forEach(function (th) {
+      var on = th.dataset.sort === sort.key;
+      th.setAttribute('aria-sort', on ? (sort.dir === 'asc' ? 'ascending' : 'descending') : 'none');
+      var arrow = $('.arrow', th);
+      if (arrow) arrow.textContent = on ? (sort.dir === 'asc' ? '\u2191' : '\u2193') : '';
+    });
+
+    $('#row-count').textContent = 'Showing ' + rows.length.toLocaleString('en-US')
+      + ' of ' + districts.length.toLocaleString('en-US') + ' recipients';
+
+    var tbody = $('#explorer-tbody');
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-row">No districts match the current filters.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = rows.map(function (d) {
+      return '<tr data-key="' + escapeHtml(districtKey(d)) + '" tabindex="0">'
+        + '<td class="td-district">' + escapeHtml(d.districtName) + '</td>'
+        + '<td>' + escapeHtml(d.countyName) + '</td>'
+        + '<td class="num">' + fmtMoney(d.awardAmount) + '</td>'
+        + '<td class="num">' + fmtMoney(d.matchObligation) + '</td>'
+        + '<td class="round">R' + escapeHtml(d.round) + '</td>'
+        + '</tr>';
+    }).join('');
+
+    $$('#explorer-tbody tr[data-key]').forEach(function (tr) {
+      tr.addEventListener('click', function () { jumpToCalc(tr.dataset.key); });
+      tr.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          jumpToCalc(tr.dataset.key);
+        }
+      });
+    });
+  }
+
+  function jumpToCalc(key) {
+    var d = byKey[key];
+    if (!d) return;
+    setMode('calc');
+    $('#search').value = d.districtName;
+    renderResult(d);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ---------- Boot ----------
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+---
+permalink: /thanks/index.html
+title: "Brief received | Sora Labs"
+description: "Your agent brief reached us. A person reads every one, and you get a scoped build back within one business day."
+nav_active: build
+---
+{% extends "layouts/site.njk" %}
+
+{% block pagehead %}
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block content %}
+<section class="hero center" style="padding-bottom:56px;">
+  <div class="orb-field" aria-hidden="true">
+    <span class="orb orb-mint"  style="width:480px;height:480px;top:-170px;left:16%"></span>
+    <span class="orb orb-peach" style="width:420px;height:420px;top:-140px;right:14%"></span>
+  </div>
+  <div class="container">
+    <div class="eyebrow">Received</div>
+    <h1>That is <em>all we need</em></h1>
+    <p class="hero-sub">A person reads every brief. You will hear back within one business day with what we would build, what we would leave out, where a human stays in the loop, and what it costs.</p>
+    <div class="btn-row center">
+      <a href="/agents/" class="btn-primary">See the six we run&nbsp;&rarr;</a>
+      <a href="/how-it-works/" class="btn-outline">What happens next</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight section-hairline">
+  <div class="container-narrow">
+    <div class="grid-3" style="gap:24px;">
+      <div class="step"><div class="step-num">Next</div><h3>We read it</h3><p>Not a queue and not an autoresponder. Someone who will work on the build reads what you wrote.</p></div>
+      <div class="step"><div class="step-num">Then</div><h3>A scope</h3><p>One page: the job as we understand it, the parts we would leave out, and a fixed price.</p></div>
+      <div class="step"><div class="step-num">If it fits</div><h3>A short call</h3><p>Twenty minutes on the edge cases, because the exceptions are what make an agent useful.</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

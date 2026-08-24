@@ -1,0 +1,25 @@
+{# Shared layout for the purpose-built-agents pages.
+   Front matter supplies: title, description, nav_active. #}
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sora-labs.net{{ page.url }}">
+<link rel="stylesheet" href="/css/site.css">
+<script>document.documentElement.className += ' js';</script>
+{% block pagehead %}{% endblock %}
+{% endblock %}
+
+{% block nav %}{% include "nav.njk" %}{% endblock %}
+{% block footer %}{% include "footer.njk" %}{% endblock %}
+
+{% block scripts %}
+<script src="/js/site.js" defer></script>
+{% block pagescripts %}{% endblock %}
+{% endblock %}

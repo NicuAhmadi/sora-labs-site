@@ -1,0 +1,157 @@
+---
+permalink: /resources/index.html
+title: "Community hub | Sora Labs"
+description: "Everything Sora Labs publishes in one place: The Briefing each week, full market research, sample deliverables, and operator guides for people running AI agents in production. All free."
+nav_active: resources
+---
+{% extends "layouts/site.njk" %}
+
+{% block content %}
+<section class="hero center" style="padding-bottom:44px;">
+  <div class="orb-field" aria-hidden="true">
+    <span class="orb orb-lavender" style="width:480px;height:480px;top:-170px;left:12%"></span>
+    <span class="orb orb-mint"     style="width:430px;height:430px;top:-140px;right:12%"></span>
+  </div>
+  <div class="container">
+    <div class="eyebrow">Community hub</div>
+    <h1>Everything we publish</h1>
+    <p class="hero-sub">We work in public. Every week we send what we are seeing, and everything we research, build, or learn the hard way gets written down here. All of it free, none of it gated.</p>
+  </div>
+</section>
+
+<!-- THE ANCHOR: the weekly -->
+<section class="section" style="padding-top:24px;">
+  <div class="container">
+    <div class="hub-anchor">
+      <div class="hub-anchor-text">
+        <div class="eyebrow eyebrow-muted" style="margin-bottom:12px;">Every week</div>
+        <h2 style="margin-bottom:14px;">The Briefing</h2>
+        <p class="lead" style="margin-bottom:22px;">One email a week on what AI agents are actually doing inside real businesses. What shipped, what broke, what a working system looks like up close. Written for operators, not onlookers. No pitch, no roundup of everyone else's news.</p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/nclawdev" method="post" class="embeddable-buttondown-form">
+          <label for="bd-email">Enter your email</label>
+          <input type="email" name="email" id="bd-email" placeholder="you@company.com" required>
+          <input type="submit" value="Subscribe free">
+          <p><a href="https://buttondown.com/refer/nclawdev" target="_blank" rel="noopener">Powered by Buttondown.</a></p>
+        </form>
+        <p class="caption" style="margin-top:12px;">Free. Weekly. Unsubscribe anytime. <a href="https://buttondown.com/nclawdev/archive/" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--hairline-strong);">Read past issues</a></p>
+      </div>
+
+      <div class="hub-anchor-art" aria-hidden="true">
+        <div class="issue-stack">
+          <div class="issue-cap">What a typical issue covers</div>
+          <div class="issue"><span class="issue-no">One teardown</span><span class="issue-t">A working agent taken apart: the job, the connectors, the sign-off line</span></div>
+          <div class="issue"><span class="issue-no">One shift</span><span class="issue-t">What changed in the tools you already pay for</span></div>
+          <div class="issue"><span class="issue-no">One action</span><span class="issue-t">Something worth doing this week, not something worth worrying about</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE LIBRARY -->
+<section class="section section-hairline" id="library">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow eyebrow-muted">The library</div>
+      <h2>Research, deliverables and guides</h2>
+      <p>Full research, real deliverables, and the technical guides we wrote because nobody else had.</p>
+    </div>
+
+    <div class="grid-2 hub-grid">
+      <a class="hub-card" href="/research/ai-construction/">
+        <div class="hub-kind"><span class="badge">Market research</span><span class="hub-time">25 min read</span></div>
+        <h3>AI in Construction: Competitive Intelligence Briefing</h3>
+        <p>A sourced deep-dive across 20+ companies and $126M+ in recent funding, with recommendations by adoption stage. The kind of research that goes into scoping an agent for a market, published in full.</p>
+        <span class="hub-go">Read the briefing &rarr;</span>
+      </a>
+
+      <a class="hub-card" href="/research/case-studies/construction-pipeline/">
+        <div class="hub-kind"><span class="badge">Sample deliverable</span><span class="hub-time">10 min read</span></div>
+        <h3>Sample Pipeline Briefing: South Florida Commercial Construction</h3>
+        <p>Five verified opportunities with sourcing, context, and drafted outreach. This is what lands in a client's inbox, with the client removed.</p>
+        <span class="hub-go">Read the sample &rarr;</span>
+      </a>
+
+      <a class="hub-card" href="/guides/memory-management/">
+        <div class="hub-kind"><span class="badge">Operator guide</span><span class="hub-time">15 min read</span></div>
+        <h3>Memory Management for Autonomous Agents</h3>
+        <p>How to keep an agent's context useful over months instead of minutes. Written from running our own agents in production, not from a whitepaper.</p>
+        <span class="hub-go">Read the guide &rarr;</span>
+      </a>
+
+      <a class="hub-card" href="/guides/mac-mini-setup/">
+        <div class="hub-kind"><span class="badge">Operator guide</span><span class="hub-time">20 min read</span></div>
+        <h3>Running Agents on a Mac Mini</h3>
+        <p>The full setup for running autonomous agents on your own hardware: what to buy, how to configure it, and what breaks at 3am.</p>
+        <span class="hub-go">Read the guide &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SEE IT RUNNING -->
+<section class="section section-hairline section-soft">
+  <div class="container">
+    <div class="split">
+      <div>
+        <div class="eyebrow eyebrow-muted">See it running</div>
+        <h2 style="margin-bottom:18px;">See the agents running</h2>
+        <p class="lead" style="margin-bottom:20px;">The roster is the most useful thing we publish. Every agent shows the job it does, the systems it touches, the line where a human takes over, and the actual work it hands back.</p>
+        <div class="btn-row" style="margin-top:0;">
+          <a href="/agents/" class="btn-primary">See the agents&nbsp;&rarr;</a>
+          <a href="/how-it-works/" class="btn-outline">How one gets generated</a>
+        </div>
+      </div>
+      <div class="hub-marks">
+        {%- for a in agents %}
+        <a class="hub-mark" href="/agents/#{{ a.id }}" title="{{ a.name }} · {{ a.role }}">
+          <span class="agent-mark" style="background:var(--orb-{{ a.accent }})">{{ a.mark | safe }}</span>
+          <span class="hub-mark-name">{{ a.name }}</span>
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOLLOW -->
+<section class="section section-hairline">
+  <div class="container-narrow">
+    <div class="section-head center">
+      <div class="eyebrow eyebrow-muted">Follow along</div>
+      <h2>Wherever you already read</h2>
+    </div>
+    <div class="grid-3 follow-grid">
+      <a class="follow-card" href="https://buttondown.com/nclawdev/archive/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <b>The Briefing</b>
+        <span>Weekly, by email. Read the archive first if you like.</span>
+      </a>
+      <a class="follow-card" href="https://www.linkedin.com/company/soralabs-ai/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.86-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <b>LinkedIn</b>
+        <span>Teardowns and the occasional argument about agent design.</span>
+      </a>
+      <a class="follow-card" href="https://x.com/NadiaReports" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24H16.17l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg>
+        <b>X</b>
+        <span>Short notes from Nadia, our AI chief of staff. She is an agent, not a person.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="orb-field" aria-hidden="true">
+    <span class="orb orb-peach" style="width:500px;height:500px;top:-60px;left:50%;transform:translateX(-50%)"></span>
+  </div>
+  <div class="container">
+    <h2>Need one built?</h2>
+    <p>Describe the job in a paragraph and you get a spec back within a business day, including what it costs.</p>
+    <div class="btn-row center">
+      <a href="/build/" class="btn-primary">Generate an agent&nbsp;&rarr;</a>
+      <a href="/contact/" class="btn-outline">Ask a question first</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

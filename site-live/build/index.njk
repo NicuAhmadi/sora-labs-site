@@ -1,0 +1,524 @@
+---
+permalink: /build/index.html
+title: "Describe your agent | Sora Labs"
+description: "Four short steps in plain English: name it, describe the job, pick what it connects to, say what needs a human. A spec comes back within one business day."
+nav_active: build
+---
+{% extends "layouts/site.njk" %}
+
+{% block content %}
+<section class="hero center" style="padding-bottom:40px;">
+  <div class="orb-field" aria-hidden="true">
+    <span class="orb orb-mint"     style="width:460px;height:460px;top:-160px;left:14%"></span>
+    <span class="orb orb-lavender" style="width:420px;height:420px;top:-130px;right:12%"></span>
+  </div>
+  <div class="container">
+    <div class="eyebrow">New agent</div>
+    <h1>Describe your agent</h1>
+    <p class="hero-sub">Four short steps, and only the first is required. Plain English is the right format: no technical detail, no prompt writing, nothing to configure.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="container">
+    <div class="brief-grid">
+
+      <!-- FORM -->
+      <div class="card card-lg">
+        <h2 class="display-sm" style="margin-bottom:8px;">Your agent</h2>
+        <p class="body-sm" style="margin-bottom:30px;">Your description comes back as a spec within one business day: what the agent will do, what it will not, and what it costs. If an agent is the wrong tool for the job, the answer will say so.</p>
+
+        <div class="presets">
+          <div class="presets-head">
+            <span class="presets-label">Not sure where to start?</span>
+            <span class="presets-hint">Load a real one and edit it.</span>
+          </div>
+          <p class="presets-note" id="presetNote" hidden></p>
+          <div class="presets-row">
+            <button type="button" class="preset" data-preset="nadia">
+              <span class="preset-dot" style="background:var(--orb-lavender)">NA</span>
+              Chief of staff
+            </button>
+            <button type="button" class="preset" data-preset="logan">
+              <span class="preset-dot" style="background:var(--orb-sky)">LO</span>
+              Technical PM
+            </button>
+            <button type="button" class="preset" data-preset="pearl">
+              <span class="preset-dot" style="background:var(--orb-mint)">PE</span>
+              Dental billing
+            </button>
+            <button type="button" class="preset" data-preset="george">
+              <span class="preset-dot" style="background:var(--orb-rose)">GE</span>
+              Outbound sales
+            </button>
+            <button type="button" class="preset" data-preset="frank">
+              <span class="preset-dot" style="background:var(--orb-sand)">FR</span>
+              Construction PM
+            </button>
+          </div>
+        </div>
+
+        <div class="wiz-rail" aria-hidden="true">
+          <div class="wiz-rail-fill" id="wizFill"></div>
+          <div class="wiz-dots">
+            <span class="wiz-dot is-on" data-step="0"><b>1</b><i>The agent</i></span>
+            <span class="wiz-dot" data-step="1"><b>2</b><i>Its tools</i></span>
+            <span class="wiz-dot" data-step="2"><b>3</b><i>What it runs</i></span>
+            <span class="wiz-dot" data-step="3"><b>4</b><i>You</i></span>
+          </div>
+        </div>
+
+        <form id="briefForm" action="https://formspree.io/f/mgojplrg" method="POST">
+
+          <fieldset class="fieldset wiz-step" data-step="0">
+            <legend>01 · The agent</legend>
+
+            <div class="field">
+              <label for="agent_name">What should we call it? <span class="req">*</span></label>
+              <span class="hint">Teams talk to a name, not a tool.</span>
+              <input type="text" id="agent_name" name="agent_name" placeholder="e.g. Pearl" required>
+            </div>
+
+            <div class="field">
+              <label for="agent_role">What is its job title?</label>
+              <span class="hint">Optional. One line, the way it would read on an org chart.</span>
+              <input type="text" id="agent_role" name="agent_role" placeholder="e.g. Dental insurance billing">
+            </div>
+
+            <div class="field">
+              <label for="agent_task">What is the main task? <span class="req">*</span></label>
+              <span class="hint">The way you would explain it to someone starting Monday: what lands on their desk, what they do with it, what done looks like.</span>
+              <textarea id="agent_task" name="agent_task" placeholder="e.g. Check insurance coverage before every appointment, scrub claims before they go out, and work every denial and aging balance until it is paid or written off." required></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset wiz-step" data-step="1" hidden>
+            <legend>02 · What it plugs into</legend>
+
+            <div class="field">
+              <span class="lbl">Which tools does it need?</span>
+              <span class="hint">Optional. Search if it is quicker.</span>
+<div class="picker">
+                <div class="picker-search">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+                  <input type="search" id="toolSearch" placeholder="Search tools" aria-label="Search tools" autocomplete="off">
+                  <span class="picker-count" id="toolCount">None yet</span>
+                </div>
+                <div class="picker-groups" id="pickerGroups">
+                  <div class="picker-group">
+                    <div class="picker-group-label">Email, calendar and chat</div>
+                    <div class="pick">
+                      <input type="checkbox" id="c-gmail" name="connectors" value="Gmail"><label for="c-gmail">Gmail</label>
+                      <input type="checkbox" id="c-outlook" name="connectors" value="Outlook"><label for="c-outlook">Outlook</label>
+                      <input type="checkbox" id="c-gcal" name="connectors" value="Google Calendar"><label for="c-gcal">Google Calendar</label>
+                      <input type="checkbox" id="c-slack" name="connectors" value="Slack"><label for="c-slack">Slack</label>
+                    </div>
+                  </div>
+                  <div class="picker-group">
+                    <div class="picker-group-label">Sales and CRM</div>
+                    <div class="pick">
+                      <input type="checkbox" id="c-apollo" name="connectors" value="Apollo"><label for="c-apollo">Apollo</label>
+                      <input type="checkbox" id="c-hubspot" name="connectors" value="HubSpot"><label for="c-hubspot">HubSpot</label>
+                      <input type="checkbox" id="c-salesforce" name="connectors" value="Salesforce"><label for="c-salesforce">Salesforce</label>
+                    </div>
+                  </div>
+                  <div class="picker-group">
+                    <div class="picker-group-label">Docs and data</div>
+                    <div class="pick">
+                      <input type="checkbox" id="c-sheets" name="connectors" value="Google Sheets"><label for="c-sheets">Google Sheets</label>
+                      <input type="checkbox" id="c-drive" name="connectors" value="Google Drive"><label for="c-drive">Drive</label>
+                      <input type="checkbox" id="c-notion" name="connectors" value="Notion"><label for="c-notion">Notion</label>
+                      <input type="checkbox" id="c-airtable" name="connectors" value="Airtable"><label for="c-airtable">Airtable</label>
+                    </div>
+                  </div>
+                  <div class="picker-group">
+                    <div class="picker-group-label">Engineering and money</div>
+                    <div class="pick">
+                      <input type="checkbox" id="c-linear" name="connectors" value="Linear"><label for="c-linear">Linear</label>
+                      <input type="checkbox" id="c-jira" name="connectors" value="Jira"><label for="c-jira">Jira</label>
+                      <input type="checkbox" id="c-github" name="connectors" value="GitHub"><label for="c-github">GitHub</label>
+                      <input type="checkbox" id="c-qb" name="connectors" value="QuickBooks"><label for="c-qb">QuickBooks</label>
+                      <input type="checkbox" id="c-stripe" name="connectors" value="Stripe"><label for="c-stripe">Stripe</label>
+                    </div>
+                  </div>
+                  <div class="picker-group">
+                    <div class="picker-group-label">Industry and your own</div>
+                    <div class="pick">
+                      <input type="checkbox" id="c-twilio" name="connectors" value="Twilio / SMS"><label for="c-twilio">Twilio / SMS</label>
+                      <input type="checkbox" id="c-procore" name="connectors" value="Procore"><label for="c-procore">Procore</label>
+                      <input type="checkbox" id="c-pms" name="connectors" value="Practice management system"><label for="c-pms">Practice management</label>
+                      <input type="checkbox" id="c-api" name="connectors" value="Our internal system or API"><label for="c-api">Our own system</label>
+                    </div>
+                  </div>
+                  <p class="picker-none" id="pickerNone" hidden>Nothing matches. Type it into the field below instead.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="connectors_other">Anything else it needs to reach?</label>
+              <span class="hint">Name it even if you doubt it has an integration.</span>
+              <input type="text" id="connectors_other" name="connectors_other" placeholder="e.g. Open Dental, our clearinghouse, a payer portal login">
+            </div>
+
+            <div class="field">
+              <label for="data_sources">What should it read to do the job well?</label>
+              <span class="hint">The context a new hire would need: past examples, price lists, policies.</span>
+              <textarea id="data_sources" name="data_sources" placeholder="e.g. Our fee schedule, the last 12 months of paid claims, and the payer rules doc the office manager keeps."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset wiz-step" data-step="2" hidden>
+            <legend>03 · What it automates</legend>
+
+            <div class="field">
+              <label for="automate">What should happen without you?</label>
+              <span class="hint">The part that gets skipped when the week gets busy.</span>
+              <textarea id="automate" name="automate" placeholder="e.g. Every denial gets triaged and an appeal gets drafted the same day, instead of sitting in a pile until month end."></textarea>
+            </div>
+
+            <div class="field">
+              <label for="trigger">When does it run?</label>
+              <select id="trigger" name="trigger">
+                <option value="">Select one (optional)</option>
+                <option>On a schedule (daily, weekly)</option>
+                <option>When something arrives (an email, a form, a new record)</option>
+                <option>When someone asks it</option>
+                <option>Continuously, watching for changes</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="approval">What must a human approve?</label>
+              <span class="hint">Most teams draw the line at anything that leaves the building or touches money.</span>
+              <textarea id="approval" name="approval" placeholder="e.g. Draft everything, but a biller reviews before anything is submitted to a payer."></textarea>
+            </div>
+
+            <div class="field">
+              <label for="success">How will you know it worked?</label>
+              <span class="hint">One measure is plenty. It becomes the thing we build toward.</span>
+              <input type="text" id="success" name="success" placeholder="e.g. Days in A/R under 30, without adding a person.">
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset wiz-step" data-step="3" hidden>
+            <legend>04 · You</legend>
+            <div class="field-row">
+              <div class="field">
+                <label for="name">Your name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="you@company.com" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="company">Company or website</label>
+                <input type="text" id="company" name="company" placeholder="Company name or URL">
+              </div>
+              <div class="field">
+                <label for="timing">When do you need it?</label>
+                <select id="timing" name="timing">
+                  <option value="">Select one (optional)</option>
+                  <option>As soon as possible</option>
+                  <option>This quarter</option>
+                  <option>Exploring, no date yet</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="hp" aria-hidden="true">
+            <label for="hp-company">Company (leave blank)</label>
+            <input type="text" id="hp-company" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="_next" value="https://sora-labs.net/thanks/">
+          <input type="hidden" name="_subject" value="New agent brief from sora-labs.net">
+
+          <div class="wiz-nav">
+            <button type="button" class="btn-outline" id="wizBack" hidden>&larr;&nbsp;Back</button>
+            <button type="button" class="btn-primary" id="wizNext">Next&nbsp;&rarr;</button>
+            <button type="submit" class="btn-primary" id="wizSend" hidden>Generate my agent&nbsp;&rarr;</button>
+            <span class="wiz-skip" id="wizSkip">Everything after step 1 is optional.</span>
+          </div>
+          <p class="form-note">We reply within one business day. Prefer to talk it through first? <a href="/contact/">Start a conversation</a> instead. We never share your details.</p>
+        </form>
+      </div>
+
+      <!-- LIVE PREVIEW -->
+      <aside>
+        <div class="card-sticky">
+          <div class="build-visual" aria-live="polite">
+            <div class="bv-stage">
+              <div class="core" id="bvCore">
+                <span class="core-ring"></span><span class="core-ring"></span><span class="core-ring"></span>
+                <div class="core-orb"><span id="bvInitials">?</span></div>
+              </div>
+              <div class="bv-id">
+                <div class="bv-name" id="bvName">Unnamed agent</div>
+                <div class="bv-role" id="bvRole">No job title yet</div>
+              </div>
+              <div class="bv-chips" id="bvChips"><span class="bv-empty">Nothing connected yet</span></div>
+            </div>
+
+            <div class="bv-spec">
+              <div class="bv-row"><span class="bv-k">Job</span><span class="bv-v" data-spec="agent_task"><i>Not described</i></span></div>
+              <div class="bv-row"><span class="bv-k">Reads</span><span class="bv-v" data-spec="data_sources"><i>Not set</i></span></div>
+              <div class="bv-row"><span class="bv-k">Runs</span><span class="bv-v" data-spec="trigger"><i>Not set</i></span></div>
+              <div class="bv-row"><span class="bv-k">Human</span><span class="bv-v" data-spec="approval"><i>Not set</i></span></div>
+              <div class="bv-row"><span class="bv-k">Working</span><span class="bv-v" data-spec="success"><i>Not set</i></span></div>
+            </div>
+
+            <div class="bv-foot">
+              <div class="bv-meter"><span class="bv-meter-fill" id="bvFill"></span></div>
+              <span class="bv-count" id="specCount">0 of 8</span>
+            </div>
+          </div>
+
+          <p class="caption" style="margin-top:14px;">Your agent takes shape as you go. Nothing here is final: the spec gets tightened with you before anything is built.</p>
+
+          <div class="note-card" style="margin-top:20px;">
+            <p>Not sure it is a good fit? Send it anyway. Part of the answer is telling you when a $40 tool beats a purpose-built agent.</p>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-tight section-hairline">
+  <div class="container-narrow">
+    <div class="section-head center" style="margin-bottom:32px;">
+      <div class="eyebrow eyebrow-muted">Straight answers</div>
+      <h2>Questions</h2>
+    </div>
+    <div class="faq-item">
+      <h3>What happens next?</h3>
+      <p>Within one business day you get the spec: what the agent will do, where a human stays in the loop, how long it takes, and what it costs. Price is set on a call once the spec is agreed, never quoted blind from a form.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I need to know which tools it should connect to?</h3>
+      <p>No. Name the systems you work in and the spec will say how the agent reaches them. If something has no integration, that is usually still solvable.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Who owns the agent?</h3>
+      <p>You do. It runs against your accounts and your data, and the output is yours. Keeping it correct as your process changes is part of the product.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can one agent do several jobs?</h3>
+      <p>It can, and it usually should not. Agents that do one job are the ones that stay reliable. If you have three jobs in mind, describe all three and the answer will say which to start with.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block pagescripts %}
+<script>
+(function () {
+  var form = document.getElementById('briefForm');
+  if (!form) return;
+
+  // Prefill from the homepage composer.
+  var params = new URLSearchParams(window.location.search);
+  ['agent_name', 'agent_task'].forEach(function (key) {
+    var val = params.get(key);
+    var el = form.elements[key];
+    if (val && el) el.value = val;
+  });
+  params.getAll('connectors').forEach(function (val) {
+    form.querySelectorAll('input[name="connectors"]').forEach(function (box) {
+      if (box.value === val) box.checked = true;
+    });
+  });
+
+  var placeholders = {
+    agent_task: 'Not described',
+    data_sources: 'Not set',
+    trigger: 'Not set',
+    approval: 'Not set',
+    success: 'Not set'
+  };
+  var keys = Object.keys(placeholders);
+  var counted = keys.concat(['agent_name', 'agent_role', 'connectors']);
+
+  function connectorText() {
+    var picked = Array.prototype.slice
+      .call(form.querySelectorAll('input[name="connectors"]:checked'))
+      .map(function (i) { return i.value; });
+    var other = form.elements['connectors_other'].value.trim();
+    if (other) picked.push(other);
+    return picked.join(' · ');
+  }
+
+  function pickedList() {
+    return [].slice.call(form.querySelectorAll('input[name="connectors"]:checked')).map(function (i) { return i.value; });
+  }
+
+  function render() {
+    // the spec rows
+    keys.forEach(function (key) {
+      var target = document.querySelector('[data-spec="' + key + '"]');
+      if (!target) return;
+      var value = form.elements[key] ? form.elements[key].value.trim() : '';
+      if (value) target.textContent = value;
+      else target.innerHTML = '<i>' + placeholders[key] + '</i>';
+    });
+
+    // the agent itself
+    var name = form.elements['agent_name'].value.trim();
+    var role = form.elements['agent_role'].value.trim();
+    var core = document.getElementById('bvCore');
+    document.getElementById('bvName').textContent = name || 'Unnamed agent';
+    document.getElementById('bvRole').textContent = role || 'No job title yet';
+    document.getElementById('bvInitials').textContent = name
+      ? name.trim().split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase()
+      : '?';
+    core.classList.toggle('is-named', !!name);
+
+    // connectors attach to it
+    var picked = pickedList();
+    var other = form.elements['connectors_other'].value.trim();
+    if (other) picked = picked.concat(other.split(',').map(function (t) { return t.trim(); }).filter(Boolean));
+    var chips = document.getElementById('bvChips');
+    chips.innerHTML = picked.length
+      ? picked.map(function (t) { return '<span class="bv-chip">' + t.replace(/[<>&]/g, '') + '</span>'; }).join('')
+      : '<span class="bv-empty">Nothing connected yet</span>';
+    chips.classList.toggle('has-any', picked.length > 0);
+
+    var box = document.getElementById('toolCount');
+    if (box) box.textContent = picked.length ? picked.length + ' connected' : 'None yet';
+
+    // progress
+    var filled = counted.filter(function (k) {
+      if (k === 'connectors') return picked.length > 0;
+      var el = form.elements[k];
+      return el && el.value.trim();
+    }).length;
+    var fill = document.getElementById('bvFill');
+    if (fill) fill.style.width = Math.round((filled / counted.length) * 100) + '%';
+    var count = document.getElementById('specCount');
+    if (count) count.textContent = filled + ' of ' + counted.length;
+  }
+
+  /* ── tool search ─────────────────────────────────────────── */
+  var search = document.getElementById('toolSearch');
+  if (search) {
+    search.addEventListener('input', function () {
+      var q = search.value.trim().toLowerCase();
+      var anyVisible = false;
+      form.querySelectorAll('.picker-group').forEach(function (g) {
+        var shown = 0;
+        g.querySelectorAll('label').forEach(function (l) {
+          var hit = !q || l.textContent.toLowerCase().indexOf(q) > -1;
+          l.hidden = !hit;
+          l.previousElementSibling.disabled = false;
+          if (hit) shown++;
+        });
+        g.hidden = shown === 0;
+        if (shown) anyVisible = true;
+      });
+      document.getElementById('pickerNone').hidden = anyVisible;
+    });
+    search.addEventListener('keydown', function (e) { if (e.key === 'Enter') e.preventDefault(); });
+  }
+
+  form.addEventListener('input', render);
+  form.addEventListener('change', render);
+  render();
+
+  /* ── wizard: one step at a time ─────────────────────────── */
+  var steps = [].slice.call(form.querySelectorAll('.wiz-step'));
+  var dots  = [].slice.call(document.querySelectorAll('.wiz-dot'));
+  var fill  = document.getElementById('wizFill');
+  var back  = document.getElementById('wizBack');
+  var next  = document.getElementById('wizNext');
+  var send  = document.getElementById('wizSend');
+  var skip  = document.getElementById('wizSkip');
+  var at = 0;
+
+  function show(i, focus) {
+    at = Math.max(0, Math.min(steps.length - 1, i));
+    steps.forEach(function (s, n) { s.hidden = n !== at; });
+    dots.forEach(function (d, n) {
+      d.classList.toggle('is-on', n === at);
+      d.classList.toggle('is-done', n < at);
+    });
+    fill.style.width = (at / (steps.length - 1)) * 100 + '%';
+    back.hidden = at === 0;
+    next.hidden = at === steps.length - 1;
+    send.hidden = at !== steps.length - 1;
+    skip.textContent = at === 0
+      ? 'Everything after this step is optional.'
+      : (at === steps.length - 1 ? 'Name and email, and you are done.' : 'Skip anything that does not apply.');
+    if (focus) {
+      var f = steps[at].querySelector('input, textarea, select');
+      if (f) f.focus({ preventScroll: true });
+    }
+  }
+
+  // step 1 is the only gate: a name and a task
+  function validFirst() {
+    var ok = true;
+    ['agent_name', 'agent_task'].forEach(function (k) {
+      var el = form.elements[k];
+      if (!el.value.trim()) { el.reportValidity(); ok = false; }
+    });
+    return ok;
+  }
+
+  if (steps.length) {
+    next.addEventListener('click', function () {
+      if (at === 0 && !validFirst()) return;
+      show(at + 1, true);
+    });
+    back.addEventListener('click', function () { show(at - 1, true); });
+    dots.forEach(function (d, n) {
+      d.addEventListener('click', function () {
+        if (n > 0 && at === 0 && !validFirst()) return;
+        show(n, true);
+      });
+    });
+    // Enter advances instead of submitting early
+    form.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && at < steps.length - 1) {
+        e.preventDefault();
+        next.click();
+      }
+    });
+    // if the browser blocks submit on a hidden required field, jump to it
+    form.addEventListener('invalid', function (e) {
+      var step = e.target.closest('.wiz-step');
+      if (step && step.hidden) show(steps.indexOf(step), true);
+    }, true);
+    show(0, false);
+  }
+})();
+</script>
+
+<script id="presetData" type="application/json">{"nadia": {"key": "nadia", "label": "Chief of staff", "accent": "lavender", "initials": "NA", "agent_name": "Nadia", "agent_role": "Chief of staff", "agent_task": "Read everything that comes in, decide what actually needs me, and draft the replies that do not. Build the prep for every meeting before it starts, and remember every commitment people make in them so nothing quietly dies.", "connectors": ["c-gmail", "c-gcal", "c-drive", "c-slack"], "connectors_other": "", "data_sources": "My mail and calendar, the docs attached to each meeting, and the running list of who owes what from last quarter.", "automate": "A short brief at 6am on the decisions that actually need me today, with everything else triaged and the obvious replies already drafted and waiting.", "trigger": "Continuously, watching for changes", "approval": "Nothing sends under my name without me reading it first.", "success": "No commitment made in a meeting gets dropped."}, "logan": {"key": "logan", "label": "Technical PM", "accent": "sky", "initials": "LO", "agent_name": "Logan", "agent_role": "Technical project manager", "agent_task": "Watch the board and the channels, find what is actually stuck, and chase the one person who can unstick it. Then write the weekly status in prose a non-engineer can read, so nobody has to assemble it out of tickets on a Friday afternoon.", "connectors": ["c-linear", "c-jira", "c-github", "c-slack"], "connectors_other": "", "data_sources": "The board, repo activity, the engineering channels, and the last few status updates so the format matches.", "automate": "A daily sweep for tickets that have gone quiet with a nudge to the owner, and the Friday digest written before anyone asks for it.", "trigger": "Continuously, watching for changes", "approval": "An engineering lead approves anything that changes scope or a committed date.", "success": "No work item sits untouched for more than two days."}, "pearl": {"key": "pearl", "label": "Dental billing", "accent": "mint", "initials": "PE", "agent_name": "Pearl", "agent_role": "Dental insurance billing", "agent_task": "Check what insurance actually covers before the patient sits down. Scrub every claim before it goes out so it does not come back over a code. Then work the denials the same day they land, because right now they pile up until month end and half of them never get appealed.", "connectors": ["c-pms", "c-gmail"], "connectors_other": "Our clearinghouse, payer portal logins", "data_sources": "Our fee schedule, the last 12 months of paid claims, and the payer rules doc the office manager keeps by hand.", "automate": "Every denial gets triaged and an appeal drafted the same day it lands, and the aging balances get worked in order of what is actually collectible.", "trigger": "On a schedule (daily, weekly)", "approval": "Draft everything, but a biller reviews before anything is submitted to a payer.", "success": "Days in A/R under 30, without adding a person."}, "george": {"key": "george", "label": "Outbound sales", "accent": "rose", "initials": "GE", "agent_name": "George", "agent_role": "Go-to-market agent", "agent_task": "Find accounts that look like the ones we actually closed, research each one properly, and draft a first touch about the specific reason to reach out this quarter. Not a template with a merge field in it.", "connectors": ["c-apollo", "c-hubspot", "c-gmail"], "connectors_other": "LinkedIn Sales Navigator", "data_sources": "Closed-won accounts from the last 18 months, our positioning doc, and the objections doc the team keeps in Notion.", "automate": "Twenty-five researched accounts and drafted first touches waiting every weekday morning, plus a Friday note on which segments are answering.", "trigger": "On a schedule (daily, weekly)", "approval": "A rep approves every email before it sends. Nothing goes out unread.", "success": "Meetings booked per 100 accounts worked."}, "frank": {"key": "frank", "label": "Construction PM", "accent": "sand", "initials": "FR", "agent_name": "Frank", "agent_role": "Construction project manager", "agent_task": "Turn what the super already captures on site, voice notes, photos, a few lines of text, into the daily report before the crew leaves. Track every RFI and submittal against its due date and chase the subs who have gone quiet.", "connectors": ["c-procore", "c-drive"], "connectors_other": "Site email, weather data", "data_sources": "The schedule, the sub contact list, and last month's daily reports so the format matches.", "automate": "The daily report gets filed at close of site every workday, and a slipping milestone gets flagged while there is still float to protect.", "trigger": "On a schedule (daily, weekly)", "approval": "The project manager prices and signs every change order.", "success": "Daily reports filed same day, no RFI past due."}}</script>
+<script>
+(function () {
+  var form = document.getElementById('briefForm');
+  var data = JSON.parse(document.getElementById('presetData').textContent);
+  document.querySelectorAll('.preset').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var d = data[btn.dataset.preset];
+      if (!d) return;
+      form.querySelectorAll('input[name="connectors"]').forEach(function (c) { c.checked = false; });
+      ['agent_name','agent_role','agent_task','connectors_other','data_sources','automate','trigger','approval','success']
+        .forEach(function (k) { if (form.elements[k]) form.elements[k].value = d[k] || ''; });
+      d.connectors.forEach(function (id) { var c = document.getElementById(id); if (c) c.checked = true; });
+      form.dispatchEvent(new Event('input', { bubbles: true }));
+      document.querySelectorAll('.preset').forEach(function (b) { b.classList.toggle('is-on', b === btn); });
+      var note = document.getElementById('presetNote');
+      note.hidden = false;
+      note.textContent = d.agent_name + ' loaded. Change anything, or step through to check it.';
+    });
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1F2ETBV5K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1F2ETBV5K');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,300;1,14..32,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <!-- Light editorial palette + type scale. Loaded after tokens.css so it
+       overrides the old dark values on every page, carried-over ones included. -->
+  <link rel="stylesheet" href="/css/tokens-light.css">
+  <style>
+    /* Site-wide accessible focus styling (adapts to each page's accent) */
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    textarea:focus-visible, select:focus-visible {
+      outline: 2px solid var(--accent, #C9A84C);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+    }
+    /* The carried-over pages each inline their own fixed-nav background on a
+       bare `nav` selector. nav.site-nav outranks that, so this one rule keeps
+       every page's nav on the light canvas. */
+    nav.site-nav { background: rgba(245,245,245,0.9); border-bottom-color: var(--hairline); }
+    /* Their film-grain overlay is a dark noise texture: halve it on light. */
+    body::after { opacity: 0.015 !important; }
+
+    /* Shared nav: mobile menu. Lives here (not site.css) so the carried-over
+       pages, which inline their own nav CSS, get a working menu too. The
+       .site-nav.open selectors outrank their `.nav-links a:not(.nav-cta)` rule. */
+    .site-nav .nav-toggle { display: none; background: none; border: 1px solid var(--border); border-radius: 7px; color: var(--text-secondary); padding: 7px 10px; cursor: pointer; line-height: 1; }
+    @media (max-width: 900px) {
+      .site-nav .nav-toggle { display: inline-flex; }
+      .site-nav .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--bg-elevated); border-bottom: 1px solid var(--border-subtle); padding: 8px 24px 18px; display: none; }
+      .site-nav.open .nav-links { display: flex; }
+      .site-nav.open .nav-links a, .site-nav.open .nav-links a:not(.nav-cta) { display: block; padding: 12px 0; font-size: 0.95rem; border-bottom: 1px solid var(--border-subtle); }
+      .site-nav.open .nav-links a.nav-cta { margin-top: 12px; text-align: center; border-bottom: none; }
+    }
+    /* Shared site footer — three zones: identity, links, social.
+       Links live in a plain div with unique gf-* classes (never a nav
+       element), so they can't inherit the fixed top-nav styling. */
+    .gfooter { position: static; margin: 0; padding: 34px 0; border-top: 1px solid var(--border-subtle); background: var(--bg); }
+    .gfooter .gf-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
+    .gfooter .gf-copy { font-size: 0.84rem; color: var(--text-dim); flex-shrink: 0; }
+    .gfooter .gf-links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; flex: 1 1 auto; }
+    .gfooter .gf-links a { font-family: var(--body); font-size: 0.84rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .gfooter .gf-links a:hover { color: var(--text); }
+    .gfooter .gf-social { display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+    .gfooter .gf-social a { display: inline-flex; align-items: center; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .gfooter .gf-social a:hover { color: var(--accent); }
+    @media (max-width: 760px) {
+      .gfooter .gf-inner { flex-direction: column; text-align: center; gap: 18px; }
+    }
+  </style>
+  <link rel="canonical" href="https://sora-labs.net{{ page.url }}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sora Labs",
+    "url": "https://sora-labs.net/",
+    "email": "nadia@sora-labs.net",
+    "description": "Sora Labs generates purpose-built AI agents on demand. Describe any job in plain English and get back an agent that does it, connected to the systems you already run on.",
+    "knowsAbout": ["Custom AI agents", "AI agent development", "Business process automation", "Workflow automation", "AI integrations"],
+    "areaServed": "United States",
+    "sameAs": ["https://x.com/NadiaReports", "https://www.linkedin.com/company/soralabs-ai/", "https://buttondown.com/nclawdev"]
+  }
+  </script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% block nav %}{% endblock %}
+  {% block content %}{% endblock %}
+  {% block footer %}{% endblock %}
+  {% block scripts %}{% endblock %}
+  <script>
+    // Shared nav toggle, available on every page including the carried-over ones.
+    (function () {
+      var nav = document.getElementById('siteNav');
+      var toggle = nav && nav.querySelector('.nav-toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.querySelectorAll('.nav-links a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

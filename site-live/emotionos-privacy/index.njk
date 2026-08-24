@@ -1,0 +1,101 @@
+---
+permalink: /emotionos-privacy/index.html
+eleventyExcludeFromCollections: true
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Privacy Policy — Parvâ | Sora Labs</title>
+<style>
+/* Design tokens loaded site-wide via base.njk → /css/tokens.css */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--body);
+  font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 100px 24px 80px; }
+.eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: 2.2rem; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 10px; }
+.updated { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 44px; }
+h2 { font-family: var(--display); font-weight: 500; font-size: 1.28rem; color: var(--text); margin: 40px 0 12px; }
+p { color: var(--text-secondary); margin-bottom: 14px; }
+ul { list-style: none; margin: 0 0 14px; padding: 0; }
+li { position: relative; padding-left: 20px; color: var(--text-secondary); margin-bottom: 7px; }
+li::before { content: ''; position: absolute; left: 4px; top: 0.72em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+a.inline { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.intro { color: var(--text); font-size: 1.05rem; }
+strong { color: var(--text); font-weight: 600; }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--border-subtle); margin: 52px 0 0; }
+.foot { margin-top: 28px; font-size: 0.85rem; color: var(--text-dim); }
+.foot a { color: var(--accent); }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="wrap">
+  <div class="eyebrow">Parvâ</div>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated July 2026</p>
+
+  <p class="intro">Parvâ is a personal-wellness app operated by Sora Labs. It reads your own WHOOP wearable data against your personal baseline and reflects your nervous-system patterns back to you in plain language. For you, and only you. This policy explains exactly what we collect, why, where it lives, and the control you have over it. We've written it to match what the app actually does, not to be generic.</p>
+  <p>Parvâ is used by individuals for their own personal insight. It is not a research study, and it is not a medical product (see "Not a medical device" below).</p>
+
+  <h2>What we collect</h2>
+  <p><strong>Apple identity.</strong> Parvâ uses Sign in with Apple as its only way to sign in. When you sign in, we receive a unique Apple user identifier, a stable ID that lets us recognize your account without ever seeing your Apple password. If, and only if, you choose to share them at sign-in, we also receive your name and email address. When provided, your name and email are stored in your account record so we can recognize you on return visits and reach you if you contact us. We do not receive your Apple password or account credentials.</p>
+  <p><strong>WHOOP health &amp; fitness data.</strong> After you authorize WHOOP through its official sign-in flow, the app fetches and stores the WHOOP data tied to your account so it can show you your own insights. This includes:</p>
+  <ul>
+    <li><strong>Recovery &amp; physiological signals:</strong> recovery score, heart-rate variability (HRV), resting heart rate, respiratory rate, skin-temperature deviation, and blood-oxygen (SpO₂).</li>
+    <li><strong>Sleep:</strong> sleep duration and stages, sleep performance, and disturbances.</li>
+    <li><strong>Strain &amp; workouts:</strong> day strain, energy expenditure, and per-workout details (sport, duration, heart rate, strain, energy).</li>
+    <li><strong>Physiological cycles:</strong> WHOOP's daily physiological cycle records that the signals above are drawn from.</li>
+  </ul>
+  <p>To keep your WHOOP connection working, we also store the WHOOP access and refresh tokens that authorize these requests. These tokens are held encrypted and server-side only (see "How we store and protect it").</p>
+  <p><strong>Self-reported check-ins.</strong> When you log how you're feeling, we store the intensity you selected and an optional short note you write.</p>
+
+  <h2>How we use it</h2>
+  <p>We use your data for one purpose: to generate your own personal insights inside the app. That means reading your recent signals against your personal baseline and lining them up with your check-ins so you can notice your own patterns. That's it.</p>
+  <p>We do <strong>not</strong> sell your data. We do <strong>not</strong> share it with third parties for their own use. We do <strong>not</strong> use it for advertising, and there is no advertising, tracking, or analytics SDK in the app.</p>
+
+  <h2>How we store and protect it</h2>
+  <p>Your WHOOP access and refresh tokens are encrypted with <strong>AES-256-GCM</strong> before they are stored, and they are kept <strong>server-side only</strong>. They never reach your browser or device.</p>
+  <p>Every record we store is keyed to your account, so <strong>your data is isolated to your own account</strong> and is not commingled with other users' data.</p>
+  <p>The app runs on <strong>Vercel</strong>, and your data is stored in a <strong>Neon PostgreSQL</strong> database hosted in the <strong>United States</strong>. Sign in with Apple is provided by <strong>Apple</strong>.</p>
+
+  <h2>Who we share it with</h2>
+  <p>We don't share your personal data with anyone for their own purposes.</p>
+  <p>To be clear about WHOOP: <strong>WHOOP is the <em>source</em> of your health data</strong> (you authorize us to read it on your behalf), <strong>not a party we send your data to.</strong></p>
+  <p>The only companies that process your data do so on our behalf, as infrastructure sub-processors, and only so the app can function:</p>
+  <ul>
+    <li><strong>Apple:</strong> provides Sign in with Apple.</li>
+    <li><strong>Vercel:</strong> hosts and runs the app.</li>
+    <li><strong>Neon:</strong> hosts the PostgreSQL database (United States).</li>
+  </ul>
+
+  <h2>Your rights and choices</h2>
+  <p><strong>Delete everything, in one tap, anytime.</strong> In the app, go to <strong>Settings → Delete account</strong>. This immediately and permanently wipes all of your data (your WHOOP access and refresh tokens, your stored day records, your self-reported check-ins, and the raw WHOOP payloads) and revokes the app's access to your WHOOP account. Deletion is immediate and cannot be undone.</p>
+  <p><strong>Delete by email.</strong> If you'd rather not do it in the app, email us at <a class="inline" href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a> from the address tied to your account (or including enough detail to identify it) and we will delete your account and all associated data for you.</p>
+  <p><strong>Revoke WHOOP directly.</strong> You can also disconnect the app's access to your WHOOP data at any time from within the WHOOP app itself.</p>
+
+  <h2>Children</h2>
+  <p>Parvâ is not directed to children. It is intended for people aged 16 and over (and in no case under 13). We do not knowingly collect data from children under these ages. If you believe a child has used the app, contact us and we will delete the associated data.</p>
+
+  <h2>Not a medical device</h2>
+  <p>Parvâ is a personal-wellness and self-insight tool. It is <strong>not a medical device</strong>, and it <strong>does not diagnose, treat, prevent, or predict anxiety or any other health condition.</strong> Nothing in the app is a clinical assessment or medical advice. If you have concerns about your health, please talk to a qualified professional. If you may be experiencing a medical or mental-health emergency, contact your local emergency services.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If we make a meaningful change to how we handle your data, we will update this page and the "Last updated" date above. Continuing to use the app after a change means you accept the updated policy.</p>
+
+  <h2>Contact</h2>
+  <p>Parvâ is operated by Sora Labs. Questions about your privacy or this policy? Email <a class="inline" href="mailto:nadia@sora-labs.net">nadia@sora-labs.net</a>.</p>
+
+  <hr>
+  <p class="foot"><a href="/">Return to sora-labs.net</a></p>
+</main>
+{% endblock %}
+{% block scripts %}{% endblock %}

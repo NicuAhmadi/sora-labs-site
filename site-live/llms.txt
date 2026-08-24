@@ -1,0 +1,34 @@
+# Sora Labs
+
+> Sora Labs is a product company that generates purpose-built AI agents on demand. The product is the ability to turn any job description into a working agent. You write what the agent should do in plain English, what to call it, which tools it connects to, and what it should handle without you. That becomes a spec within one business day, a running agent in two to four weeks, connected to the systems you already use. One agent, one job. There is no platform to learn and no prompt to write. Humans keep the judgment and the sign-off; agents do the repetition.
+
+## The product
+- [Describe your agent](https://sora-labs.net/build/): The four-step agent description. Name the agent, describe its main task, pick the connectors (Gmail, Slack, Apollo, HubSpot, Procore, practice management systems, internal APIs), say what runs on its own and what needs human approval. A scoped build comes back within one business day.
+- [How it works](https://sora-labs.net/how-it-works/): Describe, spec, build and connect, watched go-live, ongoing maintenance. Timelines, pricing approach, data handling, and what happens when a system has no API.
+- [Agents](https://sora-labs.net/agents/): The six agents in production and the brief behind each one.
+
+## Agents in production
+- Logan, technical project manager: blocker sweeps, sprint status, scope-creep flags. Runs on Linear, Jira, GitHub, Slack.
+- Pearl, dental insurance billing: eligibility checks, claim scrubbing, denial triage, aging A/R. Runs on practice management, clearinghouse, and payer portals.
+- Nadia, chief of staff: inbox triage, morning brief, meeting prep, commitment tracking. Runs on Gmail, Google Calendar, Drive, Slack. Nadia is an AI agent, not a person.
+- Tony, travel agent: policy-fit itineraries, price watching, calendar and expense handoff.
+- George, go-to-market agent: list building, account research, drafted first touches, pipeline reporting. Runs on Apollo, HubSpot, Gmail, LinkedIn.
+- Frank, construction project manager: daily reports, RFI and submittal tracking, sub follow-up, schedule risk. Runs on Procore, email, Drive.
+
+## Company
+- [About](https://sora-labs.net/about/): A product company, not an agency. Humans own every spec and sign-off. Our in-house agents, Nadia and Logan, are AI, not people, and we disclose that wherever their work appears.
+- [Contact](https://sora-labs.net/contact/): Talk through the job before writing a brief.
+
+## Work, research, and writing
+- [AI in Construction, competitive intelligence briefing](https://sora-labs.net/research/ai-construction/): A sourced deep-dive on 20+ companies and $126M+ in funding across construction AI, free to read.
+- [Sample pipeline briefing](https://sora-labs.net/research/case-studies/construction-pipeline/): An example deliverable with verified opportunities, sourcing, and draft outreach.
+- [Community](https://sora-labs.net/resources/): Everything Sora Labs publishes: The Briefing, market research, sample deliverables, and operator guides. All free.
+- [The Briefing (newsletter)](https://sora-labs.net/newsletter/): A free weekly read for operators on what AI agents are doing inside real businesses.
+
+## For AI operators
+- [Products](https://sora-labs.net/products/): Tools for people running autonomous AI agents in production: The Autonomous Stack and Prospector.
+
+## Contact
+- Email: nadia@sora-labs.net
+- LinkedIn: https://www.linkedin.com/company/soralabs-ai/
+- X: https://x.com/NadiaReports

@@ -1,0 +1,124 @@
+/* ============================================================
+   Sora Labs — light editorial tokens.
+
+   Loaded site-wide from base.njk, AFTER /css/tokens.css, so it
+   overrides the old dark palette on every page including the
+   carried-over ones (which are token-driven and flip for free).
+
+   Palette and type scale follow the ElevenLabs DESIGN.md
+   (design-md/elevenlabs in voltagent/awesome-design-md).
+   ============================================================ */
+
+:root {
+  /* ── Surfaces ────────────────────────────────────────────── */
+  --canvas: #F5F5F5;
+  --canvas-soft: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-strong: #F0EFED;
+  --surface-dark: #0C0A09;
+  --surface-dark-elev: #1C1917;
+
+  /* ── Ink + text ──────────────────────────────────────────── */
+  --ink: #0C0A09;
+  --ink-primary: #292524;
+  --body-text: #4E4E4E;
+  --muted: #6E6862;            /* darkened from ElevenLabs' #777169: AA on canvas (5.04) */
+  --muted-soft: #A8A29E;       /* placeholders and disabled only, never body text */
+  --on-dark: #FFFFFF;
+  --on-dark-soft: #A8A29E;
+
+  /* ── Hairlines ───────────────────────────────────────────── */
+  --hairline: #E7E5E4;
+  --hairline-soft: #F0EFED;
+  --hairline-strong: #D6D3D1;
+
+  /* ── Editorial accent. Sora Labs gold, kept small ────────── */
+  --gold: #C9A84C;             /* on dark surfaces only */
+  --gold-deep: #9A7C28;        /* large display italic (3.64, passes large-text AA) */
+  --gold-ink: #7A6220;         /* small text: eyebrows, legends, required marks (5.36) */
+
+  /* ── Atmospheric orbs. Decoration only, never a fill ─────── */
+  --orb-mint: #A7E5D3;
+  --orb-peach: #F4C5A8;
+  --orb-lavender: #C8B8E0;
+  --orb-sky: #A8C8E8;
+  --orb-rose: #E8B8C4;
+  --orb-sand: #E8DCC0;
+
+  /* ── Semantic ────────────────────────────────────────────── */
+  --success: #16A34A;
+  --error: #DC2626;
+
+  /* ── Type families ───────────────────────────────────────────
+     ElevenLabs runs Waldenburg Light 300 for display and Inter for
+     everything else.
+
+     Waldenburg is a SANS, not the serif their DESIGN.md claims
+     (it lists a `'Times New Roman', serif` fallback). elevenlabs.io
+     serves KMR-Waldenburg-Buch.woff2 and renders its h1 in it at
+     weight 300. It is a licensed face, so we cannot ship it.
+
+     Measured against the real thing at 56px / -1.7px, Inter Light is
+     the closest free match of twelve candidates (within 0.9% on set
+     width), it is the same neo-grotesque structure, and it has a
+     genuine weight 300 -- which is their display signature. Inter is
+     also the face ElevenLabs uses for body, so this is one family at
+     two weights: 300 for display, 400/500 for text. The opsz axis
+     (14..32) picks up the tightened Inter Display forms at large
+     sizes on its own.
+
+     If you license Waldenburg, put it first in --display and set
+     --wt-display to 300; nothing else needs to change.
+
+     There is no mono in the ElevenLabs system, so --mono is Inter too
+     and every small label is their caption-uppercase token. */
+  --display: 'Inter', system-ui, -apple-system, sans-serif;
+  --body: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ── Type scale (ElevenLabs tokens, verbatim) ────────────── */
+  --wt-display: 300;
+  --fs-display-mega: 4rem;     --lh-display-mega: 1.05;  --ls-display-mega: -0.03em;
+  --fs-display-xl: 3rem;       --lh-display-xl: 1.08;    --ls-display-xl: -0.02em;
+  --fs-display-lg: 2.25rem;    --lh-display-lg: 1.17;    --ls-display-lg: -0.01em;
+  --fs-display-md: 2rem;       --lh-display-md: 1.13;    --ls-display-md: -0.01em;
+  --fs-display-sm: 1.5rem;     --lh-display-sm: 1.2;     --ls-display-sm: 0;
+  --fs-title-md: 1.25rem;      --fs-title-sm: 1.125rem;
+  --fs-body: 1rem;             --fs-body-sm: 0.9375rem;  --fs-caption: 0.875rem;
+  --fs-label: 0.75rem;         --ls-label: 0.96px;
+  --fs-button: 0.9375rem;      --fs-nav: 0.9375rem;
+  --ls-body: 0.16px;
+
+  /* ── Geometry ────────────────────────────────────────────── */
+  --r-xs: 4px; --r-sm: 6px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px; --r-xxl: 24px;
+  --pill: 9999px;
+  --radius: 16px; --radius-sm: 12px;   /* carried-over pages read these */
+  --section: 96px;
+  --gap: 20px;
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-lift: 0 10px 34px rgba(12,10,9,0.08);
+
+  /* ── Remap the old dark-era token names the carried-over pages
+        and base.njk still reference, so they inherit the light
+        palette without touching their markup. ───────────────── */
+  --bg: var(--canvas);
+  --bg-elevated: var(--canvas-soft);
+  --bg-card: var(--surface);
+  --border: var(--hairline-strong);
+  --border-subtle: var(--hairline);
+  --glass-border: var(--hairline);
+  --glass-border-hover: var(--hairline-strong);
+  --text: var(--ink);
+  --text-secondary: var(--body-text);
+  --text-dim: var(--muted);
+  --accent: var(--ink);
+  --accent-hover: var(--ink-primary);
+  --accent-soft: var(--surface-strong);
+  --accent-glow: rgba(201,168,76,0.10);
+  --green: var(--success);
+  --green-soft: rgba(22,163,74,0.10);
+  --blue: #3B6FC4;
+  --blue-soft: rgba(59,111,196,0.10);
+  --coral: #B4543A;
+  --coral-soft: rgba(180,84,58,0.10);
+}
