@@ -11,7 +11,7 @@
 - Logan, technical project manager: blocker sweeps, sprint status, scope-creep flags. Runs on Linear, Jira, GitHub, Slack.
 - Pearl, dental insurance billing: eligibility checks, claim scrubbing, denial triage, aging A/R. Runs on practice management, clearinghouse, and payer portals.
 - Nadia, chief of staff: inbox triage, morning brief, meeting prep, commitment tracking. Runs on Gmail, Google Calendar, Drive, Slack. Nadia is an AI agent, not a person.
-- Tony, travel agent: policy-fit itineraries, price watching, calendar and expense handoff.
+- Tony, trip planning and operations: the trip's chief of staff. Builds and holds the itinerary together, verifies restaurants, activities, routes, prices and availability, tracks open decisions and follow-ups, flags risks before they land, challenges weak options, and monitors confirmed travel once the trip begins. Works for family trips as well as business travel.
 - George, go-to-market agent: list building, account research, drafted first touches, pipeline reporting. Runs on Apollo, HubSpot, Gmail, LinkedIn.
 - Frank, construction project manager: daily reports, RFI and submittal tracking, sub follow-up, schedule risk. Runs on Procore, email, Drive.
 

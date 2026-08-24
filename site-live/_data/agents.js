@@ -121,35 +121,37 @@ module.exports = [
   },
   {
     id: "tony",
-    before: "Twenty minutes searching, two hours reconciling policy, calendar and receipts.",
-    after: "Two itineraries that already fit, held for the day, receipts filed on arrival.",
-    headline: "Books the trip that fits the calendar, the policy and the budget.",
     mark: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <path d="M17 47c10-1 6-14 16-19s12-4 15-6" stroke-dasharray="1 6" opacity=".7"/> <path d="M14 46a5 5 0 1 0 6 0c3-3 3-9-3-9s-6 6-3 9z"/><circle cx="17" cy="41" r="2" fill="currentColor" stroke="none"/> <circle cx="48" cy="20" r="6"/><circle cx="48" cy="20" r="2" fill="currentColor" stroke="none"/></svg>`,
+    headline: "Runs the whole trip, checks every piece of it, and watches it once you go.",
+    before: "Twelve tabs, a group chat, and a spreadsheet nobody has opened since March. Half the bookings are still unconfirmed.",
+    after: "One itinerary that holds together, every booking verified, and someone watching the flights while you sleep.",
     initials: "TO",
     name: "Tony",
-    role: "Travel agent",
+    role: "Trip planning and operations",
     accent: "peach",
-    summary: "Plans and books trips against a traveler's actual rules: preferred carriers, budget ceilings, loyalty status, and the meetings already on the calendar.",
-    long: "Booking a trip is twenty minutes of searching and two hours of reconciling: the cheap flight that lands after the first meeting, the hotel that is technically in policy but forty minutes from the site, the receipt nobody filed. Tony holds every constraint at once. It proposes two or three itineraries that already fit the calendar, the budget, and the loyalty programs, books the one that gets picked, and files the receipts.",
+    summary: "The trip's chief of staff. Tony holds the itinerary together, verifies every restaurant, route and price, chases the open decisions, and flags the risks before they land on you at the airport.",
+    long: "Planning a real trip is project management wearing a holiday shirt. There are twenty moving pieces, half of them depend on each other, and the thing that ruins the week is almost never the flight: it is the museum that sells out six weeks ahead, the restaurant that does not seat a table of five, the drive that is four hours and not two. Tony runs it like operations. It builds the itinerary and keeps it coherent as things change, verifies venues, routes, prices and availability rather than trusting a listing, tracks every open decision until someone actually makes it, and pushes back when an option is weak. Once you are travelling it watches the bookings you hold and tells you about the aircraft swap before the gate does.",
     automates: [
-      "Itinerary options that fit policy",
-      "Price watching and rebooking alerts",
-      "Confirmations onto the calendar",
-      "Receipts routed to expense"
+      "Builds the itinerary and keeps it coherent",
+      "Verifies venues, routes, prices and availability",
+      "Tracks open decisions and chases them down",
+      "Flags risks while there is still time to fix them",
+      "Monitors confirmed travel once the trip starts"
     ],
-    connectors: ["Flight and hotel APIs", "Gmail", "Google Calendar", "Expense"],
-    outputLabel: "Austin, Mar 4–6 · three options",
-    output: `<div class="ui-row"><div class="who"><b>UA 2287 · 6:40am, lands 9:15</b><span>Hyatt Regency, 4 min from the site</span></div><span class="amt">$684</span><span class="tag tag-green">Best fit</span></div>
-<div class="ui-row"><div class="who"><b>AA 1102 · 9:05am, lands 11:40</b><span>Marriott downtown, 12 min</span></div><span class="amt">$612</span><span class="tag tag-amber">Misses 11am</span></div>
-<div class="ui-row"><div class="who"><b>UA 411 · 7:15am, lands 10:00</b><span>Hyatt Regency, 4 min</span></div><span class="amt">$795</span><span class="tag tag-ink">Over budget</span></div>
-<div style="margin-top:12px;font-size:.8125rem;line-height:1.6;color:var(--body-text)">Option one keeps your Star Alliance status, clears the 11am on-site by 90 minutes, and sits $116 under the trip cap. Held until 4pm today.</div>`,
-    outputFoot: { left: "Fare held 6h", right: "You pick before anything books" },
+    connectors: ["Flight and hotel APIs", "Reservations and tickets", "Maps and routing", "Google Calendar", "Flight status and weather"],
+    outputLabel: "Lisbon to Porto, 9 days, family of five",
+    output: `<div class="ui-row"><div class="who"><b>Day 3 &middot; Douro Valley</b><span>Quinta tour 10:30, lunch 13:00, back by 17:00</span></div><span class="amt">4h10 driving</span><span class="tag tag-green">Verified</span></div>
+<div class="ui-row"><div class="who"><b>Belcanto, Friday 20:00</b><span>Table for five held. Kids menu confirmed by phone</span></div><span class="amt">&euro;520</span><span class="tag tag-green">Confirmed</span></div>
+<div class="ui-row"><div class="who"><b>Pena Palace, Sintra</b><span>Sells out six weeks out. Tickets not held yet</span></div><span class="amt">Decide by Fri</span><span class="tag tag-amber">Needs you</span></div>
+<div class="ui-row"><div class="who"><b>TP1934 Lisbon to Porto</b><span>Aircraft swap. Your five seats are no longer together</span></div><span class="amt">Watching</span><span class="tag tag-red">Risk</span></div>
+<div class="ui-row"><div class="who"><b>Hotel do Chiado</b><span>Connecting rooms found on the same street, better rate</span></div><span class="amt">&minus;&euro;310</span><span class="tag tag-ink">Swap ready</span></div>`,
+    outputFoot: { left: "31 items verified, 2 waiting on you", right: "Nothing books without your yes" },
     brief: {
-      Job: "Plan trips that fit the calendar, the policy, and the loyalty programs, then book them.",
-      Reads: "Travel policy, loyalty numbers, and the traveler's calendar.",
-      Runs: "On request, then watches prices until departure.",
-      Human: "The traveler picks the itinerary before anything is booked.",
-      Working: "Trips booked same day, inside policy, without a back and forth."
+      Job: "Plan the trip end to end, verify every piece of it, and watch it once we travel.",
+      Reads: "Our dates, budget, who is coming, dietary needs, loyalty numbers, and what we disliked last time.",
+      Runs: "Continuously while planning, then monitors every booking from 48 hours before departure.",
+      Human: "Nothing gets booked or paid for without someone approving it.",
+      Working: "No unconfirmed booking, no missed reservation window, no surprise at the gate."
     }
   },
   {
