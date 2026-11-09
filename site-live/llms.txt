@@ -23,6 +23,7 @@
 - [AI in Construction, competitive intelligence briefing](https://sora-labs.net/research/ai-construction/): A sourced deep-dive on 20+ companies and $126M+ in funding across construction AI, free to read.
 - [Sample pipeline briefing](https://sora-labs.net/research/case-studies/construction-pipeline/): An example deliverable with verified opportunities, sourcing, and draft outreach.
 - [Community](https://sora-labs.net/resources/): Everything Sora Labs publishes: The Briefing, market research, sample deliverables, and operator guides. All free.
+- [City Signals, San Francisco 311 dashboard](https://sora-labs.net/city-signals/): Free, public dashboard of San Francisco 311 service requests by neighborhood: volume, open cases, time to close, top categories and recurring street-level issues, refreshed every 6 hours from DataSF.
 - [The Briefing (newsletter)](https://sora-labs.net/newsletter/): A free weekly read for operators on what AI agents are doing inside real businesses.
 
 ## For AI operators
