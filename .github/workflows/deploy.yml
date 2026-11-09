@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Rebuild every 6 hours so /city-signals/ gets a fresh SF 311 snapshot
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -24,6 +28,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx @11ty/eleventy
+      # SF 311 snapshot for /city-signals/. Non-fatal: if DataSF is down the
+      # site still deploys and the page falls back to querying the API live.
+      - name: City Signals snapshot
+        run: node scripts/city-signals-snapshot.mjs _site/city-signals/data
+        continue-on-error: true
+        timeout-minutes: 10
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
