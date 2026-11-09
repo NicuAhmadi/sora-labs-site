@@ -7,7 +7,11 @@
 //
 //   node scripts/city-signals-snapshot.mjs [outDir]   (default _site/city-signals/data)
 //
+// Also writes briefs.json, the operations brief (see city-signals-analyst.mjs).
+//
 // Optional env: SOCRATA_APP_TOKEN raises DataSF's rate limit.
+//   ANTHROPIC_API_KEY enables the AI interpretation layer of the brief.
+//   BRIEFS_PREVIOUS_URL: last published briefs.json, reused when unchanged.
 //
 // File format (one per window, self-contained):
 //   { v, generated_at, source_as_of, since, days, count, base,
@@ -19,13 +23,14 @@
 
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { analyze, interpret } from "./city-signals-analyst.mjs";
 
 const ENDPOINT = "https://data.sf.gov/resource/vw6y-z8j6.json";
 const PAGE = 50000;
 const WINDOWS = [7, 30, 90];
 const MAX_DAYS = Math.max(...WINDOWS);
 const outDir = process.argv[2] || "_site/city-signals/data";
-const FIELDS = "service_request_id,requested_datetime,closed_date,status_description,service_name,service_subtype,street,analysis_neighborhood,lat,long,data_as_of";
+const FIELDS = "service_request_id,requested_datetime,closed_date,status_description,service_name,service_subtype,street,address,analysis_neighborhood,lat,long,data_as_of";
 
 // SF-local calendar date (YYYY-MM-DD), `daysAgo` days before today.
 function sfDate(daysAgo = 0) {
@@ -118,6 +123,17 @@ async function main() {
     await writeFile(join(outDir, `${days}.json`), json);
     console.log(`${days}.json: ${subset.length} rows, ${(json.length / 1e6).toFixed(1)} MB`);
   }
+  const analysis = analyze(all, { asOf: meta.source_as_of });
+  let previous = null;
+  try {
+    const res = await fetch(process.env.BRIEFS_PREVIOUS_URL || "https://sora-labs.net/city-signals/data/briefs.json");
+    if (res.ok) previous = await res.json();
+  } catch {}
+  await interpret(analysis, { previous });
+  const briefs = JSON.stringify({ v: 1, ...meta, ...analysis });
+  await writeFile(join(outDir, "briefs.json"), briefs);
+  const n = Object.values(analysis.areas).reduce((a, x) => a + x.findings.length, 0);
+  console.log(`briefs.json: ${Object.keys(analysis.areas).length} areas, ${n} findings, ${(briefs.length / 1e3).toFixed(0)} KB`);
   console.log(`done in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 }
 
