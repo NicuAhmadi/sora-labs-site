@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<title>San Francisco Housing and Neighborhood Services: 311 Analysis | Sora Labs</title>
+<meta name="description" content="How 311 street cleaning and encampment requests, response times and inspected street conditions compare across San Francisco neighborhoods with more or fewer homeless-designated affordable housing units.">
+<link rel="canonical" href="https://sora-labs.net/city-signals/housing/">
+<meta name="theme-color" content="#132b25">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sora Labs">
+<meta property="og:title" content="Housing and Neighborhood Services in San Francisco">
+<meta property="og:description" content="311 service requests, response times and inspected street conditions compared with homeless-designated affordable housing across San Francisco neighborhoods.">
+<meta property="og:url" content="https://sora-labs.net/city-signals/housing/">
+<meta property="og:image" content="https://sora-labs.net/city-signals/housing/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@NadiaReports">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Housing and Neighborhood Services in San Francisco","url":"https://sora-labs.net/city-signals/housing/","description":"311 service requests, response times and inspected street conditions compared with homeless-designated affordable housing across San Francisco neighborhoods.","isPartOf":{"@type":"WebSite","name":"Sora Labs","url":"https://sora-labs.net/"},"about":{"@type":"Place","name":"San Francisco, California"},"isBasedOn":[{"@type":"Dataset","name":"311 Cases","url":"https://data.sf.gov/d/vw6y-z8j6"},{"@type":"Dataset","name":"MOHCD Affordable Housing Portfolio","url":"https://data.sf.gov/d/pyxv-n29e"},{"@type":"Dataset","name":"Quarterly count of tents, structures, and lived-in vehicles","url":"https://data.sf.gov/d/w9ip-yrij"},{"@type":"Dataset","name":"Street and Sidewalk Maintenance Standards","url":"https://data.sf.gov/d/8kn2-p6vj"},{"@type":"Dataset","name":"San Francisco Population and Demographic Census Data","url":"https://data.sf.gov/d/4qbq-hvtt"}],"publisher":{"@type":"Organization","name":"Sora Labs","url":"https://sora-labs.net/"}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1F2ETBV5K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J1F2ETBV5K');</script>
+<link rel="stylesheet" href="../shell.css">
+<style>
+/* Semantic chart palette (validated): teal = 311 street cleaning, blue = housing units,
+   amber = encampments / tents, violet = lived-in vehicles, gray = context only. */
+.viz{--surface:#ffffff;--ink1:#152520;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--base:#c3c2b7;
+  --clean:#13866f;--housing:#2a78d6;--enc:#d08a00;--veh:#6250d6;--ctx:#b4bcb8;--sel:#0b5d4d}
+.intro{max-width:760px;color:#40584c;line-height:1.65;font-size:14px;margin:14px 0 0}
+.warn{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:13px;color:#5e4c2c;background:#fff9e8;border:1px solid #e8dfc4;border-radius:10px;padding:10px 14px;max-width:1100px}
+.warn details{margin-top:6px}
+.warn summary{cursor:pointer;color:#3f321b;font-weight:700}
+.warn details p{margin:8px 0 0;line-height:1.65}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:20px 0 0}
+.kpi{background:white;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.kpi .kl{color:#677d72;font-size:12px;font-weight:650}
+.kpi .kv{font-size:30px;font-weight:750;letter-spacing:-1px;margin-top:8px;color:var(--ink1)}
+.kpi .kd{color:#8c9890;font-size:11px;margin-top:6px;line-height:1.45}
+.sect{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);font-weight:800;margin:30px 0 12px}
+.ev{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.ecard{background:white;border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ecard .eq{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:750;color:#84928b}
+.ecard .big{font-size:34px;font-weight:750;letter-spacing:-1.2px;line-height:1;color:var(--ink1)}
+.ecard .bigl{font-size:14px;color:var(--ink2);line-height:1.45}
+.ecard .et{font-size:13.5px;line-height:1.55;color:#40584c}
+.ecard .win{font-size:11px;color:#84928b;line-height:1.55;border-top:1px solid #eff2ee;padding-top:8px;margin-top:auto}
+.ecard .win a{color:var(--teal)}
+.share{height:12px;border-radius:999px;background:#e6ebe8;overflow:hidden;display:flex}
+.share span{display:block;height:100%;background:var(--housing)}
+.share span+span{border-left:2px solid #fff}
+.cmp{display:grid;grid-template-columns:150px minmax(0,1fr) 64px;gap:6px 10px;align-items:center;font-size:12px}
+.cmp .ml{color:var(--ink2);grid-column:1/-1;font-weight:650;margin-top:6px}
+.cmp .gl{color:#677d72}
+.cmp .tr2{height:9px;background:#f0f3f1;border-radius:0 4px 4px 0}
+.cmp .tr2 i{display:block;height:100%;border-radius:0 4px 4px 0}
+.cmp .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink1);font-weight:650}
+.ci{position:relative;height:44px;margin:4px 0}
+.ci .ax{position:absolute;left:0;right:0;top:36px;border-top:1px solid var(--base)}
+.ci .tk{position:absolute;top:38px;font-size:10px;color:var(--muted);transform:translateX(-50%)}
+.ci .row{position:absolute;left:0;right:0;height:12px}
+.ci .bar{position:absolute;height:2px;top:5px;border-radius:2px}
+.ci .pt{position:absolute;width:10px;height:10px;border-radius:50%;top:1px;transform:translateX(-50%);border:2px solid #fff}
+.ci .lb{position:absolute;font-size:11px;color:var(--ink2);top:-1px;white-space:nowrap}
+.filters{position:sticky;top:0;z-index:20}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 16px;min-width:0;display:flex;flex-direction:column}
+.ccard.wide{grid-column:1/-1}
+.ccard h2{font-size:18px;letter-spacing:-.4px;margin:0;line-height:1.3}
+.ccard .csub{color:#52514e;font-size:13px;line-height:1.55;margin:6px 0 0}
+.ccard .cwin{color:#84928b;font-size:11px;margin:4px 0 0}
+.tabs{display:flex;gap:4px;margin:14px 0 10px;border-bottom:1px solid var(--line);align-items:flex-end}
+.tabs button{border:0;background:none;padding:8px 10px;font-size:12px;font-weight:700;color:#718079;border-bottom:2px solid transparent;margin-bottom:-1px;border-radius:0}
+.tabs button[aria-selected="true"]{color:var(--ink1);border-bottom-color:var(--ink1)}
+.tabs .seg{margin-left:auto;display:flex;gap:2px;padding-bottom:6px}
+.tabs .seg button{border:1px solid var(--line);border-radius:6px;padding:4px 9px;margin:0;font-size:11px}
+.tabs .seg button[aria-pressed="true"]{background:var(--ink1);color:#fff;border-color:var(--ink1)}
+.legend2{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--ink2);margin:0 0 6px}
+.legend2 span{display:inline-flex;align-items:center;gap:6px}
+.legend2 i{display:inline-block;width:14px;height:2px;border-radius:2px}
+.legend2 i.sq{width:10px;height:10px;border-radius:3px}
+.legend2 i.dot{width:9px;height:9px;border-radius:50%}
+.legend2 i.dash{width:14px;height:0;border-top:2px dashed var(--muted);border-radius:0;background:none!important}
+.chart{position:relative;width:100%;flex:1}
+.chart svg{display:block;width:100%;overflow:visible}
+.chart svg:focus{outline:2px solid #9ec5f4;outline-offset:4px;border-radius:6px}
+.tip{position:absolute;pointer-events:none;background:#fff;border:1px solid rgba(11,11,11,.12);box-shadow:0 6px 18px rgba(20,37,32,.12);border-radius:9px;padding:9px 11px;font-size:12px;min-width:160px;max-width:300px;z-index:5;display:none}
+.tip .tt{color:var(--muted);font-size:11px;margin-bottom:5px;white-space:normal}
+.tip .tr{display:flex;align-items:center;gap:7px;margin:3px 0;white-space:nowrap}
+.tip .tr i{width:12px;height:2px;border-radius:2px;flex:none}
+.tip .tr i.sq{width:9px;height:9px;border-radius:2px}
+.tip .tr b{color:var(--ink1);font-variant-numeric:tabular-nums;min-width:52px}
+.tip .tr span{color:var(--ink2)}
+.tview{max-height:360px;overflow:auto}
+.tview td,.tview th{white-space:nowrap}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.cfoot{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-top:1px solid #eff2ee;margin-top:12px;padding-top:10px;font-size:11px;color:#84928b;line-height:1.55}
+.cfoot button{border:0;background:none;color:var(--teal);font-weight:750;font-size:11px;padding:0;white-space:nowrap}
+#ntable th{cursor:pointer;user-select:none;white-space:normal;min-width:84px;vertical-align:bottom}
+#ntable th[aria-sort]::after{content:" ↓";color:var(--ink1)}
+#ntable th[aria-sort="ascending"]::after{content:" ↑"}
+#ntable th small{display:block;font-weight:500;letter-spacing:0;text-transform:none;color:#a3aea7;margin-top:2px}
+#ntable tr.sel td{background:#e9f4f0;font-weight:700}
+#ntable td.na{color:#a3aea7}
+.srcs td{white-space:normal;vertical-align:top}
+.method{color:#40584c;line-height:1.7;font-size:13px}.method li{margin:6px 0}
+@media(max-width:1050px){.cards,.ev{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:610px){.ccard,.ecard{padding:16px}.cmp{grid-template-columns:110px minmax(0,1fr) 56px}.kpi .kv{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+<a class="brand" href="/" aria-label="Sora Labs home"><div class="brandmark">S</div><div><strong>Sora Labs</strong><small>City Signals</small></div></a>
+<nav aria-label="City Signals"><div class="navtitle">City Signals</div>
+<a class="navitem" href="/city-signals/">◈ &nbsp; Dashboard</a>
+<a class="navitem" href="/city-signals/this-week/">◎ &nbsp; This week</a>
+<a class="navitem" href="/city-signals/trends/">⌁ &nbsp; Long-run trends</a>
+<a class="navitem active" href="/city-signals/housing/" aria-current="page">⌂ &nbsp; Housing &amp; services</a></nav>
+<div class="sidebar-bottom"><strong>San Francisco · Public beta</strong>Based on city-published open data. Not an official City and County of San Francisco product.</div>
+</aside>
+<main class="main viz">
+<nav class="mnav" aria-label="City Signals pages"><a href="/city-signals/">Dashboard</a><a href="/city-signals/this-week/">This week</a><a href="/city-signals/trends/">Long-run trends</a><a class="active" href="/city-signals/housing/" aria-current="page">Housing &amp; services</a></nav>
+<div class="topline"><div>
+<h1 class="eyebrow" style="margin:0 0 7px">Housing and neighborhood services in San Francisco</h1>
+<p class="headline">Are city services keeping pace where housing is concentrated?</p>
+<p class="intro">Explore how homeless-designated affordable housing, neighborhood service requests and independently inspected street conditions vary across San Francisco's 41 neighborhoods.</p>
+<div class="warn" role="note"><div><strong>Neighborhood-level comparisons only.</strong> They describe patterns across neighborhoods and do not show that housing, its residents or any facility cause a complaint.
+<details><summary>How to interpret this analysis</summary>
+<p><strong>What "housing" means here.</strong> Homeless-designated affordable housing units in developments financed or required by the city's housing office (MOHCD), counted when construction is complete. This is not a complete inventory of supportive housing, shelters, navigation centers, master-leased buildings or scattered-site units.</p>
+<p><strong>Different windows.</strong> Each source covers a different period. The window is shown next to every comparison.</p>
+<p><strong>Rates are events, not people.</strong> "Requests per 1,000 residents" counts reports; one person or one location can generate many. Commercial districts with few residents and many visitors show high per-resident rates, so check the per-area and per-business views too.</p>
+<p><strong>Inspections are a sample.</strong> The Controller inspects sampled routes; neighborhoods without inspected routes are shown as "not inspected", never as clean. Averages come with a 95% margin of error.</p>
+<p><strong>Privacy.</strong> No addresses or site locations are shown. Sites the city marks confidential are excluded.</p>
+</details></div></div>
+</div></div>
+<div class="status"><span class="dot" id="dot"></span><span id="status">Loading neighborhood data…</span></div>
+
+<section class="kpis" id="kpis" aria-label="Scope of the analysis"></section>
+
+<h2 class="sect">Executive summary</h2>
+<section class="ev" id="evidence" aria-label="Key findings"></section>
+
+<h2 class="sect">Explore by neighborhood</h2>
+<div class="filters" role="group" aria-label="Filters">
+<div class="field"><label for="hood">Neighborhood</label><select id="hood"><option value="">All neighborhoods</option></select></div>
+<div class="field"><label for="metric">Compare against</label><select id="metric">
+<option value="clean">Street cleaning requests</option>
+<option value="clean_slow">Cleaning requests closed after 7+ days</option>
+<option value="clean_aged">Cleaning requests still open after 7+ days</option>
+<option value="clean_med">Median hours to close a cleaning request</option>
+<option value="enc">Encampment requests</option>
+<option value="enc_slow">Encampment requests closed after 7+ days</option>
+<option value="litter">Inspected sidewalk litter rating</option>
+<option value="tents">Tents and structures</option>
+</select></div>
+<div class="field"><label for="norm">Normalize by</label><select id="norm">
+<option value="pop">Per 1,000 residents</option>
+<option value="area">Per square kilometer</option>
+<option value="biz">Per 100 active businesses</option>
+<option value="none">No normalization (totals)</option>
+</select></div>
+</div>
+
+<div class="cards" id="cards"></div>
+
+<h2 class="sect">Sources and methods</h2>
+<section class="panel full" aria-labelledby="srcTitle" style="margin-top:0"><h2 id="srcTitle">Sources and update schedules</h2>
+<p style="color:#8a988e;font-size:12px;margin:4px 0 12px">Each source keeps its own publication schedule. This page refreshes every 6 hours and always uses the latest published version of each.</p>
+<div class="tablewrap"><table class="srcs"><thead><tr><th>Source</th><th>Used for</th><th>Window used</th><th>Last updated</th><th>Publication schedule</th></tr></thead><tbody id="srcRows"></tbody></table></div>
+<h3 style="font-size:14px;margin:20px 0 6px">Not yet integrated</h3>
+<ul class="method">
+<li><a href="https://www.sf.gov/data--housing-inventory" target="_blank" rel="noopener">HSH Housing Inventory</a> and <a href="https://www.sf.gov/data--shelter-and-crisis-interventions" target="_blank" rel="noopener">Shelter and Crisis Interventions Inventory</a>: published as interactive dashboards without downloadable open data.</li>
+<li><a href="https://media.api.sf.gov/documents/2026_HIC__PIT_Results_-_LHCB.pdf" target="_blank" rel="noopener">2026 Housing Inventory Count and Point-in-Time results</a>: a PDF report. Public summaries give citywide totals (7,973 people counted, about 3,400 unsheltered, preliminary).</li>
+</ul></section>
+
+<section class="panel full" aria-labelledby="mTitle"><h2 id="mTitle">Methods and limitations</h2>
+<ul class="method">
+<li><strong>Housing.</strong> Homeless-designated affordable housing units are the homeless unit counts in MOHCD's affordable housing portfolio, for developments marked construction complete; units under rehabilitation are counted separately. Dates are construction completion dates, which can differ from when residents moved in.</li>
+<li><strong>311 response.</strong> Three separate measures: the share of closed requests that took 7 days or more to close; the share of requests still open more than 7 days after they were filed; and the median hours to close, from exact timestamps over the latest 90 days. Closure can be administrative rather than a confirmed fix.</li>
+<li><strong>Street conditions.</strong> The Controller's maintenance standards program rates sidewalk litter on sampled routes from 1 (none) to 5 (heavy); higher means more litter. A route covering several neighborhoods counts toward each of them; the citywide average counts each inspection once. Margins of error are 95% intervals.</li>
+<li><strong>Normalization.</strong> Population from the American Community Survey 5-year estimates; land area from the city's analysis neighborhood boundaries; commercial activity from active registered business locations. Neighborhoods with fewer than 2,000 residents are left out of per-resident rates.</li>
+<li><strong>Timing.</strong> The construction-completion strip under the 311 timeline shows when units were completed. Many things change in a neighborhood at the same time, so the chart shows timing only.</li>
+</ul></section>
+
+<div class="foot">Data: <a href="https://datasf.org/opendata/" target="_blank" rel="noopener">DataSF</a> open datasets listed above. See also the live <a href="/city-signals/">311 dashboard</a>, <a href="/city-signals/this-week/">this week in San Francisco 311</a> and <a href="/city-signals/trends/">long-run trends</a>. Built by <a href="/">Sora Labs</a>; not an official City and County of San Francisco product.</div>
+</main>
+</div>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const MIN_POP = 2000, MIN_REQ = 50, MIN_INSP = 5;
+  const fmtInt = (n) => Math.round(n).toLocaleString('en-US');
+  const fmt1 = (n) => (n == null || !Number.isFinite(n) ? 'n/a' : n === 0 ? '0' : n >= 100 ? fmtInt(n) : n >= 10 ? n.toFixed(1) : n.toFixed(2));
+  const fmtPct = (x) => (x == null ? 'n/a' : `${(x * 100).toFixed(x > 0 && x < 0.1 ? 1 : 0)}%`);
+  const fmtHrs = (h) => (h == null ? 'n/a' : h < 48 ? `${h.toFixed(1)} h` : `${(h / 24).toFixed(1)} days`);
+  const monthName = (m) => new Date(m + '-01T00:00:00').toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  const dayName = (d) => new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const sum = (a) => a.reduce((x, y) => x + (y || 0), 0);
+  const median = (a) => { const s = a.filter((v) => v != null && Number.isFinite(v)).sort((x, y) => x - y); if (!s.length) return null; const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+  let H = null, T = null, W = {};
+  const state = { hood: '', metric: 'clean', norm: 'pop', xscale: 'log', tview: 'month' };
+
+  function el(tag, attrs = {}, text) {
+    const e = tag.startsWith('svg:') ? document.createElementNS(SVGNS, tag.slice(4)) : document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  const keyEl = (color, cls) => { const k = el('i', cls ? { class: cls } : {}); k.style.background = color; return k; };
+  function niceStep(raw) { if (!(raw > 0)) return 1; const p = Math.pow(10, Math.floor(Math.log10(raw))); const f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+  const axisFmt = (v) => (v >= 1000 ? `${+(v / 1000).toFixed(v >= 10000 ? 0 : 1)}k` : String(+v.toFixed(2)));
+  function placeTip(host, tip, px, py, Wd) { tip.style.display = 'block'; const s = host.clientWidth / Wd, x = px * s, tw = tip.offsetWidth; tip.style.left = `${x + 14 + tw > host.clientWidth ? Math.max(0, x - tw - 14) : x + 14}px`; tip.style.top = `${Math.max(0, py * s - 20)}px`; }
+  function yAxis(svg, m, Wd, yMax, step, y, fmt) {
+    for (let v = 0; v <= yMax + 1e-9; v += step) {
+      svg.append(el('svg:line', { x1: m.l, x2: Wd - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? 'var(--base)' : 'var(--grid)' }));
+      svg.append(el('svg:text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--muted)' }, fmt(v)));
+    }
+  }
+  function yearTicks(svg, labels, xOf, yBase) {
+    const years = [...new Set(labels.map((l) => String(l).slice(0, 4)))];
+    const every = Math.max(1, Math.ceil(years.length / 8)); let lastX = -Infinity;
+    years.forEach((yr, k) => { if (k % every) return; const i = labels.findIndex((l) => String(l).startsWith(yr)); if (xOf(i) - lastX < 44) return; lastX = xOf(i); svg.append(el('svg:line', { x1: xOf(i), x2: xOf(i), y1: yBase, y2: yBase + 4, stroke: 'var(--base)' })); svg.append(el('svg:text', { x: xOf(i), y: yBase + 16, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }, yr)); });
+  }
+
+  // Line chart; optional strip of events drawn in its own band under the x axis.
+  function lineChart(host, cfg) {
+    host.replaceChildren();
+    const Wd = Math.max(280, host.clientWidth), ph = Wd < 560 ? 190 : 230, stripH = cfg.strip ? 46 : 0;
+    const m = { l: 44, r: 14, t: 12 }, Hd = m.t + ph + 26 + stripH;
+    const n = cfg.labels.length, pw = Wd - m.l - m.r, yBase = m.t + ph;
+    const x = (i) => m.l + (n <= 1 ? pw / 2 : (i / (n - 1)) * pw);
+    const top = Math.max(1, ...cfg.series.flatMap((s) => s.values).filter((v) => v != null));
+    const step = niceStep(top / 4), yMax = Math.ceil(top / step) * step, y = (v) => m.t + ph - (v / yMax) * ph;
+    const svg = el('svg:svg', { viewBox: `0 0 ${Wd} ${Hd}`, height: Hd, role: 'img', tabindex: '0', 'aria-label': `${cfg.title}. The Table tab lists the values. Arrow keys move the readout.` });
+    yAxis(svg, m, Wd, yMax, step, y, axisFmt);
+    yearTicks(svg, cfg.labels, x, yBase);
+    cfg.series.forEach((s) => { let d = '', pen = false; s.values.forEach((v, i) => { if (v == null) { pen = false; return; } d += `${pen ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`; pen = true; }); svg.append(el('svg:path', { d, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round' })); });
+    if (cfg.strip) {
+      const sy = yBase + 26 + 24, maxU = Math.max(1, ...cfg.strip.values.filter(Boolean));
+      svg.append(el('svg:text', { x: m.l, y: yBase + 34, 'font-size': 10.5, fill: 'var(--ink2)', 'font-weight': 650 }, cfg.strip.label));
+      svg.append(el('svg:line', { x1: m.l, x2: m.l + pw, y1: sy, y2: sy, stroke: 'var(--grid)' }));
+      cfg.strip.values.forEach((u, i) => { if (u) svg.append(el('svg:circle', { cx: x(i), cy: sy, r: 2.5 + 6.5 * Math.sqrt(u / maxU), fill: cfg.strip.color, 'fill-opacity': 0.85, stroke: 'var(--surface)', 'stroke-width': 1.5 })); });
+    }
+    const cross = el('svg:line', { y1: m.t, y2: Hd - 4, stroke: 'var(--ink2)', visibility: 'hidden' });
+    const dots = cfg.series.map((s) => el('svg:circle', { r: 4, fill: s.color, stroke: 'var(--surface)', 'stroke-width': 2, visibility: 'hidden' }));
+    const hit = el('svg:rect', { x: m.l, y: m.t, width: pw, height: Hd - m.t, fill: 'transparent' });
+    svg.append(cross, ...dots, hit);
+    const tip = el('div', { class: 'tip', role: 'status' }); host.append(svg, tip);
+    let cur = null;
+    function show(i) {
+      cur = i; cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('visibility', 'visible');
+      tip.replaceChildren(el('div', { class: 'tt' }, cfg.labelName(cfg.labels[i])));
+      cfg.series.forEach((s, k) => { const v = s.values[i]; if (v == null) { dots[k].setAttribute('visibility', 'hidden'); return; } dots[k].setAttribute('cx', x(i)); dots[k].setAttribute('cy', y(v)); dots[k].setAttribute('visibility', 'visible'); const r = el('div', { class: 'tr' }); r.append(keyEl(s.color), el('b', {}, fmtInt(v)), el('span', {}, s.name)); tip.append(r); });
+      if (cfg.strip && cfg.strip.values[i]) { const r = el('div', { class: 'tr' }); r.append(keyEl(cfg.strip.color, 'sq'), el('b', {}, fmtInt(cfg.strip.values[i])), el('span', {}, cfg.strip.tipName)); tip.append(r); }
+      placeTip(host, tip, x(i), m.t, Wd);
+    }
+    const hide = () => { cur = null; cross.setAttribute('visibility', 'hidden'); dots.forEach((d) => d.setAttribute('visibility', 'hidden')); tip.style.display = 'none'; };
+    hit.addEventListener('pointermove', (e) => { const r = svg.getBoundingClientRect(); show(Math.max(0, Math.min(n - 1, Math.round((((e.clientX - r.left) * (Wd / r.width)) - m.l) / pw * (n - 1))))); });
+    hit.addEventListener('pointerleave', hide); svg.addEventListener('focus', () => show(n - 1)); svg.addEventListener('blur', hide);
+    svg.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); show(Math.max(0, Math.min(n - 1, (cur ?? n - 1) + (e.key === 'ArrowLeft' ? -1 : 1)))); } });
+  }
+
+  function barChart(host, cfg) {
+    host.replaceChildren();
+    const Wd = Math.max(280, host.clientWidth), Hd = Wd < 560 ? 230 : 260, m = { l: 44, r: 14, t: 12, b: 26 };
+    const n = cfg.labels.length, pw = Wd - m.l - m.r, ph = Hd - m.t - m.b, slot = pw / n, bw = Math.max(1, slot - Math.min(2, slot * 0.25));
+    const x = (i) => m.l + i * slot + slot / 2;
+    const top = Math.max(1, ...cfg.values), step = niceStep(top / 4), yMax = Math.ceil(top / step) * step, y = (v) => m.t + ph - (v / yMax) * ph;
+    const svg = el('svg:svg', { viewBox: `0 0 ${Wd} ${Hd}`, height: Hd, role: 'img', tabindex: '0', 'aria-label': `${cfg.title}. The Table tab lists the values.` });
+    yAxis(svg, m, Wd, yMax, step, y, axisFmt);
+    yearTicks(svg, cfg.labels.map(String), x, m.t + ph);
+    const bars = cfg.values.map((v, i) => { const r = el('svg:rect', { x: x(i) - bw / 2, y: y(v), width: bw, height: Math.max(0, y(0) - y(v)), fill: cfg.color, rx: bw >= 6 ? 2 : 0 }); svg.append(r); return r; });
+    const hit = el('svg:rect', { x: m.l, y: m.t, width: pw, height: ph, fill: 'transparent' }); svg.append(hit);
+    const tip = el('div', { class: 'tip', role: 'status' }); host.append(svg, tip);
+    let cur = null;
+    function show(i) { cur = i; bars.forEach((b, k) => b.setAttribute('opacity', k === i ? 1 : 0.55)); tip.replaceChildren(el('div', { class: 'tt' }, String(cfg.labels[i]))); const r = el('div', { class: 'tr' }); r.append(keyEl(cfg.color, 'sq'), el('b', {}, fmtInt(cfg.values[i])), el('span', {}, cfg.seriesName)); tip.append(r); placeTip(host, tip, x(i), m.t, Wd); }
+    const hide = () => { cur = null; bars.forEach((b) => b.setAttribute('opacity', 1)); tip.style.display = 'none'; };
+    hit.addEventListener('pointermove', (e) => { const r = svg.getBoundingClientRect(); show(Math.max(0, Math.min(n - 1, Math.floor((((e.clientX - r.left) * (Wd / r.width)) - m.l) / slot)))); });
+    hit.addEventListener('pointerleave', hide); svg.addEventListener('focus', () => show(n - 1)); svg.addEventListener('blur', hide);
+    svg.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); show(Math.max(0, Math.min(n - 1, (cur ?? n - 1) + (e.key === 'ArrowLeft' ? -1 : 1)))); } });
+  }
+
+  // Scatter: context dots in gray, the selected neighborhood emphasized, median
+  // reference lines, labels only for the selection and statistical outliers.
+  function scatter(host, cfg) {
+    host.replaceChildren();
+    const Wd = Math.max(280, host.clientWidth), Hd = Wd < 560 ? 300 : 360, m = { l: 52, r: 18, t: 14, b: 42 };
+    const pw = Wd - m.l - m.r, ph = Hd - m.t - m.b, pts = cfg.points;
+    const log = cfg.xscale === 'log', tx = (v) => (log ? Math.log10(1 + v) : v);
+    const xTop = Math.max(1e-9, ...pts.map((p) => tx(p.x))), yTop = Math.max(1e-9, ...pts.map((p) => p.y));
+    const ys = niceStep(yTop / 4), yMax = Math.ceil(yTop / ys) * ys || 1;
+    const xMax = log ? xTop * 1.04 : Math.ceil(xTop / niceStep(xTop / 4)) * niceStep(xTop / 4);
+    const x = (v) => m.l + (tx(v) / xMax) * pw, y = (v) => m.t + ph - (v / yMax) * ph;
+    const svg = el('svg:svg', { viewBox: `0 0 ${Wd} ${Hd}`, height: Hd, role: 'img', 'aria-label': `${cfg.title}. Scatter plot; the Table tab lists every neighborhood.` });
+    yAxis(svg, m, Wd, yMax, ys, y, cfg.yTick);
+    const xt = log ? [0, 1, 3, 10, 30, 100, 300, 1000, 3000].filter((v) => tx(v) <= xMax) : Array.from({ length: Math.floor(xMax / niceStep(xTop / 4)) + 1 }, (_, i) => i * niceStep(xTop / 4));
+    for (const v of xt) { svg.append(el('svg:line', { x1: x(v), x2: x(v), y1: m.t + ph, y2: m.t + ph + 4, stroke: 'var(--base)' })); svg.append(el('svg:text', { x: x(v), y: m.t + ph + 16, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }, axisFmt(v))); }
+    svg.append(el('svg:text', { x: m.l + pw, y: Hd - 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink2)' }, `${cfg.xLabel}${log ? ' (log scale)' : ''}`));
+    // Median reference lines, labelled descriptively.
+    const mx = median(pts.map((p) => p.x)), my = median(pts.map((p) => p.y));
+    if (mx != null) { svg.append(el('svg:line', { x1: x(mx), x2: x(mx), y1: m.t, y2: m.t + ph, stroke: 'var(--muted)', 'stroke-dasharray': '4 4' })); svg.append(el('svg:text', { x: x(mx) + 4, y: m.t + 10, 'font-size': 10.5, fill: 'var(--muted)' }, `Median ${cfg.xFmt(mx)}`)); }
+    if (my != null) { svg.append(el('svg:line', { x1: m.l, x2: m.l + pw, y1: y(my), y2: y(my), stroke: 'var(--muted)', 'stroke-dasharray': '4 4' })); svg.append(el('svg:text', { x: m.l + pw, y: y(my) - 5, 'text-anchor': 'end', 'font-size': 10.5, fill: 'var(--muted)' }, `Median ${cfg.yFmt(my)}`)); }
+    // Outliers: beyond 1.5 IQR in plotted space, at most four.
+    const q = (a, f) => { const s = [...a].sort((p, r) => p - r); const i = (s.length - 1) * f, lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
+    const fence = (vals) => { const q1 = q(vals, 0.25), q3 = q(vals, 0.75); return q3 + 1.5 * (q3 - q1); };
+    const fx = fence(pts.map((p) => tx(p.x))), fy = fence(pts.map((p) => p.y));
+    const outliers = new Set(pts.filter((p) => tx(p.x) > fx || p.y > fy).sort((a, b) => b.y - a.y).slice(0, 4).map((p) => p.name));
+    const order = [...pts].sort((a, b) => (a.name === cfg.selected) - (b.name === cfg.selected));
+    for (const p of order) {
+      const sel = p.name === cfg.selected;
+      svg.append(el('svg:circle', { cx: x(p.x), cy: y(p.y), r: sel ? 7 : 5, fill: sel ? 'var(--sel)' : 'var(--ctx)', stroke: 'var(--surface)', 'stroke-width': 2 }));
+      if (sel || outliers.has(p.name)) { const right = x(p.x) < m.l + pw * 0.72; svg.append(el('svg:text', { x: x(p.x) + (right ? 10 : -10), y: y(p.y) + 4, 'text-anchor': right ? 'start' : 'end', 'font-size': 11.5, fill: sel ? 'var(--ink1)' : 'var(--ink2)', 'font-weight': sel ? 750 : 500 }, p.name)); }
+    }
+    const tip = el('div', { class: 'tip', role: 'status' }); host.append(svg, tip);
+    const near = (e) => { const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * (Wd / r.width), sy = (e.clientY - r.top) * (Hd / r.height); let best = null, bd = 24; for (const p of pts) { const d = Math.hypot(x(p.x) - sx, y(p.y) - sy); if (d < bd) { bd = d; best = p; } } return best; };
+    svg.addEventListener('pointermove', (e) => { const p = near(e); svg.style.cursor = p ? 'pointer' : 'default'; if (!p) { tip.style.display = 'none'; return; } tip.replaceChildren(el('div', { class: 'tt' }, p.name)); for (const [k, v] of [[cfg.xLabel, cfg.xFmt(p.x)], [cfg.yLabel, cfg.yFmt(p.y)]]) { const r = el('div', { class: 'tr' }); r.append(el('b', {}, v), el('span', {}, k)); tip.append(r); } if (p.extra) tip.append(el('div', { class: 'tt', style: 'margin:4px 0 0' }, p.extra)); tip.append(el('div', { class: 'tt', style: 'margin:6px 0 0' }, 'Click to select this neighborhood')); placeTip(host, tip, x(p.x), y(p.y), Wd); });
+    svg.addEventListener('pointerleave', () => { tip.style.display = 'none'; });
+    svg.addEventListener('click', (e) => { const p = near(e); if (p) cfg.onPick(p.name); });
+  }
+
+  function card({ id, title, wide }) {
+    const c = el('section', { class: `ccard${wide ? ' wide' : ''}`, id, 'aria-labelledby': `${id}-t` });
+    const h = el('h2', { id: `${id}-t` }, title); c.append(h, el('p', { class: 'csub' }), el('p', { class: 'cwin' }));
+    const tabs = el('div', { class: 'tabs', role: 'tablist' });
+    const bC = el('button', { role: 'tab', 'aria-selected': 'true', type: 'button' }, 'Chart'), bT = el('button', { role: 'tab', 'aria-selected': 'false', type: 'button' }, 'Table');
+    tabs.append(bC, bT);
+    const legend = el('div', { class: 'legend2' }), chart = el('div', { class: 'chart' }), table = el('div', { class: 'tview tablewrap', hidden: '' });
+    const foot = el('div', { class: 'cfoot' }), note = el('span'), dl = el('button', { type: 'button' }, 'Download CSV'); foot.append(note, dl);
+    c.append(tabs, legend, chart, table, foot);
+    const setTab = (t) => { bC.setAttribute('aria-selected', t === 'chart'); bT.setAttribute('aria-selected', t === 'table'); chart.hidden = legend.hidden = t !== 'chart'; table.hidden = t !== 'table'; };
+    bC.onclick = () => setTab('chart'); bT.onclick = () => setTab('table');
+    $('cards').append(c);
+    return { c, h, sub: c.querySelector('.csub'), win: c.querySelector('.cwin'), legend, chart, table, note, dl, tabs };
+  }
+  function segmented(tabs, options, get, set) {
+    const seg = el('div', { class: 'seg', role: 'group' });
+    for (const [v, label] of options) { const b = el('button', { type: 'button', 'aria-pressed': String(get() === v) }, label); b.onclick = () => { set(v); render(); }; seg.append(b); }
+    tabs.querySelector('.seg')?.remove(); tabs.append(seg);
+  }
+  function fillTable(host, cols, rows) { const t = el('table'), th = el('thead'), hr = el('tr'), tb = el('tbody'); cols.forEach((c, i) => hr.append(el('th', { class: i ? 'num' : '' }, c))); th.append(hr); for (const r of rows) { const tr = el('tr'); r.forEach((v, i) => tr.append(el('td', { class: i ? 'num' : '' }, v))); tb.append(tr); } t.append(th, tb); host.replaceChildren(t); }
+  function legend(host, items) { host.replaceChildren(); for (const [name, color, cls] of items) { const s = el('span'); s.append(keyEl(color, cls), document.createTextNode(name)); host.append(s); } }
+  function csv(name, header, rows) { const q = (v) => `"${String(v ?? '').replaceAll('"', '""')}"`; const blob = new Blob([[header, ...rows].map((r) => r.map(q).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' }); const a = el('a', { href: URL.createObjectURL(blob), download: name }); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+  // ------------------------------------------------------------ measures
+  const per = (c, h, norm = state.norm) => { const d = { pop: h.population >= MIN_POP ? h.population / 1000 : null, area: h.area_km2 > 0 ? h.area_km2 : null, biz: h.businesses >= 50 ? h.businesses / 100 : null, none: 1 }[norm]; return c == null || d == null ? null : c / d; };
+  const NORM_LABEL = { pop: 'per 1,000 residents', area: 'per km²', biz: 'per 100 businesses', none: '' };
+  const closedSlow = (r) => (r.closed >= MIN_REQ ? r.closed_slow / r.closed : null);
+  const openAged = (r) => (r.n >= MIN_REQ ? r.open_aged / r.n : null);
+  const METRICS = {
+    clean: { label: 'Street cleaning requests', rate: true, v: (h) => per(h.r311.clean.n, h), fmt: fmt1, win: () => W.r311 },
+    clean_slow: { label: 'Cleaning requests closed after 7+ days (share of closed)', v: (h) => closedSlow(h.r311.clean), fmt: fmtPct, win: () => W.r311 },
+    clean_aged: { label: 'Cleaning requests still open after 7+ days (share of all)', v: (h) => openAged(h.r311.clean), fmt: fmtPct, win: () => `${W.r311}, open status as of the latest refresh` },
+    clean_med: { label: 'Median hours to close a cleaning request', v: (h) => (h.median_close?.clean?.n >= MIN_REQ ? h.median_close.clean.hours : null), fmt: fmtHrs, win: () => W.med },
+    enc: { label: 'Encampment requests', rate: true, v: (h) => per(h.r311.enc.n, h), fmt: fmt1, win: () => W.r311 },
+    enc_slow: { label: 'Encampment requests closed after 7+ days (share of closed)', v: (h) => closedSlow(h.r311.enc), fmt: fmtPct, win: () => W.r311 },
+    litter: { label: 'Inspected sidewalk litter rating (1 none to 5 heavy)', v: (h) => (h.litter?.n >= MIN_INSP ? h.litter.avg : null), fmt: (v) => v.toFixed(2), win: () => W.litter, extra: (h) => (h.litter ? `${h.litter.n} inspections, ±${h.litter.moe ?? 'n/a'} (95%)` : 'Not inspected') },
+    tents: { label: 'Tents and structures', rate: true, v: (h) => per(h.tents_latest ? h.tents_latest.tents + h.tents_latest.structures : null, h), fmt: fmt1, win: () => W.tents },
+  };
+  const mLabel = (k = state.metric) => (METRICS[k].rate && state.norm !== 'none' ? `${METRICS[k].label}, ${NORM_LABEL[state.norm]}` : METRICS[k].label);
+  const hLabel = () => `Homeless-designated affordable units${state.norm === 'none' ? '' : `, ${NORM_LABEL[state.norm]}`}`;
+
+  // ------------------------------------------------------------ scope metrics
+  function kpis() {
+    const eligible = H.hoods.filter((h) => h.population >= MIN_POP).length;
+    const items = [
+      ['Homeless-designated affordable units', fmtInt(H.citywide.homeless_units), `In completed developments in the MOHCD portfolio; ${fmtInt(H.citywide.homeless_units_in_progress)} more under rehabilitation`],
+      ['Neighborhoods compared', String(H.hoods.length), `${eligible} have 2,000+ residents and get per-resident rates`],
+      ['311 requests analyzed', fmtInt(H.citywide.r311.all.n), `Citywide, ${W.r311}`],
+      ['Inspection coverage', `${H.litter_coverage.inspected}/${H.litter_coverage.total}`, `Neighborhoods with Controller inspections, ${W.litter}`],
+    ];
+    $('kpis').replaceChildren(...items.map(([l, v, d]) => { const k = el('div', { class: 'kpi' }); k.append(el('div', { class: 'kl' }, l), el('div', { class: 'kv' }, v), el('div', { class: 'kd' }, d)); return k; }));
+  }
+
+  // ------------------------------------------------------------ evidence cards
+  const pool = (list) => { // pooled litter mean and 95% margin from per-neighborhood stats
+    let n = 0, s = 0, sq = 0;
+    for (const L of list) { if (!L || !L.n) continue; const sd = L.moe != null && L.n > 1 ? (L.moe * Math.sqrt(L.n)) / 1.96 : 0; n += L.n; s += L.avg * L.n; sq += sd * sd * (L.n - 1) + L.n * L.avg * L.avg; }
+    if (!n) return null; const mean = s / n, sd = n > 1 ? Math.sqrt(Math.max(0, (sq - n * mean * mean) / (n - 1))) : 0; return { avg: mean, n, moe: (1.96 * sd) / Math.sqrt(n) };
+  };
+  function srcLinks(keys) { const span = el('span'); keys.map((k) => H.sources.find((s) => s.key === k)).filter(Boolean).forEach((s, i) => { if (i) span.append(document.createTextNode(' · ')); span.append(el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name)); }); return span; }
+  function ecard(q, bodyNodes, winText, srcKeys) {
+    const c = el('article', { class: 'ecard' });
+    c.append(el('div', { class: 'eq' }, q), ...bodyNodes);
+    const w = el('div', { class: 'win' }, `${winText} Sources: `); w.append(srcLinks(srcKeys)); c.append(w);
+    return c;
+  }
+  function cmpBars(rows, fmt, max) { // rows: [{metric, groups:[[label, value, color]]}]
+    const g = el('div', { class: 'cmp' });
+    for (const r of rows) {
+      g.append(el('div', { class: 'ml' }, r.metric));
+      for (const [label, v, color] of r.groups) { const tr = el('div', { class: 'tr2' }), fill = el('i'); fill.style.width = `${v == null ? 0 : Math.max(1, (v / (r.max ?? max)) * 100)}%`; fill.style.background = color; tr.append(fill); g.append(el('span', { class: 'gl' }, label), tr, el('span', { class: 'v' }, v == null ? 'n/a' : (r.fmt || fmt)(v))); }
+    }
+    return g;
+  }
+  function ciRows(rows, lo = 1, hi = 5) { // rows: [{label, avg, moe, color}]
+    const wrap = el('div');
+    for (const r of rows) {
+      const box = el('div', { class: 'ci', style: 'height:30px' });
+      const pos = (v) => `${((v - lo) / (hi - lo)) * 100}%`;
+      const band = el('div', { class: 'bar' }); band.style.left = pos(Math.max(lo, r.avg - (r.moe || 0))); band.style.width = `calc(${pos(Math.min(hi, r.avg + (r.moe || 0)))} - ${pos(Math.max(lo, r.avg - (r.moe || 0)))})`; band.style.background = r.color; band.style.top = '17px';
+      const pt = el('div', { class: 'pt' }); pt.style.left = pos(r.avg); pt.style.background = r.color; pt.style.top = '13px';
+      const lb = el('div', { class: 'lb' }, `${r.label}: ${r.avg.toFixed(2)} ± ${(r.moe || 0).toFixed(2)} (${fmtInt(r.n)} inspections)`); lb.style.left = '0'; lb.style.top = '-2px';
+      box.append(band, pt, lb); wrap.append(box);
+    }
+    const axis = el('div', { class: 'ci', style: 'height:20px' }); axis.append(el('div', { class: 'ax', style: 'top:2px' }));
+    for (let v = lo; v <= hi; v++) { const t = el('div', { class: 'tk', style: 'top:5px' }, String(v)); t.style.left = `${((v - lo) / (hi - lo)) * 100}%`; axis.append(t); }
+    wrap.append(axis, el('div', { class: 'tk', style: 'position:static;transform:none;font-size:10.5px;color:#84928b;margin-top:4px' }, '1 = no litter, 5 = heavy litter. Bars are 95% margins of error.'));
+    return wrap;
+  }
+
+  // Months shared by the 311 window and the inspection fiscal year.
+  function overlapText() {
+    const m = /([A-Za-z]+) (\d{4}) - ([A-Za-z]+) (\d{4})/.exec(H.litter_period || '');
+    if (!m) return '';
+    const idx = (mon, yr) => +yr * 12 + new Date(`${mon} 1, 2000`).getMonth();
+    const [a1, a2] = [idx(m[1], m[2]), idx(m[3], m[4])];
+    const [b1, b2] = [H.window_311.from, H.window_311.to].map((s) => +s.slice(0, 4) * 12 + (+s.slice(5) - 1));
+    const n = Math.min(a2, b2) - Math.max(a1, b1) + 1;
+    return n > 0 ? `The two windows overlap by ${n} month${n === 1 ? '' : 's'}.` : 'The two windows do not overlap.';
+  }
+  function evidence() {
+    const cw = H.citywide, elig = H.hoods.filter((h) => h.population >= MIN_POP);
+    const per1k = (c, h) => c / (h.population / 1000);
+    const top3 = [...elig].sort((a, b) => per1k(b.homeless_units || 0, b) - per1k(a.homeless_units || 0, a)).slice(0, 3);
+    const rest = H.hoods.filter((h) => !top3.includes(h));
+    const names = (a) => a.map((h) => h.name).join(', ').replace(/, ([^,]*)$/, ' and $1');
+    const out = [];
+
+    // 1. Concentration
+    {
+      const share = sum(top3.map((h) => h.homeless_units || 0)) / cw.homeless_units;
+      const bar = el('div', { class: 'share', role: 'img', 'aria-label': `${fmtPct(share)} of units` });
+      for (const h of top3) { const s = el('span', { title: `${h.name}: ${fmtInt(h.homeless_units)} units` }); s.style.width = `${(h.homeless_units / cw.homeless_units) * 100}%`; bar.append(s); }
+      out.push(ecard('Housing concentration', [
+        el('div', { class: 'big' }, fmtPct(share)),
+        el('div', { class: 'bigl' }, `of all ${fmtInt(cw.homeless_units)} homeless-designated affordable units are in three neighborhoods`),
+        bar,
+        el('div', { class: 'et' }, top3.map((h) => `${h.name} ${fmtInt(h.homeless_units)} (${fmt1(per1k(h.homeless_units, h))} per 1,000 residents)`).join(' · ')),
+      ], `Share of all units in all 41 neighborhoods. The three were picked by units per 1,000 residents among neighborhoods with 2,000+ residents; citywide is ${fmt1(per1k(cw.homeless_units, cw))}. MOHCD portfolio only, not all supportive housing in San Francisco.`, ['mohcd', 'acs']));
+    }
+    // 2. Response, split into three measures
+    {
+      const grp = (arr, k) => { const r = arr.reduce((a, h) => { for (const f of ['n', 'closed', 'closed_slow', 'open_aged']) a[f] += h.r311[k][f]; return a; }, { n: 0, closed: 0, closed_slow: 0, open_aged: 0 }); return r; };
+      const A = grp(top3, 'clean'), B = grp(rest, 'clean');
+      const medOK = (h) => (h.median_close?.clean?.n >= MIN_REQ ? h.median_close.clean.hours : null);
+      const mA = median(top3.map(medOK)), mB = median(rest.map(medOK));
+      const cA = A.closed_slow / A.closed, cB = B.closed_slow / B.closed, oA = A.open_aged / A.n, oB = B.open_aged / B.n;
+      const tA = 'Those three', tB = 'Rest of city';
+      out.push(ecard('Street cleaning response', [
+        el('div', { class: 'et' }, `How quickly street cleaning requests are handled in ${names(top3)}, compared with the rest of the city.`),
+        cmpBars([
+          { metric: 'Closed after 7+ days (share of closed requests)', groups: [[tA, cA, 'var(--clean)'], [tB, cB, 'var(--ctx)']], fmt: fmtPct, max: Math.max(cA, cB) * 1.15 },
+          { metric: 'Still open after 7+ days (share of all requests)', groups: [[tA, oA, 'var(--clean)'], [tB, oB, 'var(--ctx)']], fmt: fmtPct, max: Math.max(oA, oB) * 1.15 },
+          { metric: 'Median hours to close (typical neighborhood in each group)', groups: [[tA, mA, 'var(--clean)'], [tB, mB, 'var(--ctx)']], fmt: fmtHrs, max: Math.max(mA || 0, mB || 0) * 1.15 },
+        ]),
+      ], `Shares: requests filed ${W.r311}. Median: requests filed ${W.med}, exact timestamps; each group shows the median of its neighborhoods' medians. Closure can be administrative.`, ['311']));
+    }
+    // 3. Inspected conditions where housing is concentrated
+    {
+      const a = pool(top3.map((h) => h.litter)), b = pool(rest.map((h) => h.litter)), cov = top3.filter((h) => h.litter?.n >= MIN_INSP).length;
+      const overlap = a && b && Math.abs(a.avg - b.avg) <= a.moe + b.moe;
+      out.push(ecard('Inspected street conditions', [
+        el('div', { class: 'et' }, a && b ? `City inspectors rated sidewalk litter in those three neighborhoods at ${a.avg.toFixed(2)}, against ${b.avg.toFixed(2)} in other inspected neighborhoods. ${overlap ? 'The difference is within the margins of error.' : `The difference is larger than the margins of error; ${a.avg < b.avg ? 'less' : 'more'} litter was recorded where housing is concentrated.`}` : 'Not enough inspections to compare.'),
+        ...(a && b ? [ciRows([{ label: 'Those three', ...a, color: 'var(--clean)' }, { label: 'Other inspected neighborhoods', ...b, color: 'var(--muted)' }])] : []),
+      ], `Controller inspections ${W.litter}; ${cov} of the 3 neighborhoods and ${H.litter_coverage.inspected} of ${H.litter_coverage.total} overall were inspected. Uninspected neighborhoods are excluded, not treated as clean.`, ['litter']));
+    }
+    // 4. Reporting versus inspected conditions
+    {
+      const cwClean = per1k(cw.r311.clean.n, cw);
+      const cand = elig.filter((h) => h.litter && h.litter.n >= 30);
+      const h = [...cand].sort((p, q) => (per1k(q.r311.clean.n, q) / cwClean - q.litter.avg / cw.litter.avg) - (per1k(p.r311.clean.n, p) / cwClean - p.litter.avg / cw.litter.avg))[0];
+      if (h) {
+        const ratio = per1k(h.r311.clean.n, h) / cwClean, overlap = Math.abs(h.litter.avg - cw.litter.avg) <= (h.litter.moe || 0) + (cw.litter.moe || 0);
+        out.push(ecard('Complaints versus inspected conditions', [
+          el('div', { class: 'big' }, `${ratio.toFixed(2)}×`),
+          el('div', { class: 'bigl' }, `the citywide rate of street cleaning requests per resident, in ${h.name}`),
+          ciRows([{ label: h.name, ...h.litter, color: 'var(--clean)' }, { label: 'Citywide', ...cw.litter, color: 'var(--muted)' }]),
+          el('div', { class: 'et' }, `${overlap ? `Yet its inspected sidewalk litter is within the margin of error of the citywide average.` : `Its inspected sidewalk litter is ${h.litter.avg > cw.litter.avg ? 'higher' : 'lower'} than citywide, beyond the margin of error, but by much less than the complaint rate suggests.`} Complaint counts alone are not a direct measure of street conditions. Per-resident rates also run high in commercial areas with many visitors; ${h.name} has ${fmt1(per1k(h.businesses, h))} active businesses per 1,000 residents against ${fmt1(per1k(cw.businesses, cw))} citywide.`),
+        ], `311: requests filed ${W.r311}. Inspections: ${W.litter} (${fmtInt(h.litter.n)} in ${h.name}). ${overlapText()} Rates count requests, not people.`, ['311', 'litter', 'acs', 'biz']));
+      }
+    }
+    $('evidence').replaceChildren(...out);
+  }
+
+  // ------------------------------------------------------------ exploration
+  const C = {};
+  function build() {
+    C.scatter = card({ id: 'compare', title: 'Housing concentration and neighborhood services', wide: true });
+    C.table = card({ id: 'neighborhoods', title: 'Neighborhood comparison', wide: true });
+    C.units = card({ id: 'units', title: 'Homeless-designated affordable units, by construction completion year' });
+    C.tents = card({ id: 'tents', title: 'Tents, structures and lived-in vehicles' });
+    C.timeline = card({ id: 'timeline', title: '311 activity and housing completions', wide: true });
+  }
+
+  function render() {
+    const sel = state.hood, area = sel || 'Citywide', areaName = sel || 'San Francisco', hoods = H.hoods, M = METRICS[state.metric];
+    // 1. Scatter
+    {
+      const pts = hoods.map((h) => ({ name: h.name, x: per(h.homeless_units || 0, h), y: M.v(h), extra: M.extra ? M.extra(h) : null })).filter((p) => p.x != null && p.y != null);
+      const left = hoods.length - pts.length;
+      segmented(C.scatter.tabs, [['log', 'Log scale'], ['linear', 'Linear scale']], () => state.xscale, (v) => { state.xscale = v; });
+      scatter(C.scatter.chart, { title: 'Housing concentration and neighborhood services', points: pts, selected: sel, xscale: state.xscale, xLabel: hLabel(), yLabel: mLabel(), xFmt: fmt1, yFmt: M.fmt, yTick: M.fmt === fmtPct ? (v) => `${Math.round(v * 100)}%` : M.fmt === fmtHrs ? (v) => `${+v.toFixed(1)}h` : axisFmt, onPick: (n) => { $('hood').value = n; $('hood').dispatchEvent(new Event('change')); } });
+      legend(C.scatter.legend, [['Neighborhood', 'var(--ctx)', 'dot'], ...(sel ? [[sel, 'var(--sel)', 'dot']] : []), ['Median of neighborhoods shown', '', 'dash']]);
+      C.scatter.sub.textContent = `Each dot is a neighborhood. Across: ${hLabel().toLowerCase()}. Up: ${mLabel().toLowerCase()}. Labels mark the selected neighborhood and statistical outliers.${left ? ` ${left} neighborhoods are left out (missing data, too few requests or inspections, or too few residents for a rate).` : ''}`;
+      C.scatter.win.textContent = `Window: housing as of the latest MOHCD update; ${mLabel().toLowerCase()} ${M.win()}.${M.rate ? ' Rates count requests or objects, not people.' : ''}`;
+      fillTable(C.scatter.table, ['Neighborhood', hLabel(), mLabel()], [...pts].sort((a, b) => b.x - a.x).map((p) => [p.name, fmt1(p.x), M.fmt(p.y)]));
+      C.scatter.note.textContent = 'A pattern across neighborhoods is not evidence that housing causes it. Log scale spreads out neighborhoods with few or no units; zero stays at the left edge.';
+      C.scatter.dl.onclick = () => csv('sf-housing-vs-services.csv', ['neighborhood', hLabel(), mLabel()], pts.map((p) => [p.name, p.x, p.y]));
+    }
+    // 2. Sortable table
+    {
+      const cols = [
+        ['Neighborhood', '', (h) => h.name, (v) => v],
+        ['Residents', `ACS ${H.acs_years}`, (h) => h.population, fmtInt],
+        ['Homeless-designated affordable units', 'MOHCD', (h) => h.homeless_units || 0, fmtInt],
+        ['Units per 1,000 residents', '', (h) => (h.population >= MIN_POP ? ((h.homeless_units || 0) / h.population) * 1000 : null), fmt1],
+        ['Cleaning requests per 1,000', W.r311, (h) => (h.population >= MIN_POP ? (h.r311.clean.n / h.population) * 1000 : null), fmt1],
+        ['Cleaning closed after 7+ days', 'share of closed', (h) => closedSlow(h.r311.clean), fmtPct],
+        ['Cleaning open 7+ days', 'share of all', (h) => openAged(h.r311.clean), fmtPct],
+        ['Median hours to close cleaning', W.med, (h) => (h.median_close?.clean?.n >= MIN_REQ ? h.median_close.clean.hours : null), fmtHrs],
+        ['Encampment requests per 1,000', W.r311, (h) => (h.population >= MIN_POP ? (h.r311.enc.n / h.population) * 1000 : null), fmt1],
+        ['Encampment closed after 7+ days', 'share of closed', (h) => closedSlow(h.r311.enc), fmtPct],
+        ['Sidewalk litter rating', W.litter, (h) => (h.litter?.n >= MIN_INSP ? h.litter.avg : null), (v, h) => `${v.toFixed(2)} ± ${h.litter.moe ?? 'n/a'}`],
+        ['Inspections', W.litter, (h) => h.litter?.n ?? 0, fmtInt],
+        ['Tents and structures', W.tents, (h) => (h.tents_latest ? h.tents_latest.tents + h.tents_latest.structures : 0), fmtInt],
+        ['Businesses per 1,000 residents', '', (h) => (h.population >= MIN_POP ? (h.businesses / h.population) * 1000 : null), fmt1],
+      ];
+      C.sortCol ??= 3; C.sortAsc ??= false;
+      const rows = [...hoods].sort((a, b) => { const va = cols[C.sortCol][2](a), vb = cols[C.sortCol][2](b); if (va == null) return 1; if (vb == null) return -1; return (typeof va === 'string' ? va.localeCompare(vb) : va - vb) * (C.sortAsc ? 1 : -1); });
+      const t = el('table', { id: 'ntable' }), th = el('thead'), hr = el('tr'), tb = el('tbody');
+      cols.forEach(([name, sub], i) => { const c = el('th', { class: i ? 'num' : '', scope: 'col', tabindex: '0' }, name); if (sub) c.append(el('small', {}, sub)); if (i === C.sortCol) c.setAttribute('aria-sort', C.sortAsc ? 'ascending' : 'descending'); const go = () => { C.sortAsc = C.sortCol === i ? !C.sortAsc : i === 0; C.sortCol = i; render(); }; c.onclick = go; c.onkeydown = (e) => { if (e.key === 'Enter') go(); }; hr.append(c); });
+      th.append(hr);
+      for (const h of rows) { const tr = el('tr', h.name === sel ? { class: 'sel' } : {}); cols.forEach(([, , f, fm], i) => { const v = f(h); tr.append(el('td', { class: `${i ? 'num' : ''}${v == null ? ' na' : ''}` }, v == null ? (i === 10 ? 'not inspected' : 'n/a') : fm(v, h))); }); tb.append(tr); }
+      t.append(th, tb);
+      const wrap = el('div', { class: 'tablewrap' }); wrap.append(t); C.table.chart.replaceChildren(wrap);
+      C.table.tabs.hidden = true; C.table.legend.hidden = true;
+      C.table.sub.textContent = 'Every neighborhood, with the observation window under each column heading. Select a column to sort.';
+      C.table.win.textContent = '';
+      C.table.note.textContent = `n/a: fewer than ${fmtInt(MIN_POP)} residents (per-resident rates would mislead) or fewer than ${MIN_REQ} requests. "Not inspected": no Controller inspections this fiscal year, which says nothing about conditions. Litter: 1 none to 5 heavy, ± is a 95% margin of error.`;
+      C.table.dl.onclick = () => csv('sf-housing-neighborhoods.csv', cols.map((c) => `${c[0]}${c[1] ? ` (${c[1]})` : ''}`), rows.map((h) => cols.map(([, , f]) => f(h) ?? '')));
+    }
+    // 3. Units by completion year
+    {
+      const ys = H.units_by_year.years, vals = H.units_by_year.data[area] || ys.map(() => 0);
+      const total = area === 'Citywide' ? H.citywide.homeless_units : (H.hoods.find((h) => h.name === area)?.homeless_units || 0);
+      barChart(C.units.chart, { title: 'Homeless-designated affordable units by construction completion year', labels: ys, values: vals, color: 'var(--housing)', seriesName: 'Units, construction completed' });
+      legend(C.units.legend, []);
+      C.units.sub.textContent = `${areaName} has ${fmtInt(total)} homeless-designated affordable units in completed developments; ${fmtInt(sum(vals))} of them were completed since ${ys[0]}.`;
+      C.units.win.textContent = `Window: construction completion ${ys[0]} to ${ys.at(-1)}, MOHCD portfolio as last updated.`;
+      fillTable(C.units.table, ['Year', 'Units completed'], ys.map((y, i) => [String(y), fmtInt(vals[i])]).reverse());
+      C.units.note.textContent = 'Construction completion dates, which can differ from occupancy. MOHCD portfolio only; not a complete inventory of supportive housing or shelters.';
+      C.units.dl.onclick = () => csv(`sf-homeless-designated-units-${slug(area)}.csv`, ['completion_year', 'area', 'units'], ys.map((y, i) => [y, area, vals[i]]));
+    }
+    // 4. Tents etc.
+    {
+      const q = H.tents.quarters, d = H.tents.data[area];
+      const ts = q.map((_, i) => (d ? d.tents[i] + d.structures[i] : 0)), vs = q.map((_, i) => (d ? d.passenger_vehicles[i] + d.other_vehicles[i] : 0));
+      const series = [{ name: 'Tents and structures', color: 'var(--enc)', values: ts }, { name: 'Lived-in vehicles', color: 'var(--veh)', values: vs }];
+      lineChart(C.tents.chart, { title: 'Tents, structures and lived-in vehicles', labels: q, labelName: monthName, series });
+      legend(C.tents.legend, series.map((s) => [s.name, s.color]));
+      C.tents.sub.textContent = `The ${monthName(q.at(-1))} count found ${fmtInt(ts.at(-1))} tents and structures and ${fmtInt(vs.at(-1))} lived-in vehicles in ${areaName}, against a peak of ${fmtInt(Math.max(...ts))} tents and structures.`;
+      C.tents.win.textContent = `Window: quarterly counts ${monthName(q[0])} to ${monthName(q.at(-1))}.`;
+      fillTable(C.tents.table, ['Count', 'Tents and structures', 'Lived-in vehicles'], q.map((qq, i) => [monthName(qq), fmtInt(ts[i]), fmtInt(vs[i])]).reverse());
+      C.tents.note.textContent = 'Visual count of tents, structures, and passenger vehicles, RVs and trailers that appear lived in. Counts were assigned to neighborhoods by location.';
+      C.tents.dl.onclick = () => csv(`sf-tent-count-${slug(area)}.csv`, ['count_month', 'area', 'tents_and_structures', 'lived_in_vehicles'], q.map((qq, i) => [qq, area, ts[i], vs[i]]));
+    }
+    // 5. 311 timeline with a separate construction-completion strip
+    {
+      const target = sel || [...H.hoods].sort((a, b) => (b.homeless_units || 0) - (a.homeless_units || 0))[0].name;
+      if (!T || !T.categories.data[target]) { C.timeline.sub.textContent = 'Monthly 311 data is not available.'; C.timeline.chart.replaceChildren(); }
+      else {
+        segmented(C.timeline.tabs, [['month', 'Monthly'], ['year', 'Yearly average']], () => state.tview, (v) => { state.tview = v; });
+        const months = T.months, cat = T.categories.data[target], op = H.openings[target] || {};
+        const raw = [['Street and Sidewalk Cleaning', 'Street cleaning requests', 'var(--clean)'], ['Encampment', 'Encampment requests', 'var(--enc)']].filter(([k]) => cat[k]).map(([k, name, color]) => { const v = cat[k]; const first = v.findIndex((x) => x > 0); return { name, color, values: v.map((x, i) => (first < 0 || i < first ? null : x)) }; });
+        let labels = months, series = raw, strip = months.map((mm) => op[mm] || 0), labelName = monthName;
+        if (state.tview === 'year') {
+          const yrs = [...new Set(months.map((mm) => mm.slice(0, 4)))];
+          labels = yrs; labelName = (y) => `${y} (monthly average)`;
+          series = raw.map((s) => ({ ...s, values: yrs.map((y) => { const v = months.map((mm, i) => (mm.startsWith(y) ? s.values[i] : undefined)).filter((x) => x !== undefined); const ok = v.filter((x) => x != null); return ok.length ? sum(ok) / ok.length : null; }) }));
+          strip = yrs.map((y) => sum(Object.entries(op).filter(([mm]) => mm.startsWith(y)).map(([, u]) => u)));
+        }
+        lineChart(C.timeline.chart, { title: `311 activity and housing completions in ${target}`, labels, labelName, series, strip: { values: strip, color: 'var(--housing)', label: 'Homeless-designated affordable units, construction completed', tipName: 'units completed (construction)' } });
+        legend(C.timeline.legend, [...series.map((s) => [s.name, s.color]), ['Units completed (dot size = units)', 'var(--housing)', 'dot']]);
+        C.timeline.h.textContent = `311 activity and housing completions: ${target}`;
+        const inWin = Object.entries(op).filter(([mm]) => mm >= months[0]);
+        C.timeline.sub.textContent = `${sel ? '' : `Showing ${target}, the neighborhood with the most homeless-designated affordable units; pick another above. `}${inWin.length} month${inWin.length === 1 ? '' : 's'} with completions, ${fmtInt(sum(inWin.map(([, u]) => u)))} units in total. The two are drawn in separate bands on purpose: the timing alone says nothing about cause.`;
+        C.timeline.win.textContent = `Window: 311 ${monthName(months[0])} to ${monthName(months.at(-1))}; construction completion dates from MOHCD.`;
+        fillTable(C.timeline.table, [state.tview === 'year' ? 'Year' : 'Month', ...series.map((s) => s.name), 'Units completed'], labels.map((l, i) => [state.tview === 'year' ? l : monthName(l), ...series.map((s) => (s.values[i] == null ? '' : fmtInt(s.values[i]))), strip[i] ? fmtInt(strip[i]) : '']).reverse());
+        C.timeline.note.textContent = 'The long rise in requests also reflects changes in how people report (the mobile app) and in category names; the encampment category starts in 2024. Completion is construction completion, not move-in.';
+        C.timeline.dl.onclick = () => csv(`sf-311-and-completions-${slug(target)}.csv`, [state.tview === 'year' ? 'year' : 'month', 'area', ...series.map((s) => s.name), 'units_completed'], labels.map((l, i) => [l, target, ...series.map((s) => s.values[i] ?? ''), strip[i]]));
+      }
+    }
+    const u = new URL(location.href);
+    for (const [k, v, def] of [['area', state.hood, ''], ['metric', state.metric, 'clean'], ['norm', state.norm, 'pop'], ['scale', state.xscale, 'log']]) { if (v && v !== def) u.searchParams.set(k, v); else u.searchParams.delete(k); }
+    history.replaceState(null, '', u);
+  }
+
+  Promise.all([
+    fetch('../data/housing.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`housing data HTTP ${r.status}`)))),
+    fetch('../data/trends.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]).then(([h, t]) => {
+    H = h; T = t;
+    W = {
+      r311: `${monthName(H.window_311.from)} to ${monthName(H.window_311.to)}`,
+      med: H.median_window ? `${dayName(H.median_window.from)} to ${dayName(H.median_window.to)}` : 'latest 90 days',
+      litter: (H.litter_period || 'current fiscal year').replace(' - ', ' to '),
+      tents: `${monthName(H.tents_latest_quarter)} count`,
+    };
+    for (const x of H.hoods) $('hood').append(el('option', { value: x.name }, x.name));
+    const q = new URLSearchParams(location.search);
+    if (H.hoods.some((x) => x.name === q.get('area'))) state.hood = q.get('area');
+    if (METRICS[q.get('metric')]) state.metric = q.get('metric');
+    if (['pop', 'area', 'biz', 'none'].includes(q.get('norm'))) state.norm = q.get('norm');
+    if (q.get('scale') === 'linear') state.xscale = 'linear';
+    $('hood').value = state.hood; $('metric').value = state.metric; $('norm').value = state.norm;
+    $('status').textContent = `${H.hoods.length} neighborhoods · refreshed ${H.generated_at ? new Date(H.generated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'recently'}`;
+    const USE = { '311': ['Request volumes and closure times', `${W.r311}; medians ${W.med}`], acs: ['Residents per neighborhood', H.acs_years], mohcd: ['Homeless-designated affordable units and completion dates', 'All completed developments'], tents: ['Tents, structures and lived-in vehicles', `Quarterly; latest ${W.tents}`], litter: ['Independent sidewalk litter ratings', W.litter], biz: ['Commercial activity (active business locations)', 'Currently active'] };
+    $('srcRows').replaceChildren(...H.sources.map((s) => { const tr = el('tr'); const a = el('td'); a.append(el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name)); tr.append(a, el('td', {}, USE[s.key]?.[0] || ''), el('td', {}, USE[s.key]?.[1] || ''), el('td', {}, s.updated ? new Date(s.updated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'n/a'), el('td', {}, s.schedule)); return tr; }));
+    kpis(); evidence(); build(); render();
+    $('hood').addEventListener('change', () => { state.hood = $('hood').value; render(); });
+    $('metric').addEventListener('change', () => { state.metric = $('metric').value; render(); });
+    $('norm').addEventListener('change', () => { state.norm = $('norm').value; render(); });
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 150); });
+  }).catch((e) => { $('status').textContent = `Housing data could not be loaded (${e.message}). Try again shortly.`; $('dot').classList.add('error'); });
+})();
+</script>
+</body>
+</html>

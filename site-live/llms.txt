@@ -26,6 +26,7 @@
 - [City Signals, San Francisco 311 dashboard](https://sora-labs.net/city-signals/): Free, public dashboard of San Francisco 311 service requests by neighborhood: volume, open cases, time to close, top categories and recurring street-level issues, refreshed every 6 hours from DataSF.
 - [This week in San Francisco 311](https://sora-labs.net/city-signals/this-week/): What changed in SF 311 this week: neighborhood spikes and drops by category, repeat street locations, and closure times. Template sentences filled with computed numbers, refreshed every 6 hours.
 - [San Francisco 311 trends since 2008](https://sora-labs.net/city-signals/trends/): Monthly charts and downloadable data on SF 311 volume, top request categories, reporting channels (phone, app, web) and the share of cases closed within a week, citywide and for each neighborhood.
+- [Housing and neighborhood services in San Francisco](https://sora-labs.net/city-signals/housing/): Neighborhood-level comparison of homeless-designated affordable housing units with 311 street cleaning and encampment requests, response times, quarterly tent counts and Controller street inspections, normalized by residents, area or businesses. Aggregates only; not causal.
 - [The Briefing (newsletter)](https://sora-labs.net/newsletter/): A free weekly read for operators on what AI agents are doing inside real businesses.
 
 ## For AI operators

@@ -10,7 +10,8 @@
 // Optional env: SOCRATA_APP_TOKEN raises DataSF's rate limit.
 //
 // Also writes insights.json (city-signals-insights.mjs, the /this-week/ page)
-// and trends.json (city-signals-trends.mjs, the /trends/ page).
+// trends.json (city-signals-trends.mjs, the /trends/ page) and housing.json
+// (city-signals-housing.mjs, the /housing/ page).
 //
 // File format (one per window, self-contained):
 //   { v, generated_at, source_as_of, since, days, count, base,
@@ -24,6 +25,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { computeInsights } from "./city-signals-insights.mjs";
 import { fetchTrends } from "./city-signals-trends.mjs";
+import { fetchHousing } from "./city-signals-housing.mjs";
 
 const ENDPOINT = "https://data.sf.gov/resource/vw6y-z8j6.json";
 const PAGE = 50000;
@@ -126,10 +128,20 @@ async function main() {
   const insights = computeInsights(all, { asOf: meta.source_as_of });
   await writeFile(join(outDir, "insights.json"), JSON.stringify({ v: 1, generated_at: meta.generated_at, ...insights }));
   console.log(`insights.json: ${insights.insights.map((i) => `${i.key}=${i.status}`).join(", ")}`);
-  const trends = await fetchTrends({ asOf: meta.source_as_of });
-  const trendsJson = JSON.stringify({ v: 1, ...meta, ...trends });
-  await writeFile(join(outDir, "trends.json"), trendsJson);
-  console.log(`trends.json: ${trends.months[0]} to ${trends.months.at(-1)}, ${trends.areas.length} areas, ${(trendsJson.length / 1e3).toFixed(0)} KB`);
+  // Trends and housing pull from several datasets; each fails on its own so
+  // one outage does not block the other files.
+  await Promise.all([
+    fetchTrends({ asOf: meta.source_as_of }).then(async (trends) => {
+      const json = JSON.stringify({ v: 1, ...meta, ...trends });
+      await writeFile(join(outDir, "trends.json"), json);
+      console.log(`trends.json: ${trends.months[0]} to ${trends.months.at(-1)}, ${trends.areas.length} areas, ${(json.length / 1e3).toFixed(0)} KB`);
+    }).catch((e) => console.error(`trends.json failed: ${e.message}`)),
+    fetchHousing({ asOf: meta.source_as_of, records: all }).then(async (housing) => {
+      const json = JSON.stringify({ v: 1, ...meta, ...housing });
+      await writeFile(join(outDir, "housing.json"), json);
+      console.log(`housing.json: ${housing.hoods.length} neighborhoods, ${(json.length / 1e3).toFixed(0)} KB`, JSON.stringify(housing.notes));
+    }).catch((e) => console.error(`housing.json failed: ${e.message}`)),
+  ]);
   console.log(`done in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 }
 
