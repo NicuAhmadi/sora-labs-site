@@ -82,15 +82,13 @@
 <header class="page-head">
 <p class="kicker"><a href="/city-signals/">City Signals</a> / Housing and neighborhood services in San Francisco</p>
 <h1 class="page-title">Are city services keeping pace where San Francisco's housing is concentrated?</h1>
-<p class="dek">Compare homeless-designated affordable housing, neighborhood service requests and independently inspected street conditions across the city's 41 neighborhoods.</p>
-<div class="note-line" role="note"><div><strong>Neighborhood-level comparisons only.</strong> They describe patterns and do not show that housing, its residents or any facility cause a complaint.
-<details><summary>How to interpret this analysis</summary>
-<p><strong>What "housing" means here.</strong> Homeless-designated affordable housing units in developments financed or required by the city's housing office (MOHCD), counted when construction is complete. Not a complete inventory of supportive housing, shelters, navigation centers, master-leased buildings or scattered-site units.</p>
-<p><strong>Different windows.</strong> Each source covers a different period; the window is shown with every comparison.</p>
-<p><strong>Rates are events, not people.</strong> "Requests per 1,000 residents" counts reports; one person or place can generate many. Commercial districts with few residents show high per-resident rates, so check the per-area and per-business views too.</p>
-<p><strong>Inspections are a sample.</strong> Neighborhoods without inspected routes are shown as "not inspected", never as clean. Averages come with a 95% margin of error.</p>
+<p class="dek">Housing, service requests and independently inspected street conditions, compared across 41 neighborhoods.</p>
+<div class="caveat">Neighborhood-level patterns, not causes. <details><summary>How to read this analysis</summary>
+<p><strong>Housing</strong> means homeless-designated affordable units in developments financed or required by the city's housing office (MOHCD), counted when construction is complete. It is not a complete inventory of supportive housing, shelters or scattered-site units.</p>
+<p><strong>Rates count requests, not people.</strong> One person or place can generate many. Commercial districts with few residents show high per-resident rates, so check the per-area and per-business views too.</p>
+<p><strong>Inspections are a sample.</strong> Neighborhoods without inspected routes show as "not inspected", never as clean. Each source covers its own period; windows are listed in every chart's notes.</p>
 <p><strong>Privacy.</strong> No addresses or site locations are shown; sites the city marks confidential are excluded.</p>
-</details></div></div>
+</details></div>
 <div class="meta"><span class="dot" id="dot"></span><span id="status">Loading neighborhood data…</span></div>
 </header>
 
@@ -339,23 +337,25 @@
   // Module: title (a question), dek (what is measured), Chart/Table toggle, footer.
   function module({ id, title, wide, parent }) {
     const c = el('section', { class: `module${wide ? ' wide' : ''}`, id, 'aria-labelledby': `${id}-t` });
-    const h = el('h2', { id: `${id}-t` }, title); c.append(h, el('p', { class: 'csub' }), el('p', { class: 'cwin' }));
-    const tabs = el('div', { class: 'tabs', role: 'tablist' });
-    const bC = el('button', { role: 'tab', 'aria-selected': 'true', type: 'button' }, 'Chart'), bT = el('button', { role: 'tab', 'aria-selected': 'false', type: 'button' }, 'Table');
-    tabs.append(bC, bT);
+    const head = el('div', { class: 'module-head' }), h = el('h2', { id: `${id}-t` }, title), tabs = el('div', { class: 'mctl' });
+    const view = el('div', { class: 'seg', role: 'group', 'aria-label': 'Chart or table' });
+    const bC = el('button', { type: 'button', 'aria-pressed': 'true' }, 'Chart'), bT = el('button', { type: 'button', 'aria-pressed': 'false' }, 'Table');
+    view.append(bC, bT);
+    const dl = el('button', { type: 'button', class: 'dl' }, 'CSV ↓');
+    tabs.append(view, dl); head.append(h, tabs);
     const legend = el('div', { class: 'legend2' }), chart = el('div', { class: 'chart' }), table = el('div', { class: 'tview tablewrap', hidden: '' });
-    const foot = el('div', { class: 'cfoot' }), notes = el('details', { class: 'notes' }), note = el('p'), dl = el('button', { type: 'button' }, 'Download CSV');
-    notes.append(el('summary', {}, 'Notes and caveats'), note); foot.append(notes, dl);
-    c.append(tabs, legend, chart, table, foot);
-    const setTab = (t) => { bC.setAttribute('aria-selected', t === 'chart'); bT.setAttribute('aria-selected', t === 'table'); chart.hidden = legend.hidden = t !== 'chart'; table.hidden = t !== 'table'; };
+    const notes = el('details', { class: 'notes' }), note = el('p'), win = el('p');
+    notes.append(el('summary', {}, 'Notes, window and sources'), note, win);
+    c.append(head, el('p', { class: 'csub' }), legend, chart, table, notes);
+    const setTab = (t) => { bC.setAttribute('aria-pressed', t === 'chart'); bT.setAttribute('aria-pressed', t === 'table'); chart.hidden = legend.hidden = t !== 'chart'; table.hidden = t !== 'table'; };
     bC.onclick = () => setTab('chart'); bT.onclick = () => setTab('table');
     $(parent).append(c);
-    return { c, h, sub: c.querySelector('.csub'), win: c.querySelector('.cwin'), legend, chart, table, note, dl, tabs };
+    return { c, h, sub: c.querySelector('.csub'), win, legend, chart, table, note, dl, tabs, view };
   }
   function segmented(tabs, options, get, set) {
-    const seg = el('div', { class: 'seg', role: 'group' });
+    const seg = el('div', { class: 'seg opt', role: 'group' });
     for (const [v, label] of options) { const b = el('button', { type: 'button', 'aria-pressed': String(get() === v) }, label); b.onclick = () => { set(v); render(); }; seg.append(b); }
-    tabs.querySelector('.seg')?.remove(); tabs.append(seg);
+    tabs.querySelector('.seg.opt')?.remove(); tabs.prepend(seg);
   }
   function fillTable(host, cols, rows) { const t = el('table'), th = el('thead'), hr = el('tr'), tb = el('tbody'); cols.forEach((c, i) => hr.append(el('th', { class: i ? 'num' : '' }, c))); th.append(hr); for (const r of rows) { const tr = el('tr'); r.forEach((v, i) => tr.append(el('td', { class: i ? 'num' : '' }, v))); tb.append(tr); } t.append(th, tb); host.replaceChildren(t); }
   function legend(host, items) { host.replaceChildren(); for (const [name, color, cls] of items) { const s = el('span'); s.append(keyEl(color, cls), document.createTextNode(name)); host.append(s); } }
@@ -368,26 +368,28 @@
   const closedSlow = (r) => (r.closed >= MIN_REQ ? r.closed_slow / r.closed : null);
   const openAged = (r) => (r.n >= MIN_REQ ? r.open_aged / r.n : null);
   const METRICS = {
-    clean: { label: 'Street cleaning requests', rate: true, v: (h) => per(h.r311.clean.n, h), fmt: fmt1, win: () => W.r311 },
-    clean_slow: { label: 'Cleaning requests closed after 7+ days (share of closed)', v: (h) => closedSlow(h.r311.clean), fmt: fmtPct, win: () => W.r311 },
-    clean_aged: { label: 'Cleaning requests still open after 7+ days (share of all)', v: (h) => openAged(h.r311.clean), fmt: fmtPct, win: () => `${W.r311}, open status as of the latest refresh` },
-    clean_med: { label: 'Median hours to close a cleaning request', v: (h) => (h.median_close?.clean?.n >= MIN_REQ ? h.median_close.clean.hours : null), fmt: fmtHrs, win: () => W.med },
-    enc: { label: 'Encampment requests', rate: true, v: (h) => per(h.r311.enc.n, h), fmt: fmt1, win: () => W.r311 },
-    enc_slow: { label: 'Encampment requests closed after 7+ days (share of closed)', v: (h) => closedSlow(h.r311.enc), fmt: fmtPct, win: () => W.r311 },
-    litter: { label: 'Inspected sidewalk litter rating (1 none to 5 heavy)', v: (h) => (h.litter?.n >= MIN_INSP ? h.litter.avg : null), fmt: (v) => v.toFixed(2), win: () => W.litter, extra: (h) => (h.litter ? `${h.litter.n} inspections, ±${h.litter.moe ?? 'n/a'} (95%)` : 'Not inspected') },
-    tents: { label: 'Tents and structures', rate: true, v: (h) => per(h.tents_latest ? h.tents_latest.tents + h.tents_latest.structures : null, h), fmt: fmt1, win: () => W.tents },
+    clean: { short: 'Cleaning requests', label: 'Street cleaning requests', rate: true, v: (h) => per(h.r311.clean.n, h), fmt: fmt1, win: () => W.r311 },
+    clean_slow: { short: 'Closed after 7+ days', label: 'Cleaning requests closed after 7+ days (share of closed)', v: (h) => closedSlow(h.r311.clean), fmt: fmtPct, win: () => W.r311 },
+    clean_aged: { short: 'Open 7+ days', label: 'Cleaning requests still open after 7+ days (share of all)', v: (h) => openAged(h.r311.clean), fmt: fmtPct, win: () => `${W.r311}, open status as of the latest refresh` },
+    clean_med: { short: 'Median hours to close', label: 'Median hours to close a cleaning request', v: (h) => (h.median_close?.clean?.n >= MIN_REQ ? h.median_close.clean.hours : null), fmt: fmtHrs, win: () => W.med },
+    enc: { short: 'Encampment requests', label: 'Encampment requests', rate: true, v: (h) => per(h.r311.enc.n, h), fmt: fmt1, win: () => W.r311 },
+    enc_slow: { short: 'Closed after 7+ days', label: 'Encampment requests closed after 7+ days (share of closed)', v: (h) => closedSlow(h.r311.enc), fmt: fmtPct, win: () => W.r311 },
+    litter: { short: 'Litter rating (1 to 5)', label: 'Inspected sidewalk litter rating (1 none to 5 heavy)', v: (h) => (h.litter?.n >= MIN_INSP ? h.litter.avg : null), fmt: (v) => v.toFixed(2), win: () => W.litter, extra: (h) => (h.litter ? `${h.litter.n} inspections, ±${h.litter.moe ?? 'n/a'} (95%)` : 'Not inspected') },
+    tents: { short: 'Tents and structures', label: 'Tents and structures', rate: true, v: (h) => per(h.tents_latest ? h.tents_latest.tents + h.tents_latest.structures : null, h), fmt: fmt1, win: () => W.tents },
   };
   const mLabel = (k = state.metric) => (METRICS[k].rate && state.norm !== 'none' ? `${METRICS[k].label}, ${NORM_LABEL[state.norm]}` : METRICS[k].label);
   const hLabel = () => `Homeless-designated affordable units${state.norm === 'none' ? '' : `, ${NORM_LABEL[state.norm]}`}`;
+  const axisY = () => (METRICS[state.metric].rate && state.norm !== 'none' ? `${METRICS[state.metric].short} ${NORM_LABEL[state.norm]}` : METRICS[state.metric].short);
+  const axisX = () => `Homeless-designated units${state.norm === 'none' ? '' : ` ${NORM_LABEL[state.norm]}`}`;
 
   // ------------------------------------------------------------ overview
   function kpis() {
     const eligible = H.hoods.filter((h) => h.population >= MIN_POP).length;
     const items = [
-      ['Homeless-designated affordable units', fmtInt(H.citywide.homeless_units), `Completed MOHCD developments; ${fmtInt(H.citywide.homeless_units_in_progress)} more under rehabilitation`],
-      ['311 requests analyzed', fmtShort(H.citywide.r311.all.n), `Citywide, ${W.r311}`],
-      ['Neighborhoods compared', String(H.hoods.length), `${eligible} large enough for per-resident rates`],
-      ['Inspection coverage', `${H.litter_coverage.inspected} of ${H.litter_coverage.total}`, `Neighborhoods inspected, ${W.litter}`],
+      ['Homeless-designated units', fmtInt(H.citywide.homeless_units), 'Completed developments'],
+      ['311 requests', fmtShort(H.citywide.r311.all.n), W.r311],
+      ['Neighborhoods', String(H.hoods.length), `${eligible} with per-resident rates`],
+      ['Inspected neighborhoods', `${H.litter_coverage.inspected} of ${H.litter_coverage.total}`, 'Current fiscal year'],
     ];
     $('kpis').replaceChildren(...items.map(([l, v, d]) => { const k = el('div', { class: 'kpi-item' }); k.append(el('div', { class: 'kpi-label' }, l), el('div', { class: 'kpi-value' }, v), el('div', { class: 'kpi-note' }, d)); return k; }));
   }
@@ -397,10 +399,10 @@
     if (!n) return null; const mean = s / n, sd = n > 1 ? Math.sqrt(Math.max(0, (sq - n * mean * mean) / (n - 1))) : 0; return { avg: mean, n, moe: (1.96 * sd) / Math.sqrt(n) };
   };
   function src(keys, notesText) {
-    const d = el('div', { class: 'src' }, 'Source: ');
-    keys.map((k) => H.sources.find((s) => s.key === k)).filter(Boolean).forEach((s, i) => { if (i) d.append(document.createTextNode(' · ')); d.append(el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name)); });
-    if (notesText) { const n = el('details', { class: 'notes' }); n.append(el('summary', {}, 'Windows and caveats'), el('p', {}, notesText)); d.append(n); }
-    return d;
+    const d = el('div', { class: 'src' }), n = el('details', { class: 'notes' }), links = el('p', {}, 'Sources: ');
+    keys.map((k) => H.sources.find((s) => s.key === k)).filter(Boolean).forEach((s, i) => { if (i) links.append(document.createTextNode(' · ')); links.append(el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name)); });
+    n.append(el('summary', {}, 'Sources and caveats'), ...(notesText ? [el('p', {}, notesText)] : []), links);
+    d.append(n); return d;
   }
   function cmpBars(rows) {
     const g = el('div', { class: 'cmp' });
@@ -452,8 +454,8 @@
         const left = el('div');
         left.append(
           el('h2', { class: 'finding-statement', id: 'lead-title' }, overlap ? 'More complaints do not necessarily mean worse street conditions.' : `Complaints and inspections both point to ${h.litter.avg > cw.litter.avg ? 'worse' : 'better'} conditions in ${h.name}, by very different margins.`),
-          el('p', { class: 'finding-body' }, `${h.name} files ${ratio.toFixed(2)} times the citywide rate of street cleaning requests per resident. ${overlap ? 'Yet city inspectors rated its sidewalk litter within the margin of error of the citywide average.' : `Inspectors rated its sidewalk litter ${h.litter.avg > cw.litter.avg ? 'higher' : 'lower'} than citywide, beyond the margin of error, but by far less than the complaint rate suggests.`} Complaint counts alone are not a direct measure of conditions; per-resident rates also run high where many people work or visit (${h.name} has ${fmt1(per1k(h.businesses, h))} active businesses per 1,000 residents, against ${fmt1(per1k(cw.businesses, cw))} citywide).`),
-          src(['311', 'litter', 'acs', 'biz'], `311: requests filed ${W.r311}. Inspections: ${W.litter} (${fmtInt(h.litter.n)} in ${h.name}). ${overlapText()} Rates count requests, not people. ${h.name} is the inspected neighborhood (30+ inspections) where complaint rates most exceed inspected conditions.`),
+          el('p', { class: 'finding-body' }, `${h.name} files ${ratio.toFixed(2)} times the citywide rate of street cleaning requests per resident, ${overlap ? 'yet inspectors rated its sidewalk litter about the same as the city as a whole.' : `while inspectors rated its sidewalk litter only somewhat ${h.litter.avg > cw.litter.avg ? 'worse' : 'better'} than citywide.`} Complaint counts alone are not a measure of conditions.`),
+          src(['311', 'litter', 'acs', 'biz'], `311: requests filed ${W.r311}. Inspections: ${W.litter} (${fmtInt(h.litter.n)} in ${h.name}); the difference is ${overlap ? 'within' : 'beyond'} the 95% margins of error. ${overlapText()} Rates count requests, not people, and run high where many people work or visit: ${h.name} has ${fmt1(per1k(h.businesses, h))} active businesses per 1,000 residents, against ${fmt1(per1k(cw.businesses, cw))} citywide. ${h.name} is the inspected neighborhood (30+ inspections) where complaint rates most exceed inspected conditions.`),
         );
         const right = el('div');
         right.append(el('div', { class: 'big-number' }, `${ratio.toFixed(2)}×`), el('div', { class: 'big-caption', style: 'margin:6px 0 20px' }, `${h.name}'s street cleaning requests per resident, compared with citywide`),
@@ -522,10 +524,10 @@
       const pts = hoods.map((h) => ({ name: h.name, x: per(h.homeless_units || 0, h), y: M.v(h), extra: M.extra ? M.extra(h) : null })).filter((p) => p.x != null && p.y != null);
       const left = hoods.length - pts.length;
       segmented(C.scatter.tabs, [['log', 'Log scale'], ['linear', 'Linear scale']], () => state.xscale, (v) => { state.xscale = v; });
-      scatter(C.scatter.chart, { title: 'Housing concentration and neighborhood services', points: pts, selected: sel, xscale: state.xscale, xLabel: hLabel(), yLabel: mLabel(), xFmt: fmt1, yFmt: M.fmt, yTick: M.fmt === fmtPct ? (v) => `${Math.round(v * 100)}%` : M.fmt === fmtHrs ? (v) => `${+v.toFixed(1)}h` : axisFmt, onPick: (n) => { $('hood').value = n; $('hood').dispatchEvent(new Event('change')); } });
-      legend(C.scatter.legend, [['Neighborhood', 'var(--ctx)', 'dot'], ...(sel ? [[sel, 'var(--sel)', 'dot']] : []), ['Median across neighborhoods', '', 'dash']]);
-      C.scatter.sub.textContent = `Each dot is a neighborhood: homeless-designated affordable units across, ${mLabel().toLowerCase()} up. Click a dot to select it.${left ? ` ${left} neighborhoods are left out (missing data, too few requests or inspections, or too few residents for a rate).` : ''}`;
-      C.scatter.win.textContent = `Window: housing as of the latest MOHCD update; ${METRICS[state.metric].label.toLowerCase()} ${M.win()}.${M.rate ? ' Rates count requests or objects, not people.' : ''}`;
+      scatter(C.scatter.chart, { title: 'Housing concentration and neighborhood services', points: pts, selected: sel, xscale: state.xscale, xLabel: axisX(), yLabel: axisY(), xFmt: fmt1, yFmt: M.fmt, yTick: M.fmt === fmtPct ? (v) => `${Math.round(v * 100)}%` : M.fmt === fmtHrs ? (v) => `${+v.toFixed(1)}h` : axisFmt, onPick: (n) => { $('hood').value = n; $('hood').dispatchEvent(new Event('change')); } });
+      legend(C.scatter.legend, sel ? [[sel, 'var(--sel)', 'dot'], ['Other neighborhoods', 'var(--ctx)', 'dot']] : []);
+      C.scatter.sub.textContent = `Each dot is a neighborhood; select one to highlight it.`;
+      C.scatter.win.textContent = `Window: housing as of the latest MOHCD update; ${METRICS[state.metric].label.toLowerCase()} ${M.win()}.${M.rate ? ' Rates count requests or objects, not people.' : ''}${left ? ` ${left} neighborhoods are left out (missing data, too few requests or inspections, or too few residents for a rate).` : ''} The dashed line is the median across neighborhoods shown.`;
       fillTable(C.scatter.table, ['Neighborhood', hLabel(), mLabel()], [...pts].sort((a, b) => b.x - a.x).map((p) => [p.name, fmt1(p.x), M.fmt(p.y)]));
       C.scatter.note.textContent = 'A pattern across neighborhoods is not evidence that housing causes it. On the log scale, neighborhoods with no homeless-designated affordable units sit in the shaded No units band; each step right is ten times more units. Labels mark the selection, the two neighborhoods with the most units per resident, and statistical outliers.';
       C.scatter.dl.onclick = () => csv('sf-housing-vs-services.csv', ['neighborhood', hLabel(), mLabel()], pts.map((p) => [p.name, p.x, p.y]));
@@ -574,10 +576,10 @@
         legend(C.timeline.legend, [...series.map((s) => [s.name, s.color]), ['Units completed (dot size = units)', 'var(--housing)', 'dot']]);
         const inWin = Object.entries(op).filter(([mm]) => mm >= months[0]);
         C.timeline.h.textContent = `How has 311 activity changed alongside housing completions in ${target}?`;
-        C.timeline.sub.textContent = `${sel ? '' : `Showing ${target}, the neighborhood with the most homeless-designated affordable units; pick another in the filters. `}${inWin.length} month${inWin.length === 1 ? '' : 's'} with completions, ${fmtInt(sum(inWin.map(([, u]) => u)))} units in total. The two are drawn in separate bands on purpose: timing alone says nothing about cause.`;
+        C.timeline.sub.textContent = `${target}: ${fmtInt(sum(inWin.map(([, u]) => u)))} units completed in ${inWin.length} month${inWin.length === 1 ? '' : 's'}, shown in their own band below the requests.${sel ? '' : ' Pick another neighborhood in the filters.'}`;
         C.timeline.win.textContent = `Window: 311 ${monthName(months[0])} to ${monthName(months.at(-1))}; construction completion dates from MOHCD.`;
         fillTable(C.timeline.table, [state.tview === 'year' ? 'Year' : 'Month', ...series.map((s) => s.name), 'Units completed'], labels.map((l, i) => [state.tview === 'year' ? l : monthName(l), ...series.map((s) => (s.values[i] == null ? '' : fmtInt(s.values[i]))), strip[i] ? fmtInt(strip[i]) : '']).reverse());
-        C.timeline.note.textContent = 'The long rise in requests also reflects changes in how people report (the mobile app) and in category names; the encampment category starts in 2024. Completion is construction completion, not move-in.';
+        C.timeline.note.textContent = `${sel ? '' : `${target} is shown by default because it has the most homeless-designated affordable units. `}Requests and completions are drawn in separate bands on purpose: timing alone says nothing about cause. The long rise in requests also reflects changes in how people report (the mobile app) and in category names; the encampment category starts in 2024. Completion is construction completion, not move-in.`;
         C.timeline.dl.onclick = () => csv(`sf-311-and-completions-${slug(target)}.csv`, [state.tview === 'year' ? 'year' : 'month', 'area', ...series.map((s) => s.name), 'units_completed'], labels.map((l, i) => [l, target, ...series.map((s) => s.values[i] ?? ''), strip[i]]));
       }
     }
@@ -616,8 +618,8 @@
       pick.append(el('summary', {}, `Columns (${vis.length - 1} of ${cols.length - 1})`), menu);
       const bar = el('div', { class: 'tbar' }); bar.append(el('span', { class: 'hint' }, 'Neighborhood names stay in place as you scroll sideways. Select a heading to sort.'), pick);
       C.table.chart.replaceChildren(bar, wrap);
-      C.table.tabs.hidden = true; C.table.legend.hidden = true;
-      C.table.sub.textContent = 'Housing, service requests, response times, inspections and street counts for all 41 neighborhoods, with the observation window under each heading.';
+      C.table.view.hidden = true; C.table.legend.hidden = true;
+      C.table.sub.textContent = 'All 41 neighborhoods, with the observation window under each heading.';
       C.table.win.textContent = '';
       C.table.note.textContent = `n/a: the measure does not apply (fewer than ${fmtInt(MIN_POP)} residents, or fewer than ${MIN_REQ} requests). "Not inspected": no Controller inspections this fiscal year, which says nothing about conditions. 0 is a measured zero. Litter: 1 none to 5 heavy, ± is a 95% margin of error.`;
       C.table.dl.onclick = () => csv('sf-housing-neighborhoods.csv', cols.map((c) => `${c[0]}${c[1] ? ` (${c[1]})` : ''}`), rows.map((h) => cols.map(([, , f]) => f(h) ?? '')));
@@ -629,6 +631,7 @@
   function setView(v, target) {
     state.view = v;
     for (const k of ['overview', 'explore', 'data']) { $(`tab-${k}`).setAttribute('aria-selected', String(k === v)); $(`view-${k}`).hidden = k !== v; }
+    document.querySelector('.page-head').classList.toggle('compact', v !== 'overview');
     if (v !== 'overview') render(); // charts need a visible width
     syncUrl();
     if (target) requestAnimationFrame(() => $(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
@@ -667,7 +670,8 @@
     $('metric').addEventListener('change', () => { state.metric = $('metric').value; render(); });
     $('norm').addEventListener('change', () => { state.norm = $('norm').value; render(); });
     let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (state.view !== 'overview') render(); }, 150); });
-    const v = q.get('view'); setView(['explore', 'data'].includes(v) ? v : 'overview');
+    const v = q.get('view'), exploring = ['area', 'metric', 'norm', 'scale'].some((k) => q.has(k));
+    setView(['explore', 'data', 'overview'].includes(v) ? v : exploring ? 'explore' : 'overview');
   }).catch((e) => { $('status').textContent = `Housing data could not be loaded (${e.message}). Try again shortly.`; $('dot').classList.add('error'); });
 })();
 </script>

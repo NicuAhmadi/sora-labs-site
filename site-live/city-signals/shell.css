@@ -79,6 +79,17 @@ a.navitem:hover{background:#1D3B33;color:#fff}
 .note-line summary{cursor:pointer;color:#3F321B;font-weight:650}
 .note-line details p{margin:8px 0 0;line-height:1.6}
 
+/* quiet one-line caveat (replaces boxed notices in page headers) */
+.caveat{font-size:13.5px;color:var(--muted);margin:var(--sp2) 0 0;max-width:760px;line-height:1.55}
+.caveat details{display:inline}
+.caveat summary{display:inline;cursor:pointer;color:var(--accent-ink);font-weight:600;list-style:none}
+.caveat summary::-webkit-details-marker{display:none}
+.caveat details[open] summary{color:var(--ink)}
+.caveat details p{margin:10px 0 0;color:var(--ink-2)}
+/* compact header for secondary views */
+.page-head.compact .dek,.page-head.compact .caveat{display:none}
+.page-head.compact .page-title{font-size:24px;letter-spacing:-.5px}
+
 /* ---------------------------------------------------------------- page tabs (views within one URL) */
 .page-tabs{display:flex;gap:var(--sp3);border-bottom:1px solid var(--line);margin:var(--sp4) 0 0;overflow-x:auto}
 .page-tabs button{border:0;background:none;padding:10px 0;font-size:15px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
@@ -110,7 +121,7 @@ a.navitem:hover{background:#1D3B33;color:#fff}
 .finding-title{font-size:var(--t-component);line-height:1.4;font-weight:650;margin:0;color:var(--ink)}
 .big-number{font-size:40px;font-weight:720;letter-spacing:-1.4px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
 .big-caption{font-size:14px;color:var(--ink-2);line-height:1.45}
-.src{font-size:var(--t-meta);color:var(--muted);line-height:1.55;margin-top:auto}
+.src{font-size:var(--t-meta);color:var(--muted);line-height:1.55;margin-top:var(--sp1)}
 .src a{color:var(--muted)}.src a:hover{color:var(--accent)}
 
 /* ---------------------------------------------------------------- explore links */
@@ -170,6 +181,16 @@ a.navitem:hover{background:#1D3B33;color:#fff}
 .notes summary{cursor:pointer;color:var(--muted);font-weight:600}
 .notes summary:hover{color:var(--ink)}
 .notes p{margin:6px 0 0;max-width:820px}
+
+/* module header: title left, all controls in one row on the right */
+.module-head{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--sp2);flex-wrap:wrap}
+.module-head h2{flex:1 1 360px}
+.mctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.mctl .seg{margin:0}
+.mctl .dl{border:0;background:none;color:var(--accent-ink);font-weight:600;font-size:13px;padding:4px 2px}
+.module .legend2{margin-top:var(--sp2)}
+.module .notes{margin-top:var(--sp2);font-size:var(--t-meta);color:var(--muted)}
+.module .notes p{margin:6px 0 0;line-height:1.6}
 
 /* ---------------------------------------------------------------- tables (dense, Carbon-like) */
 .tablewrap{overflow:auto}
