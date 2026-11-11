@@ -64,22 +64,22 @@
 <section aria-label="Headline findings"><div class="icards" id="icards"></div></section>
 
 <div class="two">
-<section class="panel" aria-labelledby="upTitle"><h2 id="upTitle">Biggest increases</h2><p class="psub">Neighborhood and category pairs with 20+ reports this week, compared with the trailing 30-day average.</p>
+<section class="panel" aria-labelledby="upTitle"><h2 id="upTitle">Biggest increases</h2><p class="psub">Neighborhood and category pairs with 20+ reports this week, compared with the trailing 30-day average. Select a neighborhood to open those cases.</p>
 <div class="tablewrap"><table><thead><tr><th>Neighborhood</th><th>Category</th><th class="num">This week</th><th class="num">Expected</th><th class="num">Change</th></tr></thead><tbody id="upRows"></tbody></table></div></section>
 <section class="panel" aria-labelledby="downTitle"><h2 id="downTitle">Biggest decreases</h2><p class="psub">Same pairs, where this week came in at least 20% under the trailing average.</p>
 <div class="tablewrap"><table><thead><tr><th>Neighborhood</th><th>Category</th><th class="num">This week</th><th class="num">Expected</th><th class="num">Change</th></tr></thead><tbody id="downRows"></tbody></table></div></section>
 </div>
 
-<section class="panel full" id="repeat-list" aria-labelledby="repTitle"><h2 id="repTitle">Repeat locations</h2>
-<p class="psub">Street and request subtype pairs with 5 or more reports in the last 90 days and an open case or a closure in the last 14 days. The 25 with the most reports.</p>
+<section class="panel full" id="repeat-list" aria-labelledby="repTitle"><h2 id="repTitle">Repeat street and request-type pairs</h2>
+<p class="psub">Street-name and request-type pairs with 5 or more reports in the last 90 days and an open case or a closure in the last 14 days. Grouped by street name, so a pair can cover a whole corridor rather than one block. The 25 with the most reports.</p>
 <div class="tablewrap"><table><thead><tr><th>Street</th><th>Request type</th><th class="num">Reports, 90 days</th><th class="num">Open now</th></tr></thead><tbody id="repRows"></tbody></table></div></section>
 
 <section class="panel full" aria-labelledby="howTitle"><h2 id="howTitle">How these are calculated</h2>
 <ul class="method">
 <li><strong>This week</strong> is the latest 7 days with published data. DataSF publishes about a day behind, so the week ends on the newest case date in the data, not today.</li>
 <li><strong>Spikes</strong> compare reports in the last 7 days with the daily average over the 30 days before that, scaled to 7 days. A pair is flagged at 25% or more above that average with at least 20 reports. If none qualifies, the card shows the largest drop instead.</li>
-<li><strong>Repeat locations</strong> group reports by street and request subtype over 90 days. If none qualifies, the card shows how many cases older than 14 days are still open.</li>
-<li><strong>Closure times</strong> compare the median days to close for the 5 highest-volume categories: cases closed in the last 30 days against cases closed 31 to 60 days ago. A category is flagged when its median rose by 3 days or more from at least 3. If none qualifies, the card shows the fastest resolving category.</li>
+<li><strong>Repeat street and request types</strong> group reports by street name and request subtype over 90 days; a long street counts as one pair. If none qualifies, the card shows how many cases older than 14 days are still open.</li>
+<li><strong>Time to close</strong> compares the median days from request to closure in the city's system for the 5 highest-volume categories: cases closed in the last 30 days against cases closed 31 to 60 days ago. A category is flagged when its median rose by 3 days or more from at least 3. If none qualifies, the card shows the category with the shortest median time to close.</li>
 <li>Each record is a service request, not a verified incident, and a closed case may be administratively closed rather than fixed. The sentences on this page are fixed templates filled with computed numbers; no AI writes them.</li>
 </ul></section>
 
@@ -92,14 +92,16 @@
   const $ = (id) => document.getElementById(id);
   const fmt = (n) => Number(n).toLocaleString('en-US');
   const day = (s) => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  const LABELS = { spike: 'Neighborhood spike', repeats: 'Repeat locations', close_time: 'Closure times' };
+  const LABELS = { spike: 'Neighborhood spike', repeats: 'Repeat street and request types', close_time: 'Time to close' };
+  const dash = (m) => `/city-signals/?period=7&area=${encodeURIComponent(m.neighborhood)}&category=${encodeURIComponent(m.category)}`;
   function cell(text, cls) { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; return td; }
   function rows(tbody, list, build, empty) {
     tbody.replaceChildren();
     if (!list.length) { const tr = document.createElement('tr'); const td = cell(empty, 'wrapcell'); td.colSpan = 5; tr.append(td); tbody.append(tr); return; }
     for (const item of list) { const tr = document.createElement('tr'); tr.append(...build(item)); tbody.append(tr); }
   }
-  const mover = (m) => [cell(m.neighborhood, 'wrapcell'), cell(m.category, 'wrapcell'), cell(fmt(m.actual_7d), 'num'), cell(m.expected_7d.toFixed(1), 'num'), cell(`${m.change_pct > 0 ? '+' : ''}${m.change_pct}%`, `num ${m.change_pct > 0 ? 'up' : 'down'}`)];
+  const linkCell = (m) => { const td = document.createElement('td'); td.className = 'wrapcell'; const a = document.createElement('a'); a.href = dash(m); a.textContent = m.neighborhood; a.title = 'Open these cases on the dashboard'; a.style.color = 'var(--teal)'; td.append(a); return td; };
+  const mover = (m) => [linkCell(m), cell(m.category, 'wrapcell'), cell(fmt(m.actual_7d), 'num'), cell(m.expected_7d.toFixed(1), 'num'), cell(`${m.change_pct > 0 ? '+' : ''}${m.change_pct}%`, `num ${m.change_pct > 0 ? 'up' : 'down'}`)];
   fetch('../data/insights.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))).then((d) => {
     $('status').textContent = `Week of ${day(d.week.start)} to ${day(d.week.end)} · computed ${new Date(d.generated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
     $('icards').replaceChildren(...d.insights.map((i) => {
@@ -110,6 +112,7 @@
       top.append(label, text);
       const ctx = document.createElement('div'); ctx.className = 'ictx'; ctx.textContent = i.context;
       if (i.link) { const a = document.createElement('a'); a.href = `#${i.link.target}`; a.textContent = i.link.label; ctx.append(a); }
+      for (const l of i.links || []) { const a = document.createElement('a'); a.href = l.href; a.textContent = l.label; ctx.append(a); }
       card.append(top, ctx); return card;
     }));
     rows($('upRows'), d.movers.up, mover, 'No pair rose 25% or more this week with 20+ reports.');

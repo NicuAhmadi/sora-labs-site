@@ -431,7 +431,7 @@
       const { groups, name, unit } = periods(months);
       const vals = groups.map((g) => sum(g.idx.map((i) => openSlice[i])));
       const n = D.months.length, allOpen = sum(fullOpen), older = (k) => sum(fullOpen.slice(0, Math.max(0, n - k)));
-      C.open.sub.textContent = `${fmtInt(allOpen)} requests in ${areaName()} are still open. ${fmtInt(older(3))} of them were opened more than 3 months ago and ${fmtInt(older(12))} more than a year ago.`;
+      C.open.sub.textContent = `Of all requests in ${areaName()} since ${monthName(D.months[0])}, ${fmtInt(allOpen)} are still open: ${fmtInt(older(3))} opened more than 3 months ago and ${fmtInt(older(12))} more than a year ago. The bars show only the selected range (${fmtInt(sum(openSlice))} still open).`;
       barChart(C.open.chart, { title: 'Requests still open, by when they were opened', labels: groups.map((g) => g.key), periodName: name, series: [{ name: 'Still open', color: 'var(--open)', values: vals }], format: 'int' });
       fillLegend(C.open.legend, []);
       fillTable(C.open.table, [unit === 'month' ? 'Month opened' : unit === 'quarter' ? 'Quarter opened' : 'Year opened', 'Still open', 'Share of that period'], groups.map((g, i) => { const t = sum(g.idx.map((j) => totSlice[j])); return [name(g.key), fmtInt(vals[i]), t ? fmtPct(vals[i] / t) : '']; }).reverse());

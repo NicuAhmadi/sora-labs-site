@@ -103,6 +103,24 @@
 #ntable tr.sel td{background:#e9f4f0;font-weight:700}
 #ntable td.na{color:#a3aea7}
 .srcs td{white-space:normal;vertical-align:top}
+#ntable th:first-child,#ntable td:first-child{position:sticky;left:0;z-index:2;background:#fff;box-shadow:1px 0 0 var(--line)}
+#ntable tr.sel td:first-child{background:#e9f4f0}
+.colpick{position:relative;margin-left:auto}
+.colpick summary{list-style:none;cursor:pointer;font-size:12px;font-weight:700;color:var(--teal);padding:6px 4px}
+.colpick summary::-webkit-details-marker{display:none}
+.colpick .menu{position:absolute;right:0;top:100%;z-index:30;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(20,37,32,.12);padding:10px 12px;min-width:270px}
+.colpick label{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--ink2);padding:4px 0;cursor:pointer}
+.tbar{display:flex;align-items:center;gap:10px;margin:10px 0 6px}
+.tbar .hint{font-size:11px;color:#84928b}
+.notes summary{cursor:pointer;color:#6c7f75;font-weight:650}
+.notes p{margin:6px 0 0;max-width:820px}
+.ecard.wide{grid-column:1/-1}
+.ecard .lead{font-size:20px;font-weight:750;letter-spacing:-.4px;line-height:1.3;color:var(--ink1)}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.pv{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.pv div{min-width:120px}.pv b{display:block;font-size:26px;letter-spacing:-.8px;color:var(--ink1)}.pv span{font-size:12px;color:#677d72}
+.sub2{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:750;color:#677d72;margin-top:4px}
+@media(max-width:1050px){.pair{grid-template-columns:1fr}}
 .method{color:#40584c;line-height:1.7;font-size:13px}.method li{margin:6px 0}
 @media(max-width:1050px){.cards,.ev{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:610px){.ccard,.ecard{padding:16px}.cmp{grid-template-columns:110px minmax(0,1fr) 56px}.kpi .kv{font-size:24px}}
@@ -228,7 +246,7 @@
   // Line chart; optional strip of events drawn in its own band under the x axis.
   function lineChart(host, cfg) {
     host.replaceChildren();
-    const Wd = Math.max(280, host.clientWidth), ph = Wd < 560 ? 190 : 230, stripH = cfg.strip ? 46 : 0;
+    const Wd = Math.max(280, host.clientWidth), ph = cfg.tall ? (Wd < 560 ? 230 : 320) : (Wd < 560 ? 190 : 230), stripH = cfg.strip ? 50 : 0;
     const m = { l: 44, r: 14, t: 12 }, Hd = m.t + ph + 26 + stripH;
     const n = cfg.labels.length, pw = Wd - m.l - m.r, yBase = m.t + ph;
     const x = (i) => m.l + (n <= 1 ? pw / 2 : (i / (n - 1)) * pw);
@@ -239,8 +257,9 @@
     yearTicks(svg, cfg.labels, x, yBase);
     cfg.series.forEach((s) => { let d = '', pen = false; s.values.forEach((v, i) => { if (v == null) { pen = false; return; } d += `${pen ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`; pen = true; }); svg.append(el('svg:path', { d, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round' })); });
     if (cfg.strip) {
-      const sy = yBase + 26 + 24, maxU = Math.max(1, ...cfg.strip.values.filter(Boolean));
-      svg.append(el('svg:text', { x: m.l, y: yBase + 34, 'font-size': 10.5, fill: 'var(--ink2)', 'font-weight': 650 }, cfg.strip.label));
+      const sy = yBase + 26 + 28, maxU = Math.max(1, ...cfg.strip.values.filter(Boolean));
+      svg.append(el('svg:rect', { x: m.l - 6, y: yBase + 24, width: pw + 12, height: 44, fill: '#eef3f8', rx: 6 }));
+      svg.append(el('svg:text', { x: m.l, y: yBase + 36, 'font-size': 10.5, fill: 'var(--ink2)', 'font-weight': 650 }, cfg.strip.label));
       svg.append(el('svg:line', { x1: m.l, x2: m.l + pw, y1: sy, y2: sy, stroke: 'var(--grid)' }));
       cfg.strip.values.forEach((u, i) => { if (u) svg.append(el('svg:circle', { cx: x(i), cy: sy, r: 2.5 + 6.5 * Math.sqrt(u / maxU), fill: cfg.strip.color, 'fill-opacity': 0.85, stroke: 'var(--surface)', 'stroke-width': 1.5 })); });
     }
@@ -289,34 +308,39 @@
     host.replaceChildren();
     const Wd = Math.max(280, host.clientWidth), Hd = Wd < 560 ? 300 : 360, m = { l: 52, r: 18, t: 14, b: 42 };
     const pw = Wd - m.l - m.r, ph = Hd - m.t - m.b, pts = cfg.points;
-    const log = cfg.xscale === 'log', tx = (v) => (log ? Math.log10(1 + v) : v);
-    const xTop = Math.max(1e-9, ...pts.map((p) => tx(p.x))), yTop = Math.max(1e-9, ...pts.map((p) => p.y));
-    const ys = niceStep(yTop / 4), yMax = Math.ceil(yTop / ys) * ys || 1;
-    const xMax = log ? xTop * 1.04 : Math.ceil(xTop / niceStep(xTop / 4)) * niceStep(xTop / 4);
-    const x = (v) => m.l + (tx(v) / xMax) * pw, y = (v) => m.t + ph - (v / yMax) * ph;
+    const log = cfg.xscale === 'log', pos = pts.filter((p) => p.x > 0), zeros = pts.filter((p) => !(p.x > 0));
+    const band = log && zeros.length ? 64 : 0, x0 = m.l + band + (band ? 14 : 0), pw2 = m.l + pw - x0;
+    const yTop = Math.max(1e-9, ...pts.map((p) => p.y)), ys = niceStep(yTop / 4), yMax = Math.ceil(yTop / ys) * ys || 1;
+    const lo = log ? Math.floor(Math.log10(Math.min(...pos.map((p) => p.x), 1))) : 0, hi = log ? Math.log10(Math.max(...pos.map((p) => p.x), 10)) + 0.05 : 0;
+    const linMax = log ? 1 : (() => { const t = Math.max(1e-9, ...pts.map((p) => p.x)), s = niceStep(t / 4); return Math.ceil(t / s) * s; })();
+    const tx = (v) => (log ? Math.log10(v) : v);
+    // Zero values sit in their own band (log has no zero); spread them slightly so they do not stack.
+    const zx = new Map(zeros.map((p, i) => [p.name, m.l + band / 2 + ((i % 5) - 2) * 7]));
+    const x = (v, name) => (log ? (v > 0 ? x0 + ((Math.log10(v) - lo) / (hi - lo)) * pw2 : zx.get(name) ?? m.l + band / 2) : m.l + (v / linMax) * pw);
+    const y = (v) => m.t + ph - (v / yMax) * ph;
     const svg = el('svg:svg', { viewBox: `0 0 ${Wd} ${Hd}`, height: Hd, role: 'img', 'aria-label': `${cfg.title}. Scatter plot; the Table tab lists every neighborhood.` });
     yAxis(svg, m, Wd, yMax, ys, y, cfg.yTick);
-    const xt = log ? [0, 1, 3, 10, 30, 100, 300, 1000, 3000].filter((v) => tx(v) <= xMax) : Array.from({ length: Math.floor(xMax / niceStep(xTop / 4)) + 1 }, (_, i) => i * niceStep(xTop / 4));
+    if (band) { svg.append(el('svg:rect', { x: m.l, y: m.t, width: band, height: ph, fill: '#f3f5f4', rx: 6 })); svg.append(el('svg:text', { x: m.l + band / 2, y: m.t + ph + 16, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--ink2)' }, 'No units')); }
+    const xt = log ? [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30, 100, 300, 1000].filter((v) => Math.log10(v) >= lo && Math.log10(v) <= hi) : Array.from({ length: 5 }, (_, i) => (i * linMax) / 4);
     for (const v of xt) { svg.append(el('svg:line', { x1: x(v), x2: x(v), y1: m.t + ph, y2: m.t + ph + 4, stroke: 'var(--base)' })); svg.append(el('svg:text', { x: x(v), y: m.t + ph + 16, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }, axisFmt(v))); }
     svg.append(el('svg:text', { x: m.l + pw, y: Hd - 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--ink2)' }, `${cfg.xLabel}${log ? ' (log scale)' : ''}`));
     // Median reference lines, labelled descriptively.
-    const mx = median(pts.map((p) => p.x)), my = median(pts.map((p) => p.y));
-    if (mx != null) { svg.append(el('svg:line', { x1: x(mx), x2: x(mx), y1: m.t, y2: m.t + ph, stroke: 'var(--muted)', 'stroke-dasharray': '4 4' })); svg.append(el('svg:text', { x: x(mx) + 4, y: m.t + 10, 'font-size': 10.5, fill: 'var(--muted)' }, `Median ${cfg.xFmt(mx)}`)); }
+    const my = median(pts.map((p) => p.y));
     if (my != null) { svg.append(el('svg:line', { x1: m.l, x2: m.l + pw, y1: y(my), y2: y(my), stroke: 'var(--muted)', 'stroke-dasharray': '4 4' })); svg.append(el('svg:text', { x: m.l + pw, y: y(my) - 5, 'text-anchor': 'end', 'font-size': 10.5, fill: 'var(--muted)' }, `Median ${cfg.yFmt(my)}`)); }
     // Outliers: beyond 1.5 IQR in plotted space, at most four.
     const q = (a, f) => { const s = [...a].sort((p, r) => p - r); const i = (s.length - 1) * f, lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
     const fence = (vals) => { const q1 = q(vals, 0.25), q3 = q(vals, 0.75); return q3 + 1.5 * (q3 - q1); };
-    const fx = fence(pts.map((p) => tx(p.x))), fy = fence(pts.map((p) => p.y));
-    const outliers = new Set(pts.filter((p) => tx(p.x) > fx || p.y > fy).sort((a, b) => b.y - a.y).slice(0, 4).map((p) => p.name));
+    const fx = pos.length > 3 ? fence(pos.map((p) => tx(p.x))) : Infinity, fy = fence(pts.map((p) => p.y));
+    const outliers = new Set([...pts.filter((p) => (p.x > 0 && tx(p.x) > fx) || p.y > fy).sort((a, b) => b.y - a.y).slice(0, 3), ...[...pos].sort((a, b) => b.x - a.x).slice(0, 2)].map((p) => p.name));
     const order = [...pts].sort((a, b) => (a.name === cfg.selected) - (b.name === cfg.selected));
     for (const p of order) {
       const sel = p.name === cfg.selected;
-      svg.append(el('svg:circle', { cx: x(p.x), cy: y(p.y), r: sel ? 7 : 5, fill: sel ? 'var(--sel)' : 'var(--ctx)', stroke: 'var(--surface)', 'stroke-width': 2 }));
-      if (sel || outliers.has(p.name)) { const right = x(p.x) < m.l + pw * 0.72; svg.append(el('svg:text', { x: x(p.x) + (right ? 10 : -10), y: y(p.y) + 4, 'text-anchor': right ? 'start' : 'end', 'font-size': 11.5, fill: sel ? 'var(--ink1)' : 'var(--ink2)', 'font-weight': sel ? 750 : 500 }, p.name)); }
+      svg.append(el('svg:circle', { cx: x(p.x, p.name), cy: y(p.y), r: sel ? 7 : 5, fill: sel ? 'var(--sel)' : 'var(--ctx)', stroke: 'var(--surface)', 'stroke-width': 2 }));
+      if (sel || outliers.has(p.name)) { const px = x(p.x, p.name), right = px < m.l + pw * 0.72; svg.append(el('svg:text', { x: px + (right ? 10 : -10), y: y(p.y) + 4, 'text-anchor': right ? 'start' : 'end', 'font-size': 11.5, fill: sel ? 'var(--ink1)' : 'var(--ink2)', 'font-weight': sel ? 750 : 500 }, p.name)); }
     }
     const tip = el('div', { class: 'tip', role: 'status' }); host.append(svg, tip);
-    const near = (e) => { const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * (Wd / r.width), sy = (e.clientY - r.top) * (Hd / r.height); let best = null, bd = 24; for (const p of pts) { const d = Math.hypot(x(p.x) - sx, y(p.y) - sy); if (d < bd) { bd = d; best = p; } } return best; };
-    svg.addEventListener('pointermove', (e) => { const p = near(e); svg.style.cursor = p ? 'pointer' : 'default'; if (!p) { tip.style.display = 'none'; return; } tip.replaceChildren(el('div', { class: 'tt' }, p.name)); for (const [k, v] of [[cfg.xLabel, cfg.xFmt(p.x)], [cfg.yLabel, cfg.yFmt(p.y)]]) { const r = el('div', { class: 'tr' }); r.append(el('b', {}, v), el('span', {}, k)); tip.append(r); } if (p.extra) tip.append(el('div', { class: 'tt', style: 'margin:4px 0 0' }, p.extra)); tip.append(el('div', { class: 'tt', style: 'margin:6px 0 0' }, 'Click to select this neighborhood')); placeTip(host, tip, x(p.x), y(p.y), Wd); });
+    const near = (e) => { const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * (Wd / r.width), sy = (e.clientY - r.top) * (Hd / r.height); let best = null, bd = 24; for (const p of pts) { const d = Math.hypot(x(p.x, p.name) - sx, y(p.y) - sy); if (d < bd) { bd = d; best = p; } } return best; };
+    svg.addEventListener('pointermove', (e) => { const p = near(e); svg.style.cursor = p ? 'pointer' : 'default'; if (!p) { tip.style.display = 'none'; return; } tip.replaceChildren(el('div', { class: 'tt' }, p.name)); for (const [k, v] of [[cfg.xLabel, cfg.xFmt(p.x)], [cfg.yLabel, cfg.yFmt(p.y)]]) { const r = el('div', { class: 'tr' }); r.append(el('b', {}, v), el('span', {}, k)); tip.append(r); } if (p.extra) tip.append(el('div', { class: 'tt', style: 'margin:4px 0 0' }, p.extra)); tip.append(el('div', { class: 'tt', style: 'margin:6px 0 0' }, 'Click to select this neighborhood')); placeTip(host, tip, x(p.x, p.name), y(p.y), Wd); });
     svg.addEventListener('pointerleave', () => { tip.style.display = 'none'; });
     svg.addEventListener('click', (e) => { const p = near(e); if (p) cfg.onPick(p.name); });
   }
@@ -328,7 +352,8 @@
     const bC = el('button', { role: 'tab', 'aria-selected': 'true', type: 'button' }, 'Chart'), bT = el('button', { role: 'tab', 'aria-selected': 'false', type: 'button' }, 'Table');
     tabs.append(bC, bT);
     const legend = el('div', { class: 'legend2' }), chart = el('div', { class: 'chart' }), table = el('div', { class: 'tview tablewrap', hidden: '' });
-    const foot = el('div', { class: 'cfoot' }), note = el('span'), dl = el('button', { type: 'button' }, 'Download CSV'); foot.append(note, dl);
+    const foot = el('div', { class: 'cfoot' }), notes = el('details', { class: 'notes' }), note = el('p'), dl = el('button', { type: 'button' }, 'Download CSV');
+    notes.append(el('summary', {}, 'Notes and caveats'), note); foot.append(notes, dl);
     c.append(tabs, legend, chart, table, foot);
     const setTab = (t) => { bC.setAttribute('aria-selected', t === 'chart'); bT.setAttribute('aria-selected', t === 'table'); chart.hidden = legend.hidden = t !== 'chart'; table.hidden = t !== 'table'; };
     bC.onclick = () => setTab('chart'); bT.onclick = () => setTab('table');
@@ -382,10 +407,12 @@
     if (!n) return null; const mean = s / n, sd = n > 1 ? Math.sqrt(Math.max(0, (sq - n * mean * mean) / (n - 1))) : 0; return { avg: mean, n, moe: (1.96 * sd) / Math.sqrt(n) };
   };
   function srcLinks(keys) { const span = el('span'); keys.map((k) => H.sources.find((s) => s.key === k)).filter(Boolean).forEach((s, i) => { if (i) span.append(document.createTextNode(' · ')); span.append(el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name)); }); return span; }
-  function ecard(q, bodyNodes, winText, srcKeys) {
-    const c = el('article', { class: 'ecard' });
+  function ecard(q, bodyNodes, winText, srcKeys, wide) {
+    const c = el('article', { class: `ecard${wide ? ' wide' : ''}` });
     c.append(el('div', { class: 'eq' }, q), ...bodyNodes);
-    const w = el('div', { class: 'win' }, `${winText} Sources: `); w.append(srcLinks(srcKeys)); c.append(w);
+    const w = el('div', { class: 'win' }, 'Sources: '); w.append(srcLinks(srcKeys));
+    const d = el('details', { class: 'notes' }); d.append(el('summary', {}, 'Windows and caveats'), el('p', {}, winText)); w.append(d);
+    c.append(w);
     return c;
   }
   function cmpBars(rows, fmt, max) { // rows: [{metric, groups:[[label, value, color]]}]
@@ -450,13 +477,16 @@
       const mA = median(top3.map(medOK)), mB = median(rest.map(medOK));
       const cA = A.closed_slow / A.closed, cB = B.closed_slow / B.closed, oA = A.open_aged / A.n, oB = B.open_aged / B.n;
       const tA = 'Those three', tB = 'Rest of city';
+      const pvals = (a, b) => { const g = el('div', { class: 'pv' }); for (const [label, v] of [[tA, a], [tB, b]]) { const d = el('div'); d.append(el('b', {}, fmtHrs(v)), el('span', {}, label)); g.append(d); } return g; };
       out.push(ecard('Street cleaning response', [
-        el('div', { class: 'et' }, `How quickly street cleaning requests are handled in ${names(top3)}, compared with the rest of the city.`),
+        el('div', { class: 'et' }, `${names(top3)} compared with the rest of the city.`),
+        el('div', { class: 'sub2' }, 'Delayed requests'),
         cmpBars([
-          { metric: 'Closed after 7+ days (share of closed requests)', groups: [[tA, cA, 'var(--clean)'], [tB, cB, 'var(--ctx)']], fmt: fmtPct, max: Math.max(cA, cB) * 1.15 },
-          { metric: 'Still open after 7+ days (share of all requests)', groups: [[tA, oA, 'var(--clean)'], [tB, oB, 'var(--ctx)']], fmt: fmtPct, max: Math.max(oA, oB) * 1.15 },
-          { metric: 'Median hours to close (typical neighborhood in each group)', groups: [[tA, mA, 'var(--clean)'], [tB, mB, 'var(--ctx)']], fmt: fmtHrs, max: Math.max(mA || 0, mB || 0) * 1.15 },
+          { metric: 'Closed after 7+ days (share of closed requests)', groups: [[tA, cA, 'var(--clean)'], [tB, cB, 'var(--ctx)']], fmt: fmtPct, max: Math.max(cA, cB, oA, oB) * 1.15 },
+          { metric: 'Still open after 7+ days (share of all requests)', groups: [[tA, oA, 'var(--clean)'], [tB, oB, 'var(--ctx)']], fmt: fmtPct, max: Math.max(cA, cB, oA, oB) * 1.15 },
         ]),
+        el('div', { class: 'sub2' }, 'Typical time to close (median hours)'),
+        pvals(mA, mB),
       ], `Shares: requests filed ${W.r311}. Median: requests filed ${W.med}, exact timestamps; each group shows the median of its neighborhoods' medians. Closure can be administrative.`, ['311']));
     }
     // 3. Inspected conditions where housing is concentrated
@@ -466,7 +496,7 @@
       out.push(ecard('Inspected street conditions', [
         el('div', { class: 'et' }, a && b ? `City inspectors rated sidewalk litter in those three neighborhoods at ${a.avg.toFixed(2)}, against ${b.avg.toFixed(2)} in other inspected neighborhoods. ${overlap ? 'The difference is within the margins of error.' : `The difference is larger than the margins of error; ${a.avg < b.avg ? 'less' : 'more'} litter was recorded where housing is concentrated.`}` : 'Not enough inspections to compare.'),
         ...(a && b ? [ciRows([{ label: 'Those three', ...a, color: 'var(--clean)' }, { label: 'Other inspected neighborhoods', ...b, color: 'var(--muted)' }])] : []),
-      ], `Controller inspections ${W.litter}; ${cov} of the 3 neighborhoods and ${H.litter_coverage.inspected} of ${H.litter_coverage.total} overall were inspected. Uninspected neighborhoods are excluded, not treated as clean.`, ['litter']));
+      ], `Controller inspections ${W.litter}; ${cov} of the 3 neighborhoods and ${H.litter_coverage.inspected} of ${H.litter_coverage.total} overall were inspected. Uninspected neighborhoods are excluded, not treated as clean.`, ['litter'], true));
     }
     // 4. Reporting versus inspected conditions
     {
@@ -475,12 +505,14 @@
       const h = [...cand].sort((p, q) => (per1k(q.r311.clean.n, q) / cwClean - q.litter.avg / cw.litter.avg) - (per1k(p.r311.clean.n, p) / cwClean - p.litter.avg / cw.litter.avg))[0];
       if (h) {
         const ratio = per1k(h.r311.clean.n, h) / cwClean, overlap = Math.abs(h.litter.avg - cw.litter.avg) <= (h.litter.moe || 0) + (cw.litter.moe || 0);
-        out.push(ecard('Complaints versus inspected conditions', [
-          el('div', { class: 'big' }, `${ratio.toFixed(2)}×`),
-          el('div', { class: 'bigl' }, `the citywide rate of street cleaning requests per resident, in ${h.name}`),
-          ciRows([{ label: h.name, ...h.litter, color: 'var(--clean)' }, { label: 'Citywide', ...cw.litter, color: 'var(--muted)' }]),
+        const left = el('div'); left.append(el('div', { class: 'big' }, `${ratio.toFixed(2)}×`), el('div', { class: 'bigl' }, `${h.name}'s rate of street cleaning requests per resident, compared with citywide`));
+        const right = el('div'); right.append(el('div', { class: 'sub2' }, 'Inspected sidewalk litter'), ciRows([{ label: h.name, ...h.litter, color: 'var(--clean)' }, { label: 'Citywide', ...cw.litter, color: 'var(--muted)' }]));
+        const pair = el('div', { class: 'pair' }); pair.append(left, right);
+        out.unshift(ecard('Complaints versus inspected conditions', [
+          el('div', { class: 'lead' }, overlap ? 'More complaints do not necessarily mean worse street conditions.' : `Complaints and inspections both point to ${h.litter.avg > cw.litter.avg ? 'worse' : 'better'} conditions in ${h.name}, by very different margins.`),
+          pair,
           el('div', { class: 'et' }, `${overlap ? `Yet its inspected sidewalk litter is within the margin of error of the citywide average.` : `Its inspected sidewalk litter is ${h.litter.avg > cw.litter.avg ? 'higher' : 'lower'} than citywide, beyond the margin of error, but by much less than the complaint rate suggests.`} Complaint counts alone are not a direct measure of street conditions. Per-resident rates also run high in commercial areas with many visitors; ${h.name} has ${fmt1(per1k(h.businesses, h))} active businesses per 1,000 residents against ${fmt1(per1k(cw.businesses, cw))} citywide.`),
-        ], `311: requests filed ${W.r311}. Inspections: ${W.litter} (${fmtInt(h.litter.n)} in ${h.name}). ${overlapText()} Rates count requests, not people.`, ['311', 'litter', 'acs', 'biz']));
+        ], `311: requests filed ${W.r311}. Inspections: ${W.litter} (${fmtInt(h.litter.n)} in ${h.name}). ${overlapText()} Rates count requests, not people. ${h.name} was chosen as the inspected neighborhood (30+ inspections) where complaint rates most exceed inspected conditions.`, ['311', 'litter', 'acs', 'biz'], true));
       }
     }
     $('evidence').replaceChildren(...out);
@@ -504,11 +536,11 @@
       const left = hoods.length - pts.length;
       segmented(C.scatter.tabs, [['log', 'Log scale'], ['linear', 'Linear scale']], () => state.xscale, (v) => { state.xscale = v; });
       scatter(C.scatter.chart, { title: 'Housing concentration and neighborhood services', points: pts, selected: sel, xscale: state.xscale, xLabel: hLabel(), yLabel: mLabel(), xFmt: fmt1, yFmt: M.fmt, yTick: M.fmt === fmtPct ? (v) => `${Math.round(v * 100)}%` : M.fmt === fmtHrs ? (v) => `${+v.toFixed(1)}h` : axisFmt, onPick: (n) => { $('hood').value = n; $('hood').dispatchEvent(new Event('change')); } });
-      legend(C.scatter.legend, [['Neighborhood', 'var(--ctx)', 'dot'], ...(sel ? [[sel, 'var(--sel)', 'dot']] : []), ['Median of neighborhoods shown', '', 'dash']]);
-      C.scatter.sub.textContent = `Each dot is a neighborhood. Across: ${hLabel().toLowerCase()}. Up: ${mLabel().toLowerCase()}. Labels mark the selected neighborhood and statistical outliers.${left ? ` ${left} neighborhoods are left out (missing data, too few requests or inspections, or too few residents for a rate).` : ''}`;
+      legend(C.scatter.legend, [['Neighborhood', 'var(--ctx)', 'dot'], ...(sel ? [[sel, 'var(--sel)', 'dot']] : []), ['Median across neighborhoods (horizontal)', '', 'dash']]);
+      C.scatter.sub.textContent = `Each dot is a neighborhood. Across: ${hLabel().toLowerCase()}. Up: ${mLabel().toLowerCase()}. Labels mark the selected neighborhood, the two with the most units per resident, and statistical outliers.${left ? ` ${left} neighborhoods are left out (missing data, too few requests or inspections, or too few residents for a rate).` : ''}`;
       C.scatter.win.textContent = `Window: housing as of the latest MOHCD update; ${mLabel().toLowerCase()} ${M.win()}.${M.rate ? ' Rates count requests or objects, not people.' : ''}`;
       fillTable(C.scatter.table, ['Neighborhood', hLabel(), mLabel()], [...pts].sort((a, b) => b.x - a.x).map((p) => [p.name, fmt1(p.x), M.fmt(p.y)]));
-      C.scatter.note.textContent = 'A pattern across neighborhoods is not evidence that housing causes it. Log scale spreads out neighborhoods with few or no units; zero stays at the left edge.';
+      C.scatter.note.textContent = 'A pattern across neighborhoods is not evidence that housing causes it. On the log scale, neighborhoods with no homeless-designated affordable units sit in the shaded No units band; each step to the right is ten times more units.';
       C.scatter.dl.onclick = () => csv('sf-housing-vs-services.csv', ['neighborhood', hLabel(), mLabel()], pts.map((p) => [p.name, p.x, p.y]));
     }
     // 2. Sortable table
@@ -529,16 +561,26 @@
         ['Tents and structures', W.tents, (h) => (h.tents_latest ? h.tents_latest.tents + h.tents_latest.structures : 0), fmtInt],
         ['Businesses per 1,000 residents', '', (h) => (h.population >= MIN_POP ? (h.businesses / h.population) * 1000 : null), fmt1],
       ];
-      C.sortCol ??= 3; C.sortAsc ??= false;
+      // Six key measures by default; the rest behind the column picker.
+      C.visible ??= new Set([2, 4, 5, 8, 10, 11]);
+      const vis = cols.map((_, i) => i).filter((i) => i === 0 || C.visible.has(i));
+      C.sortCol ??= 2; C.sortAsc ??= false;
       const rows = [...hoods].sort((a, b) => { const va = cols[C.sortCol][2](a), vb = cols[C.sortCol][2](b); if (va == null) return 1; if (vb == null) return -1; return (typeof va === 'string' ? va.localeCompare(vb) : va - vb) * (C.sortAsc ? 1 : -1); });
       const t = el('table', { id: 'ntable' }), th = el('thead'), hr = el('tr'), tb = el('tbody');
-      cols.forEach(([name, sub], i) => { const c = el('th', { class: i ? 'num' : '', scope: 'col', tabindex: '0' }, name); if (sub) c.append(el('small', {}, sub)); if (i === C.sortCol) c.setAttribute('aria-sort', C.sortAsc ? 'ascending' : 'descending'); const go = () => { C.sortAsc = C.sortCol === i ? !C.sortAsc : i === 0; C.sortCol = i; render(); }; c.onclick = go; c.onkeydown = (e) => { if (e.key === 'Enter') go(); }; hr.append(c); });
+      vis.forEach((i) => { const [name, sub] = cols[i]; const c = el('th', { class: i ? 'num' : '', scope: 'col', tabindex: '0' }, name); if (sub) c.append(el('small', {}, sub)); if (i === C.sortCol) c.setAttribute('aria-sort', C.sortAsc ? 'ascending' : 'descending'); const go = () => { C.sortAsc = C.sortCol === i ? !C.sortAsc : i === 0; C.sortCol = i; render(); }; c.onclick = go; c.onkeydown = (e) => { if (e.key === 'Enter') go(); }; hr.append(c); });
       th.append(hr);
-      for (const h of rows) { const tr = el('tr', h.name === sel ? { class: 'sel' } : {}); cols.forEach(([, , f, fm], i) => { const v = f(h); tr.append(el('td', { class: `${i ? 'num' : ''}${v == null ? ' na' : ''}` }, v == null ? (i === 10 ? 'not inspected' : 'n/a') : fm(v, h))); }); tb.append(tr); }
+      for (const h of rows) { const tr = el('tr', h.name === sel ? { class: 'sel' } : {}); vis.forEach((i) => { const [, , f, fm] = cols[i]; const v = f(h); tr.append(el('td', { class: `${i ? 'num' : ''}${v == null ? ' na' : ''}` }, v == null ? (i === 10 ? 'not inspected' : 'n/a') : fm(v, h))); }); tb.append(tr); }
       t.append(th, tb);
-      const wrap = el('div', { class: 'tablewrap' }); wrap.append(t); C.table.chart.replaceChildren(wrap);
+      const wrap = el('div', { class: 'tablewrap' }); wrap.append(t);
+      const pick = el('details', { class: 'colpick' }); if (C.pickOpen) pick.open = true;
+      pick.addEventListener('toggle', () => { C.pickOpen = pick.open; });
+      const menu = el('div', { class: 'menu' });
+      cols.forEach(([name, sub], i) => { if (!i) return; const lab = el('label'), cb = el('input', { type: 'checkbox' }); cb.checked = C.visible.has(i); cb.onchange = () => { if (cb.checked) C.visible.add(i); else C.visible.delete(i); render(); }; lab.append(cb, document.createTextNode(`${name}${sub ? ` (${sub})` : ''}`)); menu.append(lab); });
+      pick.append(el('summary', {}, `Columns (${vis.length - 1} of ${cols.length - 1})`), menu);
+      const bar = el('div', { class: 'tbar' }); bar.append(el('span', { class: 'hint' }, 'Neighborhood names stay in place as you scroll sideways.'), pick);
+      C.table.chart.replaceChildren(bar, wrap);
       C.table.tabs.hidden = true; C.table.legend.hidden = true;
-      C.table.sub.textContent = 'Every neighborhood, with the observation window under each column heading. Select a column to sort.';
+      C.table.sub.textContent = 'Every neighborhood, with the observation window under each column heading. Select a heading to sort; use Columns to add or remove measures.';
       C.table.win.textContent = '';
       C.table.note.textContent = `n/a: fewer than ${fmtInt(MIN_POP)} residents (per-resident rates would mislead) or fewer than ${MIN_REQ} requests. "Not inspected": no Controller inspections this fiscal year, which says nothing about conditions. Litter: 1 none to 5 heavy, ± is a 95% margin of error.`;
       C.table.dl.onclick = () => csv('sf-housing-neighborhoods.csv', cols.map((c) => `${c[0]}${c[1] ? ` (${c[1]})` : ''}`), rows.map((h) => cols.map(([, , f]) => f(h) ?? '')));
@@ -583,7 +625,7 @@
           series = raw.map((s) => ({ ...s, values: yrs.map((y) => { const v = months.map((mm, i) => (mm.startsWith(y) ? s.values[i] : undefined)).filter((x) => x !== undefined); const ok = v.filter((x) => x != null); return ok.length ? sum(ok) / ok.length : null; }) }));
           strip = yrs.map((y) => sum(Object.entries(op).filter(([mm]) => mm.startsWith(y)).map(([, u]) => u)));
         }
-        lineChart(C.timeline.chart, { title: `311 activity and housing completions in ${target}`, labels, labelName, series, strip: { values: strip, color: 'var(--housing)', label: 'Homeless-designated affordable units, construction completed', tipName: 'units completed (construction)' } });
+        lineChart(C.timeline.chart, { tall: true, title: `311 activity and housing completions in ${target}`, labels, labelName, series, strip: { values: strip, color: 'var(--housing)', label: 'Homeless-designated affordable units, construction completed', tipName: 'units completed (construction)' } });
         legend(C.timeline.legend, [...series.map((s) => [s.name, s.color]), ['Units completed (dot size = units)', 'var(--housing)', 'dot']]);
         C.timeline.h.textContent = `311 activity and housing completions: ${target}`;
         const inWin = Object.entries(op).filter(([mm]) => mm >= months[0]);

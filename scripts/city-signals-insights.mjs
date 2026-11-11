@@ -35,24 +35,28 @@ function categorySpike(records, end, asOfText, movers) {
     const k = `${r.analysis_neighborhood}|${r.service_name}`;
     if (!pairs.has(k)) pairs.set(k, { hood: r.analysis_neighborhood, cat: r.service_name, actual: 0, trailing: 0 });
     pairs.get(k)[recent ? "actual" : "trailing"]++;
+    if (!recent) { const w = Math.floor((end - 7 - d) / 7); if (w < 4) (pairs.get(k).weeks ||= [0, 0, 0, 0])[w]++; }
   }
   const rows = [...pairs.values()]
     .map((p) => ({ ...p, expected: (p.trailing / 30) * 7 }))
     .filter((p) => p.actual >= 20 && p.expected > 0)
     .map((p) => ({ ...p, change: (p.actual / p.expected - 1) * 100 }));
   const window = `${fmtDay(end - 6)} to ${fmtDay(end)}`;
-  const numbers = (p) => ({ neighborhood: p.hood, category: p.cat, actual_7d: p.actual, trailing_30d_count: p.trailing, expected_7d: round1(p.expected), change_pct: round1(p.change) });
+  const numbers = (p) => ({ neighborhood: p.hood, category: p.cat, actual_7d: p.actual, trailing_30d_count: p.trailing, expected_7d: round1(p.expected), change_pct: round1(p.change), prior_weeks: [...(p.weeks || [0, 0, 0, 0])].reverse() });
+  const priorText = (p) => `Prior four weeks, oldest first: ${[...(p.weeks || [0, 0, 0, 0])].reverse().join(", ")}.`;
+  const link = (p) => ({ label: "Open these cases", href: `/city-signals/?period=7&area=${encodeURIComponent(p.hood)}&category=${encodeURIComponent(p.cat)}` });
 
   const ups = rows.filter((p) => p.actual >= 1.25 * p.expected).sort((a, b) => b.change - a.change);
-  const mover = (p) => ({ neighborhood: p.hood, category: p.cat, actual_7d: p.actual, expected_7d: round1(p.expected), change_pct: Math.round(p.change) });
+  const mover = (p) => ({ neighborhood: p.hood, category: p.cat, actual_7d: p.actual, expected_7d: round1(p.expected), change_pct: Math.round(p.change), prior_weeks: [...(p.weeks || [0, 0, 0, 0])].reverse() });
   movers.up = ups.slice(0, 8).map(mover);
   movers.down = rows.filter((p) => p.actual <= 0.8 * p.expected).sort((a, b) => a.change - b.change).slice(0, 8).map(mover);
   if (ups.length) {
     const p = ups[0];
     return {
       key: "spike", status: "primary",
-      text: `${p.cat} reports in ${p.hood} are up ${Math.round(p.change)}% vs the trailing 30-day average.`,
-      context: `${fmtInt(p.actual)} reports ${window} vs ${round1(p.expected)} expected. DataSF snapshot as of ${asOfText}.`,
+      text: `${p.cat} in ${p.hood}: ${fmtInt(p.actual)} reports this week vs ${round1(p.expected)} expected, up ${Math.round(p.change)}%.`,
+      context: `${window}, compared with the trailing 30-day average. ${priorText(p)} DataSF records published ${asOfText}.`,
+      links: [link(p)],
       numbers: numbers(p),
     };
   }
@@ -61,8 +65,9 @@ function categorySpike(records, end, asOfText, movers) {
     const p = downs[0];
     return {
       key: "spike", status: "fallback",
-      text: `${p.cat} reports in ${p.hood} are down ${Math.round(-p.change)}% vs the trailing 30-day average.`,
-      context: `${fmtInt(p.actual)} reports ${window} vs ${round1(p.expected)} expected. DataSF snapshot as of ${asOfText}.`,
+      text: `${p.cat} in ${p.hood}: ${fmtInt(p.actual)} reports this week vs ${round1(p.expected)} expected, down ${Math.round(-p.change)}%.`,
+      context: `${window}, compared with the trailing 30-day average. ${priorText(p)} DataSF records published ${asOfText}.`,
+      links: [link(p)],
       numbers: numbers(p),
     };
   }
@@ -87,8 +92,8 @@ function repeatLocations(records, end, asOfText, repeatList) {
   if (qualifying > 0) {
     return {
       key: "repeats", status: "primary",
-      text: `${fmtInt(qualifying)} street locations have 5+ repeat requests of the same subtype in the last 90 days.`,
-      context: `Street and subtype pairs with an open case or a closure in the last 14 days. DataSF snapshot as of ${asOfText}.`,
+      text: `${fmtInt(qualifying)} street-name and request-type pairs had 5 or more reports in the last 90 days.`,
+      context: `Grouped by street name, so one pair can span a whole corridor (${list[0] ? `${list[0].street} ${list[0].subtype.replace(/_/g, " ")}: ${fmtInt(list[0].n)} reports` : "for example a long street"}). Pairs with an open case or a closure in the last 14 days. DataSF records published ${asOfText}.`,
       link: { label: "See list", target: "repeat-list" },
       numbers: { qualifying_pairs: qualifying, pairs_with_5plus_any_status: [...pairs.values()].filter((p) => p.n >= 5).length },
     };
@@ -96,8 +101,8 @@ function repeatLocations(records, end, asOfText, repeatList) {
   const oldOpen = records.filter((r) => isOpen(r) && dayOf(r.requested_datetime) < end - 13).length;
   return {
     key: "repeats", status: "fallback",
-    text: `${fmtInt(oldOpen)} cases opened more than 14 days ago are still open.`,
-    context: `Open cases from the last 90 days. DataSF snapshot as of ${asOfText}.`,
+    text: `${fmtInt(oldOpen)} cases opened 15 to 90 days ago are still open.`,
+    context: `Cases opened in the last 90 days, more than 14 days ago, with no closure date. DataSF records published ${asOfText}.`,
     numbers: { open_older_than_14d: oldOpen },
   };
 }
@@ -128,7 +133,7 @@ function closeTime(records, end, asOfText) {
     return {
       key: "close_time", status: "primary",
       text: `Median close time for ${s.category} is ${round1(s.recent_median)} days, up from ${round1(s.prior_median)} a month ago.`,
-      context: `Cases closed ${fmtDay(end - 29)} to ${fmtDay(end)} vs ${fmtDay(end - 59)} to ${fmtDay(end - 30)}. DataSF snapshot as of ${asOfText}.`,
+      context: `Cases closed ${fmtDay(end - 29)} to ${fmtDay(end)} vs ${fmtDay(end - 59)} to ${fmtDay(end - 30)}. DataSF records published ${asOfText}.`,
       numbers: { top5: stats.map(numbers) },
     };
   }
@@ -136,8 +141,8 @@ function closeTime(records, end, asOfText) {
   if (!fastest) return null;
   return {
     key: "close_time", status: "fallback",
-    text: `Fastest resolving category: ${fastest.category} at ${round1(fastest.recent_median)} days.`,
-    context: `Median for cases closed ${fmtDay(end - 29)} to ${fmtDay(end)}, among the 5 highest-volume categories. DataSF snapshot as of ${asOfText}.`,
+    text: `Shortest median time to close: ${fastest.category} at ${round1(fastest.recent_median)} days.`,
+    context: `Median for cases closed ${fmtDay(end - 29)} to ${fmtDay(end)}, among the 5 highest-volume categories, measured from request to closure in the city's system (closure can be administrative). DataSF records published ${asOfText}.`,
     numbers: { top5: stats.map(numbers) },
   };
 }
