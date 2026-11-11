@@ -9,7 +9,7 @@
 /* ---------------------------------------------------------------- tokens */
 :root{
   /* color */
-  --canvas:#F7F8F6; --surface:#FFFFFF; --ink:#172924; --ink-2:#3D4F48; --muted:#66726C; --faint:#98A39D;
+  --canvas:#F9F9F7; --surface:#FFFFFF; --ink:#172924; --ink-2:#3D4F48; --muted:#66726C; --faint:#98A39D;
   --line:#E3E8E4; --line-strong:#CDD5D0; --accent:#087C69; --accent-ink:#065F51; --accent-soft:#E4F1EC;
   --side:#132B25; --side-ink:#DDEBE5; --side-muted:#8EB0A4;
   --warn-bg:#FFF8E6; --warn-line:#EADFBF; --warn-ink:#5E4C2C; --error:#B8462F;
@@ -22,7 +22,7 @@
   --grid:#E6E9E6; --axis:#C3C9C5;
   /* type: one family, five roles */
   --font:"Inter",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --t-page:34px; --t-section:22px; --t-component:17px; --t-body:15px; --t-meta:12.5px;
+  --t-page:26px; --t-section:19px; --t-component:16px; --t-body:14.5px; --t-meta:12.5px;
   /* spacing: 8px rhythm */
   --sp1:8px; --sp2:16px; --sp3:24px; --sp4:32px; --sp6:48px; --sp9:72px;
   --radius:10px;
@@ -269,3 +269,89 @@ tr:last-child td{border-bottom:0}
   .rank .lbl{width:120px}
   .field{max-width:none}
 }
+
+/* =================================================================
+   v2 layout: slim top navigation, calm cards, inline place picker.
+   (Later rules win; the sidebar rules above are no longer used.)
+   ================================================================= */
+.shell{display:block}
+.topbar{border-bottom:1px solid var(--line);background:var(--canvas)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:28px}
+.topbar .brand{display:flex;align-items:baseline;gap:8px;padding:0;color:var(--ink);text-decoration:none;flex:none}
+.topbar .brand strong{color:var(--ink);font-size:15px;letter-spacing:-.2px;display:inline}
+.topbar .brand span{font-size:13px;color:var(--muted)}
+.topbar nav{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none}
+.topbar nav::-webkit-scrollbar{display:none}
+.topbar nav a{font-size:14px;color:var(--ink-2);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.topbar nav a:hover{color:var(--ink)}
+.topbar nav a[aria-current="page"]{color:var(--ink);font-weight:600;border-bottom-color:var(--accent)}
+.main{max-width:1180px;padding:28px 32px 64px}
+.side,.mnav{display:none!important}
+
+/* header: smaller, quieter */
+.page-title{font-weight:700;letter-spacing:-.4px;line-height:1.25}
+.dek{font-size:15px;margin-top:10px;max-width:760px}
+.kicker{display:none}
+.page-tabs{margin-top:var(--sp3)}
+.page-tabs button{font-size:14px}
+
+/* inline place picker inside the page title */
+.title-pick{position:relative;display:inline-flex;align-items:center;gap:4px;color:var(--accent);border-bottom:2px dotted var(--accent);cursor:pointer}
+.title-pick select{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:16px}
+.title-pick:focus-within{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.title-pick .chev{font-size:.6em;margin-left:2px}
+
+/* calm cards: one consistent container for every section */
+.card,.module,.ccard,.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;border-top-width:1px}
+.panel.full{margin-top:var(--sp3)}
+.modules,.section,.lower{column-gap:var(--sp3);row-gap:var(--sp3)}
+.section,.lower{margin-top:var(--sp3)}
+.chapter{margin-top:var(--sp6)}
+.block{margin-top:var(--sp3)}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-top:var(--sp3)}
+.summary .lead{font-size:17px;line-height:1.5;color:var(--ink);margin:0}
+.summary .lead b{font-weight:700}
+.summary .sub{font-size:13px;color:var(--muted);margin:8px 0 0}
+.chip{display:inline-block;font-size:11.5px;font-weight:600;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:1px 8px;margin-left:8px;vertical-align:2px}
+.finding-lead,.finding-row .finding{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.finding-row{gap:var(--sp3)}
+.finding{border-top:1px solid var(--line)}
+.finding-statement{font-size:22px;letter-spacing:-.4px}
+.big-number{font-size:34px}
+.kpi-strip{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-top:var(--sp3)}
+.kpi-item{padding:16px 20px}
+.kpi-item:first-child{padding-left:20px}
+.kpi-value{font-size:24px}
+.stats{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.stat{padding:16px 20px}.stat:first-child{padding-left:20px}
+.stat .num{font-size:24px}
+.toolbar,.filters{background:rgba(249,249,247,.94)}
+th{background:var(--surface)}
+#ntable th:first-child,#ntable td:first-child{background:var(--surface)}
+
+/* share-of-city bars with a residents reference line */
+.shares{display:grid;grid-template-columns:minmax(150px,260px) minmax(0,1fr);gap:8px 16px;align-items:center;margin-top:var(--sp2);font-size:13.5px}
+.shares .sl{color:var(--ink-2)}.shares .sl b{color:var(--ink);font-weight:600}.shares .sl span{color:var(--faint);margin-left:6px;font-variant-numeric:tabular-nums}
+.shares .st{position:relative;height:14px}
+.shares .sb{position:absolute;left:0;top:2px;height:10px;border-radius:0 3px 3px 0}
+.shares .sv{position:absolute;top:-2px;font-size:12.5px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.shares .ref{position:absolute;top:-6px;bottom:-6px;border-left:2px dashed var(--ink)}
+.shares .refl{font-size:12px;font-weight:600;color:var(--ink);grid-column:2;position:relative;height:16px}
+.shares .refl span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+
+@media(max-width:1050px){
+  .topbar-in{padding:12px 20px;gap:16px}
+  .main{padding:20px 20px 56px}
+}
+@media(max-width:610px){
+  :root{--t-page:22px}
+  .topbar-in{flex-direction:column;align-items:flex-start;gap:8px}
+  .topbar nav{width:100%;gap:16px}
+  .shares{grid-template-columns:1fr}
+  .shares .refl{grid-column:1}
+  .card,.module,.ccard,.panel,.finding-lead,.finding-row .finding,.summary{padding:16px}
+  .kpi-strip{border-radius:12px}
+  .kpi-item:first-child{padding-left:16px}.kpi-item{padding:14px 16px}
+}
+.finding-row{align-items:start}
+.title-pick .chev{font-size:.7em}

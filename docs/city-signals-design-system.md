@@ -1,5 +1,15 @@
 # City Signals design system
 
+> **v2 (November 2026).** Calmer chrome after comparing with lighter civic-data
+> sites: a slim top navigation bar replaces the dark sidebar; the type scale is
+> smaller (page title 26px, section 19px, component 16px, body 14.5px); every
+> section sits in one consistent white card (12px radius, 1px `--line` border);
+> the canvas is `#F9F9F7`. Place-based pages put the place in the title as an
+> inline picker (`.title-pick`), answer first in one sentence (`.summary`, key
+> numbers in bold), and show "share of the city" bars against a dashed
+> share-of-residents line (`.shares`). Values below are updated to v2 where they
+> changed; the principles are unchanged. Site locations are still never shown.
+
 Direction: **Editorial Intelligence**. Something between a well-designed data
 publication and a serious operational tool: restrained, spacious, analytical.
 References: Observable Framework (composition, whitespace, narrative), IBM
@@ -53,10 +63,10 @@ letter-spaced labels anywhere.
 
 | Role | Token | Size | Weight | Use |
 |---|---|---|---|---|
-| Page title | `--t-page` | 34px (28px mobile) | 720 | The `<h1>`, one per page |
-| Section title | `--t-section` | 22px | 700 | Chapters within a view |
+| Page title | `--t-page` | 26px (22px mobile) | 700 | The `<h1>`, one per page |
+| Section title | `--t-section` | 19px | 700 | Chapters within a view |
 | Component title | `--t-component` | 17px | 650 | Chart modules, findings |
-| Body | `--t-body` | 15px | 400 | Explanations, interpretations |
+| Body | `--t-body` | 14.5px | 400 | Explanations, interpretations |
 | Metadata | `--t-meta` | 12.5px | 400 to 600 | Sources, windows, units, labels |
 
 Lead finding statements use 28px; big numbers 40px; KPI values 30px. Numbers in

@@ -67,22 +67,14 @@
 </head>
 <body>
 <div class="shell">
-<aside class="side">
-<a class="brand" href="/" aria-label="Sora Labs home"><div class="brandmark">S</div><div><strong>Sora Labs</strong><small>City Signals</small></div></a>
-<nav aria-label="City Signals"><div class="navtitle">City Signals</div>
-<a class="navitem" href="/city-signals/">◈ &nbsp; Dashboard</a>
-<a class="navitem" href="/city-signals/this-week/">◎ &nbsp; This week</a>
-<a class="navitem" href="/city-signals/trends/">⌁ &nbsp; Long-run trends</a>
-<a class="navitem active" href="/city-signals/housing/" aria-current="page">⌂ &nbsp; Housing &amp; services</a></nav>
-<div class="sidebar-bottom"><strong>San Francisco · Public beta</strong>Based on city-published open data. Not an official City and County of San Francisco product.</div>
-</aside>
+<header class="topbar"><div class="topbar-in"><a class="brand" href="/" aria-label="Sora Labs home"><strong>Sora Labs</strong><span>City Signals</span></a><nav aria-label="City Signals"><a href="/city-signals/">Dashboard</a><a href="/city-signals/this-week/">This week</a><a href="/city-signals/trends/">Long-run trends</a><a href="/city-signals/housing/" aria-current="page">Housing &amp; services</a></nav></div></header>
 <main class="main viz">
-<nav class="mnav" aria-label="City Signals pages"><a href="/city-signals/">Dashboard</a><a href="/city-signals/this-week/">This week</a><a href="/city-signals/trends/">Long-run trends</a><a class="active" href="/city-signals/housing/" aria-current="page">Housing &amp; services</a></nav>
+
 
 <header class="page-head">
 <p class="kicker"><a href="/city-signals/">City Signals</a> / Housing and neighborhood services in San Francisco</p>
-<h1 class="page-title">Are city services keeping pace where San Francisco's housing is concentrated?</h1>
-<p class="dek">Housing, service requests and independently inspected street conditions, compared across 41 neighborhoods.</p>
+<h1 class="page-title">Housing and neighborhood services in <span class="title-pick"><span id="pickLabel">San Francisco</span><span class="chev" aria-hidden="true">▾</span><select id="place" aria-label="Choose an area"><option value="">All of San Francisco</option></select></span></h1>
+<p class="dek">Are city services keeping pace where housing is concentrated? Choose an area to see its share of the city's homeless-designated affordable housing, service requests and street conditions, compared with its share of residents.</p>
 <div class="caveat">Neighborhood-level patterns, not causes. <details><summary>How to read this analysis</summary>
 <p><strong>Housing</strong> means homeless-designated affordable units in developments financed or required by the city's housing office (MOHCD), counted when construction is complete. It is not a complete inventory of supportive housing, shelters or scattered-site units.</p>
 <p><strong>Rates count requests, not people.</strong> One person or place can generate many. Commercial districts with few residents show high per-resident rates, so check the per-area and per-business views too.</p>
@@ -100,15 +92,17 @@
 
 <!-- ===================================================== OVERVIEW -->
 <section id="view-overview" role="tabpanel" aria-labelledby="tab-overview">
-<div class="kpi-strip" id="kpis" aria-label="Scope of the analysis"></div>
+<div class="summary" id="summary" aria-live="polite"></div>
+<section class="card" style="margin-top:var(--sp3)" aria-labelledby="share-title"><h2 class="module-title" id="share-title">Share of the city<span class="chip" id="shareChip">San Francisco</span></h2><p class="csub" id="shareSub"></p><div id="shares"></div>
+<details class="notes" style="margin-top:16px;font-size:var(--t-meta);color:var(--muted)"><summary>Notes, window and sources</summary><p id="shareNotes"></p></details></section>
 
 <section class="chapter" aria-labelledby="lead-title">
-<p class="section-label"><b>01</b>Key finding</p>
+<p class="section-label"><b>Across the city</b>Key finding</p>
 <div class="finding-lead" id="lead"></div>
 </section>
 
 <section class="block" aria-label="Supporting findings">
-<p class="section-label"><b>02–04</b>Also in the data</p>
+<p class="section-label"><b>Across the city</b>Also in the data</p>
 <div class="finding-row" id="findings"></div>
 </section>
 
@@ -149,6 +143,7 @@
 
 <!-- ===================================================== DATA & METHODOLOGY -->
 <section id="view-data" role="tabpanel" aria-labelledby="tab-data" hidden>
+<div class="kpi-strip" id="kpis" aria-label="Scope of the analysis"></div>
 <div class="modules" id="dataModules"></div>
 
 <section class="chapter" aria-labelledby="srcTitle">
@@ -438,6 +433,60 @@
     return n > 0 ? `The two windows overlap by ${n} month${n === 1 ? '' : 's'}.` : 'The two windows do not overlap.';
   }
 
+  // Summary sentence and share-of-city bars for the place chosen in the title.
+  function place() {
+    const cw = H.citywide, h = H.hoods.find((x) => x.name === state.hood);
+    $('pickLabel').textContent = h ? h.name : 'San Francisco';
+    $('shareChip').textContent = h ? h.name : 'San Francisco';
+    const pct = (x) => (x < 0.001 && x > 0 ? '<0.1%' : `${(x * 100).toFixed(x < 0.1 ? 1 : 0)}%`);
+    const sum2 = $('summary');
+    sum2.replaceChildren();
+    const lead = el('p', { class: 'lead' }), sub = el('p', { class: 'sub' });
+    const b = (t) => el('b', {}, t), tx = (t) => document.createTextNode(t);
+    if (!h) {
+      const elig = H.hoods.filter((x) => x.population >= MIN_POP);
+      const top3 = [...elig].sort((a, c) => (c.homeless_units || 0) / c.population - (a.homeless_units || 0) / a.population).slice(0, 3);
+      const share = sum(top3.map((x) => x.homeless_units || 0)) / cw.homeless_units;
+      lead.append(b('San Francisco'), tx(' has '), b(fmtInt(cw.homeless_units)), tx(' homeless-designated affordable units across 41 neighborhoods. Three of them, '), b(top3.map((x) => x.name).join(', ').replace(/, ([^,]*)$/, ' and $1')), tx(', hold '), b(fmtPct(share)), tx('.'));
+      sub.textContent = 'Choose an area in the title to see how its share of housing, requests and street counts compares with its share of residents.';
+      sum2.append(lead, sub);
+      $('shareSub').textContent = 'Choose an area in the title. These neighborhoods hold the most homeless-designated affordable units:';
+      const list = el('div', { class: 'go-row' });
+      for (const x of [...H.hoods].sort((a, c) => (c.homeless_units || 0) - (a.homeless_units || 0)).slice(0, 4)) { const g = el('button', { class: 'go', type: 'button' }); g.append(el('b', {}, x.name), el('span', {}, `${fmtInt(x.homeless_units)} units, ${pct(x.homeless_units / cw.homeless_units)} of the city`)); g.onclick = () => setPlace(x.name); list.append(g); }
+      $('shares').replaceChildren(list);
+      $('shareNotes').textContent = 'MOHCD affordable housing portfolio, completed developments. Not a complete inventory of supportive housing or shelters.';
+      return;
+    }
+    const popS = h.population / cw.population;
+    const rows = [
+      ['Homeless-designated affordable units', h.homeless_units || 0, cw.homeless_units, 'var(--d-housing)'],
+      ['Street cleaning requests', h.r311.clean.n, cw.r311.clean.n, 'var(--d-clean)'],
+      ['Encampment requests', h.r311.enc.n, cw.r311.enc.n, 'var(--d-enc)'],
+      ['Tents and structures', (h.tents_latest?.tents || 0) + (h.tents_latest?.structures || 0), cw.tents_latest.tents + cw.tents_latest.structures, 'var(--d-enc)'],
+      ['Active businesses', h.businesses || 0, cw.businesses, 'var(--d-ctx)'],
+    ].map(([label, v, t, color]) => ({ label, v, s: t ? v / t : 0, color }));
+    const units = rows[0], clean = rows[1], enc = rows[2];
+    lead.append(b(h.name), tx(' has '), b(pct(popS)), tx(" of San Francisco's residents. It has "), b(pct(units.s)), tx(" of the city's homeless-designated affordable units, "), b(pct(clean.s)), tx(' of its street cleaning requests and '), b(pct(enc.s)), tx(' of its encampment requests.'));
+    const elig = H.hoods.filter((x) => x.population >= MIN_POP).sort((a, c) => (c.homeless_units || 0) / c.population - (a.homeless_units || 0) / a.population);
+    const rank = elig.findIndex((x) => x.name === h.name);
+    sub.textContent = h.population < MIN_POP ? `${h.name} has fewer than ${fmtInt(MIN_POP)} residents, so shares of residents are not meaningful here.` : `Its share of units is ${popS ? (units.s / popS).toFixed(1) : 'n/a'} times its share of residents, rank ${rank + 1} of ${elig.length} neighborhoods. Requests ${W.r311}.`;
+    sum2.append(lead, sub);
+    const max = Math.min(1, Math.max(popS, ...rows.map((r) => r.s)) * 1.15) || 1;
+    const pos = (x) => `${(x / max) * 100}%`;
+    const g = el('div', { class: 'shares' });
+    const refl = el('div', { class: 'refl' }), rl = el('span', {}, `${pct(popS)} of residents`); rl.style.left = pos(popS); refl.append(rl); g.append(el('div'), refl);
+    for (const r of rows) {
+      const lab = el('div', { class: 'sl' }); lab.append(el('b', {}, r.label), el('span', {}, fmtInt(r.v)));
+      const t = el('div', { class: 'st' }), bar = el('div', { class: 'sb' }), v = el('div', { class: 'sv' }, pct(r.s)), ref = el('div', { class: 'ref' });
+      bar.style.width = pos(r.s); bar.style.background = r.color; v.style.left = `calc(${pos(r.s)} + 6px)`; ref.style.left = pos(popS);
+      t.append(bar, ref, v); g.append(lab, t);
+    }
+    $('shares').replaceChildren(g);
+    $('shareSub').textContent = `Each bar is ${h.name}'s share of the city's total. The dashed line is its share of residents, ${pct(popS)}: a bar past the line is more than its share.`;
+    $('shareNotes').textContent = `Residents: American Community Survey ${H.acs_years}. Units: MOHCD portfolio, completed developments. Requests: ${W.r311}. Tents and structures: ${W.tents}. Businesses: active registered locations. Shares of requests count reports, not people or conditions; neighborhoods with many workers and visitors file more.`;
+  }
+  function setPlace(name) { state.hood = name; $('place').value = name; $('hood').value = name; place(); if (state.view !== 'overview') render(); else syncUrl(); }
+
   function overview() {
     const cw = H.citywide, elig = H.hoods.filter((h) => h.population >= MIN_POP);
     const per1k = (c, h) => c / (h.population / 1000);
@@ -653,24 +702,25 @@
       litter: (H.litter_period || 'current fiscal year').replace(' - ', ' to '),
       tents: `${monthName(H.tents_latest_quarter)} count`,
     };
-    for (const x of H.hoods) $('hood').append(el('option', { value: x.name }, x.name));
+    for (const x of H.hoods) { $('hood').append(el('option', { value: x.name }, x.name)); $('place').append(el('option', { value: x.name }, x.name)); }
     const q = new URLSearchParams(location.search);
     if (H.hoods.some((x) => x.name === q.get('area'))) state.hood = q.get('area');
     if (METRICS[q.get('metric')]) state.metric = q.get('metric');
     if (['pop', 'area', 'biz', 'none'].includes(q.get('norm'))) state.norm = q.get('norm');
     if (q.get('scale') === 'linear') state.xscale = 'linear';
-    $('hood').value = state.hood; $('metric').value = state.metric; $('norm').value = state.norm;
+    $('hood').value = state.hood; $('place').value = state.hood; $('metric').value = state.metric; $('norm').value = state.norm;
     $('status').textContent = `${H.hoods.length} neighborhoods · refreshed ${H.generated_at ? new Date(H.generated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'recently'}`;
     const USE = { '311': ['Request volumes and closure times', `${W.r311}; medians ${W.med}`], acs: ['Residents per neighborhood', H.acs_years], mohcd: ['Homeless-designated affordable units and completion dates', 'All completed developments'], tents: ['Tents, structures and lived-in vehicles', `Quarterly; latest ${W.tents}`], litter: ['Independent sidewalk litter ratings', W.litter], biz: ['Commercial activity (active business locations)', 'Currently active'] };
     $('srcRows').replaceChildren(...H.sources.map((s) => { const tr = el('tr'); const a = el('td'); a.append(el('a', { href: s.url, target: '_blank', rel: 'noopener' }, s.name)); tr.append(a, el('td', {}, USE[s.key]?.[0] || ''), el('td', {}, USE[s.key]?.[1] || ''), el('td', {}, s.updated ? new Date(s.updated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'n/a'), el('td', {}, s.schedule)); return tr; }));
-    kpis(); overview(); build();
+    kpis(); place(); overview(); build();
+    $('place').addEventListener('change', () => setPlace($('place').value));
     for (const k of ['overview', 'explore', 'data']) $(`tab-${k}`).addEventListener('click', () => setView(k));
     document.querySelectorAll('.go').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view, b.dataset.target)));
-    $('hood').addEventListener('change', () => { state.hood = $('hood').value; render(); });
+    $('hood').addEventListener('change', () => { state.hood = $('hood').value; $('place').value = state.hood; place(); render(); });
     $('metric').addEventListener('change', () => { state.metric = $('metric').value; render(); });
     $('norm').addEventListener('change', () => { state.norm = $('norm').value; render(); });
     let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (state.view !== 'overview') render(); }, 150); });
-    const v = q.get('view'), exploring = ['area', 'metric', 'norm', 'scale'].some((k) => q.has(k));
+    const v = q.get('view'), exploring = ['metric', 'norm', 'scale'].some((k) => q.has(k));
     setView(['explore', 'data', 'overview'].includes(v) ? v : exploring ? 'explore' : 'overview');
   }).catch((e) => { $('status').textContent = `Housing data could not be loaded (${e.message}). Try again shortly.`; $('dot').classList.add('error'); });
 })();
