@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<title>San Francisco 311 Trends Since 2008: Charts and Data | Sora Labs</title>
+<meta name="description" content="How San Francisco 311 has changed since 2008: monthly requests, top problems, how people report, and how long cases stay open, citywide and by neighborhood.">
+<link rel="canonical" href="https://sora-labs.net/city-signals/trends/">
+<meta name="theme-color" content="#132b25">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sora Labs">
+<meta property="og:title" content="San Francisco 311 Trends Since 2008">
+<meta property="og:description" content="Monthly 311 requests, top problems, reporting channels and how long cases stay open in San Francisco, citywide and by neighborhood.">
+<meta property="og:url" content="https://sora-labs.net/city-signals/trends/">
+<meta property="og:image" content="https://sora-labs.net/city-signals/trends/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@NadiaReports">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"San Francisco 311 Trends Since 2008","url":"https://sora-labs.net/city-signals/trends/","description":"Monthly 311 requests, top problems, reporting channels and how long cases stay open in San Francisco, citywide and by neighborhood.","isPartOf":{"@type":"WebSite","name":"Sora Labs","url":"https://sora-labs.net/"},"about":{"@type":"Place","name":"San Francisco, California"},"temporalCoverage":"2008-07/..","isBasedOn":{"@type":"Dataset","name":"311 Cases","url":"https://data.sf.gov/City-Infrastructure/311-Cases/vw6y-z8j6","creator":{"@type":"GovernmentOrganization","name":"City and County of San Francisco"}},"publisher":{"@type":"Organization","name":"Sora Labs","url":"https://sora-labs.net/"}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1F2ETBV5K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J1F2ETBV5K');</script>
+<link rel="stylesheet" href="../shell.css">
+<style>
+.viz{--surface:#ffffff;--ink1:#152520;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--base:#c3c2b7;
+  --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;
+  --o1:#86b6ef;--o2:#5598e7;--o3:#2a78d6;--o4:#1c5cab;--o5:#104281;--open:#eb6834}
+.intro{max-width:820px;color:#40584c;line-height:1.7;font-size:14px;margin:18px 0 0}
+.filters{position:sticky;top:0;z-index:20}
+.field.customf{display:none}.custom .field.customf{display:flex}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 16px;min-width:0;display:flex;flex-direction:column}
+.ccard.wide{grid-column:1/-1}
+.ccard h2{font-size:18px;letter-spacing:-.4px;margin:0;line-height:1.3}
+.ccard .csub{color:#52514e;font-size:13px;line-height:1.55;margin:6px 0 0;min-height:40px}
+.tabs{display:flex;gap:4px;margin:14px 0 10px;border-bottom:1px solid var(--line);align-items:flex-end}
+.tabs button{border:0;background:none;padding:8px 10px;font-size:12px;font-weight:700;color:#718079;border-bottom:2px solid transparent;margin-bottom:-1px;border-radius:0}
+.tabs button[aria-selected="true"]{color:var(--ink1);border-bottom-color:var(--ink1)}
+.tabs .showall{margin-left:auto;color:var(--teal);border-bottom:0}
+.legend2{display:flex;flex-wrap:wrap;gap:4px 6px;font-size:12px;color:var(--ink2);margin:0 0 6px}
+.legend2 .lk{display:inline-flex;align-items:center;gap:6px;padding:3px 6px;border-radius:6px}
+.legend2 button.lk{border:1px solid transparent;background:none;color:var(--ink2);font-size:12px;cursor:pointer}
+.legend2 button.lk:hover{background:#f3f6f3}
+.legend2 button.lk[aria-pressed="true"]{border-color:var(--ink1);color:var(--ink1);font-weight:700}
+.legend2 button.lk.dim{opacity:.45}
+.legend2 i{display:inline-block;width:14px;height:2px;border-radius:2px}
+.legend2 i.sq{width:10px;height:10px;border-radius:3px}
+.hint{font-size:11px;color:var(--muted);margin:-2px 0 6px}
+.chart{position:relative;width:100%;flex:1}
+.chart svg{display:block;width:100%;overflow:visible}
+.chart svg:focus{outline:2px solid #9ec5f4;outline-offset:4px;border-radius:6px}
+.tip{position:absolute;pointer-events:none;background:#fff;border:1px solid rgba(11,11,11,.12);box-shadow:0 6px 18px rgba(20,37,32,.12);border-radius:9px;padding:9px 11px;font-size:12px;min-width:160px;z-index:5;display:none}
+.tip .tt{color:var(--muted);font-size:11px;margin-bottom:5px}
+.tip .tr{display:flex;align-items:center;gap:7px;margin:3px 0;white-space:nowrap}
+.tip .tr i{width:12px;height:2px;border-radius:2px;flex:none}
+.tip .tr i.sq{width:9px;height:9px;border-radius:2px}
+.tip .tr b{color:var(--ink1);font-variant-numeric:tabular-nums;min-width:52px}
+.tip .tr span{color:var(--ink2)}
+.tview{max-height:330px;overflow:auto}
+.tview td,.tview th{white-space:nowrap}
+.tview .num{text-align:right;font-variant-numeric:tabular-nums}
+.cfoot{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-top:1px solid #eff2ee;margin-top:12px;padding-top:10px;font-size:11px;color:#84928b;line-height:1.55}
+.cfoot button{border:0;background:none;color:var(--teal);font-weight:750;font-size:11px;padding:0;white-space:nowrap}
+.bars2{display:flex;flex-direction:column;gap:5px}
+.brow{display:grid;grid-template-columns:190px minmax(0,1fr) 64px 58px;gap:10px;align-items:center;font-size:12px;border-radius:6px;padding:1px 4px;cursor:pointer}
+.brow:hover,.brow:focus{background:#f3f6f3;outline:none}
+.brow .bn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink2)}
+.brow .bt{height:10px;position:relative}
+.brow .bf{height:100%;background:var(--s1);border-radius:0 4px 4px 0;min-width:2px}
+.brow .bv{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink1);font-weight:650}
+.brow .bc{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink2)}
+.brow.sel .bn{color:var(--ink1);font-weight:800}.brow.sel .bf{background:var(--o5)}
+.bhead{display:grid;grid-template-columns:190px minmax(0,1fr) 64px 58px;gap:10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8a978d;font-weight:750;padding:0 4px 6px}
+.bhead span:nth-child(n+3){text-align:right}
+@media(max-width:1050px){.cards{grid-template-columns:1fr}}
+@media(max-width:610px){.brow,.bhead{grid-template-columns:110px minmax(0,1fr) 54px 48px;gap:6px}.ccard{padding:16px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+<a class="brand" href="/" aria-label="Sora Labs home"><div class="brandmark">S</div><div><strong>Sora Labs</strong><small>City Signals</small></div></a>
+<nav aria-label="City Signals"><div class="navtitle">City Signals</div>
+<a class="navitem" href="/city-signals/">◈ &nbsp; Dashboard</a>
+<a class="navitem" href="/city-signals/this-week/">◎ &nbsp; This week</a>
+<a class="navitem active" href="/city-signals/trends/" aria-current="page">⌁ &nbsp; Long-run trends</a></nav>
+<div class="sidebar-bottom"><strong>San Francisco · Public beta</strong>Based on city-published 311 case records. Not an official City and County of San Francisco product.</div>
+</aside>
+<main class="main viz">
+<nav class="mnav" aria-label="City Signals pages"><a href="/city-signals/">Dashboard</a><a href="/city-signals/this-week/">This week</a><a class="active" href="/city-signals/trends/" aria-current="page">Long-run trends</a></nav>
+<div class="topline"><div>
+<h1 class="eyebrow" style="margin:0 0 7px">San Francisco 311 trends since 2008</h1>
+<p class="headline">How the city's requests have changed.</p>
+<p class="intro">Every month since July 2008, San Franciscans have filed tens of thousands of 311 service requests about street cleaning, parking, graffiti, encampments and more. These charts show how that volume, the problems people report, the way they report them, and how long cases stay open have changed over time, for the whole city or one neighborhood.</p>
+</div></div>
+<div class="status"><span class="dot" id="dot"></span><span id="status">Loading trends…</span></div>
+
+<div class="filters" id="filters" role="group" aria-label="Chart filters">
+<div class="field"><label for="area">Area</label><select id="area"><option value="Citywide">All of San Francisco</option></select></div>
+<div class="field"><label for="span">Time range</label><select id="span"><option value="0">All years (since 2008)</option><option value="10">Last 10 years</option><option value="5">Last 5 years</option><option value="2">Last 2 years</option><option value="1" selected>Last 12 months</option><option value="custom">Custom range…</option></select></div>
+<div class="field customf"><label for="from">From</label><select id="from"></select></div>
+<div class="field customf"><label for="to">To</label><select id="to"></select></div>
+</div>
+
+<div class="cards" id="cards"></div>
+
+<div class="foot">Source: <a href="https://data.sf.gov/City-Infrastructure/311-Cases/vw6y-z8j6" target="_blank" rel="noopener">San Francisco 311 Cases, DataSF</a>, aggregated by month and refreshed every 6 hours. The current month is shown once it is complete. Each record is a service request, not a verified incident. See also the live <a href="/city-signals/">311 dashboard</a> and <a href="/city-signals/this-week/">this week in San Francisco 311</a>. Built by <a href="/">Sora Labs</a>; not an official City and County of San Francisco product.</div>
+</main>
+</div>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const COLORS = ['var(--s1)', 'var(--s2)', 'var(--s3)', 'var(--s4)', 'var(--s5)'];
+  const CLOSE_COLORS = ['var(--o1)', 'var(--o2)', 'var(--o3)', 'var(--o4)', 'var(--o5)', 'var(--open)'];
+  const fmtInt = (n) => Math.round(n).toLocaleString('en-US');
+  const fmtPct = (x) => `${(x * 100).toFixed(x > 0 && x < 0.1 ? 1 : 0)}%`;
+  const fmtAxisInt = (n) => (n >= 1000 ? `${+(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k` : String(+n.toFixed(2)));
+  const monthName = (m) => new Date(m + '-01T00:00:00').toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  const sum = (a) => a.reduce((x, y) => x + (y || 0), 0);
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  let D = null;
+  const state = { area: 'Citywide', span: '1', from: 0, to: 0, focus: null };
+
+  function el(tag, attrs = {}, text) {
+    const e = tag.startsWith('svg:') ? document.createElementNS(SVGNS, tag.slice(4)) : document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function niceStep(raw) { const p = Math.pow(10, Math.floor(Math.log10(raw))); const f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+  function keyEl(color, square) { const k = el('i', square ? { class: 'sq' } : {}); k.style.background = color; return k; }
+
+  // Shared frame: gridlines, y labels, year ticks. Returns scales.
+  function frame(svg, { W, H, m, n, yMax, step, labels, format, xOf }) {
+    const pw = W - m.l - m.r, ph = H - m.t - m.b;
+    const y = (v) => m.t + ph - (v / yMax) * ph;
+    for (let v = 0; v <= yMax + 1e-9; v += step) {
+      svg.append(el('svg:line', { x1: m.l, x2: m.l + pw, y1: y(v), y2: y(v), stroke: v === 0 ? 'var(--base)' : 'var(--grid)', 'stroke-width': 1 }));
+      svg.append(el('svg:text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--muted)', 'font-variant-numeric': 'tabular-nums' }, format === 'pct' ? `${Math.round(v * 100)}%` : fmtAxisInt(v)));
+    }
+    const years = [...new Set(labels.map((l) => l.slice(0, 4)))];
+    const every = Math.max(1, Math.ceil(years.length / Math.max(2, Math.floor(pw / 64))));
+    if (n === 1) { svg.append(el('svg:text', { x: xOf(0), y: H - 6, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }, monthName(labels[0].length === 7 ? labels[0] : labels[0].slice(0, 4) + '-01'))); return { pw, ph, y }; }
+    let lastX = -Infinity;
+    years.forEach((yr, k) => {
+      if (k % every) return;
+      const i = labels.findIndex((l) => l.startsWith(yr));
+      if (i === 0 && years.length > 1 && !/-01$|-Q1$|^\d{4}$/.test(labels[0])) return; // partial first year
+      if (xOf(i) - lastX < 44) return; // never let year labels collide
+      lastX = xOf(i);
+      svg.append(el('svg:line', { x1: xOf(i), x2: xOf(i), y1: m.t + ph, y2: m.t + ph + 4, stroke: 'var(--base)' }));
+      svg.append(el('svg:text', { x: xOf(i), y: H - 6, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }, yr));
+    });
+    return { pw, ph, y };
+  }
+  function scaleMax(cfg, vals) { const top = cfg.yMax ?? Math.max(1e-9, ...vals); const step = niceStep(top / 4); return { step, yMax: cfg.yMax ?? Math.ceil(top / step) * step }; }
+  function placeTip(host, tip, px, W) { tip.style.display = 'block'; const scale = host.clientWidth / W, x = px * scale, tw = tip.offsetWidth; tip.style.left = `${x + 14 + tw > host.clientWidth ? Math.max(0, x - tw - 14) : x + 14}px`; tip.style.top = '6px'; }
+
+  // ------------------------------------------------------------ line chart
+  function lineChart(host, cfg) {
+    host.replaceChildren();
+    const W = Math.max(280, host.clientWidth), narrow = W < 560, H = narrow ? 230 : 280;
+    const direct = cfg.series.length > 1 && cfg.series.length <= 4 && !narrow;
+    const m = { l: 44, r: direct ? 132 : 14, t: 10, b: 26 };
+    const n = cfg.months.length;
+    const pw0 = W - m.l - m.r, x = (i) => m.l + (n <= 1 ? pw0 / 2 : (i / (n - 1)) * pw0);
+    const { step, yMax } = scaleMax(cfg, cfg.series.flatMap((s) => s.values).filter((v) => v != null));
+    const svg = el('svg:svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', tabindex: '0', 'aria-label': `${cfg.title}. Line chart; the Table tab lists the values. Arrow keys move the readout.` });
+    const { pw, ph, y } = frame(svg, { W, H, m, n, yMax, step, labels: cfg.months, format: cfg.format, xOf: x });
+    cfg.series.forEach((s) => {
+      let d = '', pen = false;
+      s.values.forEach((v, i) => { if (v == null) { pen = false; return; } d += `${pen ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`; pen = true; });
+      svg.append(el('svg:path', { d, fill: 'none', stroke: s.color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+      s.values.forEach((v, i) => { if (v != null && s.values[i - 1] == null && s.values[i + 1] == null) svg.append(el('svg:circle', { cx: x(i), cy: y(v), r: 5, fill: s.color, stroke: 'var(--surface)', 'stroke-width': 2 })); });
+    });
+    if (direct) {
+      const ends = cfg.series.map((s) => { let i = s.values.length - 1; while (i >= 0 && s.values[i] == null) i--; return { s, i, yy: i >= 0 ? y(s.values[i]) : null }; }).filter((e) => e.i >= 0).sort((a, b) => a.yy - b.yy);
+      let last = -Infinity;
+      for (const e of ends) {
+        const ly = Math.max(e.yy, last + 15); last = ly;
+        svg.append(el('svg:circle', { cx: x(e.i), cy: e.yy, r: 4, fill: e.s.color, stroke: 'var(--surface)', 'stroke-width': 2 }));
+        svg.append(el('svg:text', { x: x(e.i) + 10, y: ly + 4, 'font-size': 11.5, fill: 'var(--ink2)' }, e.s.name.length > 20 ? e.s.name.slice(0, 19) + '…' : e.s.name));
+      }
+    }
+    const cross = el('svg:line', { y1: m.t, y2: m.t + ph, stroke: 'var(--ink2)', 'stroke-width': 1, visibility: 'hidden' });
+    const dots = cfg.series.map((s) => el('svg:circle', { r: 4, fill: s.color, stroke: 'var(--surface)', 'stroke-width': 2, visibility: 'hidden' }));
+    const hit = el('svg:rect', { x: m.l, y: m.t, width: pw, height: ph, fill: 'transparent' });
+    svg.append(cross, ...dots, hit);
+    const tip = el('div', { class: 'tip', role: 'status' });
+    host.append(svg, tip);
+    let cur = null;
+    const idxAt = (e) => { const r = svg.getBoundingClientRect(); const sx = (e.clientX - r.left) * (W / r.width), sy = (e.clientY - r.top) * (H / r.height); return { i: Math.max(0, Math.min(n - 1, Math.round(((sx - m.l) / pw) * (n - 1)))), sy }; };
+    // Nearest line to the pointer, within 14px, for click-to-focus.
+    const nearest = (i, sy) => { let best = -1, bd = 14; cfg.series.forEach((s, k) => { const v = s.values[i]; if (v == null) return; const d = Math.abs(y(v) - sy); if (d < bd) { bd = d; best = k; } }); return best; };
+    function show(i) {
+      cur = i;
+      cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('visibility', 'visible');
+      const out = [];
+      cfg.series.forEach((s, k) => { const v = s.values[i]; if (v == null) { dots[k].setAttribute('visibility', 'hidden'); return; } dots[k].setAttribute('cx', x(i)); dots[k].setAttribute('cy', y(v)); dots[k].setAttribute('visibility', 'visible'); out.push({ s, v }); });
+      out.sort((a, b) => b.v - a.v);
+      tip.replaceChildren(el('div', { class: 'tt' }, monthName(cfg.months[i])));
+      if (!out.length) tip.append(el('div', { class: 'tr' }, 'No data'));
+      for (const { s, v } of out) { const r = el('div', { class: 'tr' }); r.append(keyEl(s.color), el('b', {}, cfg.format === 'pct' ? fmtPct(v) : fmtInt(v)), el('span', {}, s.name)); tip.append(r); }
+      if (cfg.onPick && cfg.series.length > 1) tip.append(el('div', { class: 'tt', style: 'margin:6px 0 0' }, 'Click a line to show it on its own'));
+      placeTip(host, tip, x(i), W);
+    }
+    function hide() { cur = null; cross.setAttribute('visibility', 'hidden'); dots.forEach((d) => d.setAttribute('visibility', 'hidden')); tip.style.display = 'none'; }
+    hit.addEventListener('pointermove', (e) => { const { i, sy } = idxAt(e); show(i); hit.style.cursor = cfg.onPick && nearest(i, sy) >= 0 ? 'pointer' : 'crosshair'; });
+    hit.addEventListener('pointerleave', hide);
+    hit.addEventListener('click', (e) => { if (!cfg.onPick) return; const { i, sy } = idxAt(e); const k = nearest(i, sy); if (k >= 0) cfg.onPick(cfg.series[k].name); });
+    svg.addEventListener('focus', () => show(n - 1));
+    svg.addEventListener('blur', hide);
+    svg.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); show(Math.max(0, Math.min(n - 1, (cur ?? n - 1) + (e.key === 'ArrowLeft' ? -1 : 1)))); } });
+  }
+
+  // ------------------------------------------------------------ bar chart (stacked or single)
+  // cfg: { labels: [period], series: [{name, color, values}], format: 'pct'|'int', stacked: bool }
+  function barChart(host, cfg) {
+    host.replaceChildren();
+    const W = Math.max(280, host.clientWidth), H = W < 560 ? 230 : 280;
+    const m = { l: 44, r: 14, t: 10, b: 26 };
+    const n = cfg.labels.length, pw0 = W - m.l - m.r, slot = pw0 / n, gap = Math.min(2, slot * 0.25), bw = Math.max(1, slot - gap);
+    const x = (i) => m.l + i * slot + slot / 2;
+    const totals = cfg.labels.map((_, i) => sum(cfg.series.map((s) => s.values[i])));
+    const { step, yMax } = scaleMax(cfg, totals);
+    const svg = el('svg:svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', tabindex: '0', 'aria-label': `${cfg.title}. Bar chart; the Table tab lists the values. Arrow keys move the readout.` });
+    const { ph, y } = frame(svg, { W, H, m, n, yMax, step, labels: cfg.labels, format: cfg.format, xOf: x });
+    const cols = cfg.labels.map((_, i) => {
+      const g = el('svg:g');
+      let acc = 0;
+      cfg.series.forEach((s, k) => {
+        const v = s.values[i] || 0; if (!v) return;
+        const y0 = y(acc), y1 = y(acc + v); acc += v;
+        const top = k === cfg.series.length - 1 || !cfg.series.slice(k + 1).some((t) => t.values[i]);
+        const sep = cfg.series.length > 1 && bw >= 4; // surface gap between stacked segments
+        g.append(el('svg:rect', { x: x(i) - bw / 2, y: y1, width: bw, height: Math.max(0, y0 - y1), fill: s.color, rx: top && bw >= 6 ? 2 : 0, ...(sep ? { stroke: 'var(--surface)', 'stroke-width': 1 } : {}) }));
+      });
+      svg.append(g); return g;
+    });
+    const hit = el('svg:rect', { x: m.l, y: m.t, width: pw0, height: ph, fill: 'transparent' });
+    svg.append(hit);
+    const tip = el('div', { class: 'tip', role: 'status' });
+    host.append(svg, tip);
+    let cur = null;
+    function show(i) {
+      cur = i; cols.forEach((g, k) => g.setAttribute('opacity', k === i ? 1 : 0.55));
+      tip.replaceChildren(el('div', { class: 'tt' }, cfg.periodName(cfg.labels[i])));
+      for (const s of [...cfg.series].reverse()) { const v = s.values[i]; if (v == null) continue; const r = el('div', { class: 'tr' }); r.append(keyEl(s.color, true), el('b', {}, cfg.format === 'pct' ? fmtPct(v) : fmtInt(v)), el('span', {}, s.name)); tip.append(r); }
+      if (cfg.tipNote) tip.append(el('div', { class: 'tt', style: 'margin:6px 0 0' }, cfg.tipNote(i)));
+      placeTip(host, tip, x(i), W);
+    }
+    function hide() { cur = null; cols.forEach((g) => g.setAttribute('opacity', 1)); tip.style.display = 'none'; }
+    hit.addEventListener('pointermove', (e) => { const r = svg.getBoundingClientRect(); const sx = (e.clientX - r.left) * (W / r.width); show(Math.max(0, Math.min(n - 1, Math.floor((sx - m.l) / slot)))); });
+    hit.addEventListener('pointerleave', hide);
+    svg.addEventListener('focus', () => show(n - 1));
+    svg.addEventListener('blur', hide);
+    svg.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); show(Math.max(0, Math.min(n - 1, (cur ?? n - 1) + (e.key === 'ArrowLeft' ? -1 : 1)))); } });
+  }
+
+  // ------------------------------------------------------------ cards
+  function card({ id, title, wide }) {
+    const c = el('section', { class: `ccard${wide ? ' wide' : ''}`, id, 'aria-labelledby': `${id}-t` });
+    const h = el('h2', { id: `${id}-t` }, title);
+    c.append(h, el('p', { class: 'csub' }));
+    const tabs = el('div', { class: 'tabs', role: 'tablist' });
+    const bChart = el('button', { role: 'tab', 'aria-selected': 'true', type: 'button' }, 'Chart');
+    const bTable = el('button', { role: 'tab', 'aria-selected': 'false', type: 'button' }, 'Table');
+    tabs.append(bChart, bTable);
+    const legend = el('div', { class: 'legend2' }), hint = el('div', { class: 'hint', hidden: '' }), chart = el('div', { class: 'chart' }), table = el('div', { class: 'tview tablewrap', hidden: '' });
+    const foot = el('div', { class: 'cfoot' }), note = el('span'), dl = el('button', { type: 'button' }, 'Download CSV');
+    foot.append(note, dl);
+    c.append(tabs, legend, hint, chart, table, foot);
+    const setTab = (t) => { bChart.setAttribute('aria-selected', t === 'chart'); bTable.setAttribute('aria-selected', t === 'table'); chart.hidden = legend.hidden = t !== 'chart'; table.hidden = t !== 'table'; };
+    bChart.onclick = () => setTab('chart'); bTable.onclick = () => setTab('table');
+    $('cards').append(c);
+    return { c, h, tabs, sub: c.querySelector('.csub'), legend, hint, chart, table, note, dl };
+  }
+  function fillTable(host, columns, rows) {
+    const t = el('table'), thead = el('thead'), hr = el('tr'), tb = el('tbody');
+    columns.forEach((col, i) => hr.append(el('th', { class: i ? 'num' : '' }, col)));
+    thead.append(hr);
+    for (const r of rows) { const tr = el('tr'); r.forEach((v, i) => tr.append(el('td', { class: i ? 'num' : '' }, v))); tb.append(tr); }
+    t.append(thead, tb); host.replaceChildren(t);
+  }
+  function fillLegend(host, series, opts = {}) {
+    host.replaceChildren();
+    if (series.length < 2 && !opts.always) return;
+    for (const s of series) {
+      const item = opts.onPick ? el('button', { type: 'button', class: `lk${opts.focus && opts.focus !== s.name ? ' dim' : ''}`, 'aria-pressed': String(opts.focus === s.name), title: opts.focus === s.name ? 'Show all categories' : `Show only ${s.name}` }) : el('span', { class: 'lk' });
+      item.append(keyEl(s.color, opts.square), document.createTextNode(s.name));
+      if (opts.onPick) item.onclick = () => opts.onPick(s.name);
+      host.append(item);
+    }
+  }
+  function csv(name, header, rows) {
+    const q = (v) => `"${String(v ?? '').replaceAll('"', '""')}"`;
+    const blob = new Blob([[header, ...rows].map((r) => r.map(q).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const a = el('a', { href: URL.createObjectURL(blob), download: name }); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+
+  // ------------------------------------------------------------ range
+  function resolveRange() {
+    const n = D.months.length;
+    if (state.span === 'custom') { let a = +$('from').value, b = +$('to').value; if (a > b) [a, b] = [b, a]; state.from = a; state.to = b; }
+    else { const yrs = +state.span; state.to = n - 1; state.from = yrs ? Math.max(0, n - yrs * 12) : 0; }
+  }
+  const R = () => ({ from: state.from, to: state.to, len: state.to - state.from + 1, months: D.months.slice(state.from, state.to + 1) });
+  const win = (arr, a, b) => arr.slice(a, b + 1);
+  const rangeSum = (arr) => sum(win(arr, state.from, state.to));
+  const prevSum = (arr) => { const { from, len } = R(); return from - len >= 0 ? sum(win(arr, from - len, from - 1)) : null; };
+  const pctChange = (a, b) => (b ? (a / b - 1) * 100 : null);
+  const changeWords = (p) => (Math.abs(p) < 1 ? 'about level with' : p > 0 ? `up ${p.toFixed(0)}% on` : `down ${Math.abs(p).toFixed(0)}% on`);
+  const periodText = () => { const { months } = R(); return months.length === 1 ? monthName(months[0]) : `${monthName(months[0])} to ${monthName(months.at(-1))}`; };
+  const rangePhrase = () => (R().len === 1 ? `in ${periodText()}` : `from ${periodText()}`);
+  const priorPhrase = () => (R().len === 1 ? 'the month before' : `the ${R().len} months before`);
+  const areaName = () => (state.area === 'Citywide' ? 'San Francisco' : state.area);
+  // Bars: monthly up to 3 years, quarterly up to 10, then yearly.
+  function periods(months) {
+    const unit = months.length <= 36 ? 'month' : months.length <= 120 ? 'quarter' : 'year';
+    const keyOf = (mm) => (unit === 'month' ? mm : unit === 'quarter' ? `${mm.slice(0, 4)}-Q${Math.floor((+mm.slice(5) - 1) / 3) + 1}` : mm.slice(0, 4));
+    const groups = [];
+    months.forEach((mm, i) => { const k = keyOf(mm); if (!groups.length || groups.at(-1).key !== k) groups.push({ key: k, idx: [] }); groups.at(-1).idx.push(i); });
+    const name = (k) => (unit === 'month' ? monthName(k) : unit === 'quarter' ? `${k.slice(5)} ${k.slice(0, 4)}` : k);
+    return { unit, groups, name };
+  }
+  function yearRows(months, perMonth) {
+    const out = new Map();
+    months.forEach((mm, i) => { const yr = mm.slice(0, 4); if (!out.has(yr)) out.set(yr, { year: yr, months: 0, sums: null }); const o = out.get(yr); const v = perMonth(i); o.months++; o.sums = o.sums ? o.sums.map((s, k) => s + (v[k] || 0)) : v.map((x) => x || 0); });
+    return [...out.values()].reverse();
+  }
+  const yearLabel = (o) => (o.months < 12 ? `${o.year} (${o.months} mo.)` : o.year);
+
+  // ------------------------------------------------------------ render
+  const C = {};
+  function build() {
+    C.total = card({ id: 'requests', title: '311 service requests per month' });
+    C.cats = card({ id: 'categories', title: 'What people report most' });
+    C.chan = card({ id: 'channels', title: 'How people contact 311' });
+    C.close = card({ id: 'closure', title: 'How long requests take to close' });
+    C.open = card({ id: 'backlog', title: 'Requests still open, by when they were opened' });
+    C.hoods = card({ id: 'neighborhoods', title: 'Requests by neighborhood' });
+    C.hoods.c.classList.add('wide');
+    C.showAll = el('button', { type: 'button', class: 'showall', hidden: '' }, 'Show all categories');
+    C.showAll.onclick = () => { state.focus = null; render(); };
+    C.cats.tabs.append(C.showAll);
+  }
+
+  function render() {
+    resolveRange();
+    const A = state.area, { from, to, len, months } = R(), total = D.total[A], totSlice = win(total, from, to);
+    const S = rangeSum(total), P = prevSum(total);
+    const prevWords = (a, b) => (b ? `, ${changeWords(pctChange(a, b))} ${priorPhrase()}` : '');
+
+    // 1. Total requests
+    C.total.sub.textContent = `${areaName()} logged ${fmtInt(S)} requests ${rangePhrase()}${prevWords(S, P)}.`;
+    lineChart(C.total.chart, { title: '311 service requests per month', months, series: [{ name: areaName(), color: COLORS[0], values: totSlice }] });
+    fillLegend(C.total.legend, []);
+    fillTable(C.total.table, ['Year', 'Requests'], yearRows(months, (i) => [totSlice[i]]).map((o) => [yearLabel(o), fmtInt(o.sums[0])]));
+    C.total.note.textContent = 'Counts are reports, not unique incidents. The dataset begins in July 2008.';
+    C.total.dl.onclick = () => csv(`sf311-requests-${slug(A)}.csv`, ['month', 'area', 'requests'], months.map((mm, i) => [mm, A, totSlice[i]]));
+
+    // 2. Categories, with click-to-focus
+    {
+      const names = D.categories.names;
+      if (state.focus && !names.includes(state.focus)) state.focus = null;
+      const all = names.map((nm, k) => {
+        const full = D.categories.data[A][nm]; const first = full.findIndex((v) => v > 0);
+        return { name: nm, color: COLORS[k], full, values: win(full.map((v, i) => (first < 0 || i < first ? null : v)), from, to) };
+      });
+      const pick = (nm) => { state.focus = state.focus === nm ? null : nm; render(); };
+      const shown = state.focus ? all.filter((s) => s.name === state.focus) : all;
+      if (state.focus) {
+        const s = shown[0], cs = rangeSum(s.full), cp = prevSum(s.full);
+        let bi = -1; s.values.forEach((v, i) => { if (v != null && (bi < 0 || v > s.values[bi])) bi = i; });
+        C.cats.sub.textContent = `${s.name}: ${fmtInt(cs)} requests in ${areaName()} ${rangePhrase()}, ${S ? fmtPct(cs / S) : '0%'} of all requests${prevWords(cs, cp)}.${bi >= 0 ? ` Busiest month: ${monthName(months[bi])}, with ${fmtInt(s.values[bi])}.` : ''}`;
+        C.cats.h.textContent = `What people report most: ${s.name}`;
+      } else {
+        const ranked = all.map((s) => ({ s, n: rangeSum(s.full) })).sort((p, q) => q.n - p.n);
+        C.cats.sub.textContent = S ? `${ranked[0].s.name} was the most reported problem in ${areaName()} ${rangePhrase()}: ${fmtInt(ranked[0].n)} requests, or ${fmtPct(ranked[0].n / S)} of all requests.` : '';
+        C.cats.h.textContent = 'What people report most';
+      }
+      C.showAll.hidden = !state.focus;
+      C.cats.hint.hidden = false;
+      C.cats.hint.textContent = state.focus ? 'Showing one category. Click it again, or Show all categories, to compare.' : 'Click a line or a category name to show it on its own.';
+      lineChart(C.cats.chart, { title: state.focus ? `${state.focus} requests per month` : 'Requests per month by category', months, series: shown, onPick: pick });
+      fillLegend(C.cats.legend, all, { onPick: pick, focus: state.focus, always: true });
+      const tcols = shown.map((s) => s.name);
+      fillTable(C.cats.table, ['Year', ...tcols, ...(state.focus ? ['Share of all requests'] : [])], yearRows(months, (i) => [...shown.map((s) => s.values[i]), totSlice[i]]).map((o) => [yearLabel(o), ...o.sums.slice(0, shown.length).map(fmtInt), ...(state.focus ? [o.sums.at(-1) ? fmtPct(o.sums[0] / o.sums.at(-1)) : ''] : [])]));
+      C.cats.note.textContent = 'The five most reported categories citywide over the last 12 months. A line starts when that category name first appears in the data; several appear only from 2024, so earlier reports of the same problems are filed under other names.';
+      C.cats.dl.onclick = () => csv(`sf311-categories-${slug(A)}.csv`, ['month', 'area', 'all_requests', ...names], months.map((mm, i) => [mm, A, totSlice[i], ...all.map((s) => s.values[i] ?? '')]));
+    }
+
+    // 3. Channels
+    {
+      const names = D.channels.names, raw = names.map((nm) => win(D.channels.data[A][nm], from, to));
+      const series = names.map((nm, k) => ({ name: nm, color: COLORS[k], values: raw[k].map((v, i) => (totSlice[i] ? v / totSlice[i] : null)) }));
+      const share = (k, a, b) => { const t = sum(totSlice.slice(a, b)); return t ? sum(raw[k].slice(a, b)) / t : 0; };
+      C.chan.sub.textContent = len >= 24
+        ? `In the last 12 months of this range, ${fmtPct(share(0, len - 12, len))} of requests in ${areaName()} came through the mobile app and ${fmtPct(share(1, len - 12, len))} by phone. In the first 12 (from ${monthName(months[0])}), ${fmtPct(share(1, 0, 12))} came by phone.`
+        : `From ${periodText()}, ${fmtPct(share(0, 0, len))} of requests in ${areaName()} came through the mobile app and ${fmtPct(share(1, 0, len))} by phone.`;
+      lineChart(C.chan.chart, { title: 'Share of requests by channel', months, series, format: 'pct', yMax: 1 });
+      fillLegend(C.chan.legend, series);
+      fillTable(C.chan.table, ['Year', ...names], yearRows(months, (i) => [...raw.map((r) => r[i]), totSlice[i]]).map((o) => { const t = o.sums.at(-1); return [yearLabel(o), ...o.sums.slice(0, -1).map((v) => (t ? fmtPct(v / t) : ''))]; }));
+      C.chan.note.textContent = "Mobile app combines DataSF's Mobile and Mobile/Open311 sources. City agencies and other covers integrated city systems, Twitter, email and other sources. The sharp shift from app to web in 2025 may reflect a change in how sources are recorded rather than in how people report.";
+      C.chan.dl.onclick = () => csv(`sf311-channels-${slug(A)}.csv`, ['month', 'area', 'total', ...names.map((nm) => `${nm} (count)`)], months.map((mm, i) => [mm, A, totSlice[i], ...raw.map((r) => r[i])]));
+    }
+
+    // 4. How long requests take to close: share of each period's requests by time to close
+    {
+      const names = D.close.names, raw = names.map((nm) => win(D.close.data[A][nm], from, to));
+      const { groups, name, unit } = periods(months);
+      const counts = groups.map((g) => names.map((_, k) => sum(g.idx.map((i) => raw[k][i]))));
+      const series = names.map((nm, k) => ({ name: nm, color: CLOSE_COLORS[k], values: counts.map((c) => { const t = sum(c); return t ? c[k] / t : null; }) }));
+      const tot = names.map((_, k) => sum(raw[k])), T = sum(tot);
+      const iMonth = 3, iOpen = names.length - 1;
+      C.close.sub.textContent = T ? `Of requests opened in ${areaName()} ${rangePhrase()}, ${fmtPct(tot[0] / T)} were closed in under a day, ${fmtPct((tot[iMonth] + tot[iMonth + 1]) / T)} took a month or more, and ${fmtPct(tot[iOpen] / T)} are still open.` : '';
+      barChart(C.close.chart, { title: 'How long requests take to close', labels: groups.map((g) => g.key), periodName: name, series, format: 'pct', yMax: 1, tipNote: (i) => `${fmtInt(sum(counts[i]))} requests opened` });
+      fillLegend(C.close.legend, series, { square: true });
+      fillTable(C.close.table, [unit === 'month' ? 'Month opened' : unit === 'quarter' ? 'Quarter opened' : 'Year opened', 'Requests', ...names], groups.map((g, i) => [name(g.key), fmtInt(sum(counts[i])), ...counts[i].map((v) => { const t = sum(counts[i]); return t ? fmtPct(v / t) : ''; })]).reverse());
+      C.close.note.textContent = "Each bar is the requests opened in that period, split by how long they took to close in the city's system (whole days; closure can be administrative rather than a confirmed fix). Recent periods have had less time to close, so more of them are still open.";
+      C.close.dl.onclick = () => csv(`sf311-time-to-close-${slug(A)}.csv`, ['month_opened', 'area', 'requests', ...names], months.map((mm, i) => [mm, A, totSlice[i], ...raw.map((r) => r[i])]));
+    }
+
+    // 5. Backlog: requests still open today, by period opened
+    {
+      const fullOpen = D.close.data[A]['Still open'], openSlice = win(fullOpen, from, to);
+      const { groups, name, unit } = periods(months);
+      const vals = groups.map((g) => sum(g.idx.map((i) => openSlice[i])));
+      const n = D.months.length, allOpen = sum(fullOpen), older = (k) => sum(fullOpen.slice(0, Math.max(0, n - k)));
+      C.open.sub.textContent = `${fmtInt(allOpen)} requests in ${areaName()} are still open. ${fmtInt(older(3))} of them were opened more than 3 months ago and ${fmtInt(older(12))} more than a year ago.`;
+      barChart(C.open.chart, { title: 'Requests still open, by when they were opened', labels: groups.map((g) => g.key), periodName: name, series: [{ name: 'Still open', color: 'var(--open)', values: vals }], format: 'int' });
+      fillLegend(C.open.legend, []);
+      fillTable(C.open.table, [unit === 'month' ? 'Month opened' : unit === 'quarter' ? 'Quarter opened' : 'Year opened', 'Still open', 'Share of that period'], groups.map((g, i) => { const t = sum(g.idx.map((j) => totSlice[j])); return [name(g.key), fmtInt(vals[i]), t ? fmtPct(vals[i] / t) : '']; }).reverse());
+      C.open.note.textContent = "Cases with no closure date in the city's records as of the latest refresh, grouped by when they were opened. The headline counts cover every month since 2008, not only the selected range; requests opened in the current month are not included.";
+      C.open.dl.onclick = () => csv(`sf311-still-open-${slug(A)}.csv`, ['month_opened', 'area', 'requests', 'still_open'], months.map((mm, i) => [mm, A, totSlice[i], openSlice[i]]));
+    }
+
+    // 6. Neighborhood ranking over the selected range
+    {
+      const hoods = D.areas.filter((a) => a !== 'Citywide').map((h) => { const a = rangeSum(D.total[h]), b = prevSum(D.total[h]); return { h, a, b, ch: b == null ? null : pctChange(a, b) }; }).sort((p, q) => q.a - p.a);
+      const max = hoods[0]?.a || 1;
+      const list = el('div', { class: 'bars2', role: 'list' });
+      const head = el('div', { class: 'bhead' }); ['Neighborhood', '', 'Requests', 'vs prior'].forEach((t) => head.append(el('span', {}, t)));
+      for (const r of hoods) {
+        const row = el('div', { class: `brow${r.h === A ? ' sel' : ''}`, role: 'listitem', tabindex: '0', title: `${r.h}: ${fmtInt(r.a)} requests, ${periodText()}` });
+        const fill = el('div', { class: 'bf' }); fill.style.width = `${(r.a / max) * 100}%`;
+        const track = el('div', { class: 'bt' }); track.append(fill);
+        row.append(el('span', { class: 'bn' }, r.h), track, el('span', { class: 'bv' }, fmtInt(r.a)), el('span', { class: 'bc' }, r.ch == null ? 'n/a' : `${r.ch >= 0 ? '+' : ''}${r.ch.toFixed(0)}%`));
+        const go = () => { $('area').value = r.h; $('area').dispatchEvent(new Event('change')); };
+        row.addEventListener('click', go); row.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+        list.append(row);
+      }
+      C.hoods.chart.replaceChildren(head, list);
+      C.hoods.h.textContent = `Requests by neighborhood, ${periodText()}`;
+      const sel = hoods.find((r) => r.h === A);
+      C.hoods.sub.textContent = (sel ? `${A} ranks ${hoods.indexOf(sel) + 1} of ${hoods.length} neighborhoods by requests over this range.` : `${hoods[0].h} logged the most requests over this range.`) + ` "vs prior" compares with ${priorPhrase()}. Select a row to chart that neighborhood.`;
+      fillLegend(C.hoods.legend, []);
+      fillTable(C.hoods.table, ['Neighborhood', 'Requests', (len === 1 ? 'Previous month' : `Previous ${len} months`), 'Change'], hoods.map((r) => [r.h, fmtInt(r.a), r.b == null ? 'n/a' : fmtInt(r.b), r.ch == null ? 'n/a' : `${r.ch.toFixed(1)}%`]));
+      C.hoods.note.textContent = "Uses the city's analysis neighborhoods. Some cases have no neighborhood (about 80,000 to 100,000 a year in 2022 and 2023) and count only toward the citywide figures.";
+      C.hoods.dl.onclick = () => csv(`sf311-neighborhoods-${months[0]}-to-${months.at(-1)}.csv`, ['neighborhood', 'requests', 'previous_period', 'change_pct'], hoods.map((r) => [r.h, r.a, r.b ?? '', r.ch == null ? '' : r.ch.toFixed(2)]));
+    }
+    syncUrl();
+  }
+
+  function syncUrl() {
+    const u = new URL(location.href);
+    u.searchParams.delete('area'); u.searchParams.delete('from'); u.searchParams.delete('to'); u.searchParams.delete('span'); u.searchParams.delete('category');
+    if (state.area !== 'Citywide') u.searchParams.set('area', state.area);
+    if (state.span === 'custom') { u.searchParams.set('from', D.months[state.from]); u.searchParams.set('to', D.months[state.to]); }
+    else if (state.span !== '1') u.searchParams.set('span', state.span);
+    if (state.focus) u.searchParams.set('category', state.focus);
+    history.replaceState(null, '', u);
+  }
+
+  fetch('../data/trends.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))).then((d) => {
+    D = d;
+    const area = $('area'), span = $('span'), fromSel = $('from'), toSel = $('to'), n = D.months.length;
+    for (const a of D.areas.slice(1)) area.append(el('option', { value: a }, a));
+    D.months.forEach((mm, i) => { fromSel.append(el('option', { value: i }, monthName(mm))); toSel.append(el('option', { value: i }, monthName(mm))); });
+    const q = new URLSearchParams(location.search);
+    if (D.areas.includes(q.get('area'))) state.area = q.get('area');
+    const fi = D.months.indexOf(q.get('from')), ti = D.months.indexOf(q.get('to'));
+    if (fi >= 0 && ti >= 0) { state.span = 'custom'; fromSel.value = fi; toSel.value = ti; }
+    else { if ([...span.options].some((o) => o.value === q.get('span'))) state.span = q.get('span'); fromSel.value = Math.max(0, n - 12); toSel.value = n - 1; }
+    if (q.get('category')) state.focus = q.get('category');
+    area.value = state.area; span.value = state.span;
+    $('filters').classList.toggle('custom', state.span === 'custom');
+    $('status').textContent = `${monthName(D.months[0])} to ${monthName(D.months.at(-1))} · ${fmtInt(sum(D.total.Citywide))} requests · refreshed ${new Date(D.generated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
+    build(); render();
+    area.addEventListener('change', () => { state.area = area.value; render(); });
+    span.addEventListener('change', () => {
+      if (span.value === 'custom' && state.span !== 'custom') { fromSel.value = state.from; toSel.value = state.to; }
+      state.span = span.value; $('filters').classList.toggle('custom', state.span === 'custom'); render();
+    });
+    fromSel.addEventListener('change', render); toSel.addEventListener('change', render);
+    let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(render, 150); });
+  }).catch((e) => { $('status').textContent = `Trend data could not be loaded (${e.message}). Try again shortly.`; $('dot').classList.add('error'); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<title>This Week in San Francisco 311: What Changed | Sora Labs</title>
+<meta name="description" content="What changed in San Francisco 311 this week: neighborhood spikes, repeat street locations and closure times, computed from DataSF and updated every 6 hours.">
+<link rel="canonical" href="https://sora-labs.net/city-signals/this-week/">
+<meta name="theme-color" content="#132b25">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sora Labs">
+<meta property="og:title" content="This Week in San Francisco 311">
+<meta property="og:description" content="Neighborhood spikes, repeat street locations and closure times in San Francisco 311, updated every 6 hours.">
+<meta property="og:url" content="https://sora-labs.net/city-signals/this-week/">
+<meta property="og:image" content="https://sora-labs.net/city-signals/this-week/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@NadiaReports">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"This Week in San Francisco 311","url":"https://sora-labs.net/city-signals/this-week/","description":"Neighborhood spikes, repeat street locations and closure times in San Francisco 311, updated every 6 hours.","isPartOf":{"@type":"WebSite","name":"Sora Labs","url":"https://sora-labs.net/"},"about":{"@type":"Place","name":"San Francisco, California"},"isBasedOn":{"@type":"Dataset","name":"311 Cases","url":"https://data.sf.gov/City-Infrastructure/311-Cases/vw6y-z8j6","creator":{"@type":"GovernmentOrganization","name":"City and County of San Francisco"}},"publisher":{"@type":"Organization","name":"Sora Labs","url":"https://sora-labs.net/"}}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1F2ETBV5K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J1F2ETBV5K');</script>
+<link rel="stylesheet" href="../shell.css">
+<style>
+.icards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:24px}
+.icard{background:white;border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;min-height:180px}
+.icard .ilabel{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:750;color:#84928b}
+.icard .itext{font-size:20px;line-height:1.35;font-weight:700;letter-spacing:-.4px;color:var(--ink);margin-top:8px}
+.icard .ictx{color:#8c9890;font-size:11px;line-height:1.5}
+.icard .ictx a{color:var(--teal);font-weight:700;margin-left:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.panel h2{margin-bottom:4px}
+.psub{color:#8a988e;font-size:12px;margin:0 0 14px;line-height:1.5}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:#a6552b;font-weight:750}.down{color:#247953;font-weight:750}
+.method{color:#40584c;line-height:1.7;font-size:13px}
+.method li{margin:6px 0}
+.wrapcell{white-space:normal}
+.two th,.two td{padding:10px 6px}.two th{white-space:normal}.two table{table-layout:auto}
+@media(max-width:1050px){.icards,.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+<a class="brand" href="/" aria-label="Sora Labs home"><div class="brandmark">S</div><div><strong>Sora Labs</strong><small>City Signals</small></div></a>
+<nav aria-label="City Signals"><div class="navtitle">City Signals</div>
+<a class="navitem" href="/city-signals/">◈ &nbsp; Dashboard</a>
+<a class="navitem active" href="/city-signals/this-week/" aria-current="page">◎ &nbsp; This week</a>
+<a class="navitem" href="/city-signals/trends/">⌁ &nbsp; Long-run trends</a></nav>
+<div class="sidebar-bottom"><strong>San Francisco · Public beta</strong>Based on city-published 311 case records. Not an official City and County of San Francisco product.</div>
+</aside>
+<main class="main">
+<nav class="mnav" aria-label="City Signals pages"><a href="/city-signals/">Dashboard</a><a class="active" href="/city-signals/this-week/" aria-current="page">This week</a><a href="/city-signals/trends/">Long-run trends</a></nav>
+<div class="topline"><div>
+<h1 class="eyebrow" style="margin:0 0 7px">This week in San Francisco 311</h1>
+<p class="headline">What changed this week.</p>
+<div class="subhead" id="sub">Spikes by neighborhood, repeat locations and closure times, computed from the city's 311 records every 6 hours.</div>
+</div></div>
+<div class="status"><span class="dot" id="dot"></span><span id="status">Loading this week's findings…</span></div>
+
+<section aria-label="Headline findings"><div class="icards" id="icards"></div></section>
+
+<div class="two">
+<section class="panel" aria-labelledby="upTitle"><h2 id="upTitle">Biggest increases</h2><p class="psub">Neighborhood and category pairs with 20+ reports this week, compared with the trailing 30-day average.</p>
+<div class="tablewrap"><table><thead><tr><th>Neighborhood</th><th>Category</th><th class="num">This week</th><th class="num">Expected</th><th class="num">Change</th></tr></thead><tbody id="upRows"></tbody></table></div></section>
+<section class="panel" aria-labelledby="downTitle"><h2 id="downTitle">Biggest decreases</h2><p class="psub">Same pairs, where this week came in at least 20% under the trailing average.</p>
+<div class="tablewrap"><table><thead><tr><th>Neighborhood</th><th>Category</th><th class="num">This week</th><th class="num">Expected</th><th class="num">Change</th></tr></thead><tbody id="downRows"></tbody></table></div></section>
+</div>
+
+<section class="panel full" id="repeat-list" aria-labelledby="repTitle"><h2 id="repTitle">Repeat locations</h2>
+<p class="psub">Street and request subtype pairs with 5 or more reports in the last 90 days and an open case or a closure in the last 14 days. The 25 with the most reports.</p>
+<div class="tablewrap"><table><thead><tr><th>Street</th><th>Request type</th><th class="num">Reports, 90 days</th><th class="num">Open now</th></tr></thead><tbody id="repRows"></tbody></table></div></section>
+
+<section class="panel full" aria-labelledby="howTitle"><h2 id="howTitle">How these are calculated</h2>
+<ul class="method">
+<li><strong>This week</strong> is the latest 7 days with published data. DataSF publishes about a day behind, so the week ends on the newest case date in the data, not today.</li>
+<li><strong>Spikes</strong> compare reports in the last 7 days with the daily average over the 30 days before that, scaled to 7 days. A pair is flagged at 25% or more above that average with at least 20 reports. If none qualifies, the card shows the largest drop instead.</li>
+<li><strong>Repeat locations</strong> group reports by street and request subtype over 90 days. If none qualifies, the card shows how many cases older than 14 days are still open.</li>
+<li><strong>Closure times</strong> compare the median days to close for the 5 highest-volume categories: cases closed in the last 30 days against cases closed 31 to 60 days ago. A category is flagged when its median rose by 3 days or more from at least 3. If none qualifies, the card shows the fastest resolving category.</li>
+<li>Each record is a service request, not a verified incident, and a closed case may be administratively closed rather than fixed. The sentences on this page are fixed templates filled with computed numbers; no AI writes them.</li>
+</ul></section>
+
+<div class="foot">Source: <a href="https://data.sf.gov/City-Infrastructure/311-Cases/vw6y-z8j6" target="_blank" rel="noopener">San Francisco 311 Cases, DataSF</a>, refreshed every 6 hours. Explore the full <a href="/city-signals/">311 dashboard</a> or the <a href="/city-signals/trends/">long-run trends since 2008</a>. Built by <a href="/">Sora Labs</a>; not an official City and County of San Francisco product.</div>
+</main>
+</div>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const fmt = (n) => Number(n).toLocaleString('en-US');
+  const day = (s) => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const LABELS = { spike: 'Neighborhood spike', repeats: 'Repeat locations', close_time: 'Closure times' };
+  function cell(text, cls) { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; return td; }
+  function rows(tbody, list, build, empty) {
+    tbody.replaceChildren();
+    if (!list.length) { const tr = document.createElement('tr'); const td = cell(empty, 'wrapcell'); td.colSpan = 5; tr.append(td); tbody.append(tr); return; }
+    for (const item of list) { const tr = document.createElement('tr'); tr.append(...build(item)); tbody.append(tr); }
+  }
+  const mover = (m) => [cell(m.neighborhood, 'wrapcell'), cell(m.category, 'wrapcell'), cell(fmt(m.actual_7d), 'num'), cell(m.expected_7d.toFixed(1), 'num'), cell(`${m.change_pct > 0 ? '+' : ''}${m.change_pct}%`, `num ${m.change_pct > 0 ? 'up' : 'down'}`)];
+  fetch('../data/insights.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))).then((d) => {
+    $('status').textContent = `Week of ${day(d.week.start)} to ${day(d.week.end)} · computed ${new Date(d.generated_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`;
+    $('icards').replaceChildren(...d.insights.map((i) => {
+      const card = document.createElement('div'); card.className = 'icard'; card.dataset.insight = i.key; card.dataset.status = i.status;
+      const top = document.createElement('div');
+      const label = document.createElement('div'); label.className = 'ilabel'; label.textContent = LABELS[i.key] || '';
+      const text = document.createElement('div'); text.className = 'itext'; text.textContent = i.text;
+      top.append(label, text);
+      const ctx = document.createElement('div'); ctx.className = 'ictx'; ctx.textContent = i.context;
+      if (i.link) { const a = document.createElement('a'); a.href = `#${i.link.target}`; a.textContent = i.link.label; ctx.append(a); }
+      card.append(top, ctx); return card;
+    }));
+    rows($('upRows'), d.movers.up, mover, 'No pair rose 25% or more this week with 20+ reports.');
+    rows($('downRows'), d.movers.down, mover, 'No pair fell 20% or more this week with 20+ reports.');
+    rows($('repRows'), d.repeat_list, (r) => [cell(r.street), cell(`${r.category} / ${r.subtype}`, 'wrapcell'), cell(fmt(r.cases_90d), 'num'), cell(fmt(r.open_now), 'num')], 'No repeat locations this week.');
+  }).catch((e) => { $('status').textContent = `This week's findings could not be loaded (${e.message}). Try again shortly.`; $('dot').classList.add('error'); });
+})();
+</script>
+</body>
+</html>

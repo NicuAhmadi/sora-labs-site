@@ -23,11 +23,11 @@ module.exports = function (eleventyConfig) {
     "site-live/tools/cteig/districts.json": "tools/cteig/districts.json",
   });
 
-  // City Signals (SF 311 dashboard at /city-signals/, indexed; not in nav). Copied as-is,
-  // not templated. Its data/*.json is written into _site/ by
+  // City Signals (SF 311 pages under /city-signals/, indexed; not in site nav).
+  // Copied as-is, not templated. Their data/*.json is written into _site/ by
   // scripts/city-signals-snapshot.mjs in the deploy workflow, every 6 hours.
-  eleventyConfig.addPassthroughCopy({ "site-live/city-signals/index.html": "city-signals/index.html" });
-  eleventyConfig.addPassthroughCopy({ "site-live/city-signals/og.png": "city-signals/og.png" });
+  // Dashboard, /this-week/, /trends/, shared shell.css and OG images.
+  eleventyConfig.addPassthroughCopy({ "site-live/city-signals": "city-signals" });
   eleventyConfig.ignores.add("site-live/city-signals/**");
 
   // SEO
